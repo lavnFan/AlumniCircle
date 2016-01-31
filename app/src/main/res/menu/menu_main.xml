@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/add"
+        android:title="添加"
+        android:icon="@drawable/add_default"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/edit"
+        android:title="编辑"
+        android:icon="@drawable/edit_publish_default"
+        app:showAsAction="always"/>
+</menu>

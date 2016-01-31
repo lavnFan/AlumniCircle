@@ -15,7 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.login.LoginActivity"/>
+        <activity android:name=".ui.activity.login.LoginActivity" />
+        <activity
+            android:name=".ui.activity.login.ForgetPasswordActivity"
+            android:label="@string/forget_password" />
+        <activity
+            android:name=".ui.activity.login.RegisterActivity"
+            android:label="@string/back" />
+
     </application>
 
 </manifest>

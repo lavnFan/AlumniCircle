@@ -7,6 +7,44 @@
     <string name="common_loading_message">正在加载中...</string>
     <string name="request_time_out">请求超时，请检查网络连接</string>
     <string name="warn">提示</string>
+    <string name="alumni_circle">校友圈</string>
+
+    <!--login-->
+    <string name="user_hint">校友圈号/手机号</string>
+    <string name="password">密码</string>
+    <string name="login">登 录</string>
+    <string name="weixin_login">微信登录</string>
+    <string name="register_user">注册账号</string>
+    <string name="login_agree">登录或注册即同意</string>
+    <string name="user_service_agree">《用户服务协议》</string>
+    <string name="back">返回</string>
+    <string name="phone">手机</string>
+    <string name="phone_hint">注册手机号码</string>
+    <string name="password_hint">6-12位</string>
+    <string name="school_year">入学</string>
+    <string name="school_year_hint">入学年份</string>
+    <string name="college">学院</string>
+    <string name="college_hint">请选择你的学院</string>
+    <string name="major">专业</string>
+    <string name="major_hint">请选择你的专业</string>
+    <string name="register">注册</string>
+    <string name="register_1">注 册</string>
+    <string name="forget_password">忘记密码</string>
+
+    <!-- circle-->
+    <string name="circle">圈子</string>
+
+
+
+
+    <!-- contacts-->
+    <string name="contacts">人脉</string>
+
+
+
+    <!-- me-->
+    <string name="me">我</string>
+
 
 
 </resources>

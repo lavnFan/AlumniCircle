@@ -7,20 +7,20 @@
 
     <!--color.xml的#5000000前两位是透明的效果参数从00&#45;&#45;99（透明&#45;&#45;不怎么透明），-->
     <!--后6位是颜色的设置-->
-    <!-- basis color-->
-    <!--<color name="orange">#FADCA7</color>-->
-    <!--<color name="yellow">#EEFF41</color>-->
-    <!--<color name="black">#000000</color>-->
-    <!--<color name="white">#FFFFFF</color>-->
-    <!--<color name="orange_transparent">#AAFADCA7</color>-->
-    <!--<color name="near_white">#f3f5f7</color>-->
-    <!--<color name="black_opaque">#AA000000</color>-->
-    <!--<color name="black_40">#282828</color>-->
-    <!--<color name="red">#F44336</color>-->
-    <!--<color name="blue">#2196F3</color>-->
-    <!--<color name="grey">#E0E0E0</color>-->
-    <!--<color name="transparent">#00000000</color>-->
-    <!--<color name="default_color">#E8E8E7</color>-->
+     <!--basis color-->
+    <color name="orange">#FADCA7</color>
+    <color name="yellow">#EEFF41</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="orange_transparent">#AAFADCA7</color>
+    <color name="near_white">#f3f5f7</color>
+    <color name="black_opaque">#AA000000</color>
+    <color name="black_40">#282828</color>
+    <color name="red">#F44336</color>
+    <color name="blue">#2196F3</color>
+    <color name="grey">#E0E0E0</color>
+    <color name="transparent">#00000000</color>
+    <color name="default_color">#E8E8E7</color>
 
     <!-- defined-->
     <color name="no_image_color">#f0f0f0</color>
@@ -40,8 +40,18 @@
     <color name="gplus_color_2">#f4b400</color>
     <color name="gplus_color_3">#427fed</color>
     <color name="gplus_color_4">#b23424</color>
-
+    
     <!-- base color-->
-    <color name="main_color">#008cc9</color>
+    <color name="main_color">#008cc8</color>
+    <color name="divider_low">#e5e5e5</color>
+    <color name="divider_high">#cccccc</color>
+    <color name="main_text_normal">#cdcdcd</color>
+    <color name="main_text_selected">#2695cc</color>
 
+    <!-- login-->
+    <color name="login_default">#2DB3EC</color>
+    <color name="bottom_default">#0179AD</color>
+    <color name="text_main">#333333</color>
+    <color name="text_help">#666666</color>
+    <color name="text_hint">#999999</color>
 </resources>

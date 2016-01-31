@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/custom_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_8_margin"
+        android:layout_marginRight="@dimen/activity_8_margin"
+        android:layout_marginTop="@dimen/activity_16_margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_bg"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_16_margin"
+            android:paddingRight="@dimen/activity_16_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/activity_8_margin"
+                android:paddingTop="@dimen/activity_8_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone"
+                    android:textColor="@color/text_help" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_16_margin"
+                    android:background="@null"
+                    android:hint="@string/phone_hint"
+                    android:singleLine="true"
+                    android:textColor="@color/text_help"
+                    android:textColorHint="@color/text_hint" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="@color/divider_high" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/activity_8_margin"
+                android:paddingTop="@dimen/activity_8_margin">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/password"
+                    android:textColor="@color/text_help" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_16_margin"
+                    android:background="@null"
+                    android:hint="@string/password_hint"
+                    android:singleLine="true"
+                    android:textColor="@color/text_help"
+                    android:textColorHint="@color/text_hint" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_8_margin"
+            android:background="@drawable/text_bg"
+            android:paddingBottom="@dimen/activity_8_margin"
+            android:paddingLeft="@dimen/activity_16_margin"
+            android:paddingTop="@dimen/activity_8_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/school_year"
+                    android:textColor="@color/text_help" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_16_margin"
+                    android:layout_marginRight="@dimen/activity_32_margin"
+                    android:background="@null"
+                    android:hint="@string/school_year_hint"
+                    android:singleLine="true"
+                    android:textColor="@color/text_help"
+                    android:textColorHint="@color/text_hint" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/activity_16_margin"
+                android:src="@drawable/arrow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_8_margin"
+            android:background="@drawable/text_bg"
+            android:paddingBottom="@dimen/activity_8_margin"
+            android:paddingLeft="@dimen/activity_16_margin"
+            android:paddingTop="@dimen/activity_8_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/college"
+                    android:textColor="@color/text_help" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_16_margin"
+                    android:layout_marginRight="@dimen/activity_32_margin"
+                    android:background="@null"
+                    android:hint="@string/college_hint"
+                    android:singleLine="true"
+                    android:textColor="@color/text_help"
+                    android:textColorHint="@color/text_hint" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/activity_16_margin"
+                android:src="@drawable/arrow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_8_margin"
+            android:background="@drawable/text_bg"
+            android:paddingBottom="@dimen/activity_8_margin"
+            android:paddingLeft="@dimen/activity_16_margin"
+            android:paddingTop="@dimen/activity_8_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/major"
+                    android:textColor="@color/text_help" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_16_margin"
+                    android:layout_marginRight="@dimen/activity_32_margin"
+                    android:background="@null"
+                    android:hint="@string/major_hint"
+                    android:singleLine="true"
+                    android:textColor="@color/text_help"
+                    android:textColorHint="@color/text_hint" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/activity_16_margin"
+                android:src="@drawable/arrow" />
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_24_margin"
+            android:background="@drawable/button_bg"
+            android:text="@string/register_1"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</LinearLayout>

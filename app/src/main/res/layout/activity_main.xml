@@ -3,15 +3,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.activity.MainActivity">
 
-    <include layout="@layout/custom_toolbar"/>
+    <include layout="@layout/custom_toolbar" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/main_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:id="@+id/circle_ll"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_6_margin">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/circle_cv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/circle_default" />
+
+                <TextView
+                    android:id="@+id/circle_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/circle"
+                    android:textColor="@color/main_text_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contacts_ll"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_6_margin">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/contacts_cv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/contacts_default" />
+
+                <TextView
+                    android:id="@+id/contacts_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contacts"
+                    android:textColor="@color/main_text_normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/me_ll"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_6_margin">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/me_cv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/my_default" />
+
+                <TextView
+                    android:id="@+id/me_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/me"
+                    android:textColor="@color/main_text_normal" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
