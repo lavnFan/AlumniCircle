@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.ui.adapter;
+package com.seu.wufan.alumnicircle.ui.adapter.base;
 
 import android.content.Context;
 import android.util.Log;
@@ -24,6 +24,7 @@ public abstract class BasisAdapter<T, K> extends BaseAdapter {
     public void addEntities(List<T> mEntities){
         this.mEntities.addAll(mEntities);
     }
+
     public BasisAdapter(Context mContext, List<T> mEntities, Class<K> classType) {
         this.mContext = mContext;
         this.mEntities = mEntities;

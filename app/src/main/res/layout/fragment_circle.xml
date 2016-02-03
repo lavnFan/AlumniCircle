@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/circle_swipe_refresh_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:id="@+id/circle_scroll_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/circle" />
+        android:scrollbars="none">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/circle_top_topic_card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/activity_8_margin"
+                android:layout_marginRight="@dimen/activity_8_margin"
+                android:layout_marginTop="@dimen/activity_16_margin"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="2dp">
+
+                <include layout="@layout/view_in_circle_top_card" />
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_8_margin"
+                android:layout_marginRight="@dimen/activity_8_margin">
+
+                <com.seu.wufan.alumnicircle.ui.view.LoadMoreListView
+                    android:id="@+id/circle_dynamic_load_more_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

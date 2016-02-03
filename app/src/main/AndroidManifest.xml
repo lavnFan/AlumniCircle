@@ -8,7 +8,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.MainActivity">
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,11 +20,18 @@
         <activity android:name=".ui.activity.login.LoginActivity" />
         <activity
             android:name=".ui.activity.login.ForgetPasswordActivity"
-            android:label="@string/forget_password" />
+            android:label="@string/forget_password"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.login.RegisterActivity"
-            android:label="@string/back" />
-
+            android:label="@string/back"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.circle.CircleTopicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.circle.DynamicTextActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

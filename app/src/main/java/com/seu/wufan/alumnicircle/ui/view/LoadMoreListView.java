@@ -120,7 +120,7 @@ public class LoadMoreListView extends ListView implements OnScrollListener {
 
         if (mOnLoadMoreListener != null) {
 
-            boolean loadMore = firstVisibleItem + visibleItemCount >= totalItemCount-1;
+            boolean loadMore = firstVisibleItem + visibleItemCount >= totalItemCount;
 
             if (!mIsLoadingMore && loadMore
                     && mCurrentScrollState != SCROLL_STATE_IDLE) {
@@ -160,4 +160,10 @@ public class LoadMoreListView extends ListView implements OnScrollListener {
         public void onLoadMore();
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+                MeasureSpec.AT_MOST);
+        super.onMeasure(widthMeasureSpec, expandSpec);
+    }
 }
