@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.ui.fragment;
+package com.seu.wufan.alumnicircle.ui.fragment.circle;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ScrollView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.model.DynamicItem;
+import com.seu.wufan.alumnicircle.model.item.DynamicItem;
 import com.seu.wufan.alumnicircle.ui.activity.circle.CircleTopicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.circle.DynamicTextActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
@@ -15,6 +15,7 @@ import com.seu.wufan.alumnicircle.ui.adapter.DynamicItemAdapter;
 import com.seu.wufan.alumnicircle.ui.fragment.base.BaseLazyFragment;
 import com.seu.wufan.alumnicircle.ui.utils.TLog;
 import com.seu.wufan.alumnicircle.ui.view.LoadMoreListView;
+import com.seu.wufan.alumnicircle.ui.view.ScrollLoadMoreListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class CircleFragment extends BaseLazyFragment {
     @Bind(R.id.circle_top_topic_card_view)
     CardView mTopicCardView;
     @Bind(R.id.circle_dynamic_load_more_list_view)
-    LoadMoreListView mDynamicLoadMoreLv;
+    ScrollLoadMoreListView mDynamicLoadMoreLv;
     @Bind(R.id.circle_scroll_view)
     ScrollView mScrollView;
     @Bind(R.id.circle_swipe_refresh_layout)

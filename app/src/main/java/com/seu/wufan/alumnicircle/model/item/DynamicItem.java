@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.model;
+package com.seu.wufan.alumnicircle.model.item;
 
 /**
  * @author wufan

@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.model.DynamicItem;
+import com.seu.wufan.alumnicircle.model.item.DynamicItem;
 import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
 
 import java.util.ArrayList;

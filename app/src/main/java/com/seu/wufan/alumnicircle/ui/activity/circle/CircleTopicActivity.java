@@ -50,6 +50,7 @@ public class CircleTopicActivity extends SwipeBackActivity {
         mTopicRecycleView.setNestedScrollingEnabled(false);     // Disables scrolling for RecyclerView
         mTopicRecycleView.setHasFixedSize(false);
 
+
     }
 
     private void initData() {

@@ -35,6 +35,10 @@
     <string name="circle">圈子</string>
     <string name="topic">话题</string>
     <string name="partici_topic">参与话题</string>
+    <string name="dynamic_text">动态正文</string>
+    <string name="share">分享</string>
+    <string name="agree">赞</string>
+    <string name="comment">评论</string>
 
 
     <!-- contacts-->
@@ -44,7 +48,13 @@
 
     <!-- me-->
     <string name="me">我</string>
-
+    <string name="add_friend">加好友</string>
+    <string name="alumni_number">校友号</string>
+    <string name="person_introduction">个人简介</string>
+    <string name="dynamic">动态</string>
+    <string name="label">标签</string>
+    <string name="professional_experience">职业经历</string>
+    <string name="educational_experience">教育经历</string>
 
 
 </resources>

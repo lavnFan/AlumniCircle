@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.ui.activity.base.BaseActivity;
-import com.seu.wufan.alumnicircle.ui.fragment.CircleFragment;
+import com.seu.wufan.alumnicircle.ui.fragment.circle.CircleFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.ContactsFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.MyFragment;
 

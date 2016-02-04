@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_16_margin"
+        android:layout_marginLeft="@dimen/activity_8_margin"
+        android:layout_marginRight="@dimen/activity_8_margin"
+        android:layout_marginTop="@dimen/activity_16_margin">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle_dynamic_text_item_photo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/circle_dynamic_text_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_8_margin"
+            android:layout_marginTop="@dimen/activity_2_margin"
+            android:layout_toRightOf="@+id/circle_dynamic_text_item_photo"
+            android:text="陈诚"
+            android:textColor="@color/main_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/circle_dynamic_text_item_photo"
+            android:layout_alignLeft="@+id/circle_dynamic_text_item_name"
+            android:layout_below="@+id/circle_dynamic_text_item_name"
+            android:layout_marginBottom="@dimen/activity_2_margin"
+            android:layout_toRightOf="@+id/circle_dynamic_text_item_photo"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="领英中国"
+                android:textColor="@color/text_help"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/circle_dynamic_text_item_concrete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_8_margin"
+                android:text="客户经理"
+                android:textColor="@color/text_help"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="12分钟前"
+            android:textColor="@color/text_help" />
+    </RelativeLayout>
+</LinearLayout>
