@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/catalog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#e2e2e2"
+        android:gravity="center_vertical"
+        android:paddingBottom="2dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="2dp"
+        android:text="A"
+        android:textColor="#a8a8a8" />
+
+    <LinearLayout
+        android:id="@+id/frienditem"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/list_item_bg"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/frienduri"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginBottom="@dimen/activity_8_margin"
+            android:layout_marginLeft="@dimen/activity_16_margin"
+            android:layout_marginTop="@dimen/activity_8_margin"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/friendname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:text="阿明"
+            android:textColor="@color/text_main"
+            android:textSize="18sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -29,4 +29,5 @@ public class MyInformationActivity extends BaseSwipeActivity{
     protected View getLoadingTargetView() {
         return null;
     }
+
 }

@@ -53,7 +53,7 @@ public class DynamicTextActivity extends BaseSwipeActivity {
 
     @Override
     protected void initViews() {
-
+        mDynamicTextSv.smoothScrollTo(0,0);
         initDatas();
         mShareLl.setOnClickListener(listener);
         mAgreeLl.setOnClickListener(listener);
@@ -120,7 +120,6 @@ public class DynamicTextActivity extends BaseSwipeActivity {
     }
 
     void hideFragment(FragmentTransaction ft) {
-        mDynamicTextSv.smoothScrollTo(0,0);
         if (commentFragment != null) {
             ft.hide(commentFragment);
         }

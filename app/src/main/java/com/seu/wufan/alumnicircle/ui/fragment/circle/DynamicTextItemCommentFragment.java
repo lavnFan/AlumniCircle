@@ -48,7 +48,7 @@ public class DynamicTextItemCommentFragment extends BaseLazyFragment{
     protected void initViewsAndEvents() {
 
         initDatas();
-
+        mLoadMoreLv.setFocusable(false);
     }
 
     private void initDatas() {

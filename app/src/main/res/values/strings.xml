@@ -43,18 +43,18 @@
 
     <!-- contacts-->
     <string name="contacts">人脉</string>
-
-
+    <string name="new_friend">新的好友</string>
+    <string name="alumni_good">校友大咖</string>
 
     <!-- me-->
     <string name="me">我</string>
     <string name="add_friend">加好友</string>
-    <string name="alumni_number">校友号</string>
-    <string name="person_introduction">个人简介</string>
-    <string name="dynamic">动态</string>
-    <string name="label">标签</string>
-    <string name="professional_experience">职业经历</string>
-    <string name="educational_experience">教育经历</string>
+    <string name="alumni_number">校友号：</string>
+    <string name="person_introduction">个人简介：</string>
+    <string name="dynamic">动态：</string>
+    <string name="label">标签：</string>
+    <string name="professional_experience">职业经历：</string>
+    <string name="educational_experience">教育经历：</string>
 
 
 </resources>

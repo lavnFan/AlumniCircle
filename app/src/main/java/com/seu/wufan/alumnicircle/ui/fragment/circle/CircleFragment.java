@@ -47,7 +47,7 @@ public class CircleFragment extends BaseLazyFragment {
 
     @Override
     protected void onUserVisible() {
-
+//        mScrollView.smoothScrollTo(0, 0);
     }
 
     @Override
@@ -84,11 +84,12 @@ public class CircleFragment extends BaseLazyFragment {
                 readyGo(DynamicTextActivity.class);
             }
         });
-
-        mScrollView.smoothScrollTo(0, 0);
+        mDynamicLoadMoreLv.setFocusable(false);
         initDatas();
-    }
+        mScrollView.smoothScrollTo(0, 0);
 
+
+    }
 
     @Override
     protected int getContentViewLayoutID() {
@@ -118,5 +119,18 @@ public class CircleFragment extends BaseLazyFragment {
     void topTopicView() {
         readyGo(CircleTopicActivity.class);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        TLog.i("scroll:","resume");
+    }
+
+    @Override
+    public void onStop() {
+        super.onDestroy();
+        TLog.i("scroll","stop");
+    }
+
 
 }

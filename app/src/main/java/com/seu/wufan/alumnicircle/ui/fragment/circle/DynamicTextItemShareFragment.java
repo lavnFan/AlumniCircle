@@ -47,6 +47,7 @@ public class DynamicTextItemShareFragment extends BaseLazyFragment{
     @Override
     protected void initViewsAndEvents() {
         initDatas();
+        mLoadMoreLv.setFocusable(false);
     }
 
     @Override

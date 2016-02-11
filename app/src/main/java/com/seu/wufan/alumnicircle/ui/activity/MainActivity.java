@@ -2,6 +2,7 @@ package com.seu.wufan.alumnicircle.ui.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,7 +48,7 @@ public class MainActivity extends  BaseActivity{
     TextView mMyTv;
 
     private List<Fragment> mFragments = new ArrayList<Fragment>();
-    private FragmentPagerAdapter mAdapter;
+    private FragmentStatePagerAdapter mAdapter;
     private int mCurrentIndex=0;
 
     @Override
@@ -77,13 +78,16 @@ public class MainActivity extends  BaseActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         mToolbarTv.setVisibility(View.VISIBLE);
+
+
+
     }
 
     private void initDatas() {
         mFragments.add(new CircleFragment());
         mFragments.add(new ContactsFragment());
         mFragments.add(new MyFragment());
-        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+        mAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()){
             @Override
             public Fragment getItem(int position) {
                 return mFragments.get(position);
@@ -94,7 +98,10 @@ public class MainActivity extends  BaseActivity{
                 return mFragments.size();
             }
         };
-        mViewPager.setAdapter(mAdapter);
+        if(null!=mFragments){
+            mViewPager.setOffscreenPageLimit(mFragments.size());
+            mViewPager.setAdapter(mAdapter);
+        }
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
