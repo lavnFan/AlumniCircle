@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.ui.adapter;
+package com.seu.wufan.alumnicircle.ui.adapter.contacts;
 
 import android.content.Context;
 import android.view.LayoutInflater;

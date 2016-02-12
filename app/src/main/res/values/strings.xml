@@ -45,6 +45,15 @@
     <string name="contacts">人脉</string>
     <string name="new_friend">新的好友</string>
     <string name="alumni_good">校友大咖</string>
+    <string name="search_hint">校友号/手机号/微信号</string>
+    <string name="receive">接收</string>
+    <string name="watch">关注</string>
+    <string name="phone_contacts">手机联系人</string>
+    <string name="phone_contacts_hint">添加或邀请手机通讯录中联系人</string>
+    <string name="alumni_num">校友号</string>
+    <string name="alumni_num_hint">邀请校友圈联系人</string>
+    <string name="scan">扫一扫</string>
+    <string name="scan_hint">扫二维码添加好友</string>
 
     <!-- me-->
     <string name="me">我</string>

@@ -11,7 +11,7 @@ import com.seu.wufan.alumnicircle.model.item.DynamicItem;
 import com.seu.wufan.alumnicircle.ui.activity.circle.CircleTopicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.circle.DynamicTextActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
-import com.seu.wufan.alumnicircle.ui.adapter.DynamicItemAdapter;
+import com.seu.wufan.alumnicircle.ui.adapter.circle.DynamicItemAdapter;
 import com.seu.wufan.alumnicircle.ui.fragment.base.BaseLazyFragment;
 import com.seu.wufan.alumnicircle.ui.utils.TLog;
 import com.seu.wufan.alumnicircle.ui.view.LoadMoreListView;
@@ -119,18 +119,4 @@ public class CircleFragment extends BaseLazyFragment {
     void topTopicView() {
         readyGo(CircleTopicActivity.class);
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        TLog.i("scroll:","resume");
-    }
-
-    @Override
-    public void onStop() {
-        super.onDestroy();
-        TLog.i("scroll","stop");
-    }
-
-
 }

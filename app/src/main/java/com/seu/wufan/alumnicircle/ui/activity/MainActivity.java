@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.ui.activity.base.BaseActivity;
+import com.seu.wufan.alumnicircle.ui.activity.contacts.AddFriendsActivity;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.CircleFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.ContactsFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.MyFragment;
@@ -237,5 +238,18 @@ public class MainActivity extends  BaseActivity{
                 break;
         }
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.add:
+                readyGo(AddFriendsActivity.class);
+                break;
+            case R.id.edit:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

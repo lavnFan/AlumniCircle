@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.ui.adapter;
+package com.seu.wufan.alumnicircle.ui.adapter.circle;
 
 import android.content.Context;
 import android.view.View;

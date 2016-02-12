@@ -34,6 +34,12 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.me.MyInformationActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.contacts.AddFriendsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.contacts.NewFriendsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.contacts.AlumniGoodActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

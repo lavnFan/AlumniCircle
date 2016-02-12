@@ -1,8 +1,6 @@
 package com.seu.wufan.alumnicircle.ui.fragment;
 
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
@@ -11,8 +9,9 @@ import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.model.Friend;
-import com.seu.wufan.alumnicircle.ui.adapter.FriendAdapter;
-import com.seu.wufan.alumnicircle.ui.fragment.base.BaseFragment;
+import com.seu.wufan.alumnicircle.ui.activity.contacts.AlumniGoodActivity;
+import com.seu.wufan.alumnicircle.ui.activity.contacts.NewFriendsActivity;
+import com.seu.wufan.alumnicircle.ui.adapter.contacts.FriendAdapter;
 import com.seu.wufan.alumnicircle.ui.fragment.base.BaseLazyFragment;
 import com.seu.wufan.alumnicircle.ui.widget.pinyin.CharacterParser;
 import com.seu.wufan.alumnicircle.ui.widget.pinyin.PinyinComparator;
@@ -28,7 +27,7 @@ import butterknife.Bind;
  * @author wufan
  * @date 2016/1/31
  */
-public class ContactsFragment extends BaseLazyFragment implements View.OnClickListener{
+public class ContactsFragment extends BaseLazyFragment implements View.OnClickListener {
 
     @Bind(R.id.contacts_list_view)
     ListView mListView;
@@ -37,7 +36,7 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
     @Bind(R.id.contacts_sidrbar)
     SideBar mSidBar;
 
-    private  List<Friend> dataList = new ArrayList<>();
+    private List<Friend> dataList = new ArrayList<>();
     private List<Friend> sourceDataList = new ArrayList<Friend>();
     private FriendAdapter adapter;
 
@@ -90,6 +89,8 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
                 null);
         RelativeLayout re_newfriends = (RelativeLayout) headView.findViewById(R.id.contacts_new_friends_relative_layout);
         re_newfriends.setOnClickListener(this);
+        RelativeLayout re_alumniGood = (RelativeLayout) headView.findViewById(R.id.contacts_alumni_good_relative_layout);
+        re_alumniGood.setOnClickListener(this);
         adapter = new FriendAdapter(getActivity(), sourceDataList);
         mListView.addHeaderView(headView);
         mListView.setAdapter(adapter);
@@ -204,6 +205,13 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.contacts_new_friends_relative_layout:
+                readyGo(NewFriendsActivity.class);
+                break;
+            case R.id.contacts_alumni_good_relative_layout:
+                readyGo(AlumniGoodActivity.class);
+                break;
+        }
     }
 }

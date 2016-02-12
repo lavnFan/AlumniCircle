@@ -9,8 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.ui.adapter.CircleTopicRecycleItemAdapter;
-import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
+import com.seu.wufan.alumnicircle.ui.adapter.circle.CircleTopicRecycleItemAdapter;
 import com.seu.wufan.alumnicircle.ui.widget.CustomLinearLayoutManager;
 import com.seu.wufan.alumnicircle.ui.widget.swipeback.app.SwipeBackActivity;
 

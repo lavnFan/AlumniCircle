@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.model.item.DynamicAgreeItem;
-import com.seu.wufan.alumnicircle.ui.adapter.CircleDynamicAgreeItemAdapter;
+import com.seu.wufan.alumnicircle.ui.adapter.circle.CircleDynamicAgreeItemAdapter;
 import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
 import com.seu.wufan.alumnicircle.ui.fragment.base.BaseLazyFragment;
 import com.seu.wufan.alumnicircle.ui.view.ScrollLoadMoreListView;

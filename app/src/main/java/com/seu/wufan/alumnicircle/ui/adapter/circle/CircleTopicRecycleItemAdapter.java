@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.ui.adapter;
+package com.seu.wufan.alumnicircle.ui.adapter.circle;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
