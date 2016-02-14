@@ -9,7 +9,7 @@
         android:layout_marginBottom="@dimen/activity_12_margin"
         android:layout_marginLeft="@dimen/activity_4_margin"
         android:layout_marginRight="@dimen/activity_8_margin"
-        android:layout_marginTop="@dimen/activity_12_margin"
+        android:layout_marginTop="@dimen/activity_6_margin"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -19,8 +19,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/circle_dynamic_item_photo_cv"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:src="@drawable/logo" />
 
             <RelativeLayout

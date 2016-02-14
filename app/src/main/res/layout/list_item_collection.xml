@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/circle_dynamic_list_card_view"
+        android:id="@+id/me_my_collection_list_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_12_margin"

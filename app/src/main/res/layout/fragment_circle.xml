@@ -23,7 +23,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/activity_8_margin"
                 android:layout_marginRight="@dimen/activity_8_margin"
-                android:layout_marginTop="@dimen/activity_16_margin"
+                android:layout_marginTop="@dimen/activity_12_margin"
                 android:foreground="?attr/selectableItemBackground"
                 card_view:cardBackgroundColor="@color/white"
                 card_view:cardCornerRadius="2dp">

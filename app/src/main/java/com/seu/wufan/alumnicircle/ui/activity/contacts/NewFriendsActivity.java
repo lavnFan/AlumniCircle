@@ -7,6 +7,7 @@ import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.model.item.ContactsFriendsItem;
 import com.seu.wufan.alumnicircle.model.item.DynamicAgreeItem;
 import com.seu.wufan.alumnicircle.ui.activity.base.BaseActivity;
+import com.seu.wufan.alumnicircle.ui.activity.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
 import com.seu.wufan.alumnicircle.ui.adapter.contacts.ContactsFriendsItemAdapter;
 import com.seu.wufan.alumnicircle.ui.view.LoadMoreListView;
@@ -21,7 +22,7 @@ import butterknife.Bind;
  * @author wufan
  * @date 2016/2/12
  */
-public class NewFriendsActivity extends BaseActivity{
+public class NewFriendsActivity extends BaseSwipeActivity {
     @Bind(R.id.contacts_new_friends_lm_list_view)
     ScrollLoadMoreListView mListView;
     @Bind(R.id.contacts_new_friends_scroll_view)

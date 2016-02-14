@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.ui.activity.contacts;
+package com.seu.wufan.alumnicircle.ui.activity.me;
 
 import android.view.View;
 
@@ -8,12 +8,12 @@ import com.seu.wufan.alumnicircle.ui.activity.base.BaseSwipeActivity;
 
 /**
  * @author wufan
- * @date 2016/2/12
+ * @date 2016/2/13
  */
-public class AddFriendsActivity extends BaseSwipeActivity{
+public class MyMessageActivity  extends BaseSwipeActivity {
     @Override
     protected int getContentView() {
-        return R.layout.activity_contacts_add_friends;
+        return R.layout.activity_my_message;
     }
 
     @Override

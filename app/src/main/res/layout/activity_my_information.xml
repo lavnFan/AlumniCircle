@@ -9,10 +9,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_12_margin"
+        android:layout_marginBottom="@dimen/activity_8_margin"
         android:layout_marginLeft="@dimen/activity_8_margin"
         android:layout_marginRight="@dimen/activity_8_margin"
-        android:layout_marginTop="@dimen/activity_12_margin">
+        android:layout_marginTop="@dimen/activity_8_margin">
 
         <RelativeLayout
             android:id="@+id/my_information_top_relative_layout"
@@ -21,7 +21,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="148dp"
                 android:background="@color/blue" />
 
             <RelativeLayout
@@ -73,13 +73,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/my_information_top_relative_layout"
+            android:layout_marginTop="@dimen/activity_12_margin"
             android:background="@drawable/text_bg"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/activity_12_margin">
+            android:orientation="vertical">
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_4_margin"
+                android:layout_marginTop="@dimen/activity_4_margin"
                 android:orientation="vertical">
 
                 <TableRow
@@ -113,7 +115,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.6dp"
-                            android:layout_marginTop="@dimen/activity_6_margin"
+                            android:layout_marginTop="@dimen/activity_8_margin"
                             android:background="@color/divider_high" />
                     </LinearLayout>
                 </TableRow>
@@ -149,7 +151,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.6dp"
-                            android:layout_marginTop="@dimen/activity_6_margin"
+                            android:layout_marginTop="@dimen/activity_8_margin"
                             android:background="@color/divider_high" />
                     </LinearLayout>
                 </TableRow>
@@ -185,7 +187,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.6dp"
-                            android:layout_marginTop="@dimen/activity_6_margin"
+                            android:layout_marginTop="@dimen/activity_8_margin"
                             android:background="@color/divider_high" />
                     </LinearLayout>
                 </TableRow>
@@ -193,6 +195,7 @@
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_4_margin"
                     android:orientation="horizontal"
                     android:padding="@dimen/activity_8_margin"
                     android:weightSum="5">
@@ -220,16 +223,6 @@
                     </LinearLayout>
                 </TableRow>
             </TableLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="6">
-
-            </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -243,6 +236,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_4_margin"
                 android:orientation="horizontal"
                 android:padding="@dimen/activity_8_margin"
                 android:weightSum="5">
@@ -279,6 +273,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_4_margin"
                 android:orientation="horizontal"
                 android:padding="@dimen/activity_8_margin"
                 android:weightSum="5">
@@ -309,14 +304,13 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="@dimen/activity_16_margin"
             android:layout_marginRight="@dimen/activity_16_margin"
             android:background="@drawable/button_bg"
             android:text="@string/add_friend"
             android:textColor="@color/white"
-            android:textSize="20sp" />
-
+            android:textSize="16sp" />
     </RelativeLayout>
 </LinearLayout>

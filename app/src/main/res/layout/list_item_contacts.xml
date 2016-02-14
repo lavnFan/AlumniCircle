@@ -10,7 +10,6 @@
         android:id="@+id/catalog"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#e2e2e2"
         android:gravity="center_vertical"
         android:paddingBottom="2dp"
         android:paddingLeft="20dp"
@@ -20,8 +19,8 @@
 
     <LinearLayout
         android:id="@+id/frienditem"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/list_item_bg"
         android:orientation="horizontal">
 

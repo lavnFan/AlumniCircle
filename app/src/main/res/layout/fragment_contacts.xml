@@ -6,9 +6,9 @@
     <ListView
         android:id="@+id/contacts_list_view"
         android:layout_width="match_parent"
-        android:dividerHeight="0.6dp"
         android:layout_height="match_parent"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:dividerHeight="0.6dp" />
 
     <TextView
         android:id="@+id/contacts_dialog_tv"

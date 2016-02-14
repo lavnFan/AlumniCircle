@@ -25,7 +25,7 @@ import retrofit.RetrofitError;
  * @author wufan
  * @date 2016/1/30
  */
-public abstract class BaseSwipeActivity extends BackActivity {
+public abstract class BaseSwipeActivity extends SwipeBackActivity {
     private static final int VIBRATE_DURATION = 20;
 
     protected Toolbar mToolBar;

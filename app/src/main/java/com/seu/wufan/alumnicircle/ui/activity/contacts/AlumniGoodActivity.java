@@ -6,6 +6,7 @@ import android.widget.ScrollView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.model.item.ContactsFriendsItem;
 import com.seu.wufan.alumnicircle.ui.activity.base.BaseActivity;
+import com.seu.wufan.alumnicircle.ui.activity.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
 import com.seu.wufan.alumnicircle.ui.adapter.contacts.ContactsAlumniGoodItemAdapter;
 import com.seu.wufan.alumnicircle.ui.adapter.contacts.ContactsFriendsItemAdapter;
@@ -20,7 +21,7 @@ import butterknife.Bind;
  * @author wufan
  * @date 2016/2/12
  */
-public class AlumniGoodActivity extends BaseActivity{
+public class AlumniGoodActivity extends BaseSwipeActivity {
 
     @Bind(R.id.contacts_alumni_good_lm_list_view)
     ScrollLoadMoreListView mListView;
