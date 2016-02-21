@@ -9,15 +9,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.login.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.login.LoginActivity" />
+        <activity android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.activity.login.ForgetPasswordActivity"
             android:label="@string/forget_password"
@@ -62,6 +62,22 @@
         <activity
             android:name=".ui.activity.me.SettingActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.me.edit.ProfExperActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.me.edit.CompanyActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.me.edit.JobActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.me.edit.NameActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.me.edit.PersonIntroActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.login.RegisterCollegeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.login.RegisterProfActivity"
+            android:screenOrientation="portrait"/>
+
 
     </application>
 

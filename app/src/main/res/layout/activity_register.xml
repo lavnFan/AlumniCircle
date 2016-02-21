@@ -37,6 +37,7 @@
                     android:textColor="@color/text_help" />
 
                 <EditText
+                    android:id="@+id/register_phonen_num_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
@@ -67,6 +68,7 @@
                     android:textColor="@color/text_help" />
 
                 <EditText
+                    android:id="@+id/register_password_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
@@ -88,6 +90,7 @@
             android:paddingTop="@dimen/activity_8_margin">
 
             <LinearLayout
+                android:id="@+id/register_enroll_year_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -99,14 +102,15 @@
                     android:text="@string/school_year"
                     android:textColor="@color/text_help" />
 
-                <EditText
+                <TextView
+                    android:paddingTop="@dimen/activity_4_margin"
+                    android:paddingBottom="@dimen/activity_4_margin"
+                    android:id="@+id/register_enroll_year_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
                     android:layout_marginRight="@dimen/activity_32_margin"
-                    android:background="@null"
                     android:hint="@string/school_year_hint"
-                    android:singleLine="true"
                     android:textColor="@color/text_help"
                     android:textColorHint="@color/text_hint" />
             </LinearLayout>
@@ -130,6 +134,7 @@
             android:paddingTop="@dimen/activity_8_margin">
 
             <LinearLayout
+                android:id="@+id/register_college_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -141,14 +146,15 @@
                     android:text="@string/college"
                     android:textColor="@color/text_help" />
 
-                <EditText
+                <TextView
+                    android:paddingTop="@dimen/activity_4_margin"
+                    android:paddingBottom="@dimen/activity_4_margin"
+                    android:id="@+id/register_college_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
                     android:layout_marginRight="@dimen/activity_32_margin"
-                    android:background="@null"
                     android:hint="@string/college_hint"
-                    android:singleLine="true"
                     android:textColor="@color/text_help"
                     android:textColorHint="@color/text_hint" />
             </LinearLayout>
@@ -172,6 +178,7 @@
             android:paddingTop="@dimen/activity_8_margin">
 
             <LinearLayout
+                android:id="@+id/register_prof_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -184,14 +191,15 @@
                     android:text="@string/major"
                     android:textColor="@color/text_help" />
 
-                <EditText
+                <TextView
+                    android:paddingTop="@dimen/activity_4_margin"
+                    android:paddingBottom="@dimen/activity_4_margin"
+                    android:id="@+id/register_major_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
                     android:layout_marginRight="@dimen/activity_32_margin"
-                    android:background="@null"
                     android:hint="@string/major_hint"
-                    android:singleLine="true"
                     android:textColor="@color/text_help"
                     android:textColorHint="@color/text_hint" />
             </LinearLayout>

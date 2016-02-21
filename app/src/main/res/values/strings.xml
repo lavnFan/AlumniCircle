@@ -40,7 +40,6 @@
     <string name="agree">赞</string>
     <string name="comment">评论</string>
 
-
     <!-- contacts-->
     <string name="contacts">人脉</string>
     <string name="new_friend">新的好友</string>
@@ -78,7 +77,23 @@
     <string name="borth_year_">出生年月:</string>
     <string name="work_city_">工作城市:</string>
     <string name="job_prof_">行业职能:</string>
-    <string name="company_">公司:</string>
+    <string name="company_">公司：</string>
     <string name="prof_">职位：</string>
     <string name="person_intro_">个人简介：</string>
+    <string name="person_intro">个人简介</string>
+    <string name="add_prof_exper">添加职业经历</string>
+    <string name="company">公司</string>
+    <string name="prof">职位</string>
+    <string name="time_">时间：</string>
+    <string name="must_write">必填</string>
+    <string name="to">至</string>
+    <string name="prof_describe_hint">填写职位描述，仅限50字内</string>
+    <string name="prof_describe">职位描述</string>
+    <string name="person_intro_hint">个人简介应不超过三十字</string>
+    <string name="company_hint">公司名称应不超过二十字</string>
+    <string name="job_hint">职位名称应不超过二十字</string>
+    <string name="keep">保存</string>
+    <string name="please_select">请选择</string>
+    <string name="please_write">请填写</string>
+    <string name="no_data">没有找到符合条件的房源</string>
 </resources>

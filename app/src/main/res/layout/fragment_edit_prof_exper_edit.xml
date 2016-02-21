@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_8_margin"
+        android:layout_marginRight="@dimen/activity_8_margin"
+        android:layout_marginTop="@dimen/activity_12_margin"
+        android:background="@drawable/text_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_12_margin">
+
+            <TextView
+                android:paddingLeft="@dimen/activity_4_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/company_"
+                android:textColor="@color/text_help"
+                android:textSize="15sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_8_margin"
+                android:background="@null"
+                android:hint="@string/must_write"
+                android:singleLine="true"
+                android:textColorHint="@color/text_hint"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_marginLeft="@dimen/activity_16_margin"
+            android:background="@color/divider_low" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/activity_12_margin">
+
+            <TextView
+                android:paddingLeft="@dimen/activity_4_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/prof_"
+                android:textColor="@color/text_help"
+                android:textSize="15sp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_8_margin"
+                android:background="@null"
+                android:hint="@string/must_write"
+                android:singleLine="true"
+                android:textColorHint="@color/text_hint"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:layout_marginLeft="@dimen/activity_16_margin"
+            android:background="@color/divider_low" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_12_margin">
+
+            <TextView
+                android:paddingLeft="@dimen/activity_4_margin"
+                android:id="@+id/help_edit_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_"
+                android:textColor="@color/text_help"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_24_margin"
+                android:layout_toRightOf="@+id/help_edit_time_tv"
+                android:text="请选择"
+                android:textColor="@color/text_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_40_margin"
+                android:layout_toRightOf="@+id/help_edit_to_tv"
+                android:text="请选择"
+                android:textColor="@color/text_hint"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/help_edit_to_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@null"
+                android:text="@string/to"
+                android:textColor="@color/text_hint"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_8_margin"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="@dimen/activity_8_margin"
+        android:text="@string/prof_describe" />
+
+    <EditText
+        android:paddingTop="@dimen/activity_8_margin"
+        android:paddingBottom="@dimen/activity_8_margin"
+        android:paddingLeft="@dimen/activity_16_margin"
+        android:paddingRight="@dimen/activity_16_margin"
+        android:textSize="15sp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="@dimen/activity_8_margin"
+        android:layout_marginRight="@dimen/activity_8_margin"
+        android:background="@drawable/text_bg"
+        android:gravity="start"
+        android:hint="@string/prof_describe_hint"
+        android:textColorHint="@color/text_hint" />
+</LinearLayout>

@@ -17,9 +17,9 @@
         android:orientation="vertical">
 
         <TableLayout
-            android:layout_marginBottom="@dimen/activity_24_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_24_margin"
             android:orientation="vertical">
 
             <TableRow
@@ -52,6 +52,7 @@
                         android:layout_height="wrap_content">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/me_edit_info_photo_cv"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:layout_centerVertical="true"
@@ -79,9 +80,9 @@
                 android:id="@+id/me_edit_info_name_tr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_12_margin"
                 android:background="@drawable/list_item_bg"
                 android:clickable="true"
+                android:paddingTop="@dimen/activity_12_margin"
                 android:weightSum="5">
 
                 <TextView
@@ -104,6 +105,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/me_edit_info_name_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -132,9 +134,9 @@
                 android:id="@+id/me_edit_info_sex_tr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_12_margin"
                 android:background="@drawable/list_item_bg"
                 android:clickable="true"
+                android:paddingTop="@dimen/activity_12_margin"
                 android:weightSum="5">
 
                 <TextView
@@ -157,12 +159,14 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/me_edit_info_sex_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:text="请选择"
-                            android:textColor="@color/text_hint" />
+                            android:hint="@string/please_select"
+                            android:textColor="@color/text_main"
+                            android:textColorHint="@color/text_hint" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -185,9 +189,9 @@
                 android:id="@+id/me_edit_info_birth_date_tr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_12_margin"
                 android:background="@drawable/list_item_bg"
                 android:clickable="true"
+                android:paddingTop="@dimen/activity_12_margin"
                 android:weightSum="5">
 
                 <TextView
@@ -210,11 +214,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/me_edit_info_birth_date_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:text="请选择"
-                            android:textColor="@color/text_hint" />
+                            android:hint="@string/please_select"
+                            android:textColor="@color/text_main"
+                            android:textColorHint="@color/text_hint" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -237,9 +243,9 @@
                 android:id="@+id/me_edit_info_work_city_tr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_12_margin"
                 android:background="@drawable/list_item_bg"
                 android:clickable="true"
+                android:paddingTop="@dimen/activity_12_margin"
                 android:weightSum="5">
 
                 <TextView
@@ -262,12 +268,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
-
+                            android:id="@+id/me_edit_info_work_city_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:text="请选择"
-                            android:textColor="@color/text_hint" />
+                            android:hint="@string/please_select"
+                            android:textColor="@color/text_main"
+                            android:textColorHint="@color/text_hint" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -290,9 +297,9 @@
                 android:id="@+id/me_edit_info_job_prof_tr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_12_margin"
                 android:background="@drawable/list_item_bg"
                 android:clickable="true"
+                android:paddingTop="@dimen/activity_12_margin"
                 android:weightSum="5">
 
                 <TextView
@@ -315,11 +322,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/me_edit_info_job_prof_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:text="请选择"
-                            android:textColor="@color/text_hint" />
+                            android:hint="@string/please_select"
+                            android:textColor="@color/text_main"
+                            android:textColorHint="@color/text_hint" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -342,9 +351,9 @@
                 android:id="@+id/me_edit_info_company_tr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_12_margin"
                 android:background="@drawable/list_item_bg"
                 android:clickable="true"
+                android:paddingTop="@dimen/activity_12_margin"
                 android:weightSum="5">
 
                 <TextView
@@ -367,11 +376,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/me_edit_info_company_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:text="请填写"
-                            android:textColor="@color/text_hint" />
+                            android:hint="@string/please_write"
+                            android:textColor="@color/text_main"
+                            android:textColorHint="@color/text_hint" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -394,9 +405,9 @@
                 android:id="@+id/me_edit_info_prof_tr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_12_margin"
                 android:background="@drawable/list_item_bg"
                 android:clickable="true"
+                android:paddingTop="@dimen/activity_12_margin"
                 android:weightSum="5">
 
                 <TextView
@@ -419,11 +430,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/me_edit_info_job_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:text="请填写"
-                            android:textColor="@color/text_hint" />
+                            android:hint="@string/please_write"
+                            android:textColor="@color/text_main"
+                            android:textColorHint="@color/text_hint" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -446,9 +459,9 @@
                 android:id="@+id/me_edit_info_person_intro_tr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_12_margin"
                 android:background="@drawable/list_item_bg"
                 android:clickable="true"
+                android:paddingTop="@dimen/activity_12_margin"
                 android:weightSum="5">
 
                 <TextView
@@ -471,11 +484,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/me_edit_info_person_intro_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:text="请填写"
-                            android:textColor="@color/text_hint" />
+                            android:hint="@string/please_write"
+                            android:textColor="@color/text_main"
+                            android:textColorHint="@color/text_hint" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -498,9 +513,9 @@
                 android:id="@+id/me_edit_info_prof_exper_tr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_12_margin"
                 android:background="@drawable/list_item_bg"
                 android:clickable="true"
+                android:paddingTop="@dimen/activity_12_margin"
                 android:weightSum="5">
 
                 <TextView
@@ -523,11 +538,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/me_edit_info_prof_exper_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:text="请填写"
-                            android:textColor="@color/text_hint" />
+                            android:hint="@string/please_write"
+                            android:textColor="@color/text_main"
+                            android:textColorHint="@color/text_hint" />
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -550,9 +567,9 @@
                 android:id="@+id/me_edit_info_educ_exper_tr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_12_margin"
                 android:background="@drawable/list_item_bg"
                 android:clickable="true"
+                android:paddingTop="@dimen/activity_12_margin"
                 android:weightSum="5">
 
                 <TextView
@@ -575,11 +592,13 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/me_edit_info_educ_exper_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:text="请填写"
-                            android:textColor="@color/text_hint" />
+                            android:hint="@string/please_write"
+                            android:textColor="@color/text_main"
+                            android:textColorHint="@color/text_hint" />
 
                         <ImageView
                             android:layout_width="wrap_content"

@@ -14,4 +14,7 @@
     </declare-styleable>
 
     <attr name="SwipeBackLayoutStyle" format="reference"/>
+
+
+
 </resources>
