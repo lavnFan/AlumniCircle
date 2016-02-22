@@ -14,7 +14,7 @@ import android.preference.PreferenceManager;
 public class PreferenceUtils {
 
     public static class Key {
-        public static final String AVATAR = "AVATAR";
+        public static final String USER_ID = "USER_ID";
         public static final String ACCESS="ACCESS_token";
         public static final String PHONE="PHONE";
         public static final String LOCATION="location";

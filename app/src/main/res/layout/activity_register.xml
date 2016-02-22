@@ -45,7 +45,8 @@
                     android:hint="@string/phone_hint"
                     android:singleLine="true"
                     android:textColor="@color/text_help"
-                    android:textColorHint="@color/text_hint" />
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <View
@@ -74,9 +75,11 @@
                     android:layout_marginLeft="@dimen/activity_16_margin"
                     android:background="@null"
                     android:hint="@string/password_hint"
+                    android:password="true"
                     android:singleLine="true"
                     android:textColor="@color/text_help"
-                    android:textColorHint="@color/text_hint" />
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -103,14 +106,14 @@
                     android:textColor="@color/text_help" />
 
                 <TextView
-                    android:paddingTop="@dimen/activity_4_margin"
-                    android:paddingBottom="@dimen/activity_4_margin"
                     android:id="@+id/register_enroll_year_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
                     android:layout_marginRight="@dimen/activity_32_margin"
                     android:hint="@string/school_year_hint"
+                    android:paddingBottom="@dimen/activity_4_margin"
+                    android:paddingTop="@dimen/activity_4_margin"
                     android:textColor="@color/text_help"
                     android:textColorHint="@color/text_hint" />
             </LinearLayout>
@@ -147,14 +150,14 @@
                     android:textColor="@color/text_help" />
 
                 <TextView
-                    android:paddingTop="@dimen/activity_4_margin"
-                    android:paddingBottom="@dimen/activity_4_margin"
                     android:id="@+id/register_college_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
                     android:layout_marginRight="@dimen/activity_32_margin"
                     android:hint="@string/college_hint"
+                    android:paddingBottom="@dimen/activity_4_margin"
+                    android:paddingTop="@dimen/activity_4_margin"
                     android:textColor="@color/text_help"
                     android:textColorHint="@color/text_hint" />
             </LinearLayout>
@@ -192,14 +195,14 @@
                     android:textColor="@color/text_help" />
 
                 <TextView
-                    android:paddingTop="@dimen/activity_4_margin"
-                    android:paddingBottom="@dimen/activity_4_margin"
                     android:id="@+id/register_major_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
                     android:layout_marginRight="@dimen/activity_32_margin"
                     android:hint="@string/major_hint"
+                    android:paddingBottom="@dimen/activity_4_margin"
+                    android:paddingTop="@dimen/activity_4_margin"
                     android:textColor="@color/text_help"
                     android:textColorHint="@color/text_hint" />
             </LinearLayout>
@@ -214,6 +217,7 @@
         </RelativeLayout>
 
         <Button
+            android:id="@+id/register_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_24_margin"

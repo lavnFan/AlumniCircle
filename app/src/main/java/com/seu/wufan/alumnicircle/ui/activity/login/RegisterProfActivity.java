@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
+import com.seu.wufan.alumnicircle.ui.activity.base.BaseActivity;
 import com.seu.wufan.alumnicircle.ui.activity.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.ui.utils.TLog;
 
@@ -17,7 +18,7 @@ import butterknife.ButterKnife;
  * @author wufan
  * @date 2016/2/21
  */
-public class RegisterProfActivity extends BaseSwipeActivity {
+public class RegisterProfActivity extends BaseActivity {
 
     public final static String EXTRA_Prof = "prof";
     @Bind(R.id.text_toolbar_tv)

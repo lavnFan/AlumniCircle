@@ -1,25 +1,33 @@
 package com.seu.wufan.alumnicircle.ui.activity.login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.bigkoo.alertview.AlertView;
-import com.bigkoo.alertview.OnItemClickListener;
-import com.bigkoo.pickerview.TimePickerView;
 import com.seu.wufan.alumnicircle.R;
+import com.seu.wufan.alumnicircle.api.ApiManager;
+import com.seu.wufan.alumnicircle.model.api.LoginRes;
+import com.seu.wufan.alumnicircle.model.api.RegisterReq;
+import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.ui.activity.base.BaseActivity;
+import com.seu.wufan.alumnicircle.ui.utils.CommonUtils;
+import com.seu.wufan.alumnicircle.ui.utils.NetUtils;
+import com.seu.wufan.alumnicircle.ui.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.ui.utils.TLog;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
+import biz.kasual.materialnumberpicker.MaterialNumberPicker;
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * @author wufan
@@ -42,6 +50,8 @@ public class RegisterActivity extends BaseActivity {
 
     public final static int REQUESTCODE_College = 0;
     public final static int REQUESTCODE_Prof = 1;
+
+    RegisterReq req = new RegisterReq();
 
     @Override
     protected int getContentView() {
@@ -69,6 +79,7 @@ public class RegisterActivity extends BaseActivity {
         Bundle bundle = new Bundle();
         switch (view.getId()) {
             case R.id.register_enroll_year_ll:
+                selectEnrollYear();
                 break;
             case R.id.register_college_ll:
                 bundle.putString(RegisterCollegeActivity.EXTRA_College, mCollegeEt.getText().toString());
@@ -79,6 +90,31 @@ public class RegisterActivity extends BaseActivity {
                 readyGoForResult(RegisterProfActivity.class, REQUESTCODE_Prof, bundle);
                 break;
         }
+    }
+
+    private void selectEnrollYear() {
+        Calendar calendar = Calendar.getInstance();
+        final MaterialNumberPicker numberPicker = new MaterialNumberPicker.Builder(this)
+                .minValue(calendar.get(Calendar.YEAR) - 40)
+                .maxValue(calendar.get(Calendar.YEAR) + 5)
+                .defaultValue(calendar.get(Calendar.YEAR))
+                .backgroundColor(Color.WHITE)
+                .separatorColor(Color.BLUE)
+                .textColor(Color.BLACK)
+                .textSize(20)
+                .enableFocusability(false)
+                .wrapSelectorWheel(true)
+                .build();
+        new AlertDialog.Builder(this)
+                .setTitle("请选择入学年份")
+                .setView(numberPicker)
+                .setPositiveButton(getString(R.string.ensure), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mEnrollYearEt.setText(String.valueOf(numberPicker.getValue()));
+                    }
+                })
+                .show();
     }
 
     @Override
@@ -96,5 +132,46 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
+    @OnClick(R.id.register_btn)
+    void register() {
+        registerCase();
+    }
+
+    private void registerCase() {
+        validateRegister();
+        if (NetUtils.isNetworkConnected(this)) {
+            ApiManager.getService(this).register(req, new Callback<LoginRes>() {
+                @Override
+                public void success(LoginRes loginRes, Response response) {
+                    TLog.i("Register",loginRes.getAccess_token()+" "+loginRes.getUser_id());
+                    saveUserInfo(loginRes);
+                    readyGoThenKill(MainActivity.class);
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    showInnerError(error);
+                }
+            });
+
+        }else {
+            showNetWorkError();
+        }
+    }
+
+    private void validateRegister() {
+        req.setPhone_num(mPhonenNumEt.getText().toString());
+        req.setPassword(mPasswordEt.getText().toString());
+        req.setEnroll_year(Integer.parseInt(mEnrollYearEt.getText().toString()));
+        req.setSchool(mCollegeEt.getText().toString());
+        req.setMajor(mProfEt.getText().toString());
+    }
+
+    private void saveUserInfo(LoginRes res) {
+        PreferenceUtils.putString(RegisterActivity.this.getApplicationContext(),
+                PreferenceUtils.Key.ACCESS, res.getAccess_token());
+        PreferenceUtils.putString(RegisterActivity.this.getApplicationContext(),
+                PreferenceUtils.Key.USER_ID, res.getUser_id());
+    }
 
 }

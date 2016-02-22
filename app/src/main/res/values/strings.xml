@@ -30,6 +30,7 @@
     <string name="register">注册</string>
     <string name="register_1">注 册</string>
     <string name="forget_password">忘记密码</string>
+    <string name="ensure">确定</string>
 
     <!-- circle-->
     <string name="circle">圈子</string>
