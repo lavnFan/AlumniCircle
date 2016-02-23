@@ -103,6 +103,7 @@ public class LoginActivity extends BaseActivity {
                             PreferenceUtils.Key.ACCESS, loginRes.getAccess_token());
                     //设置为已登录
                     PreferenceUtils.putBoolean(LoginActivity.this, PreferenceUtils.Key.LOGIN, true);
+                    TLog.i("Login:",loginRes.getAccess_token()+" "+loginRes.getUser_id());
                     getUserInfo(loginRes.getUser_id());
                 }
 

@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,6 +26,8 @@ import com.seu.wufan.alumnicircle.ui.activity.me.edit.JobActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.NameActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.PersonIntroActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperActivity;
+import com.seu.wufan.alumnicircle.ui.utils.CommonUtils;
+import com.seu.wufan.alumnicircle.ui.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.ui.utils.TLog;
 import com.seu.wufan.alumnicircle.ui.widget.expandtabview.view.ViewMiddle;
 import com.seu.wufan.alumnicircle.ui.widget.province.bean.ProvinceBean;
@@ -31,7 +35,9 @@ import com.seu.wufan.alumnicircle.ui.widget.province.model.CityModel;
 import com.seu.wufan.alumnicircle.ui.widget.province.model.DistrictModel;
 import com.seu.wufan.alumnicircle.ui.widget.province.model.ProvinceModel;
 import com.seu.wufan.alumnicircle.ui.widget.province.service.XmlParserHandler;
+import com.soundcloud.android.crop.Crop;
 
+import java.io.File;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,6 +53,9 @@ import javax.xml.parsers.SAXParserFactory;
 import butterknife.Bind;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.iwf.photopicker.PhotoPickerActivity;
+import me.iwf.photopicker.entity.Photo;
+import me.iwf.photopicker.utils.PhotoPickerIntent;
 
 /**
  * @author wufan
@@ -105,6 +114,7 @@ public class EditInformationActiviy extends BaseSwipeActivity {
     public final static int REQUESTCODE_Company = 1;
     public final static int REQUESTCODE_Name = 2;
     public final static int REQUESTCODE_Job = 3;
+    public final static int REQUESTCODE_Photo = 4;
 
     TimePickerView pvTime;
     OptionsPickerView pvOptions;
@@ -119,8 +129,8 @@ public class EditInformationActiviy extends BaseSwipeActivity {
     protected Map<String, String> mZipcodeDatasMap = new HashMap<String, String>();//key - 区 values - 邮编
     protected String mCurrentProviceName;//当前省的名称
     protected String mCurrentCityName;
-    protected String mCurrentDistrictName =""; //当前区的名称
-    protected String mCurrentZipCode ="";//当前区的邮政编码
+    protected String mCurrentDistrictName = ""; //当前区的名称
+    protected String mCurrentZipCode = "";//当前区的邮政编码
 
 
     private PopupWindow popupWindow;
@@ -128,6 +138,9 @@ public class EditInformationActiviy extends BaseSwipeActivity {
     private EditInformationActiviy mContext;
     private int displayWidth;
     private int displayHeight;
+
+
+    private String photoPath;
 
     @Override
     protected int getContentView() {
@@ -170,11 +183,15 @@ public class EditInformationActiviy extends BaseSwipeActivity {
         switch (view.getId()) {
             case R.id.me_edit_info_photo_tr:
                 //选择头像
+                PhotoPickerIntent intent = new PhotoPickerIntent(EditInformationActiviy.this);
+                intent.setPhotoCount(1);
+                intent.setShowCamera(true);
+                startActivityForResult(intent, REQUESTCODE_Photo);
                 break;
             case R.id.me_edit_info_name_tr:
                 //修改姓名
-                bundle.putString(NameActivity.EXTRA_NAME,mNameTv.getText().toString());
-                readyGoForResult(NameActivity.class, REQUESTCODE_Name,bundle);
+                bundle.putString(NameActivity.EXTRA_NAME, mNameTv.getText().toString());
+                readyGoForResult(NameActivity.class, REQUESTCODE_Name, bundle);
                 break;
             case R.id.me_edit_info_sex_tr:
                 final String[] sexs = new String[]{"男", "女", "保密"};
@@ -203,17 +220,17 @@ public class EditInformationActiviy extends BaseSwipeActivity {
             case R.id.me_edit_info_company_tr:
                 //公司
                 bundle.putString(CompanyActivity.EXTRA_COMPANY, mCompanyTv.getText().toString());
-                readyGoForResult(CompanyActivity.class, REQUESTCODE_Company,bundle);
+                readyGoForResult(CompanyActivity.class, REQUESTCODE_Company, bundle);
                 break;
             case R.id.me_edit_info_prof_tr:
                 //职位
                 bundle.putString(JobActivity.EXTRA_JOB, mJobTv.getText().toString());
-                readyGoForResult(JobActivity.class, REQUESTCODE_Job,bundle);
+                readyGoForResult(JobActivity.class, REQUESTCODE_Job, bundle);
                 break;
             case R.id.me_edit_info_person_intro_tr:
                 //个人简介
                 bundle.putString(PersonIntroActivity.EXTRA_PERSON_INTRO, mPersonIntroTv.getText().toString());
-                readyGoForResult(PersonIntroActivity.class, REQUESTCODE_Person_Intro,bundle);
+                readyGoForResult(PersonIntroActivity.class, REQUESTCODE_Person_Intro, bundle);
                 break;
             case R.id.me_edit_info_prof_exper_tr:
                 //职业经历
@@ -271,23 +288,54 @@ public class EditInformationActiviy extends BaseSwipeActivity {
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case REQUESTCODE_Company:
-                String company= (data==null)?String.valueOf(R.string.please_write):data.getStringExtra(CompanyActivity.EXTRA_COMPANY);
+                String company = (data == null) ? null : data.getStringExtra(CompanyActivity.EXTRA_COMPANY);
+                if (company == null) {
+                    mCompanyTv.setHint(R.string.please_write);
+                }
                 mCompanyTv.setText(company);
                 break;
             case REQUESTCODE_Job:
-                String job= (data==null)?String.valueOf(R.string.please_write):data.getStringExtra(JobActivity.EXTRA_JOB);
+                String job = (data == null) ? null : data.getStringExtra(JobActivity.EXTRA_JOB);
+                if (job == null) {
+                    mJobTv.setHint(R.string.please_write);
+                }
                 mJobTv.setText(job);
                 break;
             case REQUESTCODE_Name:
-                String name= (data==null)?String.valueOf(R.string.please_write):data.getStringExtra(NameActivity.EXTRA_NAME);
+                String name = (data == null) ? null : data.getStringExtra(NameActivity.EXTRA_NAME);
+                if (name == null) {
+                    mNameTv.setHint(R.string.please_write);
+                }
                 mNameTv.setText(name);
                 break;
             case REQUESTCODE_Person_Intro:
-                String personInfo= (data==null)?String.valueOf(R.string.please_write):data.getStringExtra(PersonIntroActivity.EXTRA_PERSON_INTRO);
+                String personInfo = (data == null) ? null : data.getStringExtra(PersonIntroActivity.EXTRA_PERSON_INTRO);
+                if (personInfo == null) {
+                    mPersonIntroTv.setHint(R.string.please_write);
+                }
                 mPersonIntroTv.setText(personInfo);
+                break;
+            case RESULT_OK:
+                switch (requestCode) {
+                    case REQUESTCODE_Photo:
+                        if (data != null) {
+                            ArrayList<Photo> photos =
+                                    data.getParcelableArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
+                            TLog.i("PHOTO-INFO", "PHOTO:" + photos.get(0));
+                            photoPath = photos.get(0).getPath();
+                            beginCrop(Uri.fromFile(new File(photoPath)));
+                        }
+//                    Log.i("PHOTO-INFO", "PHOTO:" + data.getData());
+//                    beginCrop(data.getData());
+                        break;
+                    case Crop.REQUEST_CROP:
+                        handleCrop(resultCode, data);
+                        break;
+                }
                 break;
         }
     }
+
 
     public static String getTime(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -295,31 +343,35 @@ public class EditInformationActiviy extends BaseSwipeActivity {
     }
 
     private void showPopupWindow() {
-        popupWindow = new PopupWindow(viewMiddle, displayWidth, displayHeight,true);
+        popupWindow = new PopupWindow(viewMiddle, displayWidth, displayHeight, true);
         popupWindow.setAnimationStyle(R.style.PopupWindowAnimation);
         popupWindow.setTouchable(true);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        backgroundAlpha(1f);
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                backgroundAlpha(1f);
-            }
-        });
-        popupWindow.showAsDropDown(mToolBar,displayHeight/4,displayWidth/4);
+        popupWindow.showAsDropDown(mToolBar, displayHeight / 4, displayWidth / 4);
     }
 
-    /**
-     * 设置添加屏幕的背景透明度
-     * @param bgAlpha
-     */
-    public void backgroundAlpha(float bgAlpha)
-    {
-        WindowManager.LayoutParams lp = getWindow().getAttributes();
-        lp.alpha = bgAlpha; //0.0-1.0
-        getWindow().setAttributes(lp);
+    private void beginCrop(Uri source) {
+        Uri destination = Uri.fromFile(new File(getCacheDir(), String.valueOf(new Date().getTime())));//删除缓存图片
+        Crop.of(source, destination).asSquare().start(this);
+    }
+
+    private void handleCrop(int resultCode, Intent result) {
+        if (resultCode == RESULT_OK) {
+            photoPath = Crop.getOutput(result).getPath();
+            CommonUtils.showCircleImageWithGlide(this, mPhotoCv, photoPath);
+            PreferenceUtils.putString(getApplicationContext(), PreferenceUtils.Key.PHOTO_PATH, photoPath);
+
+//            EventBus.getDefault().post(new AccountChangeEvent());
+//            EventBus.getDefault().post(new AvaterChangeEvent(photoPath));
+//            finish();
+//            showProgressDialog();
+//            getUploadToken();
+//            Log.i("info", photoPath);
+        } else if (resultCode == Crop.RESULT_ERROR) {
+            showToast(Crop.getError(result).getMessage());//  失败考虑默认头像
+        }
     }
 
     /**
@@ -351,8 +403,7 @@ public class EditInformationActiviy extends BaseSwipeActivity {
     /**
      * 解析省市区的XML数据
      */
-    protected void initProvinceDatas()
-    {
+    protected void initProvinceDatas() {
         List<ProvinceModel> provinceList = null;
         AssetManager asset = getAssets();
         try {
@@ -367,10 +418,10 @@ public class EditInformationActiviy extends BaseSwipeActivity {
             // 获取解析出来的数据
             provinceList = handler.getDataList();
             //*/ 初始化默认选中的省、市、区
-            if (provinceList!= null && !provinceList.isEmpty()) {
+            if (provinceList != null && !provinceList.isEmpty()) {
                 mCurrentProviceName = provinceList.get(0).getName();
                 List<CityModel> cityList = provinceList.get(0).getCityList();
-                if (cityList!= null && !cityList.isEmpty()) {
+                if (cityList != null && !cityList.isEmpty()) {
                     mCurrentCityName = cityList.get(0).getName();
                     List<DistrictModel> districtList = cityList.get(0).getDistrictList();
                     mCurrentDistrictName = districtList.get(0).getName();
@@ -379,18 +430,18 @@ public class EditInformationActiviy extends BaseSwipeActivity {
             }
             //*/
             mProvinceDatas = new String[provinceList.size()];
-            for (int i=0; i< provinceList.size(); i++) {
+            for (int i = 0; i < provinceList.size(); i++) {
                 // 遍历所有省的数据
                 mProvinceDatas[i] = provinceList.get(i).getName();
                 List<CityModel> cityList = provinceList.get(i).getCityList();
                 String[] cityNames = new String[cityList.size()];
-                for (int j=0; j< cityList.size(); j++) {
+                for (int j = 0; j < cityList.size(); j++) {
                     // 遍历省下面的所有市的数据
                     cityNames[j] = cityList.get(j).getName();
                     List<DistrictModel> districtList = cityList.get(j).getDistrictList();
                     String[] distrinctNameArray = new String[districtList.size()];
                     DistrictModel[] distrinctArray = new DistrictModel[districtList.size()];
-                    for (int k=0; k<districtList.size(); k++) {
+                    for (int k = 0; k < districtList.size(); k++) {
                         // 遍历市下面所有区/县的数据
                         DistrictModel districtModel = new DistrictModel(districtList.get(k).getName(), districtList.get(k).getZipcode());
                         // 区/县对于的邮编，保存到mZipcodeDatasMap

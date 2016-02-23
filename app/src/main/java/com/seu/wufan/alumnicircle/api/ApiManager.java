@@ -6,7 +6,7 @@ import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 
 public final class ApiManager {
-    public static String BASE_URL = "http://api2.hloli.me:9001/v1.0";
+    public static String BASE_URL = "http://api2.hloli.me:4096/v1.0";
     private static AlumniCircleService mService;
     static volatile RestAdapter restAdapter = null;
 

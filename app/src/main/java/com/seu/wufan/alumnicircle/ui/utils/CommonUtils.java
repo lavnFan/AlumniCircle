@@ -208,20 +208,29 @@ public class CommonUtils {
                 });
     }
 
-    public static void showImageWithGlide(Context context,ImageView imageView,String url){
+    //使用Glide加载网络图片
+    public static void showCircleImageWithGlide(Context context, final CircleImageView imageView,String url){
         Glide.with(context)
                 .load(url)
-                .placeholder(new ColorDrawable(context.getResources().getColor(R.color.no_image_color)))
-                .centerCrop()
-                .into(imageView);
+                .placeholder(R.drawable.logo)
+                .into(new SimpleTarget<GlideDrawable>() {
+                    @Override
+                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                        imageView.setImageDrawable(resource);
+                    }
+                });
     }
-
-    public static void showImageWithGlideInCiv(Context context,CircleImageView circleImageView,String url){
+    //使用Glide加载网络图片
+    public static void showImageWithGlide(Context context, final ImageView imageView,String url){
         Glide.with(context)
                 .load(url)
-                .error(new ColorDrawable(context.getResources().getColor(R.color.no_image_color)))
-                .centerCrop()
-                .into(circleImageView);
+                .placeholder(R.drawable.logo)
+                .into(new SimpleTarget<GlideDrawable>() {
+                    @Override
+                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+                        imageView.setImageDrawable(resource);
+                    }
+                });
     }
 
 

@@ -44,6 +44,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/contacts_add_friends_phone_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_8_margin"
@@ -83,6 +84,7 @@
                 android:background="@color/divider_high" />
 
             <LinearLayout
+                android:id="@+id/contacts_add_friends_alumni_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_8_margin"
@@ -122,6 +124,7 @@
                 android:background="@color/divider_high" />
 
             <LinearLayout
+                android:id="@+id/contacts_add_friends_scan_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_8_margin"

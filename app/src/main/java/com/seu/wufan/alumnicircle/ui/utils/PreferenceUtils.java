@@ -23,6 +23,7 @@ public class PreferenceUtils {
         public static final String FIRST_USE = "FIRST_USE";
         public static final String LOGIN = "LOGIN";
         public static final String VERSION_CODE = "VERSION_CODE";
+        public static final String PHOTO_PATH="PHOTO_Path";
     }
 
     public static final String DEFAULT_STRING = "";

@@ -9,7 +9,6 @@
     <com.seu.wufan.alumnicircle.ui.view.LoadMoreListView
         android:id="@+id/me_my_collection_load_lv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
