@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.ui.activity.base.BaseActivity;
+import com.seu.wufan.alumnicircle.ui.activity.circle.PublishDynamicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.AddFriendsActivity;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.CircleFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.ContactsFragment;
@@ -23,7 +24,7 @@ import java.util.List;
 import butterknife.Bind;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends  BaseActivity{
+public class MainActivity extends BaseActivity {
 
     @Bind(R.id.text_toolbar_tv)
     TextView mToolbarTv;
@@ -50,7 +51,7 @@ public class MainActivity extends  BaseActivity{
 
     private List<Fragment> mFragments = new ArrayList<Fragment>();
     private FragmentStatePagerAdapter mAdapter;
-    private int mCurrentIndex=0;
+    private int mCurrentIndex = 0;
 
     @Override
     protected int getContentView() {
@@ -81,14 +82,13 @@ public class MainActivity extends  BaseActivity{
         mToolbarTv.setVisibility(View.VISIBLE);
 
 
-
     }
 
     private void initDatas() {
         mFragments.add(new CircleFragment());
         mFragments.add(new ContactsFragment());
         mFragments.add(new MyFragment());
-        mAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()){
+        mAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 return mFragments.get(position);
@@ -99,7 +99,7 @@ public class MainActivity extends  BaseActivity{
                 return mFragments.size();
             }
         };
-        if(null!=mFragments){
+        if (null != mFragments) {
             mViewPager.setOffscreenPageLimit(mFragments.size());
             mViewPager.setAdapter(mAdapter);
         }
@@ -157,21 +157,21 @@ public class MainActivity extends  BaseActivity{
     private View.OnClickListener listeners = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.circle_ll:
-                    mViewPager.setCurrentItem(0,false);
+                    mViewPager.setCurrentItem(0, false);
                     setCircleAlpha(1);
                     setContactsAlpha(0);
                     setMyAlpha(0);
                     break;
                 case R.id.contacts_ll:
-                    mViewPager.setCurrentItem(1,false);
+                    mViewPager.setCurrentItem(1, false);
                     setCircleAlpha(0);
                     setContactsAlpha(1);
                     setMyAlpha(0);
                     break;
                 case R.id.me_ll:
-                    mViewPager.setCurrentItem(2,false);
+                    mViewPager.setCurrentItem(2, false);
                     setCircleAlpha(0);
                     setContactsAlpha(0);
                     setMyAlpha(1);
@@ -181,30 +181,30 @@ public class MainActivity extends  BaseActivity{
     };
 
     public void setCircleAlpha(int i) {
-        if(i==1){
+        if (i == 1) {
             mCircleCv.setImageResource(R.drawable.circle_selected);
             mCircleTv.setTextColor(getResources().getColor(R.color.main_text_selected));
-        }else{
+        } else {
             mCircleCv.setImageResource(R.drawable.circle_default);
             mCircleTv.setTextColor(getResources().getColor(R.color.main_text_normal));
         }
     }
 
     private void setContactsAlpha(int i) {
-        if(i==1){
+        if (i == 1) {
             mContactsCv.setImageResource(R.drawable.contacts_selected);
             mContactsTv.setTextColor(getResources().getColor(R.color.main_text_selected));
-        }else{
+        } else {
             mContactsCv.setImageResource(R.drawable.contacts_default);
             mContactsTv.setTextColor(getResources().getColor(R.color.main_text_normal));
         }
     }
 
     private void setMyAlpha(int i) {
-        if(i==1){
+        if (i == 1) {
             mMyCv.setImageResource(R.drawable.my_selected);
             mMyTv.setTextColor(getResources().getColor(R.color.main_text_selected));
-        }else{
+        } else {
             mMyCv.setImageResource(R.drawable.my_default);
             mMyTv.setTextColor(getResources().getColor(R.color.main_text_normal));
         }
@@ -212,7 +212,7 @@ public class MainActivity extends  BaseActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -220,7 +220,7 @@ public class MainActivity extends  BaseActivity{
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem addItem = menu.findItem(R.id.add);
         MenuItem editItem = menu.findItem(R.id.edit);
-        switch (mCurrentIndex){
+        switch (mCurrentIndex) {
             case 0:
                 editItem.setVisible(true);
                 addItem.setVisible(false);
@@ -242,11 +242,12 @@ public class MainActivity extends  BaseActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.add:
                 readyGo(AddFriendsActivity.class);
                 break;
             case R.id.edit:
+                readyGo(PublishDynamicActivity.class);
                 break;
         }
 

@@ -48,9 +48,6 @@ public class RegisterActivity extends BaseActivity {
     @Bind(R.id.register_major_tv)
     TextView mProfEt;
 
-    public final static int REQUESTCODE_College = 0;
-    public final static int REQUESTCODE_Prof = 1;
-
     RegisterReq req = new RegisterReq();
 
     @Override
@@ -82,12 +79,12 @@ public class RegisterActivity extends BaseActivity {
                 selectEnrollYear();
                 break;
             case R.id.register_college_ll:
-                bundle.putString(RegisterCollegeActivity.EXTRA_College, mCollegeEt.getText().toString());
-                readyGoForResult(RegisterCollegeActivity.class, REQUESTCODE_College, bundle);
+                      //选择院系
+
                 break;
             case R.id.register_prof_ll:
-                bundle.putString(RegisterProfActivity.EXTRA_Prof, mProfEt.getText().toString());
-                readyGoForResult(RegisterProfActivity.class, REQUESTCODE_Prof, bundle);
+                    //选择专业
+
                 break;
         }
     }
@@ -115,21 +112,6 @@ public class RegisterActivity extends BaseActivity {
                     }
                 })
                 .show();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (resultCode) {
-            case REQUESTCODE_College:
-                String college = (data == null) ? String.valueOf(R.string.college_hint) : data.getStringExtra(RegisterCollegeActivity.EXTRA_College);
-                mCollegeEt.setText(college);
-                break;
-            case REQUESTCODE_Prof:
-                String prof = (data == null) ? String.valueOf(R.string.major_hint) : data.getStringExtra(RegisterProfActivity.EXTRA_Prof);
-                mProfEt.setText(prof);
-                break;
-        }
     }
 
     @OnClick(R.id.register_btn)
