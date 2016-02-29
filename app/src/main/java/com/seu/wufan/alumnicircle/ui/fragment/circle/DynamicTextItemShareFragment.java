@@ -3,11 +3,11 @@ package com.seu.wufan.alumnicircle.ui.fragment.circle;
 import android.view.View;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.model.item.DynamicShareItem;
+import com.seu.wufan.alumnicircle.api.entity.item.DynamicShareItem;
 import com.seu.wufan.alumnicircle.ui.adapter.circle.CircleDynamicShareItemAdapter;
-import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
-import com.seu.wufan.alumnicircle.ui.fragment.base.BaseLazyFragment;
-import com.seu.wufan.alumnicircle.ui.view.ScrollLoadMoreListView;
+import com.seu.wufan.alumnicircle.common.base.BasisAdapter;
+import com.seu.wufan.alumnicircle.common.base.BaseLazyFragment;
+import com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView;
 
 import java.util.ArrayList;
 import java.util.List;

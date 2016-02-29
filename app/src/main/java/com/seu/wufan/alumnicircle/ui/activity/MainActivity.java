@@ -1,7 +1,7 @@
 package com.seu.wufan.alumnicircle.ui.activity;
 
+import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.ui.activity.base.BaseActivity;
+import com.seu.wufan.alumnicircle.common.base.BaseActivity;
 import com.seu.wufan.alumnicircle.ui.activity.circle.PublishDynamicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.AddFriendsActivity;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.CircleFragment;
@@ -53,6 +53,7 @@ public class MainActivity extends BaseActivity {
     private FragmentStatePagerAdapter mAdapter;
     private int mCurrentIndex = 0;
 
+    @LayoutRes
     @Override
     protected int getContentView() {
         return R.layout.activity_main;

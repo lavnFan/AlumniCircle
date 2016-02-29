@@ -5,16 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.model.Friend;
-import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
+import com.seu.wufan.alumnicircle.api.entity.item.Friend;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;

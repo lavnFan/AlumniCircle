@@ -2,7 +2,7 @@ package com.seu.wufan.alumnicircle.ui.widget.pinyin;
 
 
 
-import com.seu.wufan.alumnicircle.model.Friend;
+import com.seu.wufan.alumnicircle.api.entity.item.Friend;
 
 import java.util.Comparator;
 

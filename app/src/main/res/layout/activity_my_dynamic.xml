@@ -74,7 +74,7 @@
                 </RelativeLayout>
             </RelativeLayout>
 
-            <com.seu.wufan.alumnicircle.ui.view.ScrollLoadMoreListView
+            <com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView
                 android:id="@+id/me_my_dynamic_load_lv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

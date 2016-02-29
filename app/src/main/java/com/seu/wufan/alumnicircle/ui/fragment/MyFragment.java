@@ -1,7 +1,6 @@
 package com.seu.wufan.alumnicircle.ui.fragment;
 
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActiviy;
@@ -11,10 +10,8 @@ import com.seu.wufan.alumnicircle.ui.activity.me.MyInformationActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyMessageActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyQrcodeActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.SettingActivity;
-import com.seu.wufan.alumnicircle.ui.fragment.base.BaseFragment;
-import com.seu.wufan.alumnicircle.ui.fragment.base.BaseLazyFragment;
+import com.seu.wufan.alumnicircle.common.base.BaseLazyFragment;
 
-import butterknife.Bind;
 import butterknife.OnClick;
 
 /**

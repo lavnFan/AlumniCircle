@@ -3,7 +3,7 @@ package com.seu.wufan.alumnicircle.ui.fragment.me;
 import android.view.View;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.ui.fragment.base.BaseFragment;
+import com.seu.wufan.alumnicircle.common.base.BaseFragment;
 
 /**
  * @author wufan

@@ -6,8 +6,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.model.item.ContactsFriendsItem;
-import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
+import com.seu.wufan.alumnicircle.api.entity.item.ContactsFriendsItem;
+import com.seu.wufan.alumnicircle.common.base.BasisAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

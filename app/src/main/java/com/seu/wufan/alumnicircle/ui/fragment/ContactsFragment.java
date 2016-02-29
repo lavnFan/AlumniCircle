@@ -8,11 +8,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.model.Friend;
+import com.seu.wufan.alumnicircle.api.entity.item.Friend;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.AlumniGoodActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.NewFriendsActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.contacts.FriendAdapter;
-import com.seu.wufan.alumnicircle.ui.fragment.base.BaseLazyFragment;
+import com.seu.wufan.alumnicircle.common.base.BaseLazyFragment;
 import com.seu.wufan.alumnicircle.ui.widget.pinyin.CharacterParser;
 import com.seu.wufan.alumnicircle.ui.widget.pinyin.PinyinComparator;
 import com.seu.wufan.alumnicircle.ui.widget.pinyin.SideBar;

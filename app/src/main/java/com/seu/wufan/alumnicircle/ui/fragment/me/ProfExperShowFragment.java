@@ -1,15 +1,11 @@
 package com.seu.wufan.alumnicircle.ui.fragment.me;
 
-import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.ui.fragment.base.BaseFragment;
+import com.seu.wufan.alumnicircle.common.base.BaseFragment;
 
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

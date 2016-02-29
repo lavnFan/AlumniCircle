@@ -37,7 +37,7 @@
                 android:layout_marginLeft="@dimen/activity_8_margin"
                 android:layout_marginRight="@dimen/activity_8_margin">
 
-                <com.seu.wufan.alumnicircle.ui.view.ScrollLoadMoreListView
+                <com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView
                     android:id="@+id/circle_dynamic_load_more_list_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

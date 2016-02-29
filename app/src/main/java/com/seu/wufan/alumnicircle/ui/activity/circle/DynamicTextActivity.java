@@ -1,22 +1,15 @@
 package com.seu.wufan.alumnicircle.ui.activity.circle;
 
-import android.app.FragmentManager;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.ui.activity.base.BaseSwipeActivity;
+import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.DynamicTextItemAgreeFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.DynamicTextItemCommentFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.DynamicTextItemShareFragment;
-import com.seu.wufan.alumnicircle.ui.utils.TLog;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 

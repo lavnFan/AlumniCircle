@@ -7,15 +7,15 @@ import android.widget.AdapterView;
 import android.widget.ScrollView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.model.item.DynamicItem;
+import com.seu.wufan.alumnicircle.api.entity.item.DynamicItem;
 import com.seu.wufan.alumnicircle.ui.activity.circle.CircleTopicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.circle.DynamicTextActivity;
-import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
+import com.seu.wufan.alumnicircle.common.base.BasisAdapter;
 import com.seu.wufan.alumnicircle.ui.adapter.circle.DynamicItemAdapter;
-import com.seu.wufan.alumnicircle.ui.fragment.base.BaseLazyFragment;
-import com.seu.wufan.alumnicircle.ui.utils.TLog;
-import com.seu.wufan.alumnicircle.ui.view.LoadMoreListView;
-import com.seu.wufan.alumnicircle.ui.view.ScrollLoadMoreListView;
+import com.seu.wufan.alumnicircle.common.base.BaseLazyFragment;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
+import com.seu.wufan.alumnicircle.ui.widget.LoadMoreListView;
+import com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView;
 
 import java.util.ArrayList;
 import java.util.List;

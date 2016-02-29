@@ -1,24 +1,22 @@
 package com.seu.wufan.alumnicircle.ui.activity.login;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.api.ApiManager;
-import com.seu.wufan.alumnicircle.model.api.LoginRes;
-import com.seu.wufan.alumnicircle.model.api.RegisterReq;
+import com.seu.wufan.alumnicircle.api.entity.LoginRes;
+import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
-import com.seu.wufan.alumnicircle.ui.activity.base.BaseActivity;
-import com.seu.wufan.alumnicircle.ui.utils.CommonUtils;
-import com.seu.wufan.alumnicircle.ui.utils.NetUtils;
-import com.seu.wufan.alumnicircle.ui.utils.PreferenceUtils;
-import com.seu.wufan.alumnicircle.ui.utils.TLog;
+import com.seu.wufan.alumnicircle.common.base.BaseActivity;
+import com.seu.wufan.alumnicircle.common.utils.NetUtils;
+import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 
 import java.util.Calendar;
 
@@ -50,6 +48,7 @@ public class RegisterActivity extends BaseActivity {
 
     RegisterReq req = new RegisterReq();
 
+    @LayoutRes
     @Override
     protected int getContentView() {
         return R.layout.activity_register;

@@ -40,7 +40,7 @@
                     android:textColor="@color/text_hint" />
             </LinearLayout>
 
-            <com.seu.wufan.alumnicircle.ui.view.ScrollLoadMoreListView
+            <com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView
                 android:id="@+id/contacts_alumni_good_lm_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

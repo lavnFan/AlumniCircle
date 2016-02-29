@@ -3,7 +3,7 @@ package com.seu.wufan.alumnicircle.ui.activity.me;
 import android.view.View;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.ui.activity.base.BaseSwipeActivity;
+import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 
 /**
  * @author wufan

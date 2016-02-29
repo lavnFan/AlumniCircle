@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.model.item.DynamicCommentItem;
-import com.seu.wufan.alumnicircle.ui.adapter.base.BasisAdapter;
+import com.seu.wufan.alumnicircle.api.entity.item.DynamicCommentItem;
+import com.seu.wufan.alumnicircle.common.base.BasisAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

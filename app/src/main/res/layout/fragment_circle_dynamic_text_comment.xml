@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.seu.wufan.alumnicircle.ui.view.ScrollLoadMoreListView
+    <com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView
         android:scrollbars="none"
         android:id="@+id/circle_dynamic_text_comment_lm_lv"
         android:layout_width="match_parent"

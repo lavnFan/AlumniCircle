@@ -1,14 +1,12 @@
 package com.seu.wufan.alumnicircle.ui.activity.contacts;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.ui.activity.base.BaseSwipeActivity;
+import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
