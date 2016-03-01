@@ -2,6 +2,7 @@ package com.seu.wufan.alumnicircle.presenter;
 
 import android.view.View;
 
+import com.seu.wufan.alumnicircle.api.entity.LoginReq;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
 
 /**
@@ -10,9 +11,8 @@ import com.seu.wufan.alumnicircle.common.base.BaseActivity;
  */
 public interface ILoginPresenter extends Presenter{
 
-    void attachView(View v);
-
     void doLogin(String username, String password);
 
-    void onDestroy();
+    boolean isValid(String username, String password);
+
 }

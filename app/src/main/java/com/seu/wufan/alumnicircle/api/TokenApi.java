@@ -19,19 +19,19 @@ import rx.Observable;
 public interface TokenApi {
 
     //登录
-    @POST("/auth/login/")
+    @POST("auth/login/")
     Observable<LoginRes> login(@Body LoginReq req);
 
     //获取用户信息
-    @GET("/user/{user_id}")
+    @GET("user/{user_id}")
     Observable<UserInfoRes> getUserInfo(@Path("user_id")String user_id);
 
     //注册
-    @POST("/user/")
+    @POST("user/")
     Observable<LoginRes> register(@Body RegisterReq req);
 
     //创建七牛上传凭证
-    @POST("/static/token/")
+    @POST("static/token/")
     Observable<QnRes> createQiNiuToken();
 
 }

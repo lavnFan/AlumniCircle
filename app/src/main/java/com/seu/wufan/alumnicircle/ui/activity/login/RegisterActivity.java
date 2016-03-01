@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import com.seu.wufan.alumnicircle.common.base.BaseActivity;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
+import com.seu.wufan.alumnicircle.ui.views.activity.IRegisterView;
 
 import java.util.Calendar;
 
@@ -31,7 +33,7 @@ import retrofit.client.Response;
  * @author wufan
  * @date 2016/1/31
  */
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity implements IRegisterView{
 
     @Bind(R.id.text_toolbar_tv)
     TextView mToolbarTv;
@@ -48,6 +50,11 @@ public class RegisterActivity extends BaseActivity {
 
     RegisterReq req = new RegisterReq();
 
+    @Override
+    protected void prepareData() {
+
+    }
+
     @LayoutRes
     @Override
     protected int getContentView() {
@@ -55,20 +62,10 @@ public class RegisterActivity extends BaseActivity {
     }
 
     @Override
-    protected void prepareDatas() {
+    protected void initViewsAndEvents() {
 
     }
 
-    @Override
-    protected void initViews() {
-        mToolbarTv.setVisibility(View.VISIBLE);
-        mToolbarTv.setText(R.string.register);
-    }
-
-    @Override
-    protected View getLoadingTargetView() {
-        return null;
-    }
 
     @OnClick({R.id.register_enroll_year_ll, R.id.register_college_ll, R.id.register_prof_ll})
     public void onClick(View view) {
@@ -115,44 +112,22 @@ public class RegisterActivity extends BaseActivity {
 
     @OnClick(R.id.register_btn)
     void register() {
-        registerCase();
     }
 
-    private void registerCase() {
-        validateRegister();
-        if (NetUtils.isNetworkConnected(this)) {
-            ApiManager.getService(this).register(req, new Callback<LoginRes>() {
-                @Override
-                public void success(LoginRes loginRes, Response response) {
-                    TLog.i("Register",loginRes.getAccess_token()+" "+loginRes.getUser_id());
-                    saveUserInfo(loginRes);
-                    readyGoThenKill(MainActivity.class);
-                }
+    @Override
+    public void showNetCantUse() {
 
-                @Override
-                public void failure(RetrofitError error) {
-                    showInnerError(error);
-                }
-            });
-
-        }else {
-            showNetWorkError();
-        }
     }
 
-    private void validateRegister() {
-        req.setPhone_num(mPhonenNumEt.getText().toString());
-        req.setPassword(mPasswordEt.getText().toString());
-        req.setEnroll_year(Integer.parseInt(mEnrollYearEt.getText().toString()));
-        req.setSchool(mCollegeEt.getText().toString());
-        req.setMajor(mProfEt.getText().toString());
+    @Override
+    public void showNetError() {
+
     }
 
-    private void saveUserInfo(LoginRes res) {
-        PreferenceUtils.putString(RegisterActivity.this.getApplicationContext(),
-                PreferenceUtils.Key.ACCESS, res.getAccess_token());
-        PreferenceUtils.putString(RegisterActivity.this.getApplicationContext(),
-                PreferenceUtils.Key.USER_ID, res.getUser_id());
+    @Override
+    public void showToast(@NonNull String s) {
+
     }
+
 
 }

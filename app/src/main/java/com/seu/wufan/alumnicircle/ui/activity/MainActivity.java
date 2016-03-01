@@ -26,8 +26,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity {
 
-    @Bind(R.id.text_toolbar_tv)
-    TextView mToolbarTv;
     @Bind(R.id.main_view_pager)
     ViewPager mViewPager;
     @Bind(R.id.circle_ll)
@@ -53,6 +51,11 @@ public class MainActivity extends BaseActivity {
     private FragmentStatePagerAdapter mAdapter;
     private int mCurrentIndex = 0;
 
+    @Override
+    protected void prepareData() {
+
+    }
+
     @LayoutRes
     @Override
     protected int getContentView() {
@@ -60,29 +63,14 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void prepareDatas() {
-
-    }
-
-    @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         initView();
         initDatas();
         initListeners();
     }
 
-    @Override
-    protected View getLoadingTargetView() {
-        return null;
-    }
-
     private void initView() {
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        mToolbarTv.setVisibility(View.VISIBLE);
-
-
+        setToolbarBackHome(false);
     }
 
     private void initDatas() {
@@ -225,17 +213,17 @@ public class MainActivity extends BaseActivity {
             case 0:
                 editItem.setVisible(true);
                 addItem.setVisible(false);
-                mToolbarTv.setText(getResources().getText(R.string.alumni_circle));
+                setToolbarTitle(getResources().getText(R.string.alumni_circle).toString());
                 break;
             case 1:
                 editItem.setVisible(false);
                 addItem.setVisible(true);
-                mToolbarTv.setText(getResources().getText(R.string.contacts));
+                setToolbarTitle(getResources().getText(R.string.contacts).toString());
                 break;
             case 2:
                 editItem.setVisible(false);
                 addItem.setVisible(false);
-                mToolbarTv.setText(getResources().getText(R.string.alumni_circle));
+                setToolbarTitle(getResources().getText(R.string.alumni_circle).toString());
                 break;
         }
         return super.onPrepareOptionsMenu(menu);

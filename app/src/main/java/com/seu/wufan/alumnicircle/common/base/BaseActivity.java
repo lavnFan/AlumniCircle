@@ -9,9 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.App;
@@ -22,13 +20,11 @@ import com.seu.wufan.alumnicircle.injector.module.ActivityModule;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import retrofit.RetrofitError;
-
 
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Nullable
-    @Bind(R.id.toolbar)
+    @Bind(R.id.tl_custom)
     Toolbar mToolbar;
 
     @Nullable
@@ -81,11 +77,26 @@ public abstract class BaseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    protected void setTitle(String title){
+    protected void setToolbarTitle(String title){
         if(mToolbar == null){
             return;
         }
         mToolbarTitleTv.setText(title);
+        mToolbarTitleTv.setVisibility(View.VISIBLE);
+    }
+
+    protected void setToolbarRightTitle(String rightTitle){
+        if(mToolbar == null){
+            return;
+        }
+        mToolbarRightTv.setText(rightTitle);
+        mToolbarRightTv.setVisibility(View.VISIBLE);
+    }
+
+    protected void setToolbarBackHome(boolean enabled){
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(enabled);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(enabled);
+        getSupportActionBar().setDisplayShowTitleEnabled(enabled);
     }
 
     public AppComponent getAppComponent(){

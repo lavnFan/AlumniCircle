@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
+import com.seu.wufan.alumnicircle.injector.component.DaggerApiComponent;
+import com.seu.wufan.alumnicircle.injector.component.DaggerAppComponent;
 import com.squareup.leakcanary.LeakCanary;
 
 import com.seu.wufan.alumnicircle.injector.component.ApiComponent;

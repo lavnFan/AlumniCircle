@@ -13,6 +13,4 @@ public interface IView {
 
     void showToast(@NonNull String s);
 
-    void onDestroy();
-
 }

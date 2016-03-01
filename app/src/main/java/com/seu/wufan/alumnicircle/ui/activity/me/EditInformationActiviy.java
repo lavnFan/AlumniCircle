@@ -357,7 +357,7 @@ public class EditInformationActiviy extends BaseSwipeActivity {
         if (resultCode == RESULT_OK) {
             photoPath = Crop.getOutput(result).getPath();
             CommonUtils.showCircleImageWithGlide(this, mPhotoCv, photoPath);
-            PreferenceUtils.putString(getApplicationContext(), PreferenceUtils.Key.PHOTO_PATH, photoPath);
+//            PreferenceUtils.putString(getApplicationContext(), PreferenceUtils.Key.PHOTO_PATH, photoPath);
 
 //            EventBus.getDefault().post(new AccountChangeEvent());
 //            EventBus.getDefault().post(new AvaterChangeEvent(photoPath));

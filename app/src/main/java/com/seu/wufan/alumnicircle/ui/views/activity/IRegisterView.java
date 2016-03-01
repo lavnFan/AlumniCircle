@@ -4,12 +4,9 @@ import com.seu.wufan.alumnicircle.ui.views.IView;
 
 /**
  * @author wufan
- * @date 2016/2/29
+ * @date 2016/3/1
  */
-public interface ILoginView extends IView{
+public interface IRegisterView extends IView{
 
-    String getUser_id();
-
-    void loginSuccess();
 
 }
