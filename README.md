@@ -6,16 +6,6 @@ A Android APP aims to provide a platform to communicate with your alumni
 
 项目采用MVP架构，并合理使用接口隔离原则、迪米特法则等设计原则，让各模块间高内聚、低耦合，减少Activity的工作量，使其具有很好的可扩展性、可维性。
 
-## ScreenShot ##
-# 圈子 #
-![圈子](http://7xrhn4.com1.z0.glb.clouddn.com/Screenshot_2016-03-03-19-30-16_com.seu.wufan.alum.png)
-
-# 人脉 #
-![人脉](http://7xrhn4.com1.z0.glb.clouddn.com/Screenshot_2016-03-03-19-30-26_com.seu.wufan.alum.png)
-
-# 个人信息 #
-![个人信息](http://7xrhn4.com1.z0.glb.clouddn.com/Screenshot_2016-03-03-19-30-29_com.seu.wufan.alum.png)
-
 ## 项目依赖 ##
 
 项目名称 | 项目描述
