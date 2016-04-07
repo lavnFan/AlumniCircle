@@ -8,7 +8,7 @@ A Android APP aims to provide a platform to communicate with your alumni
 
 
 ## Screenshot ##
-<img src="http://7xrhn4.com1.z0.glb.clouddn.com/alumni.gif" width="400" height="400" alt="校友圈" align=center/>
+<img src="http://7xrhn4.com1.z0.glb.clouddn.com/alumni.gif" width="400" height="600" alt="校友圈" align=center/>
 
 
 ## 项目依赖 ##
