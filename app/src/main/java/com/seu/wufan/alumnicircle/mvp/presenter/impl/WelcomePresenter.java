@@ -11,7 +11,11 @@ import com.seu.wufan.alumnicircle.mvp.views.activity.IWelcomeView;
 
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * @author wufan
@@ -33,9 +37,29 @@ public class WelcomePresenter implements IWelcomePresenter{
         this.preferenceUtils = preferenceUtils;
     }
 
+    /**
+     * 跳转逻辑：先判断是否有账号信息，如果有且正确，则直接跳转到主页面；否则跳转到登录界面
+     */
     @Override
     public void jumpActivity() {
+        welcomeSubscription = (Subscription) preferenceUtils.getAccessToken()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        if(s.isEmpty()){
+                            welcomeView.readyToLogin();
+                        }else{
+                            welcomeView.readyToMain();
+                        }
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
 
+                    }
+                });
     }
 
     @Override

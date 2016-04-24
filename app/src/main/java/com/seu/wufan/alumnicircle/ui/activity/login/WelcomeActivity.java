@@ -31,7 +31,7 @@ import butterknife.OnClick;
 /**
  * @author wufan
  * @date 2016/4/24
- * 页面逻辑：先判断是否有账号信息，如果有且正确，则直接跳转到主页面；否则跳转到登录界面
+ *
  */
 public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
 
@@ -58,24 +58,13 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
     }
 
     private void initData() {
-
-        presenter.jumpActivity();
         runnable = new Jump(2000);
         thread = new Thread((runnable));
         thread.start();
     }
 
-    private boolean hasUser() {
-//        Logger.i("Token:",token);
-//        if(token.isEmpty()){
-//            return false;
-//        }
-        return true;
-    }
-
     @OnClick(R.id.skip_button)
     public void skipToLoginOrMain(){
-
         runnable.skip();
     }
 
@@ -92,6 +81,16 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
     @Override
     public void showToast(@NonNull String s) {
 
+    }
+
+    @Override
+    public void readyToLogin() {
+        readyGoThenKill(LoginActivity.class);
+    }
+
+    @Override
+    public void readyToMain() {
+        readyGoThenKill(MainActivity.class);
     }
 
     private class Jump implements Runnable{
@@ -115,11 +114,7 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            if(hasUser()){
-                                readyGoThenKill(MainActivity.class);
-                            }else{
-                                readyGoThenKill(LoginActivity.class);
-                            }
+                            presenter.jumpActivity();
                         }
                     });
                     running = false;
@@ -131,11 +126,7 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    if(hasUser()){
-                        readyGoThenKill(MainActivity.class);
-                    }else{
-                        readyGoThenKill(LoginActivity.class);
-                    }
+                    presenter.jumpActivity();
                 }
             });
             running = false;

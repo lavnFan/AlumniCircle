@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
 import com.seu.wufan.alumnicircle.common.provider.UserTokenProvider;
+import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
@@ -47,7 +48,7 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
     @Override
-    public void doLogin(String phoneNum, String password) {
+    public void doLogin(final String phoneNum, String password) {
             if (NetUtils.isNetworkConnected(appContext)) {
                 loginSubscription = tokenModel.login(phoneNum, password)
                         .subscribeOn(Schedulers.io())
@@ -55,8 +56,10 @@ public class LoginPresenter implements ILoginPresenter {
                         .subscribe(new Action1<LoginRes>() {
                             @Override
                             public void call(LoginRes loginRes) {
-                                mLoginView.loginSuccess();
+                                preferenceUtils.putString(phoneNum,PreferenceType.PHONE);
+                                preferenceUtils.putString(loginRes.getAccess_token(), PreferenceType.ACCESS_TOKEN);
                                 tokenModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
+                                mLoginView.loginSuccess();
                             }
                         }, new Action1<Throwable>() {
                             @Override

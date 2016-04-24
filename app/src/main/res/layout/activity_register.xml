@@ -27,8 +27,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/activity_8_margin"
-                android:paddingTop="@dimen/activity_8_margin">
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
                     android:textColor="@color/text_help" />
 
                 <EditText
-                    android:id="@+id/register_phonen_num_et"
+                    android:id="@+id/telephone_number_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
@@ -52,15 +52,15 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.6dp"
-                android:background="@color/divider_high" />
+                android:background="#cecece" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/activity_8_margin"
-                android:paddingTop="@dimen/activity_8_margin">
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
                     android:textColor="@color/text_help" />
 
                 <EditText
-                    android:id="@+id/register_password_et"
+                    android:id="@+id/password_edittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
@@ -86,14 +86,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_8_margin"
+            android:layout_marginTop="15dp"
             android:background="@drawable/text_bg"
-            android:paddingBottom="@dimen/activity_8_margin"
+            android:paddingBottom="10dp"
             android:paddingLeft="@dimen/activity_16_margin"
-            android:paddingTop="@dimen/activity_8_margin">
+            android:paddingTop="10dp">
 
             <LinearLayout
-                android:id="@+id/register_enroll_year_ll"
+                android:id="@+id/enroll_year_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -106,7 +106,7 @@
                     android:textColor="@color/text_help" />
 
                 <TextView
-                    android:id="@+id/register_enroll_year_tv"
+                    android:id="@+id/enroll_year_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
@@ -130,14 +130,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_8_margin"
+            android:layout_marginTop="15dp"
             android:background="@drawable/text_bg"
-            android:paddingBottom="@dimen/activity_8_margin"
+            android:paddingBottom="10dp"
             android:paddingLeft="@dimen/activity_16_margin"
-            android:paddingTop="@dimen/activity_8_margin">
+            android:paddingTop="10dp">
 
             <LinearLayout
-                android:id="@+id/register_college_ll"
+                android:id="@+id/department_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -150,7 +150,7 @@
                     android:textColor="@color/text_help" />
 
                 <TextView
-                    android:id="@+id/register_college_tv"
+                    android:id="@+id/department_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
@@ -174,14 +174,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_8_margin"
+            android:layout_marginTop="15dp"
             android:background="@drawable/text_bg"
-            android:paddingBottom="@dimen/activity_8_margin"
+            android:paddingBottom="10dp"
             android:paddingLeft="@dimen/activity_16_margin"
-            android:paddingTop="@dimen/activity_8_margin">
+            android:paddingTop="10dp">
 
             <LinearLayout
-                android:id="@+id/register_prof_ll"
+                android:id="@+id/major_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -195,7 +195,7 @@
                     android:textColor="@color/text_help" />
 
                 <TextView
-                    android:id="@+id/register_major_tv"
+                    android:id="@+id/major_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_16_margin"
@@ -217,7 +217,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/register_btn"
+            android:id="@+id/register_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_24_margin"
@@ -225,6 +225,29 @@
             android:text="@string/register_1"
             android:textColor="@color/white"
             android:textSize="20sp" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/agree_with_protocol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:checked="false"
+            android:text="我已阅读并同意"
+            android:textColor="#ababab" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《校友圈注册协议》"
+            android:textColor="#4ba3d2" />
     </LinearLayout>
 </LinearLayout>

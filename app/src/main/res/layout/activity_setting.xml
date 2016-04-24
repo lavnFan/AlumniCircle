@@ -46,12 +46,14 @@
             android:background="@color/divider_high" />
 
         <RelativeLayout
+            android:id="@+id/my_setting_exit_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/list_item_bg"
             android:clickable="true">
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_12_margin"

@@ -1,6 +1,7 @@
 package com.seu.wufan.alumnicircle.common;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
@@ -19,6 +20,8 @@ public class App extends Application {
 
     private AppModule appModule;
 
+    private static Context context;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -31,6 +34,7 @@ public class App extends Application {
         appModule = new AppModule(this);
         initInjectorApp();
         initInjectorApi();
+        App.context = getApplicationContext();
     }
 
     private void initInjectorApp(){
@@ -51,5 +55,9 @@ public class App extends Application {
 
     public ApiComponent getApiComponent(){
         return apiComponent;
+    }
+
+    public static Context getContext(){
+        return context;
     }
 }

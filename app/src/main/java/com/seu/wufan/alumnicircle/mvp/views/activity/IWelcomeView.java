@@ -8,6 +8,8 @@ import com.seu.wufan.alumnicircle.mvp.views.IView;
  */
 public interface IWelcomeView extends IView{
 
+    void readyToLogin();
 
+    void readyToMain();
 
 }

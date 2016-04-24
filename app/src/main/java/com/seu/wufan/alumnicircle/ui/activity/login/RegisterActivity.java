@@ -7,15 +7,23 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
+import com.seu.wufan.alumnicircle.common.utils.DataProvider;
+import com.seu.wufan.alumnicircle.mvp.presenter.impl.RegisterPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IRegisterView;
+import com.seu.wufan.alumnicircle.ui.widget.MajorPickerView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+
+import javax.inject.Inject;
 
 import biz.kasual.materialnumberpicker.MaterialNumberPicker;
 import butterknife.Bind;
@@ -27,22 +35,35 @@ import butterknife.OnClick;
  */
 public class RegisterActivity extends BaseActivity implements IRegisterView{
 
-    @Bind(R.id.text_toolbar_tv)
-    TextView mToolbarTv;
-    @Bind(R.id.register_phonen_num_et)
-    EditText mPhonenNumEt;
-    @Bind(R.id.register_password_et)
-    EditText mPasswordEt;
-    @Bind(R.id.register_enroll_year_tv)
-    TextView mEnrollYearEt;
-    @Bind(R.id.register_college_tv)
-    TextView mCollegeEt;
-    @Bind(R.id.register_major_tv)
-    TextView mProfEt;
+    @Bind(R.id.telephone_number_edittext)
+    EditText telephoneNumberEditText;
+    @Bind(R.id.password_edittext)
+    EditText passwordEditText;
+    @Bind(R.id.enroll_year_textview)
+    TextView enrollYearTextView;
+    @Bind(R.id.department_textview)
+    TextView departmentTextView;
+    @Bind(R.id.major_textview)
+    TextView majorTextView;
+    @Bind(R.id.agree_with_protocol)
+    CheckBox agreeWithProtocolCheckBox;
+
+    @Inject
+    RegisterPresenter registerPresenter;
+
+    private OptionsPickerView enrollYearPickerView;
+    private MajorPickerView majorPickerView;
+
+    private DataProvider.SeuMajors seuMajors;
+    private ArrayList<String> enrollYears;
+
+    private boolean enrollYearPickerViewIsShowing = false;
+    private boolean majorPickerViewIsShowing = false;
 
     @Override
     protected void prepareData() {
-
+        getApiComponent().inject(this);
+        registerPresenter.attachView(this);
     }
 
     @LayoutRes
@@ -53,55 +74,60 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
 
     @Override
     protected void initViewsAndEvents() {
-
+        seuMajors = DataProvider.getSeuMajorsData();
+        enrollYears = DataProvider.getEnrollYearsData();
     }
 
 
-    @OnClick({R.id.register_enroll_year_ll, R.id.register_college_ll, R.id.register_prof_ll})
-    public void onClick(View view) {
-        Bundle bundle = new Bundle();
-        switch (view.getId()) {
-            case R.id.register_enroll_year_ll:
-                selectEnrollYear();
-                break;
-            case R.id.register_college_ll:
-                      //选择院系
 
-                break;
-            case R.id.register_prof_ll:
-                    //选择专业
-
-                break;
-        }
+    /**
+     * 设置入学年份
+     */
+    @OnClick(R.id.enroll_year_linearlayout)
+    public void enrollYearLayoutOnClick(){
+        enrollYearPickerView = new OptionsPickerView(this);
+        enrollYearPickerView.setPicker(enrollYears);
+        enrollYearPickerView.setTitle("选择入学年份");
+        enrollYearPickerView.setCyclic(false);
+        enrollYearPickerView.setSelectOptions(enrollYears.size() - 1);
+        enrollYearPickerView.setCancelable(true);
+        enrollYearPickerView.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int option1, int option2, int option3) {
+                String enrollYear = enrollYears.get(option1);
+                enrollYearTextView.setText(enrollYear);
+                enrollYearPickerViewIsShowing = false;
+            }
+        });
+        enrollYearPickerView.show();
+        enrollYearPickerViewIsShowing = true;
     }
 
-    private void selectEnrollYear() {
-        Calendar calendar = Calendar.getInstance();
-        final MaterialNumberPicker numberPicker = new MaterialNumberPicker.Builder(this)
-                .minValue(calendar.get(Calendar.YEAR) - 40)
-                .maxValue(calendar.get(Calendar.YEAR) + 5)
-                .defaultValue(calendar.get(Calendar.YEAR))
-                .backgroundColor(Color.WHITE)
-                .separatorColor(Color.BLUE)
-                .textColor(Color.BLACK)
-                .textSize(20)
-                .enableFocusability(false)
-                .wrapSelectorWheel(true)
-                .build();
-        new AlertDialog.Builder(this)
-                .setTitle("请选择入学年份")
-                .setView(numberPicker)
-                .setPositiveButton(getString(R.string.ensure), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mEnrollYearEt.setText(String.valueOf(numberPicker.getValue()));
-                    }
-                })
-                .show();
-    }
 
-    @OnClick(R.id.register_btn)
-    void register() {
+    /**
+     * 设置学院、专业
+     */
+    @OnClick({R.id.major_linearlayout,R.id.department_linearlayout})
+    public void setDepartmentAndMajor() {
+        majorPickerView = new MajorPickerView(this);
+        majorPickerView.setPicker(seuMajors.getDepartments(), seuMajors.getMajors(), true);
+        majorPickerView.setTitle("选择院系和专业");
+        majorPickerView.setCyclic(true, false, false);
+        majorPickerView.setSelectOptions(0, 0);
+        majorPickerView.setCancelable(true);
+
+        majorPickerView.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int option1, int option2, int option3) {
+                String department = seuMajors.getDepartments().get(option1);
+                String major = seuMajors.getMajors().get(option1).get(option2);
+                departmentTextView.setText(department);
+                majorTextView.setText(major);
+                majorPickerViewIsShowing = false;
+            }
+        });
+        majorPickerView.show();
+        majorPickerViewIsShowing = true;
     }
 
     @Override
@@ -119,5 +145,9 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        registerPresenter.destroy();
+    }
 }

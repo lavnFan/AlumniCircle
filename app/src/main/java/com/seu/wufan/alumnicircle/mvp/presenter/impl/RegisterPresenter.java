@@ -41,7 +41,9 @@ public class RegisterPresenter implements IRegisterPresenter{
 
     @Override
     public void destroy() {
-
+        if(registerSubmission!=null){
+            registerSubmission.unsubscribe();
+        }
     }
 
     @Override
