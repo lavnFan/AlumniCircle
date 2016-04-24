@@ -10,6 +10,7 @@ import com.seu.wufan.alumnicircle.R;
  * @date 2016/2/29
  */
 public class ToastUtils {
+
     public static void showToast(String s,Context context){
         Toast.makeText(context, s, Toast.LENGTH_SHORT).show();
     }

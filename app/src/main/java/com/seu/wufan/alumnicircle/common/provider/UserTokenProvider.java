@@ -1,7 +1,5 @@
 package com.seu.wufan.alumnicircle.common.provider;
 
-import com.seu.wufan.alumnicircle.model.TokenModel;
-
 /**
  * @author wufan
  * @date 2016/2/29

@@ -2,11 +2,9 @@ package com.seu.wufan.alumnicircle.common.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.preference.PreferenceManager;
 
 import com.orhanobut.logger.Logger;
-import com.seu.wufan.alumnicircle.qualifier.PreferenceType;
+import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -24,7 +22,7 @@ public class PreferenceUtils {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private static final String APP = "com.seu.wufan.alumnicircle";
+    private static final String APP = "com.icon_seu.wufan.alumnicircle";
 
     public PreferenceUtils(Context context){
         sharedPreferences = context.getSharedPreferences(APP,Context.MODE_PRIVATE);
@@ -94,7 +92,6 @@ public class PreferenceUtils {
                     }
                 });
     }
-
 
 //    public static class Key {
 //        public static final String USER_ID = "USER_ID";

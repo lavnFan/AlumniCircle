@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.qualifier;
+package com.seu.wufan.alumnicircle.common.qualifier;
 
 
 import android.support.annotation.StringDef;
@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
         PreferenceType.AVATAR
 })
 public @interface PreferenceType {
-    String PHONE = "com.seu.wufan.alumnicircle.phone";
-    String ACCESS_TOKEN = "com.seu.wufan.alumnicircle.access";
-    String AVATAR = "com.seu.wufan.alumnicircle.avatar";
+    String PHONE = "com.icon_seu.wufan.alumnicircle.phone";
+    String ACCESS_TOKEN = "com.icon_seu.wufan.alumnicircle.access";
+    String AVATAR = "com.icon_seu.wufan.alumnicircle.avatar";
 }

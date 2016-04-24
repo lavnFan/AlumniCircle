@@ -1,6 +1,6 @@
-package com.seu.wufan.alumnicircle.ui.views.activity;
+package com.seu.wufan.alumnicircle.mvp.views.activity;
 
-import com.seu.wufan.alumnicircle.ui.views.IView;
+import com.seu.wufan.alumnicircle.mvp.views.IView;
 
 /**
  * @author wufan

@@ -1,9 +1,4 @@
-package com.seu.wufan.alumnicircle.presenter;
-
-import android.view.View;
-
-import com.seu.wufan.alumnicircle.api.entity.LoginReq;
-import com.seu.wufan.alumnicircle.common.base.BaseActivity;
+package com.seu.wufan.alumnicircle.mvp.presenter;
 
 /**
  * @author wufan

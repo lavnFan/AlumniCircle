@@ -1,11 +1,11 @@
-package com.seu.wufan.alumnicircle.model;
+package com.seu.wufan.alumnicircle.mvp.model;
 
 import android.support.annotation.Nullable;
 
 import com.seu.wufan.alumnicircle.api.TokenApi;
 import com.seu.wufan.alumnicircle.api.entity.LoginReq;
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
-import com.seu.wufan.alumnicircle.common.base.BaseModel;
+import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.common.provider.TokenProvider;
 
 import rx.Observable;
@@ -30,6 +30,16 @@ public class TokenModel extends BaseModel<TokenApi> {
         loginReq.setPhone_num(phoneNum);
         loginReq.setPassword(password);
         return getService().login(loginReq);
+    }
+
+    public  Observable<LoginRes> register(String phone_num,String enroll_year,String school,String major,String password){
+        RegisterReq req = new RegisterReq();
+        req.setPhone_num(phone_num);
+        req.setEnroll_year(enroll_year);
+        req.setSchool(school);
+        req.setMajor(major);
+        req.setPassword(password);
+        return getService().register(req);
     }
 
 }

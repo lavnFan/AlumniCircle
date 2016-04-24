@@ -11,23 +11,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.api.entity.LoginRes;
 import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
-import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
-import com.seu.wufan.alumnicircle.common.utils.NetUtils;
-import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
-import com.seu.wufan.alumnicircle.common.utils.TLog;
-import com.seu.wufan.alumnicircle.ui.views.activity.IRegisterView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.IRegisterView;
 
 import java.util.Calendar;
 
 import biz.kasual.materialnumberpicker.MaterialNumberPicker;
 import butterknife.Bind;
 import butterknife.OnClick;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 /**
  * @author wufan
@@ -47,8 +39,6 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     TextView mCollegeEt;
     @Bind(R.id.register_major_tv)
     TextView mProfEt;
-
-    RegisterReq req = new RegisterReq();
 
     @Override
     protected void prepareData() {

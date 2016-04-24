@@ -1,20 +1,17 @@
-package com.seu.wufan.alumnicircle.presenter.impl;
+package com.seu.wufan.alumnicircle.mvp.presenter.impl;
 
 import android.content.Context;
-import android.view.View;
 
-import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
-import com.seu.wufan.alumnicircle.common.base.BaseActivity;
 import com.seu.wufan.alumnicircle.common.provider.UserTokenProvider;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
-import com.seu.wufan.alumnicircle.model.TokenModel;
-import com.seu.wufan.alumnicircle.presenter.ILoginPresenter;
-import com.seu.wufan.alumnicircle.ui.views.IView;
-import com.seu.wufan.alumnicircle.ui.views.activity.ILoginView;
+import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
+import com.seu.wufan.alumnicircle.mvp.presenter.ILoginPresenter;
+import com.seu.wufan.alumnicircle.mvp.views.IView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.ILoginView;
 
 import javax.inject.Inject;
 

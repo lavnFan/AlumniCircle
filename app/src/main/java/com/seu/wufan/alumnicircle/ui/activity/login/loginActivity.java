@@ -6,12 +6,11 @@ import android.support.annotation.NonNull;
 import android.widget.EditText;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.api.entity.LoginReq;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
-import com.seu.wufan.alumnicircle.presenter.impl.LoginPresenter;
+import com.seu.wufan.alumnicircle.mvp.presenter.impl.LoginPresenter;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
-import com.seu.wufan.alumnicircle.ui.views.activity.ILoginView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.ILoginView;
 
 import javax.inject.Inject;
 

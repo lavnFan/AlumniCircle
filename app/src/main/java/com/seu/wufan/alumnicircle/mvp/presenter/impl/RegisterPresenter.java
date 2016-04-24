@@ -1,14 +1,14 @@
-package com.seu.wufan.alumnicircle.presenter.impl;
+package com.seu.wufan.alumnicircle.mvp.presenter.impl;
 
 import android.content.Context;
 
 import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
-import com.seu.wufan.alumnicircle.model.TokenModel;
-import com.seu.wufan.alumnicircle.presenter.IRegisterPresenter;
-import com.seu.wufan.alumnicircle.ui.views.IView;
-import com.seu.wufan.alumnicircle.ui.views.activity.IRegisterView;
+import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
+import com.seu.wufan.alumnicircle.mvp.presenter.IRegisterPresenter;
+import com.seu.wufan.alumnicircle.mvp.views.IView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.IRegisterView;
 
 import javax.inject.Inject;
 
@@ -21,9 +21,10 @@ import rx.Subscription;
 public class RegisterPresenter implements IRegisterPresenter{
 
     private IRegisterView registerView;
+    private Subscription registerSubmission;
+
     private PreferenceUtils preferenceUtils;
     private TokenModel tokenModel;
-    private Subscription registerSubmission;
     private Context appContext;
 
     @Inject
@@ -34,22 +35,22 @@ public class RegisterPresenter implements IRegisterPresenter{
     }
 
     @Override
-    public void doRegister(RegisterReq req) {
-
-    }
-
-    @Override
-    public void isValid(RegisterReq req) {
-
-    }
-
-    @Override
     public void attachView(IView v) {
         registerView = (IRegisterView) v;
     }
 
     @Override
     public void destroy() {
+
+    }
+
+    @Override
+    public void doRegister(String phone_num, String enroll_year, String school, String major, String password) {
+
+    }
+
+    @Override
+    public void isValid(String phone_num, String enroll_year, String school, String major, String password) {
 
     }
 }

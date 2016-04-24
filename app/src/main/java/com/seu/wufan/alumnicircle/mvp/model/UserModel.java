@@ -1,9 +1,8 @@
-package com.seu.wufan.alumnicircle.model;
+package com.seu.wufan.alumnicircle.mvp.model;
 
 import android.support.annotation.Nullable;
 
 import com.seu.wufan.alumnicircle.api.UserApi;
-import com.seu.wufan.alumnicircle.common.base.BaseModel;
 import com.seu.wufan.alumnicircle.common.provider.TokenProvider;
 
 /**
@@ -20,4 +19,6 @@ public class UserModel extends BaseModel<UserApi> {
     protected Class<UserApi> getServiceClass() {
         return UserApi.class;
     }
+
+
 }

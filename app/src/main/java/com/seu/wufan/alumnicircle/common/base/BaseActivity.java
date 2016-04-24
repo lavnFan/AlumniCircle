@@ -18,6 +18,8 @@ import com.seu.wufan.alumnicircle.injector.component.ApiComponent;
 import com.seu.wufan.alumnicircle.injector.component.AppComponent;
 import com.seu.wufan.alumnicircle.injector.module.ActivityModule;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -35,7 +37,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Bind(R.id.text_toolbar_right_tv)
     TextView mToolbarRightTv;
 
-    public Navigator navigator;
+    @Inject
+    public Navigator navigator;   //负责管理导航
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         initViewsAndEvents();
     }
 
+
+    //子类需实现的
     protected  abstract void prepareData();
 
     protected abstract @LayoutRes int getContentView();
@@ -70,6 +75,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //设置ToolBar：标题栏上中间、右边的文字设置，是否隐藏，是否取消回退Icon
     protected void initToolBar() {
         if(mToolbar==null) return;
         setSupportActionBar(mToolbar);
@@ -99,6 +105,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(enabled);
     }
 
+    //向整个activity提供api
     public AppComponent getAppComponent(){
         return ((App)getApplication()).getAppComponent();
     }

@@ -1,7 +1,7 @@
-package com.seu.wufan.alumnicircle.presenter;
+package com.seu.wufan.alumnicircle.mvp.presenter;
 
 
-import com.seu.wufan.alumnicircle.ui.views.IView;
+import com.seu.wufan.alumnicircle.mvp.views.IView;
 
 /**
  * @author wufan

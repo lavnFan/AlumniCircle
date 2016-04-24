@@ -8,7 +8,7 @@ public class RegisterReq {
 
     private String phone_num;
     private String password;
-    private int enroll_year;
+    private String enroll_year;
     private String school;
     private String major;
 
@@ -20,7 +20,11 @@ public class RegisterReq {
         this.password = password;
     }
 
-    public void setEnroll_year(int enroll_year) {
+    public String getEnroll_year() {
+        return enroll_year;
+    }
+
+    public void setEnroll_year(String enroll_year) {
         this.enroll_year = enroll_year;
     }
 
@@ -38,10 +42,6 @@ public class RegisterReq {
 
     public String getPassword() {
         return password;
-    }
-
-    public int getEnroll_year() {
-        return enroll_year;
     }
 
     public String getSchool() {

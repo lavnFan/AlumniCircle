@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.qualifier;
+package com.seu.wufan.alumnicircle.common.qualifier;
 
 import android.support.annotation.IntDef;
 

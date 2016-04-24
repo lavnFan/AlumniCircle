@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.common.base;
+package com.seu.wufan.alumnicircle.mvp.model;
 
 import android.support.annotation.Nullable;
 

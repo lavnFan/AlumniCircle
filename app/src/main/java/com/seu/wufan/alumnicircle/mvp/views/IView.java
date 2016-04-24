@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.ui.views;
+package com.seu.wufan.alumnicircle.mvp.views;
 
 import android.support.annotation.NonNull;
 
