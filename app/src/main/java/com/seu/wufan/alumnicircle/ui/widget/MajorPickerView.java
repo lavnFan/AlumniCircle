@@ -16,8 +16,8 @@ public class MajorPickerView<T> extends OptionsPickerView<T> {
         super(context);
     }
 
- //   @Override
- //   public int getLayoutId() {
-//        return R.layout.major_pickerview;
-//    }
+    @Override
+    public int getLayoutId() {
+        return R.layout.major_pickerview;
+    }
 }

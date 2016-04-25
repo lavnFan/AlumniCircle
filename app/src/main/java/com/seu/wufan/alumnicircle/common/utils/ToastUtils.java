@@ -1,6 +1,7 @@
 package com.seu.wufan.alumnicircle.common.utils;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
 import com.seu.wufan.alumnicircle.R;

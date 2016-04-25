@@ -63,11 +63,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     }
 
     @Override
-    public String getUser_id() {
-        return null;
-    }
-
-    @Override
     public void loginSuccess() {
         showToast("登录成功");
         readyGoThenKill(MainActivity.class);

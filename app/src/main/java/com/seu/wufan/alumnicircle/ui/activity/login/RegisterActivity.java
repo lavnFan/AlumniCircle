@@ -16,8 +16,10 @@ import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
 import com.seu.wufan.alumnicircle.common.utils.DataProvider;
+import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.impl.RegisterPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IRegisterView;
+import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.ui.widget.MajorPickerView;
 
 import java.util.ArrayList;
@@ -78,8 +80,6 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
         enrollYears = DataProvider.getEnrollYearsData();
     }
 
-
-
     /**
      * 设置入学年份
      */
@@ -102,7 +102,6 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
         enrollYearPickerView.show();
         enrollYearPickerViewIsShowing = true;
     }
-
 
     /**
      * 设置学院、专业
@@ -130,19 +129,35 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
         majorPickerViewIsShowing = true;
     }
 
+    @OnClick(R.id.register_button)
+    void register(){
+        if(agreeWithProtocolCheckBox.isChecked()){
+            registerPresenter.doRegister(telephoneNumberEditText.getText().toString(),passwordEditText.getText().toString(),
+                    enrollYearTextView.getText().toString(),departmentTextView.getText().toString(),majorTextView.getText().toString());
+        }else{
+            ToastUtils.showToast("请阅读校友圈注册协议",this);
+        }
+
+    }
+
     @Override
     public void showNetCantUse() {
-
+        ToastUtils.showNetCantUse(this);
     }
 
     @Override
     public void showNetError() {
+        ToastUtils.showNetError(this);
+    }
 
+    @Override
+    public void registerSuccess() {
+        readyGoThenKill(MainActivity.class);
     }
 
     @Override
     public void showToast(@NonNull String s) {
-
+        ToastUtils.showToast(s,this);
     }
 
     @Override
@@ -150,4 +165,6 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
         super.onDestroy();
         registerPresenter.destroy();
     }
+
+
 }

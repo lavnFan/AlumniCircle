@@ -5,6 +5,7 @@ import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.LoginActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.RegisterActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.WelcomeActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.SettingActivity;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.CircleFragment;
 
 import javax.inject.Singleton;
@@ -22,5 +23,7 @@ public interface ApiComponent {
     void inject(MainActivity mainActivity);
 
     void inject(WelcomeActivity welcomeActivity);
+
+    void inject(SettingActivity settingActivity);
 
 }

@@ -58,6 +58,7 @@ public class LoginPresenter implements ILoginPresenter {
                             public void call(LoginRes loginRes) {
                                 preferenceUtils.putString(phoneNum,PreferenceType.PHONE);
                                 preferenceUtils.putString(loginRes.getAccess_token(), PreferenceType.ACCESS_TOKEN);
+                                preferenceUtils.putString(loginRes.getUser_id(),PreferenceType.USER_ID);
                                 tokenModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 mLoginView.loginSuccess();
                             }

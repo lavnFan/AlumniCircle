@@ -8,7 +8,7 @@ import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
  */
 public interface IRegisterPresenter extends Presenter {
 
-    void doRegister(String phone_num,String enroll_year,String school,String major,String password);
+    void doRegister(String phone_num,String password,String enroll_year,String school,String major);
 
-    void isValid(String phone_num,String enroll_year,String school,String major,String password);
+    boolean isValid(String phone_num,String password,String enroll_year,String school,String major);
 }

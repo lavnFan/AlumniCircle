@@ -8,5 +8,6 @@ import com.seu.wufan.alumnicircle.mvp.views.IView;
  */
 public interface IRegisterView extends IView{
 
+    void registerSuccess();
 
 }

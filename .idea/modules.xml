@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/AlumniCircle.iml" filepath="$PROJECT_DIR$/AlumniCircle.iml" />
       <module fileurl="file://$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" filepath="$PROJECT_DIR$/PhotoPicker/PhotoPicker.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pickerview/pickerview.iml" filepath="$PROJECT_DIR$/pickerview/pickerview.iml" />
     </modules>
   </component>
 </project>

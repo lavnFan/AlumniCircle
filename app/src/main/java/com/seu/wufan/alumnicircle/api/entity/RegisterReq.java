@@ -5,7 +5,6 @@ package com.seu.wufan.alumnicircle.api.entity;
  * @date 2016/2/22
  */
 public class RegisterReq {
-
     private String phone_num;
     private String password;
     private String enroll_year;

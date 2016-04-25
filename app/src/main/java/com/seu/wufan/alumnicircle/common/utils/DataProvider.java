@@ -94,9 +94,9 @@ public class DataProvider {
             }
             Collections.sort(departments, chineseSort);
             for(int i = 0; i < departments.size(); i++){
-                for(int j = 0; j < majorMap.get(departments.get(i)).size(); j++){
-                    System.out.println(majorMap.get(departments.get(i)).get(j));
-                }
+//                for(int j = 0; j < majorMap.get(departments.get(i)).size(); j++){
+//                    System.out.println(majorMap.get(departments.get(i)).get(j));
+//                }
                 majors.add(majorMap.get(departments.get(i)));
             }
             return new SeuMajors(departments, majors);

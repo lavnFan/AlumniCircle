@@ -29,13 +29,13 @@ public class PreferenceUtils {
         editor = sharedPreferences.edit();
     }
 
-    public Observable<String> getAvatar(){
+    public Observable<String> getUserId(){
         return Observable.create(new Observable.OnSubscribe<String>() {
             @Override
             public void call(Subscriber<? super String> subscriber) {
-                String avatar = sharedPreferences.getString(PreferenceType.AVATAR,"");
+                String user_id = sharedPreferences.getString(PreferenceType.USER_ID,"");
                 subscriber.onStart();
-                subscriber.onNext(avatar);
+                subscriber.onNext(user_id);
                 subscriber.onCompleted();
             }
         })

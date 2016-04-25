@@ -10,10 +10,10 @@ import java.lang.annotation.RetentionPolicy;
 @StringDef({
         PreferenceType.PHONE,
         PreferenceType.ACCESS_TOKEN,
-        PreferenceType.AVATAR
+        PreferenceType.USER_ID
 })
 public @interface PreferenceType {
     String PHONE = "com.icon_seu.wufan.alumnicircle.phone";
     String ACCESS_TOKEN = "com.icon_seu.wufan.alumnicircle.access";
-    String AVATAR = "com.icon_seu.wufan.alumnicircle.avatar";
+    String USER_ID = "com.icon_seu.wufan.alumnicircle.user_id";
 }

@@ -8,8 +8,6 @@ import com.seu.wufan.alumnicircle.mvp.views.IView;
  */
 public interface ILoginView extends IView{
 
-    String getUser_id();
-
     void loginSuccess();
 
 }
