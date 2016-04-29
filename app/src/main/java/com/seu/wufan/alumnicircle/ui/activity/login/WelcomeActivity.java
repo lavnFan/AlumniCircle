@@ -1,7 +1,6 @@
 package com.seu.wufan.alumnicircle.ui.activity.login;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -12,14 +11,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.orhanobut.logger.Logger;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.App;
-import com.seu.wufan.alumnicircle.common.base.BaseActivity;
-import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
-import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.component.ApiComponent;
-import com.seu.wufan.alumnicircle.mvp.presenter.impl.WelcomePresenter;
+import com.seu.wufan.alumnicircle.mvp.presenter.impl.login.WelcomeIPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IWelcomeView;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 
@@ -36,7 +31,7 @@ import butterknife.OnClick;
 public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
 
     @Inject
-    WelcomePresenter presenter;
+    WelcomeIPresenter presenter;
 
     private Jump runnable;
     Thread thread;

@@ -1,14 +1,12 @@
 package com.seu.wufan.alumnicircle.ui.activity.me;
 
 import android.content.Intent;
-import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.view.View;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
-import com.seu.wufan.alumnicircle.common.base.SwipeBackBaseActivity;
-import com.seu.wufan.alumnicircle.mvp.presenter.impl.SettingPresenter;
+import com.seu.wufan.alumnicircle.mvp.presenter.impl.me.SettingIPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.ISettingView;
 import com.seu.wufan.alumnicircle.ui.activity.login.LoginActivity;
 
@@ -20,13 +18,13 @@ import butterknife.OnClick;
  * @author wufan
  * @date 2016/2/13
  */
-public class SettingActivity extends SwipeBackBaseActivity implements ISettingView{
+public class SettingSwipeActivity extends BaseSwipeActivity implements ISettingView{
 
     @Inject
-    SettingPresenter settingPresenter;
+    SettingIPresenter settingPresenter;
 
     @Override
-    protected void prepareData() {
+    protected void prepareDatas() {
         getApiComponent().inject(this);
         settingPresenter.attachView(this);
     }
@@ -39,6 +37,11 @@ public class SettingActivity extends SwipeBackBaseActivity implements ISettingVi
     @Override
     protected void initViewsAndEvents() {
 
+    }
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
     }
 
     @OnClick(R.id.my_setting_exit_rl)

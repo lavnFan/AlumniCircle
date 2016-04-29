@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.App;
 import com.seu.wufan.alumnicircle.common.Navigator;
+import com.seu.wufan.alumnicircle.common.utils.varyViewHelper.VaryViewHelperController;
 import com.seu.wufan.alumnicircle.injector.component.ApiComponent;
 import com.seu.wufan.alumnicircle.injector.component.AppComponent;
 import com.seu.wufan.alumnicircle.injector.module.ActivityModule;
@@ -27,7 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Nullable
     @Bind(R.id.tl_custom)
-    Toolbar mToolbar;
+    protected Toolbar mToolbar;
 
     @Nullable
     @Bind(R.id.text_toolbar_tv)
@@ -40,6 +41,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Inject
     public Navigator navigator;   //负责管理导航
 
+    private VaryViewHelperController mVaryViewHelperController = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,17 +52,22 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         navigator = ((App)getApplication()).getAppComponent().navigator();
         initToolBar();
-        prepareData();
+        if (null != getLoadingTargetView()) {
+            mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
+        }
+        prepareDatas();
         initViewsAndEvents();
     }
 
 
     //子类需实现的
-    protected  abstract void prepareData();
+    protected  abstract void prepareDatas();
 
     protected abstract @LayoutRes int getContentView();
 
     protected abstract void initViewsAndEvents();
+
+    protected abstract View getLoadingTargetView();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,6 +97,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         mToolbarTitleTv.setText(title);
         mToolbarTitleTv.setVisibility(View.VISIBLE);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     protected void setToolbarRightTitle(String rightTitle){
@@ -198,6 +207,78 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         startActivityForResult(intent, requestCode);
         overridePendingTransition(R.anim.in_from_right,R.anim.out_to_left);
+    }
+
+    /**
+     * toggle show loading
+     *
+     * @param toggle
+     */
+    protected void toggleShowLoading(boolean toggle, String msg) {
+        if (null == mVaryViewHelperController) {
+            throw new IllegalArgumentException("You must return a right target view for loading");
+        }
+
+        if (toggle) {
+            mVaryViewHelperController.showLoading(msg);
+        } else {
+            mVaryViewHelperController.restore();
+        }
+    }
+
+    /**
+     * toggle show empty
+     *
+     * @param toggle
+     */
+    protected void toggleShowEmpty(boolean toggle, String msg, View.OnClickListener onClickListener) {
+        if (null == mVaryViewHelperController) {
+            throw new IllegalArgumentException("You must return a right target view for loading");
+        }
+
+        if (toggle) {
+            mVaryViewHelperController.showEmpty(msg, onClickListener);
+        } else {
+            mVaryViewHelperController.restore();
+        }
+    }
+
+    /**
+     * toggle show error
+     *
+     * @param toggle
+     */
+    protected void toggleShowError(boolean toggle, String msg, View.OnClickListener onClickListener) {
+        if (null == mVaryViewHelperController) {
+            throw new IllegalArgumentException("You must return a right target view for loading");
+        }
+
+        if (toggle) {
+            mVaryViewHelperController.showError(msg, onClickListener);
+        } else {
+            mVaryViewHelperController.restore();
+        }
+    }
+
+    /**
+     * toggle show network error
+     *
+     * @param toggle
+     */
+    protected void toggleNetworkError(boolean toggle, View.OnClickListener onClickListener) {
+        if (null == mVaryViewHelperController) {
+            throw new IllegalArgumentException("You must return a right target view for loading");
+        }
+
+        if (toggle) {
+            mVaryViewHelperController.showNetworkError(onClickListener);
+        } else {
+            mVaryViewHelperController.restore();
+        }
+    }
+
+    protected void toggleRestore(){
+        mVaryViewHelperController.restore();
     }
 
     @Override

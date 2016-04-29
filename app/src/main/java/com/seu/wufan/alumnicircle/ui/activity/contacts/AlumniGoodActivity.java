@@ -37,7 +37,7 @@ public class AlumniGoodActivity extends BaseSwipeActivity {
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         mScrollView.smoothScrollTo(0,0);
         List<ContactsFriendsItem> entities = new ArrayList<ContactsFriendsItem>();
         for (int i = 0; i < 10; i++) {

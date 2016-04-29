@@ -45,7 +45,7 @@ public class DynamicTextActivity extends BaseSwipeActivity {
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         mDynamicTextSv.smoothScrollTo(0,0);
         initDatas();
         mShareLl.setOnClickListener(listener);

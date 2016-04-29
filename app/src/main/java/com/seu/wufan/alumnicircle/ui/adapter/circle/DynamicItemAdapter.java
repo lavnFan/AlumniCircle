@@ -2,6 +2,9 @@ package com.seu.wufan.alumnicircle.ui.adapter.circle;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -20,6 +23,9 @@ import java.util.List;
  */
 public class DynamicItemAdapter extends BasisAdapter<DynamicItem, DynamicItemAdapter.viewHolder> {
 
+    PhotoAdapter photoAdapter;
+    ArrayList<String> selectedPhotos = new ArrayList<>();
+
     public DynamicItemAdapter(Context mContext) {
         super(mContext, new ArrayList<DynamicItem>(), viewHolder.class);
     }
@@ -31,11 +37,18 @@ public class DynamicItemAdapter extends BasisAdapter<DynamicItem, DynamicItemAda
     @Override
     protected void setDataIntoView(viewHolder holder, DynamicItem entity) {
 
+//        selectedPhotos.add("file:///storage/emulated/0/Pictures/JPEG_20160429_223838_-1132004587.jpg");
+//        selectedPhotos.add("file:///storage/emulated/0/Pictures/JPEG_20160429_223838_-1132004587.jpg");
+        photoAdapter = new PhotoAdapter(getmContext(),selectedPhotos);
+        holder.recyclerViewImages.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.HORIZONTAL));
+        holder.recyclerViewImages.setAdapter(photoAdapter);
+//        photoAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void initViewHolder(View convertView, viewHolder holder) {
         holder.personInfoRl = (RelativeLayout) convertView.findViewById(R.id.circle_dynamic_item_person_info_relative_layout);
+        holder.recyclerViewImages = (RecyclerView) convertView.findViewById(R.id.circle_dynamic_image_recycle_view);
 
 
         holder.personInfoRl.setOnClickListener(new View.OnClickListener() {
@@ -61,5 +74,6 @@ public class DynamicItemAdapter extends BasisAdapter<DynamicItem, DynamicItemAda
 
     public static class viewHolder {
         RelativeLayout personInfoRl;
+        RecyclerView recyclerViewImages;
     }
 }

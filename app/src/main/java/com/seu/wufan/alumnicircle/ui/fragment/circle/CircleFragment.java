@@ -1,5 +1,6 @@
 package com.seu.wufan.alumnicircle.ui.fragment.circle;
 
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ScrollView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.DynamicItem;
+import com.seu.wufan.alumnicircle.mvp.views.activity.ICircleView;
 import com.seu.wufan.alumnicircle.ui.activity.circle.CircleTopicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.circle.DynamicTextActivity;
 import com.seu.wufan.alumnicircle.common.base.BasisAdapter;
@@ -27,7 +29,7 @@ import butterknife.OnClick;
  * @author wufan
  * @date 2016/1/31
  */
-public class CircleFragment extends BaseLazyFragment {
+public class CircleFragment extends BaseLazyFragment implements ICircleView{
 
     @Bind(R.id.circle_top_topic_card_view)
     CardView mTopicCardView;
@@ -118,5 +120,20 @@ public class CircleFragment extends BaseLazyFragment {
     @OnClick(R.id.circle_top_topic_card_view)
     void topTopicView() {
         readyGo(CircleTopicActivity.class);
+    }
+
+    @Override
+    public void showNetCantUse() {
+
+    }
+
+    @Override
+    public void showNetError() {
+
+    }
+
+    @Override
+    public void showToast(@NonNull String s) {
+
     }
 }

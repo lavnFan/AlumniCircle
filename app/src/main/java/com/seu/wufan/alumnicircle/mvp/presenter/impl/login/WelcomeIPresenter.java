@@ -1,17 +1,15 @@
-package com.seu.wufan.alumnicircle.mvp.presenter.impl;
+package com.seu.wufan.alumnicircle.mvp.presenter.impl.login;
 
 import android.content.Context;
 
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
-import com.seu.wufan.alumnicircle.mvp.presenter.IWelcomePresenter;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IWelcomeView;
 
 import javax.inject.Inject;
 
-import rx.Observable;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -21,7 +19,7 @@ import rx.schedulers.Schedulers;
  * @author wufan
  * @date 2016/4/24
  */
-public class WelcomePresenter implements IWelcomePresenter{
+public class WelcomeIPresenter implements IWelcomeIPresenter {
 
     private PreferenceUtils preferenceUtils;
     private Context appContext;
@@ -31,7 +29,7 @@ public class WelcomePresenter implements IWelcomePresenter{
     private Subscription welcomeSubscription;
 
     @Inject
-    public WelcomePresenter(@ForApplication Context context, TokenModel tokenModel, PreferenceUtils preferenceUtils) {
+    public WelcomeIPresenter(@ForApplication Context context, TokenModel tokenModel, PreferenceUtils preferenceUtils) {
         this.tokenModel = tokenModel;
         this.appContext = context;
         this.preferenceUtils = preferenceUtils;

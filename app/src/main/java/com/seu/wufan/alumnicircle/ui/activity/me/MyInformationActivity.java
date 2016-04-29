@@ -21,7 +21,7 @@ public class MyInformationActivity extends BaseSwipeActivity{
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
 
     }
 

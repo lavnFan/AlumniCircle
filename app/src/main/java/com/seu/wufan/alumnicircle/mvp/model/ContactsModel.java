@@ -3,7 +3,12 @@ package com.seu.wufan.alumnicircle.mvp.model;
 import android.support.annotation.Nullable;
 
 import com.seu.wufan.alumnicircle.api.ContactsApi;
+import com.seu.wufan.alumnicircle.api.entity.PublishDynamicReq;
 import com.seu.wufan.alumnicircle.common.provider.TokenProvider;
+
+import java.util.List;
+
+import rx.Observable;
 
 /**
  * @author wufan
@@ -19,4 +24,5 @@ public class ContactsModel extends BaseModel<ContactsApi>{
     protected Class<ContactsApi> getServiceClass() {
         return ContactsApi.class;
     }
+
 }

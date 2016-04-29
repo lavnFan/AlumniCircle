@@ -1,11 +1,7 @@
 package com.seu.wufan.alumnicircle.ui.activity.login;
 
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -13,21 +9,18 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
 import com.seu.wufan.alumnicircle.common.utils.DataProvider;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
-import com.seu.wufan.alumnicircle.mvp.presenter.impl.RegisterPresenter;
+import com.seu.wufan.alumnicircle.mvp.presenter.impl.login.RegisterIPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IRegisterView;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.ui.widget.MajorPickerView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.inject.Inject;
 
-import biz.kasual.materialnumberpicker.MaterialNumberPicker;
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -51,7 +44,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     CheckBox agreeWithProtocolCheckBox;
 
     @Inject
-    RegisterPresenter registerPresenter;
+    RegisterIPresenter registerPresenter;
 
     private OptionsPickerView enrollYearPickerView;
     private MajorPickerView majorPickerView;
@@ -63,7 +56,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     private boolean majorPickerViewIsShowing = false;
 
     @Override
-    protected void prepareData() {
+    protected void prepareDatas() {
         getApiComponent().inject(this);
         registerPresenter.attachView(this);
     }
@@ -78,6 +71,11 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     protected void initViewsAndEvents() {
         seuMajors = DataProvider.getSeuMajorsData();
         enrollYears = DataProvider.getEnrollYearsData();
+    }
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
     }
 
     /**

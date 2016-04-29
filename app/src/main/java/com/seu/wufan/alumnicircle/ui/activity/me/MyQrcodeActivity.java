@@ -21,7 +21,7 @@ public class MyQrcodeActivity  extends BaseSwipeActivity {
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
 
     }
 

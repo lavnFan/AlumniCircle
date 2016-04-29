@@ -17,6 +17,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
+import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.CompanyActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.JobActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.NameActivity;
@@ -135,7 +136,6 @@ public class EditInformationActiviy extends BaseSwipeActivity {
     private int displayWidth;
     private int displayHeight;
 
-
     private String photoPath;
 
     @Override
@@ -152,7 +152,7 @@ public class EditInformationActiviy extends BaseSwipeActivity {
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         initOptions();
 
         viewMiddle = new ViewMiddle(this);
@@ -345,7 +345,7 @@ public class EditInformationActiviy extends BaseSwipeActivity {
         popupWindow.setOutsideTouchable(true);
         popupWindow.setFocusable(true);
         popupWindow.setBackgroundDrawable(new BitmapDrawable());
-        popupWindow.showAsDropDown(mToolBar, displayHeight / 4, displayWidth / 4);
+        popupWindow.showAsDropDown(mToolbar, displayHeight / 4, displayWidth / 4);
     }
 
     private void beginCrop(Uri source) {
@@ -366,7 +366,7 @@ public class EditInformationActiviy extends BaseSwipeActivity {
 //            getUploadToken();
 //            Log.i("info", photoPath);
         } else if (resultCode == Crop.RESULT_ERROR) {
-            showToast(Crop.getError(result).getMessage());//  失败考虑默认头像
+            ToastUtils.showToast(Crop.getError(result).getMessage(),this);//  失败考虑默认头像
         }
     }
 

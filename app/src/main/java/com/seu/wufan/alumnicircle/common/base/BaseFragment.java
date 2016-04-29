@@ -2,6 +2,7 @@ package com.seu.wufan.alumnicircle.common.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,12 @@ import android.widget.Toast;
 
 
 import com.seu.wufan.alumnicircle.R;
+import com.seu.wufan.alumnicircle.common.App;
+import com.seu.wufan.alumnicircle.common.Navigator;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.varyViewHelper.VaryViewHelperController;
+import com.seu.wufan.alumnicircle.injector.component.ApiComponent;
+import com.seu.wufan.alumnicircle.injector.component.AppComponent;
 
 import butterknife.ButterKnife;
 import retrofit.RetrofitError;
@@ -20,6 +25,9 @@ public abstract class BaseFragment extends Fragment {
 
     private String TAG="SUPER";
     private VaryViewHelperController mVaryViewHelperController = null;
+
+    public Navigator navigator;
+
     public void setTAG(String TAG) {
         this.TAG = TAG;
     }
@@ -27,6 +35,12 @@ public abstract class BaseFragment extends Fragment {
     public String getTAG() {
 
         return TAG;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        navigator = getAppComponent().navigator();
     }
 
     @Override
@@ -44,6 +58,15 @@ public abstract class BaseFragment extends Fragment {
     public abstract void initViews(View view);
     public abstract void initDatas();
     protected abstract View getLoadingTargetView();
+
+    protected AppComponent getAppComponent(){
+        return ((App)getActivity().getApplication()).getAppComponent();
+    }
+
+    protected ApiComponent getApiComponent(){
+        return ((App)getActivity().getApplication()).getApiComponent();
+    }
+
     /**
      * startActivity with bundle
      *

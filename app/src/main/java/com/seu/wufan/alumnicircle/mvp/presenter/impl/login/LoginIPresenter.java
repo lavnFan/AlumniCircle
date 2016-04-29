@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.mvp.presenter.impl;
+package com.seu.wufan.alumnicircle.mvp.presenter.impl.login;
 
 import android.content.Context;
 
@@ -10,7 +10,6 @@ import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
-import com.seu.wufan.alumnicircle.mvp.presenter.ILoginPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.ILoginView;
 
@@ -26,17 +25,17 @@ import rx.schedulers.Schedulers;
  * @author wufan
  * @date 2016/2/29
  */
-public class LoginPresenter implements ILoginPresenter {
+public class LoginIPresenter implements ILoginIPresenter {
 
     private ILoginView mLoginView;
+    private Subscription loginSubscription;
+
     private TokenModel tokenModel;
     private Context appContext;
     private PreferenceUtils preferenceUtils;
 
-    private Subscription loginSubscription;
-
     @Inject
-    public LoginPresenter(@ForApplication Context context,TokenModel tokenModel,PreferenceUtils preferenceUtils) {
+    public LoginIPresenter(@ForApplication Context context, TokenModel tokenModel, PreferenceUtils preferenceUtils) {
         this.tokenModel = tokenModel;
         this.appContext = context;
         this.preferenceUtils = preferenceUtils;

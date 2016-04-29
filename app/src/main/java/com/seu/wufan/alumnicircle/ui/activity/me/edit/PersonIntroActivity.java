@@ -37,7 +37,7 @@ public class PersonIntroActivity extends BaseSwipeActivity {
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         initToolBars();
 
         String personIntro= (getIntent().getExtras()==null)?null:getIntent().getExtras().getString(EXTRA_PERSON_INTRO);

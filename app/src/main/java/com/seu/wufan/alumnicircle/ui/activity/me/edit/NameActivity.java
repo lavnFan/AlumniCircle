@@ -38,7 +38,7 @@ public class NameActivity extends BaseSwipeActivity {
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         initToolBars();
         String name= (getIntent().getExtras()==null)?null:getIntent().getExtras().getString(EXTRA_NAME);
         TLog.i("Name:",name);

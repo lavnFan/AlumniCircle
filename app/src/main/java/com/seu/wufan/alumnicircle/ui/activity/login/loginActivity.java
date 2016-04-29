@@ -3,12 +3,13 @@ package com.seu.wufan.alumnicircle.ui.activity.login;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.view.View;
 import android.widget.EditText;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
-import com.seu.wufan.alumnicircle.mvp.presenter.impl.LoginPresenter;
+import com.seu.wufan.alumnicircle.mvp.presenter.impl.login.LoginIPresenter;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.mvp.views.activity.ILoginView;
 
@@ -28,14 +29,14 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     EditText mPasswordEt;
 
     @Inject
-    LoginPresenter loginPresenter;
+    LoginIPresenter loginPresenter;
 
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, LoginActivity.class);
     }
 
     @Override
-    protected void prepareData() {
+    protected void prepareDatas() {
         getApiComponent().inject(this);
         loginPresenter.attachView(this);
     }
@@ -48,6 +49,11 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     protected void initViewsAndEvents() {
         setToolbarBackHome(false);
+    }
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
     }
 
     @OnClick(R.id.register_linear_layout)

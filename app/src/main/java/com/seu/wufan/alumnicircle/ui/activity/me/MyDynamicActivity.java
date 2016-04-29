@@ -38,7 +38,7 @@ public class MyDynamicActivity  extends BaseSwipeActivity {
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         mScrollView.smoothScrollTo(0,0);
         initDatas();
     }

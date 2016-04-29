@@ -15,8 +15,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.seu.wufan.alumnicircle.R;
+import com.seu.wufan.alumnicircle.common.App;
+import com.seu.wufan.alumnicircle.common.Navigator;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
+import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.common.utils.varyViewHelper.VaryViewHelperController;
+import com.seu.wufan.alumnicircle.injector.component.ApiComponent;
+import com.seu.wufan.alumnicircle.injector.component.AppComponent;
 
 import java.lang.reflect.Field;
 
@@ -56,6 +61,8 @@ public abstract class BaseLazyFragment extends Fragment {
 
     private VaryViewHelperController mVaryViewHelperController = null;
 
+    public Navigator navigator;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -65,6 +72,7 @@ public abstract class BaseLazyFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        navigator = getAppComponent().navigator();
         TAG_LOG = this.getClass().getSimpleName();
     }
 
@@ -227,6 +235,15 @@ public abstract class BaseLazyFragment extends Fragment {
         return getActivity().getSupportFragmentManager();
     }
 
+    protected AppComponent getAppComponent(){
+        return ((App)getActivity().getApplication()).getAppComponent();
+    }
+
+    protected ApiComponent getApiComponent(){
+        return ((App)getActivity().getApplication()).getApiComponent();
+    }
+
+
     /**
      * startActivity
      *
@@ -281,19 +298,19 @@ public abstract class BaseLazyFragment extends Fragment {
         getActivity().overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
     }
 
-    /**
-     * show toast
-     *
-     * @param msg
-     */
-    protected void showToast(String msg) {
-        if (null != msg && !CommonUtils.isEmpty(msg)) {
-            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-//            Snackbar.make(((Activity) mContext).getWindow().getDecorView(), msg, Snackbar.LENGTH_SHORT).show();
-        }
-    }
+//    /**
+//     * show toast
+//     *
+//     * @param msg
+//     */
+//    protected void showToast(String msg) {
+//        if (null != msg && !CommonUtils.isEmpty(msg)) {
+//            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+////            Snackbar.make(((Activity) mContext).getWindow().getDecorView(), msg, Snackbar.LENGTH_SHORT).show();
+//        }
+//    }
     protected void showNetWorkError() {
-        showToast(getResources().getString(R.string.network_error_tips));
+        ToastUtils.showToast(getResources().getString(R.string.network_error_tips),getContext());
     }
 
 
@@ -372,9 +389,9 @@ public abstract class BaseLazyFragment extends Fragment {
     protected void showInnerError(RetrofitError error) {
         if (error != null)
             if(error.getBody() == null){
-                showToast(getString(R.string.request_time_out));
+                ToastUtils.showToast(getString(R.string.request_time_out),getContext());
             }else{
-                showToast(CommonUtils.getErrorInfo(error).getReason());
+                ToastUtils.showToast(CommonUtils.getErrorInfo(error).getReason(),getContext());
             }
     }
 }

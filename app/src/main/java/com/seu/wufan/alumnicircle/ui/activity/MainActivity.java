@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity {
     private int mCurrentIndex = 0;
 
     @Override
-    protected void prepareData() {
+    protected void prepareDatas() {
 
     }
 
@@ -67,6 +67,11 @@ public class MainActivity extends BaseActivity {
         initView();
         initDatas();
         initListeners();
+    }
+
+    @Override
+    protected View getLoadingTargetView() {
+        return null;
     }
 
     private void initView() {

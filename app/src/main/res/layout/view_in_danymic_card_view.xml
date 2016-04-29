@@ -88,10 +88,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/circle_dynamic_image_recycle_view"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:background="@color/orange" />
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
 
     <View

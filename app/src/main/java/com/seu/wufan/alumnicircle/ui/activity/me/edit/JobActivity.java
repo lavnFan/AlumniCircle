@@ -37,7 +37,7 @@ public class JobActivity extends BaseSwipeActivity {
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         initToolBars();
 
         String job= (getIntent().getExtras()==null)?null:getIntent().getExtras().getString(EXTRA_JOB);

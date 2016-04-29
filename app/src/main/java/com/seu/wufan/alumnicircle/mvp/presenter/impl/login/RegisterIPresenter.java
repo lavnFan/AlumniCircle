@@ -1,23 +1,20 @@
-package com.seu.wufan.alumnicircle.mvp.presenter.impl;
+package com.seu.wufan.alumnicircle.mvp.presenter.impl.login;
 
 import android.content.Context;
 
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
-import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
-import com.seu.wufan.alumnicircle.mvp.presenter.IRegisterPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IRegisterView;
 
 import javax.inject.Inject;
 
 import retrofit2.HttpException;
-import rx.Scheduler;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -27,7 +24,7 @@ import rx.schedulers.Schedulers;
  * @author wufan
  * @date 2016/3/1
  */
-public class RegisterPresenter implements IRegisterPresenter{
+public class RegisterIPresenter implements IRegisterIPresenter {
 
     private IRegisterView registerView;
     private Subscription registerSubmission;
@@ -37,7 +34,7 @@ public class RegisterPresenter implements IRegisterPresenter{
     private Context appContext;
 
     @Inject
-    public RegisterPresenter(@ForApplication Context context,TokenModel tokenModel,PreferenceUtils preferenceUtils) {
+    public RegisterIPresenter(@ForApplication Context context, TokenModel tokenModel, PreferenceUtils preferenceUtils) {
         this.tokenModel = tokenModel;
         this.appContext = context;
         this.preferenceUtils = preferenceUtils;

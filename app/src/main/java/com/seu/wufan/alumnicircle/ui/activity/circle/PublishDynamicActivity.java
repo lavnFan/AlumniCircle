@@ -1,15 +1,49 @@
 package com.seu.wufan.alumnicircle.ui.activity.circle;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
+import com.seu.wufan.alumnicircle.mvp.views.activity.IPublishDynamicView;
+import com.seu.wufan.alumnicircle.ui.adapter.circle.PhotoAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import me.iwf.photopicker.PhotoPickerActivity;
+import me.iwf.photopicker.entity.Photo;
+import me.iwf.photopicker.utils.PhotoPickerIntent;
 
 /**
  * @author wufan
  * @date 2016/2/24
  */
-public class PublishDynamicActivity extends BaseSwipeActivity{
+public class PublishDynamicActivity extends BaseSwipeActivity implements IPublishDynamicView {
+
+    private final int PICK_PHOTO_REQUEST_CODE = 1;
+
+    @Bind(R.id.circle_publish_dynamic_edit_text)
+    EditText mDynamicEditText;
+    @Bind(R.id.circle_publish_dynamic_iv)
+    ImageView mDynamicIv;
+    @Bind(R.id.circle_publish_dynamic_image_recycle_view)
+    RecyclerView imageRecyclerView;
+
+    ArrayList<String> photoPaths = new ArrayList<>();
+    PhotoAdapter photoAdapter;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_circle_publish_dynamic;
@@ -21,12 +55,68 @@ public class PublishDynamicActivity extends BaseSwipeActivity{
     }
 
     @Override
-    protected void initViews() {
-
+    protected void initViewsAndEvents() {
+        setToolbarTitle("发动态");
+        setToolbarRightTitle("发布");
+        photoAdapter = new PhotoAdapter(this, photoPaths);
+        imageRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.VERTICAL));
+        imageRecyclerView.setAdapter(photoAdapter);
     }
 
     @Override
     protected View getLoadingTargetView() {
         return null;
     }
+
+    @Override
+    public void publishSuccess() {
+
+    }
+
+    @Override
+    public void showNetCantUse() {
+
+    }
+
+    @Override
+    public void showNetError() {
+
+    }
+
+    @Override
+    public void showToast(@NonNull String s) {
+
+    }
+
+    @OnClick(R.id.circle_publish_dynamic_iv)
+    void selectPhotos() {
+        PhotoPickerIntent intent = new PhotoPickerIntent(this);
+        intent.setPhotoCount(9);
+        intent.setShowCamera(true);
+        intent.setShowGif(true);
+        startActivityForResult(intent, PICK_PHOTO_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        ArrayList<Photo> photos;
+        if (resultCode == RESULT_OK && requestCode == PICK_PHOTO_REQUEST_CODE) {
+            if (data != null) {
+                photos = data.getParcelableArrayListExtra(PhotoPickerActivity.KEY_SELECTED_PHOTOS);
+                photoPaths.clear();
+                for (Photo photo : photos) {
+                    photoPaths.add(photo.getPath());
+                    Log.i("TAG",photo.getPath());
+                }
+            }
+            photoAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @OnClick(R.id.text_toolbar_right_tv)
+    void publishDynamic(){
+
+    }
+
 }

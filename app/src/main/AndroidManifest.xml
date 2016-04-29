@@ -73,7 +73,7 @@
             android:name=".ui.activity.me.MyCollectionActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.me.SettingActivity"
+            android:name=".ui.activity.me.SettingSwipeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.me.edit.ProfExperActivity"

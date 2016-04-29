@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.mvp.presenter.impl;
+package com.seu.wufan.alumnicircle.mvp.presenter.impl.me;
 
 import android.content.Context;
 
@@ -6,7 +6,6 @@ import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
-import com.seu.wufan.alumnicircle.mvp.presenter.ISettingPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.ISettingView;
 
@@ -18,7 +17,7 @@ import rx.Subscription;
  * @author wufan
  * @date 2016/4/25
  */
-public class SettingPresenter implements ISettingPresenter{
+public class SettingIPresenter implements ISettingIPresenter {
 
     ISettingView settingView;
     Subscription subscription;
@@ -28,7 +27,7 @@ public class SettingPresenter implements ISettingPresenter{
     private Context appContext;
 
     @Inject
-    public SettingPresenter(@ForApplication Context context, TokenModel tokenModel, PreferenceUtils preferenceUtils) {
+    public SettingIPresenter(@ForApplication Context context, TokenModel tokenModel, PreferenceUtils preferenceUtils) {
         this.tokenModel = tokenModel;
         this.appContext = context;
         this.preferenceUtils = preferenceUtils;

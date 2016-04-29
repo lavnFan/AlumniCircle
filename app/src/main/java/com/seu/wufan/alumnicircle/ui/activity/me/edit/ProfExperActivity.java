@@ -26,7 +26,7 @@ public class ProfExperActivity extends BaseSwipeActivity{
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         if(showFragment==null){
             showFragment = new ProfExperShowFragment();
         }

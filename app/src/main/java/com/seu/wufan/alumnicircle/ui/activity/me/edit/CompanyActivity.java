@@ -38,7 +38,7 @@ public class CompanyActivity extends BaseSwipeActivity{
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         initToolBars();
 
         String company= (getIntent().getExtras()==null)?null:getIntent().getExtras().getString(EXTRA_COMPANY);

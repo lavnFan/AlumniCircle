@@ -33,7 +33,7 @@ public class MyCollectionActivity  extends BaseSwipeActivity {
     }
 
     @Override
-    protected void initViews() {
+    protected void initViewsAndEvents() {
         initDatas();
     }
 

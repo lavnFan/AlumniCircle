@@ -9,7 +9,7 @@ import com.seu.wufan.alumnicircle.ui.activity.me.MyDynamicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyInformationActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyMessageActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyQrcodeActivity;
-import com.seu.wufan.alumnicircle.ui.activity.me.SettingActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.SettingSwipeActivity;
 import com.seu.wufan.alumnicircle.common.base.BaseLazyFragment;
 
 import butterknife.OnClick;
@@ -82,6 +82,6 @@ public class MyFragment extends BaseLazyFragment {
 
     @OnClick(R.id.me_setting_relative_layout)
     void setting() {
-        readyGo(SettingActivity.class);
+        readyGo(SettingSwipeActivity.class);
     }
 }
