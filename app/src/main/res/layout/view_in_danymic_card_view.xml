@@ -18,6 +18,7 @@
             android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginLeft="@dimen/activity_8_margin"
                 android:id="@+id/circle_dynamic_item_photo_cv"
                 android:layout_width="56dp"
                 android:layout_height="56dp"

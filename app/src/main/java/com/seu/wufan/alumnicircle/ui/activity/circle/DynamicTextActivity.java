@@ -7,9 +7,14 @@ import android.widget.ScrollView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
+import com.seu.wufan.alumnicircle.ui.adapter.circle.ImageAdapter;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.DynamicTextItemAgreeFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.DynamicTextItemCommentFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.DynamicTextItemShareFragment;
+import com.seu.wufan.alumnicircle.ui.widget.MyGridView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -27,12 +32,14 @@ public class DynamicTextActivity extends BaseSwipeActivity {
     LinearLayout mCommentLl;
     @Bind(R.id.circle_dynamic_text_scroll_view)
     ScrollView mDynamicTextSv;
+    @Bind(R.id.circle_dynamic_list_card_view_grid_view)
+    MyGridView imageGridView;
 
     DynamicTextItemCommentFragment commentFragment;
     DynamicTextItemAgreeFragment agreeFragment;
     DynamicTextItemShareFragment shareFragment;
 
-
+    ImageAdapter imageAdapter;
 
     @Override
     protected int getContentView() {
@@ -47,15 +54,22 @@ public class DynamicTextActivity extends BaseSwipeActivity {
     @Override
     protected void initViewsAndEvents() {
         mDynamicTextSv.smoothScrollTo(0,0);
+
+
         initDatas();
         mShareLl.setOnClickListener(listener);
         mAgreeLl.setOnClickListener(listener);
         mCommentLl.setOnClickListener(listener);
-
     }
 
     private void initDatas() {
         selectFragment(0);
+
+        List<String> images = new ArrayList<>();
+        images.add(0,"http://img4.imgtn.bdimg.com/it/u=2015527637,3623972403&fm=21&gp=0.jpg");
+        imageAdapter = new ImageAdapter(this,images);
+        imageGridView.setAdapter(imageAdapter);
+        imageAdapter.notifyDataSetChanged();
     }
 
     @Override

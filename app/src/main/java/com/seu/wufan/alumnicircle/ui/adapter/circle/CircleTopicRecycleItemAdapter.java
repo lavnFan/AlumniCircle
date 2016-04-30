@@ -4,8 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.seu.wufan.alumnicircle.R;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * @author wufan
@@ -15,12 +19,23 @@ public class CircleTopicRecycleItemAdapter extends RecyclerView.Adapter<Recycler
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_topic_dynamic, null);
-        return new viewHolder(v);
+        if(viewType==1){
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_topic_dynamic, null);
+            return new ViewHolderDynamic(v);
+        }else{
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_circle_topic_0_type, null);
+            return new ViewHolderTopic(v);
+        }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if(holder instanceof ViewHolderDynamic){
+            ((ViewHolderDynamic) holder).bindView(position);
+        }else{
+            ((ViewHolderTopic) holder).bindView(position);
+        }
+
     }
 
     @Override
@@ -28,10 +43,39 @@ public class CircleTopicRecycleItemAdapter extends RecyclerView.Adapter<Recycler
         return 10;
     }
 
-    public static class viewHolder extends RecyclerView.ViewHolder{
+    @Override
+    public int getItemViewType(int position) {
+        return (position==0)?0:1;
+    }
 
-        public viewHolder(View itemView) {
+    public static class ViewHolderDynamic extends RecyclerView.ViewHolder{
+        @Bind(R.id.circle_topic_hot_ll)
+        LinearLayout hotLl;
+        @Bind(R.id.circle_topic_hot_view)
+        View hotView;
+
+        public ViewHolderDynamic(View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
+        }
+
+        public void bindView(int position){
+            if(position==1){
+                hotLl.setVisibility(View.VISIBLE);
+                hotView.setVisibility(View.VISIBLE);
+            }
+
+        }
+    }
+
+    public static class ViewHolderTopic extends RecyclerView.ViewHolder{
+
+        public ViewHolderTopic(View itemView) {
+            super(itemView);
+        }
+
+        public void bindView(int position){
+
         }
     }
 

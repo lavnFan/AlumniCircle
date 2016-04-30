@@ -80,6 +80,7 @@ public class CircleFragment extends BaseLazyFragment implements ICircleView{
                 onPullUp();
             }
         });
+        mDynamicLoadMoreLv.setFocusable(false);
         mDynamicLoadMoreLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -87,7 +88,6 @@ public class CircleFragment extends BaseLazyFragment implements ICircleView{
                 readyGo(DynamicTextActivity.class);
             }
         });
-        mDynamicLoadMoreLv.setFocusable(false);
         initDatas();
         mScrollView.smoothScrollTo(0, 0);
 

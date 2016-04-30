@@ -47,7 +47,7 @@ public class DynamicItemAdapter extends BasisAdapter<DynamicItem, DynamicItemAda
 
         ArrayList<String> selectedPhotos = new ArrayList<>();
         selectedPhotos.add(0, "http://img4.imgtn.bdimg.com/it/u=2015527637,3623972403&fm=21&gp=0.jpg");
-        selectedPhotos.add(0, "http://img1.imgtn.bdimg.com/it/u=3527020364,2054046693&fm=23&gp=0.jpg");
+        selectedPhotos.add(1, "http://img1.imgtn.bdimg.com/it/u=3527020364,2054046693&fm=23&gp=0.jpg");
         int columns = selectedPhotos.size();
         columns = (columns>2)?3:columns;
         holder.gridViewImages.setNumColumns(columns);
@@ -67,9 +67,7 @@ public class DynamicItemAdapter extends BasisAdapter<DynamicItem, DynamicItemAda
     protected void initViewHolder(View convertView, viewHolder holder) {
         holder.personInfoRl = (RelativeLayout) convertView.findViewById(R.id.circle_dynamic_item_person_info_relative_layout);
         holder.gridViewImages = (MyGridView) convertView.findViewById(R.id.circle_dynamic_list_card_view_grid_view);
-
-
-
+        holder.gridViewImages.setFocusable(false);
 
         holder.personInfoRl.setOnClickListener(new View.OnClickListener() {
             @Override

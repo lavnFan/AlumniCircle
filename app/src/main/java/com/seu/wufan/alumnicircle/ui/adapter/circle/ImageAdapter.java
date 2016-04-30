@@ -19,7 +19,7 @@ import java.util.List;
  * @author wufan
  * @date 2016/4/30
  */
-public class ImageAdapter extends BaseAdapter{
+public class ImageAdapter extends BaseAdapter {
     private HashMap<String, DrawableRequestBuilder<String>> imageBuff = new HashMap<>(); //用于gridview的图片缓存
     private ArrayDeque<String> imageKeysQueue = new ArrayDeque<>();
     private final int MAX_BUFF_SIZE = 5;
@@ -33,14 +33,6 @@ public class ImageAdapter extends BaseAdapter{
     public ImageAdapter(Context context, List<String> images) {
         this.context = context;
         this.images = images;
-    }
-
-    public void setmEntities(List<String> mEntities) {
-        this.images = mEntities;
-    }
-
-    public void addEntities(List<String> mEntities){
-        this.images.addAll(mEntities);
     }
 
     @Override
@@ -72,7 +64,8 @@ public class ImageAdapter extends BaseAdapter{
         int height;
         switch (images.size()) {
             case 1:
-                width = height = (int) (screenWidthDip * 0.9f);
+                height = (int) (screenWidthDip * 0.9f)*2/3;
+                width = (int) (screenWidthDip * 0.9f)*2/3;
                 imageView.setScaleType(ImageView.ScaleType.FIT_START);
                 break;
             default:
