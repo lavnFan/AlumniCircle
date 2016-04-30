@@ -1,6 +1,7 @@
 package com.seu.wufan.alumnicircle.mvp.presenter.impl.login;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
 import com.seu.wufan.alumnicircle.common.provider.UserTokenProvider;
@@ -9,7 +10,10 @@ import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
+import com.seu.wufan.alumnicircle.mvp.model.CircleModel;
+import com.seu.wufan.alumnicircle.mvp.model.ContactsModel;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
+import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.ILoginView;
 
@@ -31,14 +35,20 @@ public class LoginIPresenter implements ILoginIPresenter {
     private Subscription loginSubscription;
 
     private TokenModel tokenModel;
+    private CircleModel circleModel;
+    private ContactsModel contactsModel;
+    private UserModel userModel;
     private Context appContext;
     private PreferenceUtils preferenceUtils;
 
     @Inject
-    public LoginIPresenter(@ForApplication Context context, TokenModel tokenModel, PreferenceUtils preferenceUtils) {
+    public LoginIPresenter(@ForApplication Context context, TokenModel tokenModel, CircleModel circleModel, ContactsModel contactsModel, UserModel userModel, PreferenceUtils preferenceUtils) {
         this.tokenModel = tokenModel;
         this.appContext = context;
         this.preferenceUtils = preferenceUtils;
+        this.circleModel = circleModel;
+        this.contactsModel = contactsModel;
+        this.userModel = userModel;
     }
 
     @Override
@@ -57,13 +67,18 @@ public class LoginIPresenter implements ILoginIPresenter {
                             public void call(LoginRes loginRes) {
                                 preferenceUtils.putString(phoneNum,PreferenceType.PHONE);
                                 preferenceUtils.putString(loginRes.getAccess_token(), PreferenceType.ACCESS_TOKEN);
+                                Log.i("token:",loginRes.getAccess_token());
                                 preferenceUtils.putString(loginRes.getUser_id(),PreferenceType.USER_ID);
                                 tokenModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
+                                circleModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
+                                contactsModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
+                                userModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 mLoginView.loginSuccess();
                             }
                         }, new Action1<Throwable>() {
                             @Override
                             public void call(Throwable throwable) {
+                                mLoginView.loginFailed();
                                 if (throwable instanceof retrofit2.HttpException) {
                                     retrofit2.HttpException exception = (HttpException) throwable;
                                     mLoginView.showToast(exception.getMessage());

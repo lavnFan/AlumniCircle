@@ -2,9 +2,13 @@ package com.seu.wufan.alumnicircle.mvp.presenter.impl.login;
 
 import android.content.Context;
 
+import com.seu.wufan.alumnicircle.common.provider.UserTokenProvider;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
+import com.seu.wufan.alumnicircle.mvp.model.CircleModel;
+import com.seu.wufan.alumnicircle.mvp.model.ContactsModel;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
+import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IWelcomeView;
 
@@ -24,15 +28,20 @@ public class WelcomeIPresenter implements IWelcomeIPresenter {
     private PreferenceUtils preferenceUtils;
     private Context appContext;
     private TokenModel tokenModel;
-
+    private CircleModel circleModel;
+    private ContactsModel contactsModel;
+    private UserModel userModel;
     private IWelcomeView welcomeView;
     private Subscription welcomeSubscription;
 
     @Inject
-    public WelcomeIPresenter(@ForApplication Context context, TokenModel tokenModel, PreferenceUtils preferenceUtils) {
+    public WelcomeIPresenter(@ForApplication Context context, TokenModel tokenModel, CircleModel circleModel, ContactsModel contactsModel, UserModel userModel, PreferenceUtils preferenceUtils) {
         this.tokenModel = tokenModel;
         this.appContext = context;
         this.preferenceUtils = preferenceUtils;
+        this.circleModel = circleModel;
+        this.contactsModel = contactsModel;
+        this.userModel = userModel;
     }
 
     /**
@@ -49,6 +58,10 @@ public class WelcomeIPresenter implements IWelcomeIPresenter {
                         if(s.isEmpty()){
                             welcomeView.readyToLogin();
                         }else{
+                            tokenModel.setTokenProvider(new UserTokenProvider(s));
+                            circleModel.setTokenProvider(new UserTokenProvider(s));
+                            contactsModel.setTokenProvider(new UserTokenProvider(s));
+                            userModel.setTokenProvider(new UserTokenProvider(s));
                             welcomeView.readyToMain();
                         }
                     }

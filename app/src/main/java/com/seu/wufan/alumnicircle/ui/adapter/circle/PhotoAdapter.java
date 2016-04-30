@@ -47,9 +47,8 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHol
     @Override
     public void onBindViewHolder(final PhotoViewHolder holder, final int position) {
 
-        //     CommonUtils.showImageWithGlide(mContext,holder.ivPhoto,photoPaths.get(position));
+//        CommonUtils.showImageWithGlide(mContext,holder.ivPhoto,photoPaths.get(position));
         Uri uri = Uri.fromFile(new File(photoPaths.get(position)));
-
         Log.i("TAG", uri.toString());
         Glide.with(mContext)
                 .load(uri)

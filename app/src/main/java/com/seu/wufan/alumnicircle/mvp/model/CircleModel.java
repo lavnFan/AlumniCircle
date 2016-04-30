@@ -6,6 +6,7 @@ import com.seu.wufan.alumnicircle.api.CircleApi;
 import com.seu.wufan.alumnicircle.api.entity.DynamicListRes;
 import com.seu.wufan.alumnicircle.api.entity.DynamicRes;
 import com.seu.wufan.alumnicircle.api.entity.PublishDynamicReq;
+import com.seu.wufan.alumnicircle.api.entity.QnRes;
 import com.seu.wufan.alumnicircle.api.entity.TopicDynamicRes;
 import com.seu.wufan.alumnicircle.api.entity.TopicrRes;
 import com.seu.wufan.alumnicircle.common.provider.TokenProvider;
@@ -49,12 +50,15 @@ public class CircleModel extends BaseModel<CircleApi>{
        return getService().getDynamic(news_id);
     }
 
-
     public Observable<TopicrRes> getTopic(){
         return getService().getTopic();
     }
 
     Observable<TopicDynamicRes> getTopicDynamic(String topic_id){
         return getService().getTopicDynamic(topic_id);
+    }
+
+    public Observable<QnRes> createQiNiuToken(){
+        return getService().createQiNiuToken();
     }
 }

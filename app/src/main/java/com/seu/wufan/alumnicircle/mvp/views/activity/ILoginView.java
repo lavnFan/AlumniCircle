@@ -10,4 +10,6 @@ public interface ILoginView extends IView{
 
     void loginSuccess();
 
+    void loginFailed();
+
 }

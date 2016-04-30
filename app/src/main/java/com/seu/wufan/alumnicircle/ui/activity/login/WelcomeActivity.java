@@ -7,10 +7,13 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.orhanobut.logger.Logger;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.App;
 import com.seu.wufan.alumnicircle.injector.component.ApiComponent;
@@ -36,7 +39,6 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
     private Jump runnable;
     Thread thread;
 
-    @Bind(R.id.skip_button)
     Button mSkipBtn;
 
     @Override
@@ -50,17 +52,19 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
         getApiComponent().inject(this);
         presenter.attachView(this);
         initData();
+
+        mSkipBtn = (Button) findViewById(R.id.skip_button);
+        mSkipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                runnable.skip();
+            }
+        });
     }
 
     private void initData() {
         runnable = new Jump(2000);
-        thread = new Thread((runnable));
-        thread.start();
-    }
-
-    @OnClick(R.id.skip_button)
-    public void skipToLoginOrMain(){
-        runnable.skip();
+        new Thread(runnable).start();
     }
 
     @Override
@@ -118,6 +122,8 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
         }
 
         public void skip(){
+            Logger.i("skip!");
+            Log.i("TAG","skip!");
             handler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -143,7 +149,5 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
     protected void onDestroy() {
         super.onDestroy();
         presenter.destroy();
-        thread.interrupt();
-        thread = null;
     }
 }

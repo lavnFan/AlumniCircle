@@ -3,16 +3,24 @@ package com.seu.wufan.alumnicircle.ui.adapter.circle;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.bumptech.glide.DrawableRequestBuilder;
+import com.bumptech.glide.Glide;
+import com.orhanobut.logger.Logger;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.DynamicItem;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyInformationActivity;
 import com.seu.wufan.alumnicircle.common.base.BasisAdapter;
+import com.seu.wufan.alumnicircle.ui.widget.MyGridView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +31,8 @@ import java.util.List;
  */
 public class DynamicItemAdapter extends BasisAdapter<DynamicItem, DynamicItemAdapter.viewHolder> {
 
-    PhotoAdapter photoAdapter;
-    ArrayList<String> selectedPhotos = new ArrayList<>();
+
+    ImageAdapter imageAdapter;
 
     public DynamicItemAdapter(Context mContext) {
         super(mContext, new ArrayList<DynamicItem>(), viewHolder.class);
@@ -37,18 +45,30 @@ public class DynamicItemAdapter extends BasisAdapter<DynamicItem, DynamicItemAda
     @Override
     protected void setDataIntoView(viewHolder holder, DynamicItem entity) {
 
-//        selectedPhotos.add("file:///storage/emulated/0/Pictures/JPEG_20160429_223838_-1132004587.jpg");
-//        selectedPhotos.add("file:///storage/emulated/0/Pictures/JPEG_20160429_223838_-1132004587.jpg");
-        photoAdapter = new PhotoAdapter(getmContext(),selectedPhotos);
-        holder.recyclerViewImages.setLayoutManager(new StaggeredGridLayoutManager(4, OrientationHelper.HORIZONTAL));
-        holder.recyclerViewImages.setAdapter(photoAdapter);
-//        photoAdapter.notifyDataSetChanged();
+        ArrayList<String> selectedPhotos = new ArrayList<>();
+        selectedPhotos.add(0, "http://img4.imgtn.bdimg.com/it/u=2015527637,3623972403&fm=21&gp=0.jpg");
+        selectedPhotos.add(0, "http://img1.imgtn.bdimg.com/it/u=3527020364,2054046693&fm=23&gp=0.jpg");
+        int columns = selectedPhotos.size();
+        columns = (columns>2)?3:columns;
+        holder.gridViewImages.setNumColumns(columns);
+        imageAdapter = new ImageAdapter(getmContext(),selectedPhotos);
+        holder.gridViewImages.setAdapter(imageAdapter);
+
+        holder.gridViewImages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("Images:",position+"");
+            }
+        });
+        imageAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void initViewHolder(View convertView, viewHolder holder) {
         holder.personInfoRl = (RelativeLayout) convertView.findViewById(R.id.circle_dynamic_item_person_info_relative_layout);
-        holder.recyclerViewImages = (RecyclerView) convertView.findViewById(R.id.circle_dynamic_image_recycle_view);
+        holder.gridViewImages = (MyGridView) convertView.findViewById(R.id.circle_dynamic_list_card_view_grid_view);
+
+
 
 
         holder.personInfoRl.setOnClickListener(new View.OnClickListener() {
@@ -66,14 +86,8 @@ public class DynamicItemAdapter extends BasisAdapter<DynamicItem, DynamicItemAda
         return R.layout.list_item_dynamic;
     }
 
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return super.getView(position, convertView, parent);
-    }
-
     public static class viewHolder {
         RelativeLayout personInfoRl;
-        RecyclerView recyclerViewImages;
+        MyGridView gridViewImages;
     }
 }

@@ -13,11 +13,18 @@ import android.widget.ImageView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
+import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
+import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
+import com.seu.wufan.alumnicircle.mvp.presenter.impl.circle.PublishDynamicIPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IPublishDynamicView;
+import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.circle.PhotoAdapter;
+import com.seu.wufan.alumnicircle.ui.dialog.ProgressDialog;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,6 +51,11 @@ public class PublishDynamicActivity extends BaseSwipeActivity implements IPublis
     ArrayList<String> photoPaths = new ArrayList<>();
     PhotoAdapter photoAdapter;
 
+    @Inject
+    PublishDynamicIPresenter presenter;
+
+    ProgressDialog progressDialog;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_circle_publish_dynamic;
@@ -51,7 +63,8 @@ public class PublishDynamicActivity extends BaseSwipeActivity implements IPublis
 
     @Override
     protected void prepareDatas() {
-
+        getApiComponent().inject(this);
+        presenter.attachView(this);
     }
 
     @Override
@@ -70,22 +83,36 @@ public class PublishDynamicActivity extends BaseSwipeActivity implements IPublis
 
     @Override
     public void publishSuccess() {
+        if(progressDialog!=null){
+            progressDialog.dismiss();
+            showToast("发布成功");
+        }
+        readyGoThenKill(MainActivity.class);
+    }
 
+    @Override
+    public void publishFailed() {
+        if(progressDialog!=null){
+            progressDialog.dismiss();
+        }
     }
 
     @Override
     public void showNetCantUse() {
-
+        if(progressDialog!=null){
+            progressDialog.dismiss();
+        }
+        ToastUtils.showNetCantUse(this);
     }
 
     @Override
     public void showNetError() {
-
+        ToastUtils.showNetError(this);
     }
 
     @Override
     public void showToast(@NonNull String s) {
-
+        ToastUtils.showToast(s,this);
     }
 
     @OnClick(R.id.circle_publish_dynamic_iv)
@@ -116,6 +143,12 @@ public class PublishDynamicActivity extends BaseSwipeActivity implements IPublis
 
     @OnClick(R.id.text_toolbar_right_tv)
     void publishDynamic(){
+        if(!mDynamicEditText.getText().toString().isEmpty()){
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setContent("正在发布");
+            progressDialog.show();
+            presenter.publishDynamic(mDynamicEditText.getText().toString(),photoPaths,null);
+        }
 
     }
 

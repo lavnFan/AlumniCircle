@@ -1,9 +1,11 @@
 package com.seu.wufan.alumnicircle.mvp.model;
 
+import android.database.Observable;
 import android.support.annotation.Nullable;
 
 import com.seu.wufan.alumnicircle.BuildConfig;
 import com.seu.wufan.alumnicircle.api.RequestIntercepterImpl;
+import com.seu.wufan.alumnicircle.api.entity.QnRes;
 import com.seu.wufan.alumnicircle.common.provider.TokenProvider;
 
 import okhttp3.OkHttpClient;
@@ -58,4 +60,5 @@ public abstract class BaseModel<T>{
     public T getService() {
         return service;
     }
+
 }

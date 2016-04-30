@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ScrollView;
 
+import com.orhanobut.logger.Logger;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.DynamicItem;
 import com.seu.wufan.alumnicircle.mvp.views.activity.ICircleView;
@@ -100,7 +101,7 @@ public class CircleFragment extends BaseLazyFragment implements ICircleView{
 
     private void initDatas() {
         List<DynamicItem> entities = new ArrayList<DynamicItem>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             entities.add(new DynamicItem());
         }
         mAdapter = new DynamicItemAdapter(getActivity());

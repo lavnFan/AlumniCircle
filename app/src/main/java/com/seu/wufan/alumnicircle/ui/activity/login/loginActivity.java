@@ -12,6 +12,7 @@ import com.seu.wufan.alumnicircle.common.base.BaseActivity;
 import com.seu.wufan.alumnicircle.mvp.presenter.impl.login.LoginIPresenter;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.mvp.views.activity.ILoginView;
+import com.seu.wufan.alumnicircle.ui.dialog.ProgressDialog;
 
 import javax.inject.Inject;
 
@@ -30,6 +31,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     @Inject
     LoginIPresenter loginPresenter;
+    ProgressDialog dialog;
 
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, LoginActivity.class);
@@ -64,14 +66,27 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @OnClick(R.id.login_btn)
     void login() {
         if (loginPresenter.isValid(mPhoneNumEt.getText().toString(), mPasswordEt.getText().toString())) {
+            dialog = new ProgressDialog(this);
+            dialog.setContent("正在登录");
+            dialog.show();
             loginPresenter.doLogin(mPhoneNumEt.getText().toString(), mPasswordEt.getText().toString());
         }
     }
 
     @Override
     public void loginSuccess() {
-        showToast("登录成功");
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+//        showToast("登录成功");
         readyGoThenKill(MainActivity.class);
+    }
+
+    @Override
+    public void loginFailed() {
+        if (dialog != null) {
+            dialog.dismiss();
+        }
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.seu.wufan.alumnicircle.mvp.presenter.impl.circle;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.seu.wufan.alumnicircle.api.entity.QnRes;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
@@ -10,6 +12,7 @@ import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IPublishDynamicView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,6 +30,8 @@ import rx.schedulers.Schedulers;
 public class PublishDynamicIPresenter implements IPublishDynamicIPresenter {
 
     IPublishDynamicView publishDynamicView;
+    Subscription createQinuSubscription;
+    ArrayList<String> photoPaths;
     Subscription subscription;
 
     private CircleModel circleModel;
@@ -41,30 +46,59 @@ public class PublishDynamicIPresenter implements IPublishDynamicIPresenter {
     }
 
     @Override
-    public void publishDynamic(String news_text, List<String> images, String topic_id) {
-        if(NetUtils.isNetworkConnected(appContext)){
-            subscription = circleModel.publishDynamic(news_text,images,topic_id)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Action1<Void>() {
-                        @Override
-                        public void call(Void aVoid) {
-                            publishDynamicView.publishSuccess();
-                        }
-                    }, new Action1<Throwable>() {
-                        @Override
-                        public void call(Throwable throwable) {
-                            if(throwable instanceof retrofit2.HttpException){
-                                retrofit2.HttpException exception=(HttpException) throwable;
-                                publishDynamicView.showToast(exception.getMessage());
-                            }else {
-                                publishDynamicView.showNetError();
+    public void publishDynamic(final String news_text, List<String> images, final String topic_id) {
+        if (NetUtils.isNetworkConnected(appContext)) {
+            photoPaths = new ArrayList<>();    //先上传七牛图片凭证，再进行动态请求
+            for (String s : images) {
+                createQinuSubscription = circleModel.createQiNiuToken()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Action1<QnRes>() {
+                            @Override
+                            public void call(QnRes qnRes) {
+                                Log.i("qnRes:", qnRes.getToken());
+                                photoPaths.add(qnRes.getToken());
+                                subscription = circleModel.publishDynamic(news_text, photoPaths, topic_id)
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(new Action1<Void>() {
+                                            @Override
+                                            public void call(Void aVoid) {
+                                                publishDynamicView.publishSuccess();
+                                            }
+                                        }, new Action1<Throwable>() {
+                                            @Override
+                                            public void call(Throwable throwable) {
+                                                publishDynamicView.publishFailed();
+                                                if (throwable instanceof retrofit2.HttpException) {
+                                                    retrofit2.HttpException exception = (HttpException) throwable;
+                                                    publishDynamicView.showToast(exception.getMessage());
+                                                } else {
+                                                    publishDynamicView.showNetError();
+                                                }
+                                            }
+                                        });
                             }
-                        }
-                    });
-        }else{
+                        }, new Action1<Throwable>() {
+                            @Override
+                            public void call(Throwable throwable) {
+                                publishDynamicView.publishFailed();
+                                if (throwable instanceof retrofit2.HttpException) {
+                                    retrofit2.HttpException exception = (HttpException) throwable;
+                                    publishDynamicView.showToast(exception.getMessage());
+                                } else {
+                                    publishDynamicView.showNetError();
+                                }
+                            }
+                        });
+            }
+        } else {
             publishDynamicView.showNetCantUse();
         }
+    }
+
+    private void uploadImage(List<String> images) {
+
     }
 
     @Override
@@ -74,7 +108,7 @@ public class PublishDynamicIPresenter implements IPublishDynamicIPresenter {
 
     @Override
     public void destroy() {
-        if(subscription!=null){
+        if (subscription != null) {
             subscription.unsubscribe();
         }
     }

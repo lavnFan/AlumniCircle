@@ -88,11 +88,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/circle_dynamic_image_recycle_view"
+        <com.seu.wufan.alumnicircle.ui.widget.MyGridView
+            android:id="@+id/circle_dynamic_list_card_view_grid_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:horizontalSpacing="3dp"
+            android:scrollbars="none"
+            android:verticalSpacing="3dp" />
     </LinearLayout>
 
     <View

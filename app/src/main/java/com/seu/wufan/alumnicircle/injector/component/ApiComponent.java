@@ -2,6 +2,7 @@ package com.seu.wufan.alumnicircle.injector.component;
 
 import com.seu.wufan.alumnicircle.injector.module.ApiModule;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
+import com.seu.wufan.alumnicircle.ui.activity.circle.PublishDynamicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.LoginActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.RegisterActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.WelcomeActivity;
@@ -24,5 +25,9 @@ public interface ApiComponent {
     void inject(WelcomeActivity welcomeActivity);
 
     void inject(SettingSwipeActivity settingActivity);
+
+    void inject(PublishDynamicActivity publishDynamicActivity);
+
+
 
 }

@@ -3,6 +3,7 @@ package com.seu.wufan.alumnicircle.api;
 import com.seu.wufan.alumnicircle.api.entity.DynamicListRes;
 import com.seu.wufan.alumnicircle.api.entity.DynamicRes;
 import com.seu.wufan.alumnicircle.api.entity.PublishDynamicReq;
+import com.seu.wufan.alumnicircle.api.entity.QnRes;
 import com.seu.wufan.alumnicircle.api.entity.TopicDynamicRes;
 import com.seu.wufan.alumnicircle.api.entity.TopicrRes;
 
@@ -39,5 +40,9 @@ public interface CircleApi {
 
     @GET("topic/timeline/{topic_id}")
     Observable<TopicDynamicRes> getTopicDynamic(@Path("topic_id")String topic_id);
+
+    //创建七牛上传凭证
+    @POST("static/token/")
+    Observable<QnRes> createQiNiuToken();
 
 }
