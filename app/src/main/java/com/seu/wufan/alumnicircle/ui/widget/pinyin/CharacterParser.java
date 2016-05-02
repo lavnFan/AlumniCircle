@@ -102,7 +102,7 @@ public class CharacterParser {
 			"zhao", "zhe", "zhen", "zheng", "zhi", "zhong", "zhou", "zhu",
 			"zhua", "zhuai", "zhuan", "zhuang", "zhui", "zhun", "zhuo", "zi",
 			"zong", "zou", "zu", "zuan", "zui", "zun", "zuo" };
-	private StringBuilder buffer;
+
 	private String resource;
 	private static CharacterParser characterParser = new CharacterParser();
 
@@ -119,7 +119,7 @@ public class CharacterParser {
 	}
 
 	/** * 汉字转成ASCII码 * * @param chs * @return */
-	private int getChsAscii(String chs) {
+	private static int getChsAscii(String chs) {
 		int asc = 0;
 		try {
 			byte[] bytes = chs.getBytes("gb2312");
@@ -143,7 +143,7 @@ public class CharacterParser {
 	}
 
 	/** * 单字解析 * * @param str * @return */
-	public String convert(String str) {
+	public static String convert(String str) {
 		String result = null;
 		int ascii = getChsAscii(str);
 		if (ascii > 0 && ascii < 160) {
@@ -160,9 +160,9 @@ public class CharacterParser {
 	}
 
 	/** * 词组解析 * * @param chs * @return */
-	public String getSelling(String chs) {
+	public static String getSelling(String chs) {
 		String key, value;
-		buffer = new StringBuilder();
+		StringBuilder buffer = new StringBuilder();
 		for (int i = 0; i < chs.length(); i++) {
 			key = chs.substring(i, i + 1);
 			if (key.getBytes().length >= 2) {

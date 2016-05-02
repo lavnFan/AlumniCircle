@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -105,6 +106,19 @@
             android:name="com.soundcloud.android.crop.CropImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+
+        <activity android:name="com.avoscloud.leanchatlib.activity.AVChatActivity"/>
+        <activity android:name="com.avoscloud.leanchatlib.activity.ImageBrowserActivity" />
+        <!-- 实时通信模块、推送（若使用该功能，需添加以下声明）START -->
+        <service android:name="com.avos.avoscloud.PushService"/>
+        <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+            </intent-filter>
+        </receiver>
+        <!-- 实时通信模块、推送 END -->
+
     </application>
 
 </manifest>

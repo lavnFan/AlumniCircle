@@ -34,7 +34,7 @@ public class MyDynamicActivity  extends BaseSwipeActivity {
 
     @Override
     protected void prepareDatas() {
-
+        setToolbarTitle(getResources().getString(R.string.my_dynamic));
     }
 
     @Override

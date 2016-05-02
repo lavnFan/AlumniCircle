@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="8dp"/>
+    <stroke android:color="#bfd1eb" android:width="3dp"/>
+    <solid android:color="#f2fddb"/>
+    <!--border:1px solid #cceff5;background:#fafcfd
+
+    border:1px solid #ffcc00;background:#fffff7
+
+    border:1px solid #cee3e9;background:#f1f7f9
+
+    border:1px solid #a9c9e2;background:#e8f5fe
+
+    border:1px solid #e3e197;background:#ffffdd
+
+    border:1px solid #adcd3c;background:#f2fddb
+
+    border:1px solid #f8b3d0;background:#fff5fa
+
+    border:1px solid #d3d3d3;background:#f7f7f7
+
+    border:1px solid #bfd1eb;background:#f3faff
+
+    border:1px solid #ffdd99;background:#fff9ed
+
+    border:1px solid #cacaff;background:#f7f7ff
+
+    border:1px solid #a5b6c8;background:#eef3f7-->
+</shape>

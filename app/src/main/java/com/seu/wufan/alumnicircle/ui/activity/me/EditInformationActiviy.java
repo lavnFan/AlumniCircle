@@ -145,7 +145,7 @@ public class EditInformationActiviy extends BaseSwipeActivity {
 
     @Override
     protected void prepareDatas() {
-
+        setToolbarTitle(getResources().getString(R.string.edit_information));
         mContext = this;
         displayWidth = ((Activity) mContext).getWindowManager().getDefaultDisplay().getWidth();
         displayHeight = ((Activity) mContext).getWindowManager().getDefaultDisplay().getHeight();

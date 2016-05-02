@@ -1,7 +1,6 @@
 package com.seu.wufan.alumnicircle.ui.activity.circle;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -13,21 +12,18 @@ import android.widget.ImageView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
-import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
-import com.seu.wufan.alumnicircle.mvp.presenter.impl.circle.PublishDynamicIPresenter;
+import com.seu.wufan.alumnicircle.mvp.presenter.circle.PublishDynamicIPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IPublishDynamicView;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.circle.PhotoAdapter;
 import com.seu.wufan.alumnicircle.ui.dialog.ProgressDialog;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.iwf.photopicker.PhotoPickerActivity;
 import me.iwf.photopicker.entity.Photo;

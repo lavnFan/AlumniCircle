@@ -17,14 +17,11 @@ import com.orhanobut.logger.Logger;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.App;
 import com.seu.wufan.alumnicircle.injector.component.ApiComponent;
-import com.seu.wufan.alumnicircle.mvp.presenter.impl.login.WelcomeIPresenter;
+import com.seu.wufan.alumnicircle.mvp.presenter.login.WelcomeIPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IWelcomeView;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 
 import javax.inject.Inject;
-
-import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * @author wufan

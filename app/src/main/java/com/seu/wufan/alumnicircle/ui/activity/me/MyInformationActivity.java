@@ -17,7 +17,6 @@ public class MyInformationActivity extends BaseSwipeActivity{
 
     @Override
     protected void prepareDatas() {
-
     }
 
     @Override

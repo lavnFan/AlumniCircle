@@ -6,10 +6,14 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.EditText;
 
+import com.avos.avoscloud.im.v2.AVIMClient;
+import com.avos.avoscloud.im.v2.AVIMException;
+import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
+import com.avoscloud.leanchatlib.controller.ChatManager;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
-import com.seu.wufan.alumnicircle.mvp.presenter.impl.login.LoginIPresenter;
+import com.seu.wufan.alumnicircle.mvp.presenter.login.LoginIPresenter;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.mvp.views.activity.ILoginView;
 import com.seu.wufan.alumnicircle.ui.dialog.ProgressDialog;
@@ -78,7 +82,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         if (dialog != null) {
             dialog.dismiss();
         }
-//        showToast("登录成功");
         readyGoThenKill(MainActivity.class);
     }
 

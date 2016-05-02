@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/capture_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <SurfaceView
+        android:id="@+id/capture_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:id="@+id/capture_error_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"/>
+
+    <FrameLayout
+        android:id="@+id/capture_crop_view"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/barcode_frame">
+
+        <ImageView
+            android:id="@+id/capture_scan_mask"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/barcode_laser_line"/>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/capture_light_btn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/qrcode_selector"
+            android:text="开灯"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/switch_mode_btn"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/qrcode_selector"
+            android:text="条形码"
+            android:textColor="@android:color/white"
+            android:textSize="22dp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#6000">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="扫一扫"
+            android:textColor="@color/white"
+            android:textSize="24sp"/>
+    </RelativeLayout>
+
+</RelativeLayout>

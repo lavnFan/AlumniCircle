@@ -1,1 +1,1 @@
-include ':app',"PhotoPicker","pickerview"
+include ':app',"PhotoPicker","pickerview","leanchatlib"

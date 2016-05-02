@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <include layout="@layout/custom_toolbar"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/default_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/custom_toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/activity_24_margin"
+            android:layout_marginRight="@dimen/activity_24_margin"
+            android:background="@drawable/text_radius_bg"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_16_margin"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="@dimen/activity_64_margin"
+                    android:layout_height="@dimen/activity_64_margin"
+                    android:layout_marginLeft="@dimen/activity_12_margin"
+                    android:src="@drawable/logo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/activity_12_margin"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="童小星"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/activity_8_margin"
+                        android:text="江苏  南京"
+                        android:textColor="@color/text_help" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/my_qrcode_image_view"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/activity_24_margin"
+                android:layout_marginTop="@dimen/activity_16_margin" />
+
+            <TextView
+                android:layout_marginBottom="@dimen/activity_12_margin"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="扫一扫上面的二维码图案，加我"
+                android:textColor="@color/text_help" />
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

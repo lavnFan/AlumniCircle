@@ -1,17 +1,21 @@
 package com.seu.wufan.alumnicircle.ui.fragment;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.avoscloud.leanchatlib.activity.AVChatActivity;
+import com.avoscloud.leanchatlib.utils.Constants;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.Friend;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.AlumniGoodActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.NewFriendsActivity;
-import com.seu.wufan.alumnicircle.ui.adapter.contacts.FriendAdapter;
+import com.seu.wufan.alumnicircle.ui.adapter.contacts.ContactsItemAdapter;
 import com.seu.wufan.alumnicircle.common.base.BaseLazyFragment;
 import com.seu.wufan.alumnicircle.ui.widget.pinyin.CharacterParser;
 import com.seu.wufan.alumnicircle.ui.widget.pinyin.PinyinComparator;
@@ -38,7 +42,8 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
 
     private List<Friend> dataList = new ArrayList<>();
     private List<Friend> sourceDataList = new ArrayList<Friend>();
-    private FriendAdapter adapter;
+
+    private ContactsItemAdapter adapter;
 
     private CharacterParser characterParser;
     private PinyinComparator pinyinComparator;
@@ -91,7 +96,7 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
         re_newfriends.setOnClickListener(this);
         RelativeLayout re_alumniGood = (RelativeLayout) headView.findViewById(R.id.contacts_alumni_good_relative_layout);
         re_alumniGood.setOnClickListener(this);
-        adapter = new FriendAdapter(getActivity(), sourceDataList);
+        adapter = new ContactsItemAdapter(getActivity(), sourceDataList);
         mListView.addHeaderView(headView);
         mListView.setAdapter(adapter);
 
@@ -110,30 +115,56 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
 
             }
         });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), AVChatActivity.class);
+                intent.putExtra(Constants.MEMBER_ID, sourceDataList.get(position-1).getName());
+                getContext().startActivity(intent);
+            }
+        });
     }
 
     private void prepareData() {
-        for (int i = 0; i < 20; i++) {
-            if (i % 2 == 0) {
-                dataList.add(new Friend("阿" + i));
-            } else {
-                dataList.add(new Friend("北" + i));
-            }
-        }
-        for (int i = 0; i < 20; i++) {
-            if (i % 2 == 0) {
-                dataList.add(new Friend("陈" + i));
-            } else {
-                dataList.add(new Friend("杜" + i));
-            }
-        }
-        for (int i = 0; i < 20; i++) {
-            if (i % 2 == 0) {
-                dataList.add(new Friend(i + "张"));
-            } else {
-                dataList.add(new Friend(i + "杨"));
-            }
-        }
+        dataList.add(new Friend("张三"));
+        dataList.add(new Friend("李四"));
+        dataList.add(new Friend("王五"));
+        dataList.add(new Friend("叶修"));
+        dataList.add(new Friend("黄少天"));
+        dataList.add(new Friend("唐柔"));
+        dataList.add(new Friend("苏沐橙"));
+        dataList.add(new Friend("包子"));
+        dataList.add(new Friend("王杰希"));
+        dataList.add(new Friend("叶秋"));
+        dataList.add(new Friend("路平"));
+        dataList.add(new Friend("苏唐"));
+        dataList.add(new Friend("郭有道"));
+        dataList.add(new Friend("郭无术"));
+        dataList.add(new Friend("楚云秀"));
+        dataList.add(new Friend("冷休谈"));
+        dataList.add(new Friend("李遥天"));
+        dataList.add(new Friend("楚敏"));
+        dataList.add(new Friend("孙送招"));
+        dataList.add(new Friend("孙哲平"));
+        dataList.add(new Friend("周恩来"));
+        dataList.add(new Friend("邓小平"));
+        dataList.add(new Friend("毛泽东"));
+        dataList.add(new Friend("习近平"));
+        dataList.add(new Friend("温家宝"));
+        dataList.add(new Friend("朱镕基"));
+        dataList.add(new Friend("彭德怀"));
+        dataList.add(new Friend("范玮琪"));
+        dataList.add(new Friend("陈奕迅"));
+        dataList.add(new Friend("Lady Gaga"));
+        dataList.add(new Friend("Taylor Swift"));
+        dataList.add(new Friend("Beyonce"));
+        dataList.add(new Friend("Katy Perry"));
+        dataList.add(new Friend("Avril"));
+        dataList.add(new Friend("One Republic"));
+        dataList.add(new Friend("One Direction"));
+        dataList.add(new Friend("Pink"));
+        dataList.add(new Friend("Maddona"));
     }
 
     @Override
