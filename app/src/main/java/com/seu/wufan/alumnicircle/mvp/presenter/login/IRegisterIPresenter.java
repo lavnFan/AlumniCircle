@@ -8,7 +8,7 @@ import com.seu.wufan.alumnicircle.mvp.presenter.IPresenter;
  */
 public interface IRegisterIPresenter extends IPresenter {
 
-    void doRegister(String phone_num,String password,String enroll_year,String school,String major);
+    void doRegister(String phone_num,String password,String enroll_year,String school,String major,String name);
 
-    boolean isValid(String phone_num,String password,String enroll_year,String school,String major);
+    boolean isValid(String phone_num,String password,String enroll_year,String school,String major,String name);
 }

@@ -40,7 +40,7 @@ public class CircleTopicRecycleItemAdapter extends RecyclerView.Adapter<Recycler
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 5;
     }
 
     @Override

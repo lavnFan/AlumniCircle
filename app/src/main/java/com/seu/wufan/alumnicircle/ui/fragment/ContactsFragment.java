@@ -70,8 +70,49 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
     }
 
     @Override
+    protected void prepareData() {
+        dataList.add(new Friend("张三"));
+        dataList.add(new Friend("李四"));
+        dataList.add(new Friend("王五"));
+        dataList.add(new Friend("叶修"));
+        dataList.add(new Friend("黄少天"));
+        dataList.add(new Friend("唐柔"));
+        dataList.add(new Friend("苏沐橙"));
+        dataList.add(new Friend("包子"));
+        dataList.add(new Friend("王杰希"));
+        dataList.add(new Friend("叶秋"));
+        dataList.add(new Friend("路平"));
+        dataList.add(new Friend("苏唐"));
+        dataList.add(new Friend("郭有道"));
+        dataList.add(new Friend("郭无术"));
+        dataList.add(new Friend("楚云秀"));
+        dataList.add(new Friend("冷休谈"));
+        dataList.add(new Friend("李遥天"));
+        dataList.add(new Friend("楚敏"));
+        dataList.add(new Friend("孙送招"));
+        dataList.add(new Friend("孙哲平"));
+        dataList.add(new Friend("周恩来"));
+        dataList.add(new Friend("邓小平"));
+        dataList.add(new Friend("毛泽东"));
+        dataList.add(new Friend("习近平"));
+        dataList.add(new Friend("温家宝"));
+        dataList.add(new Friend("朱镕基"));
+        dataList.add(new Friend("彭德怀"));
+        dataList.add(new Friend("范玮琪"));
+        dataList.add(new Friend("陈奕迅"));
+        dataList.add(new Friend("Lady Gaga"));
+        dataList.add(new Friend("Taylor Swift"));
+        dataList.add(new Friend("Beyonce"));
+        dataList.add(new Friend("Katy Perry"));
+        dataList.add(new Friend("Avril"));
+        dataList.add(new Friend("One Republic"));
+        dataList.add(new Friend("One Direction"));
+        dataList.add(new Friend("Pink"));
+        dataList.add(new Friend("Maddona"));
+    }
+
+    @Override
     protected void initViewsAndEvents() {
-        prepareData();
         //实例化汉字转拼音类
         characterParser = CharacterParser.getInstance();
         pinyinComparator = PinyinComparator.getInstance();
@@ -124,47 +165,6 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
                 getContext().startActivity(intent);
             }
         });
-    }
-
-    private void prepareData() {
-        dataList.add(new Friend("张三"));
-        dataList.add(new Friend("李四"));
-        dataList.add(new Friend("王五"));
-        dataList.add(new Friend("叶修"));
-        dataList.add(new Friend("黄少天"));
-        dataList.add(new Friend("唐柔"));
-        dataList.add(new Friend("苏沐橙"));
-        dataList.add(new Friend("包子"));
-        dataList.add(new Friend("王杰希"));
-        dataList.add(new Friend("叶秋"));
-        dataList.add(new Friend("路平"));
-        dataList.add(new Friend("苏唐"));
-        dataList.add(new Friend("郭有道"));
-        dataList.add(new Friend("郭无术"));
-        dataList.add(new Friend("楚云秀"));
-        dataList.add(new Friend("冷休谈"));
-        dataList.add(new Friend("李遥天"));
-        dataList.add(new Friend("楚敏"));
-        dataList.add(new Friend("孙送招"));
-        dataList.add(new Friend("孙哲平"));
-        dataList.add(new Friend("周恩来"));
-        dataList.add(new Friend("邓小平"));
-        dataList.add(new Friend("毛泽东"));
-        dataList.add(new Friend("习近平"));
-        dataList.add(new Friend("温家宝"));
-        dataList.add(new Friend("朱镕基"));
-        dataList.add(new Friend("彭德怀"));
-        dataList.add(new Friend("范玮琪"));
-        dataList.add(new Friend("陈奕迅"));
-        dataList.add(new Friend("Lady Gaga"));
-        dataList.add(new Friend("Taylor Swift"));
-        dataList.add(new Friend("Beyonce"));
-        dataList.add(new Friend("Katy Perry"));
-        dataList.add(new Friend("Avril"));
-        dataList.add(new Friend("One Republic"));
-        dataList.add(new Friend("One Direction"));
-        dataList.add(new Friend("Pink"));
-        dataList.add(new Friend("Maddona"));
     }
 
     @Override

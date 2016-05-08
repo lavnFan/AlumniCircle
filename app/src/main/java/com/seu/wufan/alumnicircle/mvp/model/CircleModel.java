@@ -6,13 +6,16 @@ import com.seu.wufan.alumnicircle.api.CircleApi;
 import com.seu.wufan.alumnicircle.api.entity.DynamicListRes;
 import com.seu.wufan.alumnicircle.api.entity.DynamicRes;
 import com.seu.wufan.alumnicircle.api.entity.PublishDynamicReq;
+import com.seu.wufan.alumnicircle.api.entity.QnReq;
 import com.seu.wufan.alumnicircle.api.entity.QnRes;
 import com.seu.wufan.alumnicircle.api.entity.TopicDynamicRes;
-import com.seu.wufan.alumnicircle.api.entity.TopicrRes;
+import com.seu.wufan.alumnicircle.api.entity.TopicRes;
+import com.seu.wufan.alumnicircle.api.entity.item.DynamicItem;
 import com.seu.wufan.alumnicircle.common.provider.TokenProvider;
 
 import java.util.List;
 
+import retrofit2.http.Body;
 import rx.Observable;
 
 /**
@@ -38,7 +41,7 @@ public class CircleModel extends BaseModel<CircleApi>{
         return getService().publishDynamic(req);
     }
 
-    public Observable getNewDynamic(String page){
+    public Observable<List<DynamicItem>> getNewDynamic(String page){
         return  getService().getNewDynamic(page);
     }
 
@@ -50,7 +53,7 @@ public class CircleModel extends BaseModel<CircleApi>{
        return getService().getDynamic(news_id);
     }
 
-    public Observable<TopicrRes> getTopic(){
+    public Observable<TopicRes> getTopic(){
         return getService().getTopic();
     }
 
@@ -58,7 +61,9 @@ public class CircleModel extends BaseModel<CircleApi>{
         return getService().getTopicDynamic(topic_id);
     }
 
-    public Observable<QnRes> createQiNiuToken(){
-        return getService().createQiNiuToken();
+    public Observable<List<QnRes>> createQiNiuToken(int count){
+        QnReq req = new QnReq();
+        req.setCount(count);
+        return getService().createQiNiuToken(req);
     }
 }

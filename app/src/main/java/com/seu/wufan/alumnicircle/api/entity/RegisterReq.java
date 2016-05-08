@@ -10,6 +10,15 @@ public class RegisterReq {
     private String enroll_year;
     private String school;
     private String major;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void setPhone_num(String phone_num) {
         this.phone_num = phone_num;

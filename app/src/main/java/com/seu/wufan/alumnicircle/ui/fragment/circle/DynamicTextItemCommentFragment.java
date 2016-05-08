@@ -45,6 +45,11 @@ public class DynamicTextItemCommentFragment extends BaseLazyFragment{
     }
 
     @Override
+    protected void prepareData() {
+
+    }
+
+    @Override
     protected void initViewsAndEvents() {
 
         initDatas();

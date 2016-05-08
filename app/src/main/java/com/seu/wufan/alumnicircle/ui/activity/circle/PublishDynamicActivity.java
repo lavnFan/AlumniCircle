@@ -143,7 +143,7 @@ public class PublishDynamicActivity extends BaseSwipeActivity implements IPublis
             progressDialog = new ProgressDialog(this);
             progressDialog.setContent("正在发布");
             progressDialog.show();
-            presenter.publishDynamic(mDynamicEditText.getText().toString(),photoPaths,null);
+            presenter.publishDynamic(photoPaths.size(),mDynamicEditText.getText().toString(),photoPaths,null);
         }
 
     }

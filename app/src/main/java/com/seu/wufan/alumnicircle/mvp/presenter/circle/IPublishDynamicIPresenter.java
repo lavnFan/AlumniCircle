@@ -10,6 +10,6 @@ import java.util.List;
  */
 public interface IPublishDynamicIPresenter extends IPresenter {
 
-    void publishDynamic(String news_text, List<String>images,String topic_id);
+    void publishDynamic(int count,String news_text, List<String>images,String topic_id);
 
 }

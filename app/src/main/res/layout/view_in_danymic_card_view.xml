@@ -18,10 +18,10 @@
             android:layout_height="wrap_content">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_marginLeft="@dimen/activity_8_margin"
                 android:id="@+id/circle_dynamic_item_photo_cv"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
+                android:layout_marginLeft="@dimen/activity_8_margin"
                 android:src="@drawable/logo" />
 
             <RelativeLayout
@@ -59,6 +59,7 @@
                     android:textColor="@color/text_help" />
 
                 <TextView
+                    android:id="@+id/circle_dynamic_item_time_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -77,6 +78,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/circle_dynamic_item_text_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="万能的校友圈！我是2012级播音主持毕业的！如果大家喜欢我，加我好友哦！附图一张！"
@@ -128,10 +130,11 @@
                 android:src="@drawable/comment_default" />
 
             <TextView
+                android:id="@+id/circle_dynamic_item_comment_count_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_4_margin"
-                android:text="999"
+                android:text="0"
                 android:textColor="@color/text_help" />
         </LinearLayout>
 
@@ -155,10 +158,11 @@
                 android:src="@drawable/good_default" />
 
             <TextView
+                android:id="@+id/circle_dynamic_item_agree_count_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_4_margin"
-                android:text="228"
+                android:text="0"
                 android:textColor="@color/text_help" />
         </LinearLayout>
 
@@ -182,10 +186,11 @@
                 android:src="@drawable/share_defualt" />
 
             <TextView
+                android:id="@+id/circle_dynamic_item_forward_count_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_4_margin"
-                android:text="12"
+                android:text="0"
                 android:textColor="@color/text_help" />
         </LinearLayout>
     </LinearLayout>

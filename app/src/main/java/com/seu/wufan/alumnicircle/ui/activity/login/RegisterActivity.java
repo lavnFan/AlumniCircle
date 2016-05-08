@@ -42,6 +42,8 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     TextView majorTextView;
     @Bind(R.id.agree_with_protocol)
     CheckBox agreeWithProtocolCheckBox;
+    @Bind(R.id.register_name_et)
+    EditText mNameTv;
 
     @Inject
     RegisterIPresenter registerPresenter;
@@ -131,7 +133,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     void register(){
         if(agreeWithProtocolCheckBox.isChecked()){
             registerPresenter.doRegister(telephoneNumberEditText.getText().toString(),passwordEditText.getText().toString(),
-                    enrollYearTextView.getText().toString(),departmentTextView.getText().toString(),majorTextView.getText().toString());
+                    enrollYearTextView.getText().toString(),departmentTextView.getText().toString(),majorTextView.getText().toString(),mNameTv.getText().toString());
         }else{
             ToastUtils.showToast("请阅读校友圈注册协议",this);
         }

@@ -67,10 +67,10 @@ public class RegisterIPresenter implements IRegisterIPresenter {
     }
 
     @Override
-    public void doRegister(final String phone_num, String password, String enroll_year, String school, String major) {
-        if(isValid(phone_num,password,enroll_year,school,major)){
+    public void doRegister(final String phone_num, String password, String enroll_year, String school, String major,String name) {
+        if(isValid(phone_num,password,enroll_year,school,major,name)){
             if(NetUtils.isNetworkConnected(appContext)){
-                registerSubmission = (Subscription) tokenModel.register(phone_num,enroll_year,school,major,password)
+                registerSubmission = (Subscription) tokenModel.register(phone_num,enroll_year,school,major,password,name)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Action1<LoginRes>() {
@@ -114,7 +114,7 @@ public class RegisterIPresenter implements IRegisterIPresenter {
     }
 
     @Override
-    public boolean isValid(String phone_num,String password,String enroll_year,String school,String major) {
+    public boolean isValid(String phone_num,String password,String enroll_year,String school,String major,String name) {
         if(CommonUtils.isEmpty(phone_num)){
             registerView.showToast("请输入您的手机号码");
             return false;
@@ -129,6 +129,10 @@ public class RegisterIPresenter implements IRegisterIPresenter {
         }
         if(password.length()<6 || password.length() >12){
             registerView.showToast("密码在6-12位");
+            return false;
+        }
+        if(CommonUtils.isEmpty(name)){
+            registerView.showToast("请填写用户名");
             return false;
         }
         if(CommonUtils.isEmpty(enroll_year)){

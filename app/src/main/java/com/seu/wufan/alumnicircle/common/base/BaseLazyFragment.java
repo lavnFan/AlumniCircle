@@ -37,12 +37,6 @@ import retrofit.RetrofitError;
 public abstract class BaseLazyFragment extends Fragment {
 
     /**
-     * Log tag
-     */
-    protected static String TAG_LOG = null;
-
-
-    /**
      * Screen information
      */
     protected int mScreenWidth = 0;
@@ -73,7 +67,6 @@ public abstract class BaseLazyFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         navigator = getAppComponent().navigator();
-        TAG_LOG = this.getClass().getSimpleName();
     }
 
     @Override
@@ -100,7 +93,7 @@ public abstract class BaseLazyFragment extends Fragment {
         mScreenDensity = displayMetrics.density;
         mScreenHeight = displayMetrics.heightPixels;
         mScreenWidth = displayMetrics.widthPixels;
-
+        prepareData();
         initViewsAndEvents();
     }
 
@@ -177,7 +170,7 @@ public abstract class BaseLazyFragment extends Fragment {
         }
     }
 
-    private synchronized void initPrepare() {
+    protected synchronized void initPrepare() {
         if (isPrepared) {
             onFirstUserVisible();
         } else {
@@ -211,6 +204,9 @@ public abstract class BaseLazyFragment extends Fragment {
      * get loading target view
      */
     protected abstract View getLoadingTargetView();
+
+
+    protected abstract void prepareData();
 
     /**
      * init all views and add events

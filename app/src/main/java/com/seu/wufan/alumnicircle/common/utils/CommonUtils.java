@@ -213,6 +213,7 @@ public class CommonUtils {
         Glide.with(context)
                 .load(url)
                 .placeholder(R.drawable.logo)
+                .centerCrop()
                 .into(new SimpleTarget<GlideDrawable>() {
                     @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
@@ -225,6 +226,7 @@ public class CommonUtils {
         Glide.with(context)
                 .load(url)
                 .placeholder(R.drawable.logo)
+                .centerCrop()
                 .into(new SimpleTarget<GlideDrawable>() {
                     @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {

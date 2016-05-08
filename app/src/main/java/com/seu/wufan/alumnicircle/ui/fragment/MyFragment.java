@@ -41,6 +41,11 @@ public class MyFragment extends BaseLazyFragment {
     }
 
     @Override
+    protected void prepareData() {
+
+    }
+
+    @Override
     protected void initViewsAndEvents() {
 
     }

@@ -2,9 +2,12 @@ package com.seu.wufan.alumnicircle.api;
 
 import com.seu.wufan.alumnicircle.api.entity.LoginReq;
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
+import com.seu.wufan.alumnicircle.api.entity.QnReq;
 import com.seu.wufan.alumnicircle.api.entity.QnRes;
 import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+
+import java.util.List;
 
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -32,6 +35,6 @@ public interface TokenApi {
 
     //创建七牛上传凭证
     @POST("static/token/")
-    Observable<QnRes> createQiNiuToken();
+    Observable<List<QnRes>> createQiNiuToken(@Body QnReq req);
 
 }

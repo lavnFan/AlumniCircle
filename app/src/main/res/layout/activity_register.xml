@@ -93,6 +93,41 @@
             android:paddingTop="10dp">
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/name"
+                    android:textColor="@color/text_help" />
+
+                <EditText
+                    android:id="@+id/register_name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_16_margin"
+                    android:background="@null"
+                    android:hint="@string/name_hint"
+                    android:singleLine="true"
+                    android:textColor="@color/text_help"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/text_bg"
+            android:paddingBottom="10dp"
+            android:paddingLeft="@dimen/activity_16_margin"
+            android:paddingTop="10dp">
+
+            <LinearLayout
                 android:id="@+id/enroll_year_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

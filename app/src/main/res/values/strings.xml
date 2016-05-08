@@ -78,6 +78,8 @@
     <string name="exit_account">退出账号</string>
     <string name="photo">头像:</string>
     <string name="name_">姓名:</string>
+    <string name="name">姓名</string>
+    <string name="name_hint">请填写用户名</string>
     <string name="sex_">性别:</string>
     <string name="borth_year_">出生年月:</string>
     <string name="work_city_">工作城市:</string>

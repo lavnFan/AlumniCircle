@@ -8,7 +8,7 @@ import com.seu.wufan.alumnicircle.mvp.presenter.IPresenter;
  */
 public interface ICircleIPresenter extends IPresenter {
 
-    void getUserTimeDynamic();
+    void getUserTimeDynamic(String page);
 
     void getTopic();
 }
