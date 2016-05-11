@@ -56,11 +56,13 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/my_information_college_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2012届艺术学院" />
 
                     <TextView
+                        android:id="@+id/my_information_major_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="播音主持专业" />
@@ -107,6 +109,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/my_information_alummni_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_4_margin"
@@ -143,6 +146,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/my_information_intro_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_4_margin"
@@ -179,6 +183,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/my_information_dynamic_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_4_margin"
@@ -216,6 +221,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/my_information_label_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/activity_4_margin"
@@ -257,6 +263,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/my_information_job_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_4_margin"
@@ -294,6 +301,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/my_information_edu_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/activity_4_margin"
@@ -303,6 +311,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/my_information_add_message_btn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"

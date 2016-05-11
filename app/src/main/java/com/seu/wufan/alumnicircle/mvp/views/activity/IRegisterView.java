@@ -10,4 +10,8 @@ public interface IRegisterView extends IView{
 
     void registerSuccess();
 
+    void registerLoading();
+
+    void registerFailed();
+
 }

@@ -21,8 +21,18 @@ import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.ILoginView;
-import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
-import com.seu.wufan.alumnicircle.ui.activity.login.LoginActivity;
+import com.umeng.comm.core.CommunitySDK;
+import com.umeng.comm.core.beans.CommUser;
+import com.umeng.comm.core.beans.Source;
+import com.umeng.comm.core.constants.ErrorCode;
+import com.umeng.comm.core.impl.CommunityFactory;
+import com.umeng.comm.core.login.LoginListener;
+import com.umeng.comm.core.sdkmanager.LocationSDKManager;
+import com.umeng.comm.core.sdkmanager.LoginSDKManager;
+import com.umeng.comm.ui.activities.FindActivity;
+import com.umeng.community.location.DefaultLocationImpl;
+
+import java.util.Random;
 
 import javax.inject.Inject;
 
@@ -80,17 +90,9 @@ public class LoginIPresenter implements ILoginIPresenter {
                                 contactsModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 userModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
 
-                                //设置聊天的信息
-                                ChatManager.getInstance().openClient(appContext, loginRes.getUser_id(), new AVIMClientCallback() {
-                                    @Override
-                                    public void done(AVIMClient avimClient, AVIMException e) {
-                                        if (null == e) {
-                                            mLoginView.loginSuccess();
-                                        } else {
-                                            mLoginView.showToast(e.toString());
-                                        }
-                                    }
-                                });
+                                mockLoginData(loginRes.getUser_id(),"lavn");
+
+
                             }
                         }, new Action1<Throwable>() {
                             @Override
@@ -130,5 +132,33 @@ public class LoginIPresenter implements ILoginIPresenter {
             return false;
         }
         return true;
+    }
+
+    private void mockLoginData(String userId,String name) {
+        //创建CommUser前必须先初始化CommunitySDK
+        CommunitySDK sdk = CommunityFactory.getCommSDK(appContext);
+
+        CommUser loginUser = new CommUser();
+        loginUser.id = userId; // 用户id
+        loginUser.name = name; // 用户名
+        loginUser.source = Source.SINA;
+        sdk.loginToUmengServerBySelfAccount(appContext, loginUser.name,loginUser.id, new LoginListener() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onComplete(int stCode, CommUser commUser) {
+                Log.d("tag", "login result is");          //获取登录结果状态码
+                if (ErrorCode.NO_ERROR==stCode) {
+                    // 设置地理位置SDK
+                    LocationSDKManager.getInstance().addAndUse(new DefaultLocationImpl());
+                    //在此处可以跳转到任何一个你想要的activity
+                    mLoginView.loginSuccess();
+                }
+
+            }
+        });
     }
 }

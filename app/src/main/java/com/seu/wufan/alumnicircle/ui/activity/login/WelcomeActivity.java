@@ -60,7 +60,7 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
     }
 
     private void initData() {
-        runnable = new Jump(2000);
+        runnable = new Jump(1000);
         new Thread(runnable).start();
     }
 

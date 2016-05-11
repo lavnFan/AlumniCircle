@@ -67,29 +67,7 @@ public class WelcomeIPresenter implements IWelcomeIPresenter {
                             circleModel.setTokenProvider(new UserTokenProvider(s));
                             contactsModel.setTokenProvider(new UserTokenProvider(s));
                             userModel.setTokenProvider(new UserTokenProvider(s));
-                            userSubscription = preferenceUtils.getUserId()
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(new Action1<String>() {
-                                        @Override
-                                        public void call(String s) {
-                                            if(s.isEmpty()){
-                                                welcomeView.readyToLogin();
-                                            }else {
-                                                //设置聊天的信息
-                                                ChatManager.getInstance().openClient(appContext, s, new AVIMClientCallback() {
-                                                    @Override
-                                                    public void done(AVIMClient avimClient, AVIMException e) {
-                                                        if (null == e) {
-                                                            welcomeView.readyToMain();
-                                                        } else {
-                                                            welcomeView.showToast(e.toString());
-                                                        }
-                                                    }
-                                                });
-                                            }
-                                        }
-                                    });
+                            welcomeView.readyToMain();
                         }
                     }
                 }, new Action1<Throwable>() {

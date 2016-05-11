@@ -2,6 +2,7 @@ package com.seu.wufan.alumnicircle.common;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -26,6 +27,10 @@ import com.squareup.leakcanary.LeakCanary;
 import com.seu.wufan.alumnicircle.injector.component.ApiComponent;
 import com.seu.wufan.alumnicircle.injector.component.AppComponent;
 import com.seu.wufan.alumnicircle.injector.module.AppModule;
+import com.umeng.comm.core.CommunitySDK;
+import com.umeng.comm.core.beans.CommConfig;
+import com.umeng.comm.core.impl.CommunityFactory;
+import com.umeng.comm.core.sdkmanager.LoginSDKManager;
 
 public class App extends Application {
     private AppComponent appComponent;
@@ -35,6 +40,8 @@ public class App extends Application {
     private AppModule appModule;
 
     private static Context context;
+
+    CommunitySDK mCommSDK = null;
 
     @Override
     public void onCreate() {
@@ -51,6 +58,15 @@ public class App extends Application {
         App.context = getApplicationContext();
 
         initialLeanCloud();
+        initUmeng();
+    }
+
+    private void initUmeng() {
+        // 1、初始化友盟微社区
+        mCommSDK = CommunityFactory.getCommSDK(this);
+        mCommSDK.initSDK(this);
+        //设置友盟登录
+//        LoginSDKManager.getInstance().addAndUse(new SimpleLoginImpl());
     }
 
     private void initInjectorApp(){
@@ -97,4 +113,9 @@ public class App extends Application {
         ImageLoader.getInstance().init(config);
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 }

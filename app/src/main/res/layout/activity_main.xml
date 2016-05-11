@@ -12,12 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v4.view.ViewPager
+        <com.umeng.common.ui.widgets.CommunityViewPager
             android:id="@+id/main_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/main_bottom_ll" />
 
         <LinearLayout
+            android:id="@+id/main_bottom_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -26,7 +28,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
-                android:background="@color/divider_high"/>
+                android:background="@color/divider_high" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,12 +53,12 @@
                         android:src="@drawable/circle_default" />
 
                     <TextView
-                        android:textSize="12sp"
                         android:id="@+id/circle_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/circle"
-                        android:textColor="@color/main_text_normal" />
+                        android:textColor="@color/main_text_normal"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -75,12 +77,12 @@
                         android:src="@drawable/contacts_default" />
 
                     <TextView
-                        android:textSize="12sp"
                         android:id="@+id/contacts_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/contacts"
-                        android:textColor="@color/main_text_normal" />
+                        android:textColor="@color/main_text_normal"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -99,12 +101,12 @@
                         android:src="@drawable/my_default" />
 
                     <TextView
-                        android:textSize="12sp"
                         android:id="@+id/me_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/me"
-                        android:textColor="@color/main_text_normal" />
+                        android:textColor="@color/main_text_normal"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

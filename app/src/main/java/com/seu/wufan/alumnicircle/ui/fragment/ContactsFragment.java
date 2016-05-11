@@ -1,7 +1,9 @@
 package com.seu.wufan.alumnicircle.ui.fragment;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +15,9 @@ import com.avoscloud.leanchatlib.activity.AVChatActivity;
 import com.avoscloud.leanchatlib.utils.Constants;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.Friend;
+import com.seu.wufan.alumnicircle.mvp.presenter.contacts.ContactsPresenter;
+import com.seu.wufan.alumnicircle.mvp.views.fragment.IContactsView;
+import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.AlumniGoodActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.NewFriendsActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.contacts.ContactsItemAdapter;
@@ -25,13 +30,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 
 /**
  * @author wufan
  * @date 2016/1/31
  */
-public class ContactsFragment extends BaseLazyFragment implements View.OnClickListener {
+public class ContactsFragment extends BaseLazyFragment implements View.OnClickListener,IContactsView {
 
     @Bind(R.id.contacts_list_view)
     ListView mListView;
@@ -39,6 +46,9 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
     TextView mDialogTv;
     @Bind(R.id.contacts_sidrbar)
     SideBar mSidBar;
+
+    @Inject
+    ContactsPresenter contactsPresenter;
 
     private List<Friend> dataList = new ArrayList<>();
     private List<Friend> sourceDataList = new ArrayList<Friend>();
@@ -71,6 +81,12 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
 
     @Override
     protected void prepareData() {
+        getApiComponent().inject(this);
+        contactsPresenter.attachView(this);
+
+        Log.i("leancloud","init leancloud!");
+        contactsPresenter.initLeanCloud();
+
         dataList.add(new Friend("张三"));
         dataList.add(new Friend("李四"));
         dataList.add(new Friend("王五"));
@@ -160,9 +176,9 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), AVChatActivity.class);
+                Intent intent = new Intent(getActivity(), AVChatActivity.class);
                 intent.putExtra(Constants.MEMBER_ID, sourceDataList.get(position-1).getName());
-                getContext().startActivity(intent);
+                getActivity().startActivity(intent);
             }
         });
     }
@@ -244,5 +260,26 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
                 readyGo(AlumniGoodActivity.class);
                 break;
         }
+    }
+
+    @Override
+    public void showNetCantUse() {
+
+    }
+
+    @Override
+    public void showNetError() {
+
+    }
+
+    @Override
+    public void showToast(@NonNull String s) {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        contactsPresenter.destroy();
     }
 }

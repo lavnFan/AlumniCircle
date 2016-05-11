@@ -305,9 +305,6 @@ public abstract class BaseLazyFragment extends Fragment {
 ////            Snackbar.make(((Activity) mContext).getWindow().getDecorView(), msg, Snackbar.LENGTH_SHORT).show();
 //        }
 //    }
-    protected void showNetWorkError() {
-        ToastUtils.showToast(getResources().getString(R.string.network_error_tips),getContext());
-    }
 
 
     /**
@@ -380,14 +377,5 @@ public abstract class BaseLazyFragment extends Fragment {
 
     protected void toggleRestore(){
         mVaryViewHelperController.restore();
-    }
-
-    protected void showInnerError(RetrofitError error) {
-        if (error != null)
-            if(error.getBody() == null){
-                ToastUtils.showToast(getString(R.string.request_time_out),getContext());
-            }else{
-                ToastUtils.showToast(CommonUtils.getErrorInfo(error).getReason(),getContext());
-            }
     }
 }

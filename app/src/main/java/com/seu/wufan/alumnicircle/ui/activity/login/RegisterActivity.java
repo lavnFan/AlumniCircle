@@ -15,6 +15,7 @@ import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.login.RegisterIPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IRegisterView;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
+import com.seu.wufan.alumnicircle.ui.dialog.ProgressDialog;
 import com.seu.wufan.alumnicircle.ui.widget.MajorPickerView;
 
 import java.util.ArrayList;
@@ -56,6 +57,8 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
 
     private boolean enrollYearPickerViewIsShowing = false;
     private boolean majorPickerViewIsShowing = false;
+
+    ProgressDialog pd;
 
     @Override
     protected void prepareDatas() {
@@ -152,7 +155,24 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
 
     @Override
     public void registerSuccess() {
+        if(pd!=null){
+            pd.dismiss();
+        }
         readyGoThenKill(MainActivity.class);
+    }
+
+    @Override
+    public void registerLoading() {
+        pd = new ProgressDialog(this);
+        pd.setContent("正在注册");
+        pd.show();
+    }
+
+    @Override
+    public void registerFailed() {
+        if(pd!=null){
+            pd.dismiss();
+        }
     }
 
     @Override

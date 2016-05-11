@@ -70,6 +70,7 @@ public class RegisterIPresenter implements IRegisterIPresenter {
     public void doRegister(final String phone_num, String password, String enroll_year, String school, String major,String name) {
         if(isValid(phone_num,password,enroll_year,school,major,name)){
             if(NetUtils.isNetworkConnected(appContext)){
+                registerView.registerLoading();
                 registerSubmission = (Subscription) tokenModel.register(phone_num,enroll_year,school,major,password,name)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -84,21 +85,12 @@ public class RegisterIPresenter implements IRegisterIPresenter {
                                 circleModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 contactsModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 userModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
-                                //设置聊天的信息
-                                ChatManager.getInstance().openClient(appContext, loginRes.getUser_id(), new AVIMClientCallback() {
-                                    @Override
-                                    public void done(AVIMClient avimClient, AVIMException e) {
-                                        if (null == e) {
-                                            registerView.registerSuccess();
-                                        } else {
-                                            registerView.showToast(e.toString());
-                                        }
-                                    }
-                                });
+                                registerView.registerSuccess();
                             }
                         }, new Action1<Throwable>() {
                             @Override
                             public void call(Throwable throwable) {
+                                registerView.registerFailed();
                                 if (throwable instanceof retrofit2.HttpException) {
                                     retrofit2.HttpException exception = (HttpException) throwable;
                                     registerView.showToast(exception.getMessage());

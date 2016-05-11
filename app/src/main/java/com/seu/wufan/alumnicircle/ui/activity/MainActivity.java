@@ -1,5 +1,7 @@
 package com.seu.wufan.alumnicircle.ui.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -14,9 +16,10 @@ import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
 import com.seu.wufan.alumnicircle.ui.activity.circle.PublishDynamicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.AddFriendsActivity;
-import com.seu.wufan.alumnicircle.ui.fragment.circle.CircleFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.ContactsFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.MyFragment;
+import com.umeng.comm.ui.fragments.CommunityMainFragment;
+import com.umeng.common.ui.widgets.CommunityViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity {
 
-    @Bind(R.id.main_view_pager)
-    ViewPager mViewPager;
+    CommunityViewPager mViewPager;
     @Bind(R.id.circle_ll)
     LinearLayout mCircleLl;
     @Bind(R.id.circle_cv)
@@ -62,6 +64,12 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Override
     protected void initViewsAndEvents() {
         initView();
@@ -79,7 +87,11 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initDatas() {
-        mFragments.add(new CircleFragment());
+        mViewPager  = (CommunityViewPager) findViewById(R.id.main_view_pager);
+        CommunityMainFragment communityMainFragment = new CommunityMainFragment();
+        communityMainFragment.setBackButtonVisibility(View.GONE);
+//        communityMainFragment.
+        mFragments.add(communityMainFragment);
         mFragments.add(new ContactsFragment());
         mFragments.add(new MyFragment());
         mAdapter = new FragmentStatePagerAdapter(getSupportFragmentManager()) {
@@ -213,20 +225,20 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem addItem = menu.findItem(R.id.add);
-        MenuItem editItem = menu.findItem(R.id.edit);
+//        MenuItem editItem = menu.findItem(R.id.edit);
         switch (mCurrentIndex) {
             case 0:
-                editItem.setVisible(true);
+//                editItem.setVisible(true);
                 addItem.setVisible(false);
                 setToolbarTitle(getResources().getText(R.string.alumni_circle).toString());
                 break;
             case 1:
-                editItem.setVisible(false);
+//                editItem.setVisible(false);
                 addItem.setVisible(true);
                 setToolbarTitle(getResources().getText(R.string.contacts).toString());
                 break;
             case 2:
-                editItem.setVisible(false);
+//                editItem.setVisible(false);
                 addItem.setVisible(false);
                 setToolbarTitle(getResources().getText(R.string.alumni_circle).toString());
                 break;
@@ -240,11 +252,17 @@ public class MainActivity extends BaseActivity {
             case R.id.add:
                 readyGo(AddFriendsActivity.class);
                 break;
-            case R.id.edit:
-                readyGo(PublishDynamicActivity.class);
-                break;
+//            case R.id.edit:
+//                readyGo(PublishDynamicActivity.class);
+//                break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
     }
 }

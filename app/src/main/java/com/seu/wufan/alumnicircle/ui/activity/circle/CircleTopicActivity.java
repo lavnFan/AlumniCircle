@@ -64,23 +64,6 @@ public class CircleTopicActivity extends SwipeBackActivity {
         mTopicRecycleView.setNestedScrollingEnabled(false);     // Disables scrolling for RecyclerView
         mTopicRecycleView.setHasFixedSize(false);
 
-        mTopicRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                if(firstVisibleItemPosition==0){
-                    topicLl.setVisibility(View.GONE);
-                    collapsingTv.setVisibility(View.VISIBLE);
-//                }else{
-//                    topicLl.setVisibility(View.VISIBLE);
-//                    collapsingTv.setVisibility(View.GONE);
-//                }
-            }
-        });
     }
 
     private void initData() {

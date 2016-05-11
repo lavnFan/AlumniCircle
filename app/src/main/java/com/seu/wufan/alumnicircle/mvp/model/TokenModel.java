@@ -6,6 +6,7 @@ import com.seu.wufan.alumnicircle.api.TokenApi;
 import com.seu.wufan.alumnicircle.api.entity.LoginReq;
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
 import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
+import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.common.provider.TokenProvider;
 
 import rx.Observable;
@@ -41,6 +42,10 @@ public class TokenModel extends BaseModel<TokenApi> {
         req.setPassword(password);
         req.setName(name);
         return getService().register(req);
+    }
+
+    public Observable<UserInfoRes> getUserInfo(String user_id){
+        return getService().getUserInfo(user_id);
     }
 
 }

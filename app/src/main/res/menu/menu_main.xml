@@ -5,9 +5,9 @@
         android:title="添加"
         android:icon="@drawable/add_default"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/edit"
-        android:title="编辑"
-        android:icon="@drawable/edit_publish_default"
-        app:showAsAction="always"/>
+    <!--<item-->
+        <!--android:id="@+id/edit"-->
+        <!--android:title="编辑"-->
+        <!--android:icon="@drawable/edit_publish_default"-->
+        <!--app:showAsAction="always"/>-->
 </menu>

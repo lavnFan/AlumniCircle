@@ -16,12 +16,21 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexEnabled true
         }
     }
     //为了解决部分第三方库重复打包了META-INF的问题
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/maven/com.nostra13.universalimageloader/universal-image-loader/pom.xml'
+        exclude 'META-INF/maven/com.nostra13.universalimageloader/universal-image-loader/pom.properties'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
+        exclude 'META-INF/maven/org.apache.httpcomponents/httpmime/pom.xml'
+        exclude 'META-INF/maven/org.apache.httpcomponents/httpcomponents/pom.properties'
+        exclude 'META-INF/maven/org.apache.httpcomponents/httpmime/pom.properties'
+        exclude 'org/apache/http/entity/mime/version.properties'
     }
     lintOptions {
         abortOnError false
@@ -72,9 +81,12 @@ dependencies {
     compile 'com.bigkoo:alertview:1.0.2'
     compile 'biz.kasual:materialnumberpicker:1.2.0'
     compile 'com.soundcloud.android:android-crop:1.0.1@aar'
+    compile 'com.android.support:multidex:1.0.1'
     compile project(':PhotoPicker')
     compile project(':pickerview')
     compile files('libs/zxing-3.2.1.jar')
     compile files('libs/ZBarDecoder.jar')
     compile project(':leanchatlib')
+    compile files('libs/android-support-v4.jar')
+    compile files('libs/Android_Location_V1.3.2.jar')
 }
