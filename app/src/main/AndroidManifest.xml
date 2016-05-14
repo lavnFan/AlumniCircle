@@ -53,6 +53,7 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden|adjustResize"
             android:screenOrientation="portrait" />
         <activity
@@ -78,7 +79,7 @@
             android:name=".ui.activity.contacts.AlumniGoodActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.me.EditInformationActiviy"
+            android:name=".ui.activity.me.EditInformationActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.me.MyQrcodeActivity"

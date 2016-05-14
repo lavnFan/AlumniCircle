@@ -19,15 +19,15 @@
             android:layout_marginBottom="@dimen/activity_12_margin"
             android:layout_marginLeft="@dimen/activity_16_margin"
             android:layout_marginTop="@dimen/activity_12_margin"
-            android:src="@drawable/logo" />
+            android:src="@drawable/user" />
 
         <TextView
+            android:id="@+id/my_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/activity_16_margin"
             android:layout_toRightOf="@+id/my_photo_cv"
-            android:text="童小星"
             android:textColor="@color/text_main" />
 
         <ImageView

@@ -9,9 +9,11 @@ import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 
 import java.util.List;
 
+import butterknife.Bind;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import rx.Observable;
 
@@ -36,5 +38,8 @@ public interface TokenApi {
     //创建七牛上传凭证
     @POST("static/token/")
     Observable<List<QnRes>> createQiNiuToken(@Body QnReq req);
+
+    @PUT("user/")
+    Observable<Void> updateUserInfo(@Body UserInfoRes req);
 
 }

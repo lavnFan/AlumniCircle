@@ -6,17 +6,21 @@ android {
 
     defaultConfig {
         applicationId "com.icon_seu.wufan.alumnicircle"
+        multiDexEnabled true
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         buildConfigField "String", "ENDPOINT", "\"http://api2.hloli.me:4096/v1.0/\""
     }
+    dexOptions {
+        preDexLibraries = false
+        javaMaxHeapSize "4g"
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            multiDexEnabled true
         }
     }
     //为了解决部分第三方库重复打包了META-INF的问题

@@ -1,6 +1,5 @@
 package com.seu.wufan.alumnicircle.ui.activity.me;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -8,10 +7,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.api.entity.GetUserInfoDetailRes;
+import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.me.MyInformationPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IMyInformationView;
@@ -21,7 +21,6 @@ import com.umeng.comm.core.constants.Constants;
 import javax.inject.Inject;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -72,10 +71,7 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
     @Override
     protected void initViewsAndEvents() {
         user = getIntent().getExtras().getParcelable(Constants.TAG_USER);
-        Log.i("user", user.id + "  " + user.name);
-
         myInformationPresenter.getUserInfo(user.id);
-        myInformationPresenter.getUserDetail(user.id);
 
     }
 
@@ -85,15 +81,18 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
     }
 
     @Override
-    public void initMyInfo(GetUserInfoDetailRes res) {
+    public void initMyInfo(UserInfoDetailRes res) {
         mIntroTv.setText(res.getIntroduction());
     }
 
     @Override
     public void initMyInfo(UserInfoRes res) {
-        CommonUtils.showCircleImageWithGlide(this,mPhotoCv,res.getImage());
+        if(!res.getImage().isEmpty()){
+            CommonUtils.showCircleImageWithGlide(this,mPhotoCv,res.getImage());
+        }
+
         mNameTv.setText(res.getName());
-        String str = res.getEnroll_year()+res.getSchool();
+        String str = res.getEnroll_year()+"届"+res.getSchool();
         mCollegeTv.setText(str);
         mMajorTv.setText(res.getMajor());
 

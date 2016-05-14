@@ -5,9 +5,13 @@ import android.support.annotation.Nullable;
 import com.seu.wufan.alumnicircle.api.TokenApi;
 import com.seu.wufan.alumnicircle.api.entity.LoginReq;
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
+import com.seu.wufan.alumnicircle.api.entity.QnReq;
+import com.seu.wufan.alumnicircle.api.entity.QnRes;
 import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.common.provider.TokenProvider;
+
+import java.util.List;
 
 import rx.Observable;
 
@@ -46,6 +50,16 @@ public class TokenModel extends BaseModel<TokenApi> {
 
     public Observable<UserInfoRes> getUserInfo(String user_id){
         return getService().getUserInfo(user_id);
+    }
+
+    public Observable<List<QnRes>> createQiNiuToken(int count){
+        QnReq req = new QnReq();
+        req.setCount(count);
+        return getService().createQiNiuToken(req);
+    }
+
+    public Observable<Void> updateUserInfo(UserInfoRes req){
+        return getService().updateUserInfo(req);
     }
 
 }

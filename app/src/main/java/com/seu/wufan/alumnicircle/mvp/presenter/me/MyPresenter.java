@@ -3,6 +3,7 @@ package com.seu.wufan.alumnicircle.mvp.presenter.me;
 import android.content.Context;
 
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
@@ -23,6 +24,8 @@ import rx.schedulers.Schedulers;
 public class MyPresenter implements IMyPresenter {
 
     private Subscription preferenceSubscription;
+    private Subscription photoSubscription;
+    private Subscription nameSubscription;
     private IMyView iMyView;
 
     private PreferenceUtils preferenceUtils;
@@ -46,6 +49,12 @@ public class MyPresenter implements IMyPresenter {
         if(preferenceSubscription!=null){
             preferenceSubscription.unsubscribe();
         }
+        if(photoSubscription!=null){
+            photoSubscription.unsubscribe();
+        }
+        if(nameSubscription!=null){
+            nameSubscription.unsubscribe();
+        }
     }
 
     @Override
@@ -62,5 +71,29 @@ public class MyPresenter implements IMyPresenter {
                     }
                 });
         return null;
+    }
+
+    @Override
+    public void init() {
+        photoSubscription = preferenceUtils.getUserPhoto()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        iMyView.setPhoto(s);
+                    }
+                });
+
+        nameSubscription = preferenceUtils.getUserName()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        iMyView.setName(s);
+                    }
+                });
+
     }
 }

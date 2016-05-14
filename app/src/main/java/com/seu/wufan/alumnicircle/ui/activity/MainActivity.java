@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.ui.activity.circle.PublishDynamicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.AddFriendsActivity;
 import com.seu.wufan.alumnicircle.ui.fragment.ContactsFragment;
@@ -264,5 +265,10 @@ public class MainActivity extends BaseActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

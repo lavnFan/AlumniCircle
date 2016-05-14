@@ -2,13 +2,9 @@
 A Android APP aims to provide a platform to communicate with your alumni
 
 ## **项目介绍** ##
-项目主要基于校友的职场社交软件，旨在加强校友资源，解决大学生部分就业疑难等问题，现在试用范围为东南大学，版本为1.0，Android版开发已完成的50%。
+项目主要基于校友的职场社交软件，旨在加强校友资源，解决大学生部分就业疑难等问题，现在试用范围为东南大学。
 
 项目采用MVP架构，并合理使用接口隔离原则、迪米特法则等设计原则，让各模块间高内聚、低耦合，减少Activity的工作量，使其具有很好的可扩展性、可维性。
-
-
-## Screenshot ##
-<img src="http://7xrhn4.com1.z0.glb.clouddn.com/alumni.gif" width="400" height="600" alt="校友圈" align=center/>
 
 
 ## 项目依赖 ##

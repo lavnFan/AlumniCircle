@@ -6,7 +6,10 @@ import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
 import com.avoscloud.leanchatlib.controller.ChatManager;
+import com.bumptech.glide.Glide;
+import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
+import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.common.provider.UserTokenProvider;
 import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
@@ -67,7 +70,7 @@ public class RegisterIPresenter implements IRegisterIPresenter {
     }
 
     @Override
-    public void doRegister(final String phone_num, String password, String enroll_year, String school, String major,String name) {
+    public void doRegister(final String phone_num, String password, String enroll_year, String school, String major,final String name) {
         if(isValid(phone_num,password,enroll_year,school,major,name)){
             if(NetUtils.isNetworkConnected(appContext)){
                 registerView.registerLoading();
@@ -80,11 +83,13 @@ public class RegisterIPresenter implements IRegisterIPresenter {
                                 preferenceUtils.putString(phone_num, PreferenceType.PHONE);
                                 preferenceUtils.putString(loginRes.getAccess_token(),PreferenceType.ACCESS_TOKEN);
                                 preferenceUtils.putString(loginRes.getUser_id(),PreferenceType.USER_ID);
+                                preferenceUtils.putString(name,PreferenceType.USER_NAME);
 
                                 tokenModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 circleModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 contactsModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 userModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
+
                                 registerView.registerSuccess();
                             }
                         }, new Action1<Throwable>() {
@@ -137,4 +142,7 @@ public class RegisterIPresenter implements IRegisterIPresenter {
         }
         return true;
     }
+
+
+
 }

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
-import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActiviy;
+import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActivity;
 
 import butterknife.Bind;
 
@@ -51,7 +51,7 @@ public class CompanyActivity extends BaseSwipeActivity{
                 bundle.putString(EXTRA_COMPANY, mCompanyEt.getText().toString());
                 Intent intent = new Intent();
                 intent.putExtras(bundle);
-                setResult(EditInformationActiviy.REQUESTCODE_Company, intent);
+                setResult(EditInformationActivity.REQUESTCODE_Company, intent);
                 finish();
             }
         });
@@ -76,7 +76,7 @@ public class CompanyActivity extends BaseSwipeActivity{
         bundle.putString(EXTRA_COMPANY, mCompanyEt.getText().toString());
         Intent intent = new Intent();
         intent.putExtras(bundle);
-        setResult(EditInformationActiviy.REQUESTCODE_Company, intent);
+        setResult(EditInformationActivity.REQUESTCODE_Company, intent);
         super.onBackPressed();
     }
 }

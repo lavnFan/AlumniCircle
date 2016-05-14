@@ -9,10 +9,13 @@ import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
 import com.avoscloud.leanchatlib.controller.ChatManager;
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
+import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.item.User;
 import com.seu.wufan.alumnicircle.common.provider.UserTokenProvider;
 import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
+import com.seu.wufan.alumnicircle.common.utils.PreferenceUtil;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.CircleModel;
@@ -50,6 +53,7 @@ public class LoginIPresenter implements ILoginIPresenter {
 
     private ILoginView mLoginView;
     private Subscription loginSubscription;
+    private Subscription userSubscription;
 
     private TokenModel tokenModel;
     private CircleModel circleModel;
@@ -90,9 +94,7 @@ public class LoginIPresenter implements ILoginIPresenter {
                                 contactsModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 userModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
 
-                                mockLoginData(loginRes.getUser_id(),"lavn");
-
-
+                                saveUserInfo(loginRes.getUser_id());
                             }
                         }, new Action1<Throwable>() {
                             @Override
@@ -141,7 +143,12 @@ public class LoginIPresenter implements ILoginIPresenter {
         CommUser loginUser = new CommUser();
         loginUser.id = userId; // 用户id
         loginUser.name = name; // 用户名
-        loginUser.source = Source.SINA;
+
+        User user = new User();
+        user.setName(name);
+        user.setUser_id(userId);
+
+        PreferenceUtil.putBean(appContext,PreferenceUtil.Key.EXTRA_COMMUSER,user);
         sdk.loginToUmengServerBySelfAccount(appContext, loginUser.name,loginUser.id, new LoginListener() {
             @Override
             public void onStart() {
@@ -161,4 +168,19 @@ public class LoginIPresenter implements ILoginIPresenter {
             }
         });
     }
+
+    private void saveUserInfo(final String user_id) {
+        userSubscription = tokenModel.getUserInfo(user_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<UserInfoRes>() {
+                    @Override
+                    public void call(UserInfoRes userInfoRes) {
+                        preferenceUtils.putString(userInfoRes.getImage(),PreferenceType.USER_PHOTO);
+                        preferenceUtils.putString(userInfoRes.getName(),PreferenceType.USER_NAME);
+                        mockLoginData(user_id,userInfoRes.getName());
+                    }
+                });
+    }
+
 }

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
-import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActiviy;
+import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActivity;
 
 import butterknife.Bind;
 
@@ -49,7 +49,7 @@ public class PersonIntroActivity extends BaseSwipeActivity {
                 bundle.putString(EXTRA_PERSON_INTRO, mPersonIntroEt.getText().toString());
                 Intent intent = new Intent();
                 intent.putExtras(bundle);
-                setResult(EditInformationActiviy.REQUESTCODE_Person_Intro, intent);
+                setResult(EditInformationActivity.REQUESTCODE_Person_Intro, intent);
                 finish();
             }
         });
@@ -74,7 +74,7 @@ public class PersonIntroActivity extends BaseSwipeActivity {
         bundle.putString(EXTRA_PERSON_INTRO, mPersonIntroEt.getText().toString());
         Intent intent = new Intent();
         intent.putExtras(bundle);
-        setResult(EditInformationActiviy.REQUESTCODE_Person_Intro, intent);
+        setResult(EditInformationActivity.REQUESTCODE_Person_Intro, intent);
         super.onBackPressed();
     }
 }

@@ -2,7 +2,7 @@ package com.seu.wufan.alumnicircle.mvp.presenter.me;
 
 import android.content.Context;
 
-import com.seu.wufan.alumnicircle.api.entity.GetUserInfoDetailRes;
+import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
@@ -36,7 +36,7 @@ public class MyInformationPresenter implements IMyInformationPresenter {
     private Context appContext;
 
     @Inject
-    public MyInformationPresenter(@ForApplication Context context, UserModel userModel,TokenModel tokenModel, PreferenceUtils preferenceUtils) {
+    public MyInformationPresenter(@ForApplication Context context, UserModel userModel, TokenModel tokenModel, PreferenceUtils preferenceUtils) {
         this.userModel = userModel;
         this.appContext = context;
         this.preferenceUtils = preferenceUtils;
@@ -44,14 +44,17 @@ public class MyInformationPresenter implements IMyInformationPresenter {
     }
 
     @Override
-    public void getUserDetail(String user_id) {
+    public void getUserDetail(final String user_id) {
+        if(NetUtils.isNetworkConnected(appContext)){
+
         myinfoSubscription = userModel.getUserInfoResObservable(user_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<GetUserInfoDetailRes>() {
+                .subscribe(new Action1<UserInfoDetailRes>() {
                     @Override
-                    public void call(GetUserInfoDetailRes getUserInfoDetailRes) {
-                        iMyInformationView.initMyInfo(getUserInfoDetailRes);
+                    public void call(UserInfoDetailRes userInfoDetailRes) {
+                        iMyInformationView.initMyInfo(userInfoDetailRes);
+                        getUserInfo(user_id);
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -59,40 +62,43 @@ public class MyInformationPresenter implements IMyInformationPresenter {
                         if (throwable instanceof retrofit2.HttpException) {
                             retrofit2.HttpException exception = (HttpException) throwable;
                             iMyInformationView.showToast(exception.getMessage());
-                        }else{
-                            iMyInformationView.showNetCantUse();
-                        }
-                    }
-                });
-    }
-
-    @Override
-    public void getUserInfo(String user_id) {
-        if(NetUtils.isNetworkConnected(appContext)){
-
-        infoSubscription = tokenModel.getUserInfo(user_id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<UserInfoRes>() {
-                    @Override
-                    public void call(UserInfoRes userInfoRes) {
-                        iMyInformationView.initMyInfo(userInfoRes);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        if (throwable instanceof retrofit2.HttpException) {
-                            retrofit2.HttpException exception = (HttpException) throwable;
-                            iMyInformationView.showToast(exception.getMessage());
-                        }else{
-                            iMyInformationView.showNetCantUse();
+                        } else {
+                            iMyInformationView.showNetError();
                         }
                     }
                 });
 
         }else{
-            iMyInformationView.showNetError();
+            iMyInformationView.showNetCantUse();
         }
+    }
+
+    @Override
+    public void getUserInfo(String user_id) {
+            infoSubscription = tokenModel.getUserInfo(user_id)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<UserInfoRes>() {
+                        @Override
+                        public void call(UserInfoRes userInfoRes) {
+                            iMyInformationView.initMyInfo(userInfoRes);
+                        }
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            if (throwable instanceof retrofit2.HttpException) {
+                                retrofit2.HttpException exception = (HttpException) throwable;
+                                iMyInformationView.showToast(exception.getMessage());
+                            } else {
+                                iMyInformationView.showNetError();
+                            }
+                        }
+                    });
+    }
+
+    @Override
+    public void initUserInfo() {
+
     }
 
 
@@ -103,11 +109,14 @@ public class MyInformationPresenter implements IMyInformationPresenter {
 
     @Override
     public void destroy() {
-        if(myinfoSubscription!=null){
+        if (myinfoSubscription != null) {
             myinfoSubscription.unsubscribe();
         }
-        if(infoSubscription!=null){
+        if (infoSubscription != null) {
             infoSubscription.unsubscribe();
         }
     }
+
+
+
 }

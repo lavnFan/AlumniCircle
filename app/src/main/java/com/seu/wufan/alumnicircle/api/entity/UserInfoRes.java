@@ -1,10 +1,17 @@
 package com.seu.wufan.alumnicircle.api.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * @author wufan
  * @date 2016/2/22
  */
-public class UserInfoRes {
+public class UserInfoRes implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     private String is_master;
     private String user_id;
@@ -87,4 +94,49 @@ public class UserInfoRes {
     public String getLocation() {
         return location;
     }
+
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeString(this.is_master);
+//        dest.writeString(this.user_id);
+//        dest.writeString(this.name);
+//        dest.writeString(this.image);
+//        dest.writeString(this.school);
+//        dest.writeString(this.major);
+//        dest.writeString(this.enroll_year);
+//        dest.writeString(this.student_num);
+//        dest.writeString(this.location);
+//    }
+//
+//    public UserInfoRes() {
+//    }
+//
+//    protected UserInfoRes(Parcel in) {
+//        this.is_master = in.readString();
+//        this.user_id = in.readString();
+//        this.name = in.readString();
+//        this.image = in.readString();
+//        this.school = in.readString();
+//        this.major = in.readString();
+//        this.enroll_year = in.readString();
+//        this.student_num = in.readString();
+//        this.location = in.readString();
+//    }
+//
+//    public static final Parcelable.Creator<UserInfoRes> CREATOR = new Parcelable.Creator<UserInfoRes>() {
+//        @Override
+//        public UserInfoRes createFromParcel(Parcel source) {
+//            return new UserInfoRes(source);
+//        }
+//
+//        @Override
+//        public UserInfoRes[] newArray(int size) {
+//            return new UserInfoRes[size];
+//        }
+//    };
 }

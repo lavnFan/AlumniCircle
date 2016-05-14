@@ -40,7 +40,7 @@ public class LocationFeedFragment extends FriendsFragment {
 
     private FeedItem mFeedItem;
 
-    private LocationFeedFragment() {
+    public LocationFeedFragment() {
     }
 
     @Override

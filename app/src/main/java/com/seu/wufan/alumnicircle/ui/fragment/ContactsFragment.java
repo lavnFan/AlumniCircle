@@ -71,7 +71,8 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
 
     @Override
     protected void onUserInvisible() {
-
+        Log.i("TAG","Invisible");
+        mDialogTv.setVisibility(View.INVISIBLE);
     }
 
     @Override

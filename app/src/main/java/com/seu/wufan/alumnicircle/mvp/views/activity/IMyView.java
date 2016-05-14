@@ -11,4 +11,8 @@ public interface IMyView extends IView{
 
     void setUser(CommUser user);
 
+    void setName(String name);
+
+    void setPhoto(String photo_path);
+
 }

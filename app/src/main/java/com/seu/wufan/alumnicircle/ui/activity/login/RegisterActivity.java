@@ -140,7 +140,6 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
         }else{
             ToastUtils.showToast("请阅读校友圈注册协议",this);
         }
-
     }
 
     @Override

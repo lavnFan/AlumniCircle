@@ -8,7 +8,8 @@ import com.seu.wufan.alumnicircle.mvp.presenter.IPresenter;
  */
 public interface IMyPresenter extends IPresenter{
 
-
     String getUid();
+
+    void init();
 
 }

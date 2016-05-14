@@ -1,9 +1,8 @@
 package com.seu.wufan.alumnicircle.mvp.views.activity;
 
-import com.seu.wufan.alumnicircle.api.entity.GetUserInfoDetailRes;
+import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
-import com.tencent.connect.UserInfo;
 
 /**
  * @author wufan
@@ -11,7 +10,7 @@ import com.tencent.connect.UserInfo;
  */
 public interface IMyInformationView extends IView{
 
-    void initMyInfo(GetUserInfoDetailRes res);
+    void initMyInfo(UserInfoDetailRes res);
 
     void initMyInfo(UserInfoRes res);
 

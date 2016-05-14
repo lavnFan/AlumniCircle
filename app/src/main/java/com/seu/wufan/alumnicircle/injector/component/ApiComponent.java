@@ -6,8 +6,10 @@ import com.seu.wufan.alumnicircle.ui.activity.circle.PublishDynamicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.LoginActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.RegisterActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.WelcomeActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyInformationActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.SettingSwipeActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.NameActivity;
 import com.seu.wufan.alumnicircle.ui.fragment.ContactsFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.MyFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.CircleFragment;
@@ -33,6 +35,10 @@ public interface ApiComponent {
     void inject(PublishDynamicActivity publishDynamicActivity);
 
     void inject(MyInformationActivity myInformationActivity);
+
+    void inject(EditInformationActivity editInformationActivity);
+
+    void inject(NameActivity nameActivity);
 
 
     void inject(CircleFragment circleFragment);

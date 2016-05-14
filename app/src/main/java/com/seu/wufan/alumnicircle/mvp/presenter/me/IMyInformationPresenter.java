@@ -12,4 +12,6 @@ public interface IMyInformationPresenter extends IPresenter{
 
     void getUserInfo(String user_id);
 
+    void initUserInfo();
+
 }
