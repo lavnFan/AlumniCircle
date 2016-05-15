@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.mvp.presenter.me;
+package com.seu.wufan.alumnicircle.mvp.presenter.me.edit;
 
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.mvp.presenter.IPresenter;

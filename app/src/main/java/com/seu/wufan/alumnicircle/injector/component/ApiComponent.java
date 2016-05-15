@@ -9,10 +9,15 @@ import com.seu.wufan.alumnicircle.ui.activity.login.WelcomeActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyInformationActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.SettingSwipeActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.CompanyActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.JobActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.NameActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.PersonIntroActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperShowFragmentToActivity;
 import com.seu.wufan.alumnicircle.ui.fragment.ContactsFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.MyFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.CircleFragment;
+import com.seu.wufan.alumnicircle.ui.fragment.me.ProfExperEditFragment;
 
 import javax.inject.Singleton;
 
@@ -39,6 +44,16 @@ public interface ApiComponent {
     void inject(EditInformationActivity editInformationActivity);
 
     void inject(NameActivity nameActivity);
+
+    void inject(CompanyActivity companyActivity);
+
+    void inject(JobActivity jobActivity);
+
+    void inject(PersonIntroActivity personIntroActivity);
+
+    void inject(ProfExperEditFragment profExperEditFragment);
+
+    void inject(ProfExperShowFragmentToActivity profExperShowFragmentToActivity);
 
 
     void inject(CircleFragment circleFragment);

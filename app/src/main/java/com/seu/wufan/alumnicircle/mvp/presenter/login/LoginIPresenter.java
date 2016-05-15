@@ -86,9 +86,10 @@ public class LoginIPresenter implements ILoginIPresenter {
                         .subscribe(new Action1<LoginRes>() {
                             @Override
                             public void call(LoginRes loginRes) {
-                                preferenceUtils.putString(phoneNum,PreferenceType.PHONE);
                                 preferenceUtils.putString(loginRes.getAccess_token(), PreferenceType.ACCESS_TOKEN);
                                 preferenceUtils.putString(loginRes.getUser_id(),PreferenceType.USER_ID);
+                                preferenceUtils.putString(phoneNum,PreferenceType.PHONE);
+
                                 tokenModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 circleModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 contactsModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));

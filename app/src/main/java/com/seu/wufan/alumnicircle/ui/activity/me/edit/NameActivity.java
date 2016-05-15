@@ -10,11 +10,11 @@ import android.widget.TextView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
-import com.seu.wufan.alumnicircle.mvp.presenter.me.NamePresenter;
-import com.seu.wufan.alumnicircle.mvp.views.activity.INameView;
+import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
+import com.seu.wufan.alumnicircle.mvp.presenter.me.edit.NamePresenter;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.INameView;
 import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActivity;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
-import com.tencent.connect.UserInfo;
 
 import javax.inject.Inject;
 
@@ -37,6 +37,8 @@ public class NameActivity extends BaseSwipeActivity implements INameView{
 
     public final static String EXTRA_NAME="name";
 
+    UserInfoRes userInfoRes = new UserInfoRes();
+
     @Override
     protected int getContentView() {
         return R.layout.activity_edit_name;
@@ -51,8 +53,7 @@ public class NameActivity extends BaseSwipeActivity implements INameView{
     @Override
     protected void initViewsAndEvents() {
         initToolBars();
-        final UserInfoRes userInfoRes= (getIntent().getExtras()==null)?null: (UserInfoRes) getIntent().getExtras().getSerializable(EXTRA_NAME);
-        TLog.i("Name:",userInfoRes.getName());
+        userInfoRes= (getIntent().getExtras()==null)?null: (UserInfoRes) getIntent().getExtras().getSerializable(EXTRA_NAME);
         mNameEt.setText(userInfoRes.getName());
         mToolbarRightTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,17 +90,17 @@ public class NameActivity extends BaseSwipeActivity implements INameView{
 
     @Override
     public void showNetCantUse() {
-
+        ToastUtils.showNetCantUse(this);
     }
 
     @Override
     public void showNetError() {
-
+        ToastUtils.showNetError(this);
     }
 
     @Override
     public void showToast(@NonNull String s) {
-
+        ToastUtils.showToast(s,this);
     }
 
     @Override

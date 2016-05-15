@@ -97,7 +97,7 @@
             android:name=".ui.activity.me.SettingSwipeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.me.edit.ProfExperActivity"
+            android:name=".ui.activity.me.edit.ProfExperShowFragmentToActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.me.edit.CompanyActivity"
@@ -126,6 +126,10 @@
             android:name="com.soundcloud.android.crop.CropImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+
+        <activity android:name=".ui.activity.me.edit.EducationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
 
         <!--leanchat-->
 

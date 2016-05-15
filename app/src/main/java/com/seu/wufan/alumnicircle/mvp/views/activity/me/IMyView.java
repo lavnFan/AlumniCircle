@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.mvp.views.activity;
+package com.seu.wufan.alumnicircle.mvp.views.activity.me;
 
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.umeng.comm.core.beans.CommUser;

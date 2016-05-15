@@ -7,7 +7,7 @@ import android.view.View;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.mvp.presenter.me.SettingIPresenter;
-import com.seu.wufan.alumnicircle.mvp.views.activity.ISettingView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.ISettingView;
 import com.seu.wufan.alumnicircle.ui.activity.login.LoginActivity;
 
 import javax.inject.Inject;

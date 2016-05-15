@@ -20,15 +20,15 @@ import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
-import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.me.EditInformationPresenter;
-import com.seu.wufan.alumnicircle.mvp.views.activity.IEditInformationView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.IEditInformationView;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.CompanyActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.EducationActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.JobActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.NameActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.PersonIntroActivity;
-import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperShowFragmentToActivity;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.ui.fragment.MyFragment;
@@ -120,7 +120,7 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
 
     public final static String EXTRA_PHOTO_PATH = "photo_path";
 
-    public final static int REQUESTCODE_Person_Intro = 0;
+    public final static int REQUESTCODE_Person_Intro = 5;
     public final static int REQUESTCODE_Company = 1;
     public final static int REQUESTCODE_Name = 2;
     public final static int REQUESTCODE_Job = 3;
@@ -178,8 +178,7 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
         viewMiddle.setOnSelectListener(new ViewMiddle.OnSelectListener() {
             @Override
             public void getValue(String showText) {
-                mJobProfTv.setText(showText);
-                popupWindow.dismiss();
+                editInformationPresenter.updateProfession(showText);
             }
         });
     }
@@ -214,8 +213,7 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                     @Override
                     public void onItemClick(Object o, int position) {
                         if (position != AlertView.CANCELPOSITION) {
-                            TLog.i("sex selected:", sexs[position]);
-                            mSexTv.setText(sexs[position]);
+                            editInformationPresenter.updateGender(sexs[position]);
                         }
                     }
                 }).setCancelable(true).show();
@@ -234,25 +232,28 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                 break;
             case R.id.me_edit_info_company_tr:
                 //公司
-                bundle.putString(CompanyActivity.EXTRA_COMPANY, mCompanyTv.getText().toString());
+                bundle.putSerializable(CompanyActivity.EXTRA_COMPANY,editInformationPresenter.getUserDetail());
                 readyGoForResult(CompanyActivity.class, REQUESTCODE_Company, bundle);
                 break;
             case R.id.me_edit_info_prof_tr:
                 //职位
-                bundle.putString(JobActivity.EXTRA_JOB, mJobTv.getText().toString());
+                bundle.putSerializable(JobActivity.EXTRA_JOB, editInformationPresenter.getUserDetail());
                 readyGoForResult(JobActivity.class, REQUESTCODE_Job, bundle);
                 break;
             case R.id.me_edit_info_person_intro_tr:
                 //个人简介
-                bundle.putString(PersonIntroActivity.EXTRA_PERSON_INTRO, mPersonIntroTv.getText().toString());
+                bundle.putSerializable(PersonIntroActivity.EXTRA_PERSON_INTRO ,editInformationPresenter.getUserDetail());
                 readyGoForResult(PersonIntroActivity.class, REQUESTCODE_Person_Intro, bundle);
                 break;
             case R.id.me_edit_info_prof_exper_tr:
                 //职业经历
-                readyGo(ProfExperActivity.class);
+                bundle.putSerializable(ProfExperShowFragmentToActivity.EXTRA_JOB ,editInformationPresenter.getUserDetail());
+                readyGo(ProfExperShowFragmentToActivity.class,bundle);
                 break;
             case R.id.me_edit_info_educ_exper_tr:
                 //教育经历
+                bundle.putSerializable(EducationActivity.EXTRA_EDU ,editInformationPresenter.getUserDetail());
+                readyGo(EducationActivity.class,bundle);
                 break;
         }
     }
@@ -269,7 +270,7 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
         pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date) {
-                mBirthDateTv.setText(getTime(date));
+                editInformationPresenter.updateBirth(getTime(date));
             }
         });
 
@@ -292,7 +293,7 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                 //返回的分别是三个级别的选中位置
                 String tx = options1Items.get(options1).getPickerViewText()
                         + options2Items.get(options1).get(option2);
-                mWorkCityTv.setText(tx);
+                editInformationPresenter.updateCity(tx);
             }
         });
 
@@ -322,13 +323,13 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                     mNameTv.setHint(R.string.please_write);
                 }
                 if (name != null) {      //修改过名字
-                    mNameTv.setText(name);
                     Bundle bundle = new Bundle();
                     bundle.putString(NameActivity.EXTRA_NAME, name);
                     Intent intent = new Intent();
                     intent.putExtras(bundle);
                     setResult(MyFragment.REQUESTCODE_Name, intent);
                 }
+                mNameTv.setText(name);
                 break;
             case REQUESTCODE_Person_Intro:
                 String personInfo = (data == null) ? null : data.getStringExtra(PersonIntroActivity.EXTRA_PERSON_INTRO);
@@ -347,8 +348,6 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                             photoPath = photos.get(0).getPath();
                             beginCrop(Uri.fromFile(new File(photoPath)));
                         }
-//                    Log.i("PHOTO-INFO", "PHOTO:" + data.getData());
-//                    beginCrop(data.getData());
                         break;
                     case Crop.REQUEST_CROP:
                         handleCrop(resultCode, data);
@@ -357,7 +356,6 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                 break;
         }
     }
-
 
     public static String getTime(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -387,6 +385,76 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
         } else if (resultCode == Crop.RESULT_ERROR) {
             ToastUtils.showToast(Crop.getError(result).getMessage(), this);//  失败考虑默认头像
         }
+    }
+
+    @Override
+    public void showNetCantUse() {
+        ToastUtils.showNetCantUse(this);
+    }
+
+    @Override
+    public void showNetError() {
+        ToastUtils.showNetError(this);
+    }
+
+    @Override
+    public void showToast(@NonNull String s) {
+        ToastUtils.showToast(s,this);
+    }
+
+    @Override
+    public void initUserInfo(UserInfoRes res) {
+        mNameTv.setText(res.getName());
+        CommonUtils.showCircleImageWithGlide(this, mPhotoCv, res.getImage());
+    }
+
+    @Override
+    public void initDetail(UserInfoDetailRes res) {
+        mSexTv.setText(res.getGender());
+        mBirthDateTv.setText(res.getBirthday());
+        mWorkCityTv.setText(res.getCity());
+        mJobProfTv.setText(res.getProfession());
+        mCompanyTv.setText(res.getCompany());
+        mJobTv.setText(res.getJob());
+        mPersonIntroTv.setText(res.getIntroduction());
+//        mProfExperTv.setText(res.getJobHistory().get(0).toString());
+//        mEducExperTv.setText(res.getEduHistory().get(0).toString());
+    }
+
+    @Override
+    public void setPhotoResult(String photo_path) {
+        Bundle bundle = new Bundle();
+        bundle.putString(EditInformationActivity.EXTRA_PHOTO_PATH, photo_path);
+        Intent intent = new Intent();
+        intent.putExtras(bundle);
+        setResult(MyFragment.REQUESTCODE_PHOTO, intent);
+    }
+
+    @Override
+    public void setGender(String gender) {
+        mSexTv.setText(gender);
+    }
+
+    @Override
+    public void setBirthDate(String date) {
+        mBirthDateTv.setText(date);
+    }
+
+    @Override
+    public void setWorkCity(String city) {
+        mWorkCityTv.setText(city);
+    }
+
+    @Override
+    public void setProfession(String profession) {
+        popupWindow.dismiss();
+        mJobProfTv.setText(profession);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        editInformationPresenter.destroy();
     }
 
     /**
@@ -475,48 +543,4 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
         } finally {
         }
     }
-
-    @Override
-    public void showNetCantUse() {
-
-    }
-
-    @Override
-    public void showNetError() {
-
-    }
-
-    @Override
-    public void showToast(@NonNull String s) {
-
-    }
-
-    @Override
-    public void initUserInfo(UserInfoRes res) {
-        mNameTv.setText(res.getName());
-        CommonUtils.showCircleImageWithGlide(this, mPhotoCv, res.getImage());
-    }
-
-    @Override
-    public void initDetail(UserInfoDetailRes res) {
-
-    }
-
-    @Override
-    public void setPhotoResult(String photo_path) {
-        Bundle bundle = new Bundle();
-        bundle.putString(EditInformationActivity.EXTRA_PHOTO_PATH, photo_path);
-        Intent intent = new Intent();
-        intent.putExtras(bundle);
-        setResult(MyFragment.REQUESTCODE_PHOTO, intent);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        editInformationPresenter.destroy();
-    }
-
-
-
 }

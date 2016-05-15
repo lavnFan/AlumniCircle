@@ -1,17 +1,18 @@
-package com.seu.wufan.alumnicircle.mvp.presenter.me;
+package com.seu.wufan.alumnicircle.mvp.presenter.me.edit;
 
 import android.content.Context;
 
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.api.entity.item.User;
 import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
+import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtil;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
-import com.seu.wufan.alumnicircle.mvp.views.activity.INameView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.INameView;
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.beans.CommUser;
 import com.umeng.comm.core.constants.ErrorCode;
@@ -49,36 +50,42 @@ public class NamePresenter implements INamePresenter {
 
     @Override
     public void updateName(final UserInfoRes userInfoRes) {
-        nameSubscription = tokenModel.updateUserInfo(userInfoRes)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Void>() {
-                    @Override
-                    public void call(Void aVoid) {
-                        saveName(userInfoRes.getName());
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        if (throwable instanceof retrofit2.HttpException) {
-                            retrofit2.HttpException exception = (HttpException) throwable;
-                            iNameView.showToast(exception.getMessage());
-                        } else {
-                            iNameView.showNetError();
+        if (NetUtils.isNetworkConnected(appContext)) {
+            //往后台修改个人信息时，照片总要传key
+            userInfoRes.setImage(PreferenceUtil.getString(appContext,PreferenceUtil.Key.EXTRA_PHOTO_TOKEN));
+            nameSubscription = tokenModel.updateUserInfo(userInfoRes)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<Void>() {
+                        @Override
+                        public void call(Void aVoid) {
+                            saveName(userInfoRes.getName());
                         }
-                    }
-                });
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            if (throwable instanceof retrofit2.HttpException) {
+                                retrofit2.HttpException exception = (HttpException) throwable;
+                                iNameView.showToast(exception.getMessage());
+                            } else {
+                                iNameView.showNetError();
+                            }
+                        }
+                    });
+        } else {
+            iNameView.showNetCantUse();
+        }
     }
 
     /**
      * 修改用户名
-     * @param name
-     * 先修改本地缓存
-     * 再同步更新leanchat与友盟
+     *
+     * @param name 先修改本地缓存
+     *             再同步更新leanchat与友盟
      */
     private void saveName(String name) {
         preferenceUtils.putString(name, PreferenceType.USER_NAME);
-        User user = (User) PreferenceUtil.getBean(appContext,PreferenceUtil.Key.EXTRA_COMMUSER);
+        User user = (User) PreferenceUtil.getBean(appContext, PreferenceUtil.Key.EXTRA_COMMUSER);
         user.setName(name);
 
         CommUser commUser = new CommUser();
@@ -94,7 +101,7 @@ public class NamePresenter implements INamePresenter {
 
             @Override
             public void onComplete(Response response) {
-                if(response.errCode== ErrorCode.NO_ERROR){
+                if (response.errCode == ErrorCode.NO_ERROR) {
                     iNameView.destroy();
                 }
             }
@@ -108,7 +115,7 @@ public class NamePresenter implements INamePresenter {
 
     @Override
     public void destroy() {
-        if(nameSubscription!=null){
+        if (nameSubscription != null) {
             nameSubscription.unsubscribe();
         }
     }

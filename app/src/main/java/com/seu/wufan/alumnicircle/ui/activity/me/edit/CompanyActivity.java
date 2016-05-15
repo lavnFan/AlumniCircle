@@ -2,13 +2,20 @@ package com.seu.wufan.alumnicircle.ui.activity.me.edit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
+import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
+import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
+import com.seu.wufan.alumnicircle.mvp.presenter.me.edit.CompanyPresenter;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.ICompanyView;
 import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActivity;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 
@@ -16,7 +23,7 @@ import butterknife.Bind;
  * @author wufan
  * @date 2016/2/20
  */
-public class CompanyActivity extends BaseSwipeActivity{
+public class CompanyActivity extends BaseSwipeActivity implements ICompanyView{
 
     @Bind(R.id.text_toolbar_tv)
     TextView mToolbarTv;
@@ -26,6 +33,10 @@ public class CompanyActivity extends BaseSwipeActivity{
     EditText mCompanyEt;
 
     public final static String EXTRA_COMPANY="company";
+    private UserInfoDetailRes userInfoDetailRes = new UserInfoDetailRes();
+
+    @Inject
+    CompanyPresenter companyPresenter;
 
     @Override
     protected int getContentView() {
@@ -34,15 +45,16 @@ public class CompanyActivity extends BaseSwipeActivity{
 
     @Override
     protected void prepareDatas() {
-
+        getApiComponent().inject(this);
+        companyPresenter.attachView(this);
     }
 
     @Override
     protected void initViewsAndEvents() {
         initToolBars();
 
-        String company= (getIntent().getExtras()==null)?null:getIntent().getExtras().getString(EXTRA_COMPANY);
-        mCompanyEt.setText(company);
+        userInfoDetailRes= (getIntent().getExtras()==null)?null: (UserInfoDetailRes) getIntent().getExtras().getSerializable(EXTRA_COMPANY);
+        mCompanyEt.setText(userInfoDetailRes.getCompany());
 
         mToolbarRightTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +64,8 @@ public class CompanyActivity extends BaseSwipeActivity{
                 Intent intent = new Intent();
                 intent.putExtras(bundle);
                 setResult(EditInformationActivity.REQUESTCODE_Company, intent);
-                finish();
+                userInfoDetailRes.setCompany(mCompanyEt.getText().toString());
+                companyPresenter.updateCompany(userInfoDetailRes);
             }
         });
     }
@@ -71,12 +84,22 @@ public class CompanyActivity extends BaseSwipeActivity{
     }
 
     @Override
-    public void onBackPressed() {
-        Bundle bundle = new Bundle();
-        bundle.putString(EXTRA_COMPANY, mCompanyEt.getText().toString());
-        Intent intent = new Intent();
-        intent.putExtras(bundle);
-        setResult(EditInformationActivity.REQUESTCODE_Company, intent);
-        super.onBackPressed();
+    public void destroy() {
+        finish();
+    }
+
+    @Override
+    public void showNetCantUse() {
+        ToastUtils.showNetCantUse(this);
+    }
+
+    @Override
+    public void showNetError() {
+        ToastUtils.showNetError(this);
+    }
+
+    @Override
+    public void showToast(@NonNull String s) {
+        ToastUtils.showToast(s,this);
     }
 }

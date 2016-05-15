@@ -120,29 +120,10 @@ public abstract class BaseFragment extends Fragment {
         getActivity().overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
     }
 
-    protected void showToast(String msg) {
-        if (null != msg && !CommonUtils.isEmpty(msg)) {
-            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-//            Snackbar.make(((Activity) getActivity()).getWindow().getDecorView(), msg, Snackbar.LENGTH_SHORT).show();
-        }
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-    }
-
-    protected void showNetWorkError() {
-        showToast(getResources().getString(R.string.network_error_tips));
-    }
-    protected void showInnerError(RetrofitError error) {
-        if (error != null)
-            if(error.getBody() == null){
-                showToast(getString(R.string.request_time_out));
-            }else{
-                showToast(CommonUtils.getErrorInfo(error).getReason());
-            }
     }
 
     /**

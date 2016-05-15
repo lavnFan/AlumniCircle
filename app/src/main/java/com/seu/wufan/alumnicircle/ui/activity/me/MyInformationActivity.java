@@ -1,7 +1,6 @@
 package com.seu.wufan.alumnicircle.ui.activity.me;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,10 +10,9 @@ import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
-import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.me.MyInformationPresenter;
-import com.seu.wufan.alumnicircle.mvp.views.activity.IMyInformationView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.IMyInformationView;
 import com.umeng.comm.core.beans.CommUser;
 import com.umeng.comm.core.constants.Constants;
 

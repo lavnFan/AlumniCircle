@@ -1,10 +1,14 @@
 package com.seu.wufan.alumnicircle.api.entity.item;
 
+import java.io.Serializable;
+
 /**
  * @author wufan
  * @date 2016/5/11
  */
-public class Job {
+public class Job implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * company :
@@ -13,11 +17,19 @@ public class Job {
      * info :
      */
 
+    private String id;
     private String company;
     private String job;
     private String duration;
     private String info;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getCompany() {
         return company;
     }

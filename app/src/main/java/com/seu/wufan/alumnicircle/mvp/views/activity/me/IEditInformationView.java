@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.mvp.views.activity;
+package com.seu.wufan.alumnicircle.mvp.views.activity.me;
 
 import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
@@ -15,5 +15,14 @@ public interface IEditInformationView extends IView{
     void initDetail(UserInfoDetailRes res);
 
     void setPhotoResult(String photo_path);
+
+    void setGender(String gender);
+
+    void setBirthDate(String date);
+
+    void setWorkCity(String city);
+
+    void setProfession(String profession);
+
 
 }

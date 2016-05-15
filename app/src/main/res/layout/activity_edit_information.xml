@@ -6,608 +6,614 @@
 
     <include layout="@layout/custom_toolbar" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_8_margin"
-        android:layout_marginRight="@dimen/activity_8_margin"
-        android:layout_marginTop="@dimen/activity_12_margin"
-        android:background="@drawable/text_bg"
+        android:layout_height="wrap_content">
 
-        android:orientation="vertical">
-
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_24_margin"
+            android:layout_marginLeft="@dimen/activity_8_margin"
+            android:layout_marginRight="@dimen/activity_8_margin"
+            android:layout_marginTop="@dimen/activity_12_margin"
+            android:background="@drawable/text_bg"
+
             android:orientation="vertical">
 
-            <TableRow
-                android:id="@+id/me_edit_info_photo_tr"
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_12_margin"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:gravity="center_vertical"
-                android:weightSum="5">
+                android:layout_marginBottom="@dimen/activity_24_margin"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="0dp"
+                <TableRow
+                    android:id="@+id/me_edit_info_photo_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/photo"
-                    android:textColor="@color/text_help" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_marginTop="@dimen/activity_10_margin"
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
                     android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:weightSum="5">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/photo"
+                        android:textColor="@color/text_help" />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/me_edit_info_photo_cv"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/activity_8_margin" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.8dp"
-                        android:layout_marginTop="@dimen/activity_12_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/me_edit_info_photo_cv"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/activity_8_margin" />
 
-            <TableRow
-                android:id="@+id/me_edit_info_name_tr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:paddingTop="@dimen/activity_12_margin"
-                android:weightSum="5">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="0dp"
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.8dp"
+                            android:layout_marginTop="@dimen/activity_10_margin"
+                            android:background="@color/divider_high" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/me_edit_info_name_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/name_"
-                    android:textColor="@color/text_help" />
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/activity_10_margin"
+                    android:weightSum="5">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/name_"
+                        android:textColor="@color/text_help" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/me_edit_info_name_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:textColor="@color/text_main" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.8dp"
+                            android:layout_marginTop="@dimen/activity_10_margin"
+                            android:background="@color/divider_high" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/me_edit_info_sex_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/activity_10_margin"
+                    android:weightSum="5">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/sex_"
+                        android:textColor="@color/text_help" />
 
-                        <TextView
-                            android:id="@+id/me_edit_info_name_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:textColor="@color/text_main" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.8dp"
-                        android:layout_marginTop="@dimen/activity_12_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
+                            <TextView
+                                android:id="@+id/me_edit_info_sex_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:hint="@string/please_select"
+                                android:textColor="@color/text_main"
+                                android:textColorHint="@color/text_hint" />
 
-            <TableRow
-                android:id="@+id/me_edit_info_sex_tr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:paddingTop="@dimen/activity_12_margin"
-                android:weightSum="5">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="0dp"
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.8dp"
+                            android:layout_marginTop="@dimen/activity_10_margin"
+                            android:background="@color/divider_high" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/me_edit_info_birth_date_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/sex_"
-                    android:textColor="@color/text_help" />
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/activity_10_margin"
+                    android:weightSum="5">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/borth_year_"
+                        android:textColor="@color/text_help" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/me_edit_info_birth_date_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:hint="@string/please_select"
+                                android:textColor="@color/text_main"
+                                android:textColorHint="@color/text_hint" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.8dp"
+                            android:layout_marginTop="@dimen/activity_10_margin"
+                            android:background="@color/divider_high" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/me_edit_info_work_city_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/activity_10_margin"
+                    android:weightSum="5">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/work_city_"
+                        android:textColor="@color/text_help" />
 
-                        <TextView
-                            android:id="@+id/me_edit_info_sex_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:hint="@string/please_select"
-                            android:textColor="@color/text_main"
-                            android:textColorHint="@color/text_hint" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.8dp"
-                        android:layout_marginTop="@dimen/activity_12_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
+                            <TextView
+                                android:id="@+id/me_edit_info_work_city_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:hint="@string/please_select"
+                                android:textColor="@color/text_main"
+                                android:textColorHint="@color/text_hint" />
 
-            <TableRow
-                android:id="@+id/me_edit_info_birth_date_tr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:paddingTop="@dimen/activity_12_margin"
-                android:weightSum="5">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="0dp"
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.8dp"
+                            android:layout_marginTop="@dimen/activity_10_margin"
+                            android:background="@color/divider_high" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/me_edit_info_job_prof_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/borth_year_"
-                    android:textColor="@color/text_help" />
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/activity_10_margin"
+                    android:weightSum="5">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/job_prof_"
+                        android:textColor="@color/text_help" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/me_edit_info_job_prof_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:hint="@string/please_select"
+                                android:textColor="@color/text_main"
+                                android:textColorHint="@color/text_hint" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.8dp"
+                            android:layout_marginTop="@dimen/activity_10_margin"
+                            android:background="@color/divider_high" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/me_edit_info_company_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/activity_10_margin"
+                    android:weightSum="5">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/company_"
+                        android:textColor="@color/text_help" />
 
-                        <TextView
-                            android:id="@+id/me_edit_info_birth_date_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:hint="@string/please_select"
-                            android:textColor="@color/text_main"
-                            android:textColorHint="@color/text_hint" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.8dp"
-                        android:layout_marginTop="@dimen/activity_12_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
+                            <TextView
+                                android:id="@+id/me_edit_info_company_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:hint="@string/please_write"
+                                android:textColor="@color/text_main"
+                                android:textColorHint="@color/text_hint" />
 
-            <TableRow
-                android:id="@+id/me_edit_info_work_city_tr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:paddingTop="@dimen/activity_12_margin"
-                android:weightSum="5">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="0dp"
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.8dp"
+                            android:layout_marginTop="@dimen/activity_10_margin"
+                            android:background="@color/divider_high" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/me_edit_info_prof_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/work_city_"
-                    android:textColor="@color/text_help" />
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/activity_10_margin"
+                    android:weightSum="5">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/prof_"
+                        android:textColor="@color/text_help" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/me_edit_info_job_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:hint="@string/please_write"
+                                android:textColor="@color/text_main"
+                                android:textColorHint="@color/text_hint" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.8dp"
+                            android:layout_marginTop="@dimen/activity_10_margin"
+                            android:background="@color/divider_high" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/me_edit_info_person_intro_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/activity_10_margin"
+                    android:weightSum="5">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/person_intro_"
+                        android:textColor="@color/text_help" />
 
-                        <TextView
-                            android:id="@+id/me_edit_info_work_city_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:hint="@string/please_select"
-                            android:textColor="@color/text_main"
-                            android:textColorHint="@color/text_hint" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.8dp"
-                        android:layout_marginTop="@dimen/activity_12_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
+                            <TextView
+                                android:id="@+id/me_edit_info_person_intro_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:hint="@string/please_write"
+                                android:textColor="@color/text_main"
+                                android:textColorHint="@color/text_hint" />
 
-            <TableRow
-                android:id="@+id/me_edit_info_job_prof_tr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:paddingTop="@dimen/activity_12_margin"
-                android:weightSum="5">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="0dp"
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.8dp"
+                            android:layout_marginTop="@dimen/activity_10_margin"
+                            android:background="@color/divider_high" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/me_edit_info_prof_exper_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/job_prof_"
-                    android:textColor="@color/text_help" />
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
+                    android:paddingTop="@dimen/activity_10_margin"
+                    android:weightSum="5">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/professional_experience"
+                        android:textColor="@color/text_help" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/me_edit_info_prof_exper_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:hint="@string/please_write"
+                                android:textColor="@color/text_main"
+                                android:textColorHint="@color/text_hint" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.8dp"
+                            android:layout_marginTop="@dimen/activity_10_margin"
+                            android:background="@color/divider_high" />
+                    </LinearLayout>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/me_edit_info_educ_exper_tr"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:background="@drawable/list_item_bg"
+                    android:clickable="true"
+                    android:paddingBottom="@dimen/activity_10_margin"
+                    android:paddingTop="@dimen/activity_10_margin"
+                    android:weightSum="5">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/educational_experience"
+                        android:textColor="@color/text_help" />
 
-                        <TextView
-                            android:id="@+id/me_edit_info_job_prof_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:hint="@string/please_select"
-                            android:textColor="@color/text_main"
-                            android:textColorHint="@color/text_hint" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.8dp"
-                        android:layout_marginTop="@dimen/activity_12_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
+                            <TextView
+                                android:id="@+id/me_edit_info_educ_exper_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:hint="@string/please_write"
+                                android:textColor="@color/text_main"
+                                android:textColorHint="@color/text_hint" />
 
-            <TableRow
-                android:id="@+id/me_edit_info_company_tr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:paddingTop="@dimen/activity_12_margin"
-                android:weightSum="5">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/company_"
-                    android:textColor="@color/text_help" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/me_edit_info_company_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:hint="@string/please_write"
-                            android:textColor="@color/text_main"
-                            android:textColorHint="@color/text_hint" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.8dp"
-                        android:layout_marginTop="@dimen/activity_12_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/me_edit_info_prof_tr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:paddingTop="@dimen/activity_12_margin"
-                android:weightSum="5">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/prof_"
-                    android:textColor="@color/text_help" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/me_edit_info_job_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:hint="@string/please_write"
-                            android:textColor="@color/text_main"
-                            android:textColorHint="@color/text_hint" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.8dp"
-                        android:layout_marginTop="@dimen/activity_12_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/me_edit_info_person_intro_tr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:paddingTop="@dimen/activity_12_margin"
-                android:weightSum="5">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/person_intro_"
-                    android:textColor="@color/text_help" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/me_edit_info_person_intro_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:hint="@string/please_write"
-                            android:textColor="@color/text_main"
-                            android:textColorHint="@color/text_hint" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.8dp"
-                        android:layout_marginTop="@dimen/activity_12_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/me_edit_info_prof_exper_tr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:paddingTop="@dimen/activity_12_margin"
-                android:weightSum="5">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/professional_experience"
-                    android:textColor="@color/text_help" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/me_edit_info_prof_exper_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:hint="@string/please_write"
-                            android:textColor="@color/text_main"
-                            android:textColorHint="@color/text_hint" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.8dp"
-                        android:layout_marginTop="@dimen/activity_12_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/me_edit_info_educ_exper_tr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/list_item_bg"
-                android:clickable="true"
-                android:paddingTop="@dimen/activity_12_margin"
-                android:weightSum="5">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/educational_experience"
-                    android:textColor="@color/text_help" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/me_edit_info_educ_exper_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_8_margin"
-                            android:hint="@string/please_write"
-                            android:textColor="@color/text_main"
-                            android:textColorHint="@color/text_hint" />
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginRight="@dimen/activity_20_margin"
-                            android:src="@drawable/arrow" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </TableRow>
-        </TableLayout>
-    </LinearLayout>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/activity_20_margin"
+                                android:src="@drawable/arrow" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

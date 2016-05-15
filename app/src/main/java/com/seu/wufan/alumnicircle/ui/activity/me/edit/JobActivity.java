@@ -2,13 +2,20 @@ package com.seu.wufan.alumnicircle.ui.activity.me.edit;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
+import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
+import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
+import com.seu.wufan.alumnicircle.mvp.presenter.me.edit.JobPresenter;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.IJobView;
 import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActivity;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 
@@ -17,7 +24,7 @@ import butterknife.Bind;
  * @author wufan
  * @date 2016/2/20
  */
-public class JobActivity extends BaseSwipeActivity {
+public class JobActivity extends BaseSwipeActivity implements IJobView{
     @Bind(R.id.text_toolbar_tv)
     TextView mToolbarTv;
     @Bind(R.id.text_toolbar_right_tv)
@@ -26,6 +33,11 @@ public class JobActivity extends BaseSwipeActivity {
     EditText mJobEt;
     public final static String EXTRA_JOB="job";
 
+    private UserInfoDetailRes userInfoDetailRes = new UserInfoDetailRes();
+
+    @Inject
+    JobPresenter jobPresenter;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_edit_job;
@@ -33,15 +45,16 @@ public class JobActivity extends BaseSwipeActivity {
 
     @Override
     protected void prepareDatas() {
-
+        getApiComponent().inject(this);
+        jobPresenter.attachView(this);
     }
 
     @Override
     protected void initViewsAndEvents() {
         initToolBars();
 
-        String job= (getIntent().getExtras()==null)?null:getIntent().getExtras().getString(EXTRA_JOB);
-        mJobEt.setText(job);
+        userInfoDetailRes= (getIntent().getExtras()==null)?null: (UserInfoDetailRes) getIntent().getExtras().getSerializable(EXTRA_JOB);
+        mJobEt.setText(userInfoDetailRes.getJob());
         mToolbarRightTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +63,8 @@ public class JobActivity extends BaseSwipeActivity {
                 Intent intent = new Intent();
                 intent.putExtras(bundle);
                 setResult(EditInformationActivity.REQUESTCODE_Job, intent);
-                finish();
+                userInfoDetailRes.setJob(mJobEt.getText().toString());
+                jobPresenter.updateJob(userInfoDetailRes);
             }
         });
     }
@@ -69,12 +83,22 @@ public class JobActivity extends BaseSwipeActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        Bundle bundle = new Bundle();
-        bundle.putString(EXTRA_JOB, mJobEt.getText().toString());
-        Intent intent = new Intent();
-        intent.putExtras(bundle);
-        setResult(EditInformationActivity.REQUESTCODE_Job, intent);
-        super.onBackPressed();
+    public void destroy() {
+        finish();
+    }
+
+    @Override
+    public void showNetCantUse() {
+        ToastUtils.showNetCantUse(this);
+    }
+
+    @Override
+    public void showNetError() {
+        ToastUtils.showNetError(this);
+    }
+
+    @Override
+    public void showToast(@NonNull String s) {
+        ToastUtils.showToast(s,this);
     }
 }

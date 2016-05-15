@@ -7,7 +7,7 @@ import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
-import com.seu.wufan.alumnicircle.mvp.views.activity.ISettingView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.ISettingView;
 
 import javax.inject.Inject;
 

@@ -1,11 +1,14 @@
 package com.seu.wufan.alumnicircle.api.entity.item;
 
+import java.io.Serializable;
+
 /**
  * @author wufan
  * @date 2016/5/11
  */
-public class Edu {
+public class Edu implements Serializable{
 
+        private static final long serialVersionUID = 1L;
     /**
      * school :
      * major :
@@ -14,11 +17,21 @@ public class Edu {
      * info :
      */
 
+    private String id;
     private String school;
     private String major;
     private String degree;
     private String duration;
     private String info;
+
+    public String getId() {
+
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getSchool() {
         return school;

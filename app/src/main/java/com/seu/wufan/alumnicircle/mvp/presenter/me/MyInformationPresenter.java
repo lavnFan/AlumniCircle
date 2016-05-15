@@ -10,7 +10,7 @@ import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
-import com.seu.wufan.alumnicircle.mvp.views.activity.IMyInformationView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.IMyInformationView;
 
 import javax.inject.Inject;
 

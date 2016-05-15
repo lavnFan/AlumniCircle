@@ -3,11 +3,10 @@ package com.seu.wufan.alumnicircle.mvp.presenter.me;
 import android.content.Context;
 
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
-import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
-import com.seu.wufan.alumnicircle.mvp.views.activity.IMyView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.IMyView;
 import com.umeng.comm.core.beans.CommUser;
 
 import javax.inject.Inject;

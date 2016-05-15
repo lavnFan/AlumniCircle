@@ -2,7 +2,6 @@ package com.seu.wufan.alumnicircle.ui.fragment;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,7 +10,7 @@ import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.me.MyPresenter;
-import com.seu.wufan.alumnicircle.mvp.views.activity.IMyView;
+import com.seu.wufan.alumnicircle.mvp.views.activity.me.IMyView;
 import com.seu.wufan.alumnicircle.ui.activity.me.EditInformationActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyCollectionActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyDynamicActivity;
@@ -175,6 +174,9 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
                     break;
                 case REQUESTCODE_PHOTO:
                     String photo_path = (data == null) ? null : data.getStringExtra(EditInformationActivity.EXTRA_PHOTO_PATH);
+                    if(photo_path!=null){
+                        CommonUtils.showCircleImageWithGlide(getActivity(),mPhotoCv,photo_path);
+                    }
                     break;
             }
         }

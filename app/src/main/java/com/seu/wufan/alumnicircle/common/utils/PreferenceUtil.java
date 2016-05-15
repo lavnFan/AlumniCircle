@@ -21,6 +21,7 @@ public class PreferenceUtil {
     public static class Key {
         public static final String USER_ID = "USER_ID";
         public static final String EXTRA_COMMUSER="commuser";
+        public static final String EXTRA_PHOTO_TOKEN="photo_token";
     }
 
     public static final String DEFAULT_STRING = "";

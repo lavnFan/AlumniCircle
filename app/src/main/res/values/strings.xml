@@ -91,6 +91,10 @@
     <string name="add_prof_exper">添加职业经历</string>
     <string name="company">公司</string>
     <string name="prof">职位</string>
+    <string name="prof_exp">职业经历</string>
+    <string name="edu_exp">教育经历</string>
+    <string name="degree">学历:</string>
+    <string name="degree_hint">填写学历名称(必填)</string>
     <string name="time_">时间:</string>
     <string name="must_write">必填</string>
     <string name="to">至</string>
@@ -103,4 +107,5 @@
     <string name="please_select">请选择</string>
     <string name="please_write">请填写</string>
     <string name="no_data">没有找到符合条件的房源</string>
+    <string name="delete_edu">删除教育经历</string>
 </resources>
