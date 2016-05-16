@@ -20,6 +20,7 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.item.Edus;
 import com.seu.wufan.alumnicircle.api.entity.item.Jobs;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
@@ -171,7 +172,6 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
 
         getApiComponent().inject(this);
         editInformationPresenter.attachView(this);
-
     }
 
     @Override
@@ -345,12 +345,19 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                 mPersonIntroTv.setText(personInfo);
                 break;
             case REQUESTCODE_EDU_HISTORY:
+                Edus edus = (data==null)?null: (Edus) data.getSerializableExtra(EducationActivity.EXTRA_EDU_LIST);
+                if(edus!=null){
+                    editInformationPresenter.initDetail();
+                }else{
+                    mEducExperTv.setText(R.string.please_write);
+                }
                 break;
             case REQUESTCODE_JOB_HISTORY:
                 Jobs jobs = (data==null)?null: (Jobs) data.getSerializableExtra(ProfExperShowJobFragmentToActivity.EXTRA_JOB_LIST);
                 if(jobs!=null){
-                    TLog.i("TAG","update job history");
                     editInformationPresenter.initDetail();
+                }else{
+                    mJobProfTv.setText(R.string.please_write);
                 }
                 break;
             case RESULT_OK:
@@ -436,8 +443,6 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
 
     @Override
     public void initDetail(UserInfoDetailRes res) {
-
-        TLog.i("TAG","init detail!");
         mSexTv.setText(res.getGender());
         mBirthDateTv.setText(res.getBirthday());
         mWorkCityTv.setText(res.getCity());
@@ -452,12 +457,17 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
             mProfExperTv.setText(jobs);
         }else if(res.getJobHistory().size()==1){
             mProfExperTv.setText(res.getJobHistory().get(0).getCompany());
+        }else if(res.getJobHistory().size()==0){
+            mProfExperTv.setText(R.string.please_write);
         }
+
         if(res.getEduHistory().size()>1){
-            String schools = res.getEduHistory().get(0).getSchool()+"等"+res.getEduHistory().size()+"个工作";
+            String schools = res.getEduHistory().get(0).getSchool()+"等"+res.getEduHistory().size()+"个学校";
             mEducExperTv.setText(schools);
         }else if(res.getEduHistory().size()==1){
             mEducExperTv.setText(res.getEduHistory().get(0).getSchool());
+        }else if(res.getEduHistory().size()==0){
+            mEducExperTv.setText(R.string.please_write);
         }
     }
 

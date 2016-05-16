@@ -108,4 +108,12 @@
     <string name="please_write">请填写</string>
     <string name="no_data">没有找到符合条件的房源</string>
     <string name="delete_edu">删除教育经历</string>
+    <string name="add_edu">添加教育经历</string>
+    <string name="delete_job">删除职业经历</string>
+    <string name="school_">学校:</string>
+    <string name="school_hint">填写学校名称(必填)</string>
+    <string name="major_">专业:</string>
+    <string name="major_hint_must">填写专业信息(必填)</string>
+    <string name="edu_intro_hint">教育经历描述,仅限50字内</string>
+    <string name="edu_describe">更多描述</string>
 </resources>

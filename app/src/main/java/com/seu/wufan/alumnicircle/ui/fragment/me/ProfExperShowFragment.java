@@ -72,7 +72,7 @@ public class ProfExperShowFragment extends BaseFragment {
         return null;
     }
 
-    @OnClick(R.id.me_edit_info_prof_exper_show_linear_layout)
+       @OnClick(R.id.me_edit_info_prof_exper_show_linear_layout)
     public void onClick() {
         listener.replaceFragment(null);
     }

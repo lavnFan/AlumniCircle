@@ -11,4 +11,6 @@ public interface IEduShowPresenter extends IPresenter{
 
     void saveEdu(Edu edu);
 
+    void updateEdu(String id,Edu edu);
+
 }

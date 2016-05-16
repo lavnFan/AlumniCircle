@@ -131,6 +131,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
 
+
         <!--leanchat-->
 
         <activity android:name="com.avoscloud.leanchatlib.activity.AVChatActivity"/>

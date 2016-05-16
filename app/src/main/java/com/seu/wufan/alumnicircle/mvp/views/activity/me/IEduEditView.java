@@ -8,6 +8,6 @@ import com.seu.wufan.alumnicircle.mvp.views.IView;
  */
 public interface IEduEditView extends IView {
 
-    void backEdit();
+    void backEdit(int REQUEST_CODE);
 
 }

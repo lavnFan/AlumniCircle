@@ -8,6 +8,6 @@ import com.seu.wufan.alumnicircle.mvp.presenter.IPresenter;
  */
 public interface IEduEditPresenter extends IPresenter{
 
-    void delete(String id);
+    void deleteEdu(String id);
 
 }

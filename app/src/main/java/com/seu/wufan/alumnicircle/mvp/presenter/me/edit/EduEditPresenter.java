@@ -4,11 +4,13 @@ import android.content.Context;
 
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.me.IEduEditView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.me.IEduShowView;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.EducationActivity;
 
 import javax.inject.Inject;
 
@@ -38,27 +40,28 @@ public class EduEditPresenter implements IEduEditPresenter{
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteEdu(String id) {
         if(NetUtils.isNetworkConnected(appContext)){
-        subscription = userModel.deleteEduHistory(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Void>() {
-                    @Override
-                    public void call(Void aVoid) {
-
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        if(throwable instanceof retrofit2.HttpException){
-                            retrofit2.HttpException exception = (HttpException) throwable;
-                            iEduEditView.showToast(exception.getMessage());
-                        }else{
-                            iEduEditView.showNetError();
+            subscription = userModel.deleteEduHistory(id)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<Void>() {
+                        @Override
+                        public void call(Void aVoid) {
+                            TLog.i("TAG","edu delete!");
+                            iEduEditView.backEdit(EducationActivity.REQUEST_DELETE);
                         }
-                    }
-                });
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            if(throwable instanceof retrofit2.HttpException){
+                                retrofit2.HttpException exception = (HttpException) throwable;
+                                iEduEditView.showToast(exception.getMessage());
+                            }else{
+                                iEduEditView.showNetError();
+                            }
+                        }
+                    });
         }else{
             iEduEditView.showNetCantUse();
         }
@@ -75,4 +78,6 @@ public class EduEditPresenter implements IEduEditPresenter{
             subscription.unsubscribe();
         }
     }
+
+
 }

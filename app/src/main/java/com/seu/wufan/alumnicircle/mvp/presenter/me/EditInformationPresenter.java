@@ -265,7 +265,6 @@ public class EditInformationPresenter implements IEditInformationPresenter {
                 .subscribe(new Action1<UserInfoDetailRes>() {
                     @Override
                     public void call(UserInfoDetailRes getUserInfoDetailRes) {
-                        TLog.i("TAG", "init detail edit !");
                         userDetail = getUserInfoDetailRes;
                         editInformationView.initDetail(userDetail);
                     }

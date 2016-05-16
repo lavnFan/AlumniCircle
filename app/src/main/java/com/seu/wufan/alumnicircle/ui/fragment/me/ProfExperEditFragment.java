@@ -11,6 +11,7 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.Job;
 import com.seu.wufan.alumnicircle.common.base.BaseFragment;
+import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.me.edit.JobHistoryEditPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.me.IJobEditView;
@@ -81,7 +82,9 @@ public class ProfExperEditFragment extends BaseFragment implements IJobEditView 
             mJobIntroEt.setText(job.getInfo());
 
             //时间需要分裂显示
-            mTimeEndTv.setText(job.getDuration());
+            String[] timeArray = job.getDuration().split("-");
+            mTimeStartTv.setText(timeArray[0]);
+            mTimeEndTv.setText(timeArray[1]);
         } else {
             mDeleteTv.setVisibility(View.INVISIBLE);
         }
@@ -173,11 +176,19 @@ public class ProfExperEditFragment extends BaseFragment implements IJobEditView 
         if(this.job!=null){
             job = this.job;
         }
-        job.setCompany(mCompanyEt.getText().toString());
-        job.setDuration(mTimeStartTv.getText().toString() + "-" + mTimeEndTv.getText().toString());
-        job.setJob(mJobEt.getText().toString());
-        job.setInfo(mJobIntroEt.getText().toString());
-        callBack.keepJob(job);
+        if(mCompanyEt.getText().toString().isEmpty()
+                ||mTimeStartTv.getText().toString().isEmpty()
+                ||mTimeEndTv.getText().toString().isEmpty()
+                ||mJobEt.getText().toString().isEmpty()
+                ||mJobIntroEt.getText().toString().isEmpty()){
+            showToast("请填写必填项！");
+        }else{
+            job.setCompany(mCompanyEt.getText().toString());
+            job.setDuration(mTimeStartTv.getText().toString() + "-" + mTimeEndTv.getText().toString());
+            job.setJob(mJobEt.getText().toString());
+            job.setInfo(mJobIntroEt.getText().toString());
+            callBack.keepJob(job);
+        }
     }
 
     @Override

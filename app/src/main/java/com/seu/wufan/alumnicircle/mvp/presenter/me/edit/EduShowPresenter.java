@@ -12,6 +12,7 @@ import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.me.IEduShowView;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.EducationActivity;
 
 import javax.inject.Inject;
 
@@ -29,6 +30,7 @@ public class EduShowPresenter implements IEduShowPresenter {
 
     private IEduShowView iEduShowView;
     private Subscription subscription;
+    private Subscription updateSubscription;
     private PreferenceUtils preferenceUtils;
     private UserModel userModel;
     private Context appContext;
@@ -42,15 +44,15 @@ public class EduShowPresenter implements IEduShowPresenter {
 
     @Override
     public void saveEdu(final Edu edu) {
-        if(NetUtils.isNetworkConnected(appContext)){
+        if (NetUtils.isNetworkConnected(appContext)) {
             subscription = userModel.addEduHistory(edu)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Action1<EduRes>() {
                         @Override
                         public void call(EduRes eduRes) {
-                            TLog.i("TAG","add edu"+eduRes.getId());
-                            iEduShowView.backEdit();
+                            TLog.i("TAG","edu save!");
+                            iEduShowView.backEdit(edu, EducationActivity.REQUEST_ADD);
                         }
                     }, new Action1<Throwable>() {
                         @Override
@@ -63,7 +65,35 @@ public class EduShowPresenter implements IEduShowPresenter {
                             }
                         }
                     });
-        }else{
+        } else {
+            iEduShowView.showNetCantUse();
+        }
+    }
+
+    @Override
+    public void updateEdu(String id, final Edu edu) {
+        if (NetUtils.isNetworkConnected(appContext)) {
+            updateSubscription = userModel.updateEduHistory(id, edu)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<Void>() {
+                        @Override
+                        public void call(Void aVoid) {
+                            TLog.i("TAG","edu update!");
+                            iEduShowView.backEdit(edu, EducationActivity.REQUEST_UPDATE);
+                        }
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            if (throwable instanceof retrofit2.HttpException) {
+                                retrofit2.HttpException exception = (HttpException) throwable;
+                                iEduShowView.showToast(exception.getMessage());
+                            } else {
+                                iEduShowView.showNetError();
+                            }
+                        }
+                    });
+        } else {
             iEduShowView.showNetCantUse();
         }
     }
