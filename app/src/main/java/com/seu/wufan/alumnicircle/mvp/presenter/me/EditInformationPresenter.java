@@ -57,6 +57,7 @@ public class EditInformationPresenter implements IEditInformationPresenter {
 
     UserInfoRes userInfo = new UserInfoRes();
     UserInfoDetailRes userDetail = new UserInfoDetailRes();
+    private String user_id = null;
 
     @Inject
     public EditInformationPresenter(@ForApplication Context context, UploadImageUntil uploadImageUntil, TokenModel tokenModel, UserModel userModel, PreferenceUtils preferenceUtils) {
@@ -79,7 +80,7 @@ public class EditInformationPresenter implements IEditInformationPresenter {
                             @Override
                             public void complete(final String key, ResponseInfo info, JSONObject response) {
                                 userInfo.setImage(key);
-                                PreferenceUtil.putString(appContext,PreferenceUtil.Key.EXTRA_PHOTO_TOKEN,key);
+                                PreferenceUtil.putString(appContext, PreferenceUtil.Key.EXTRA_PHOTO_TOKEN, key);
                                 //更新到后台、leancloud与友盟
                                 updateSubscription = tokenModel.updateUserInfo(userInfo)
                                         .subscribeOn(Schedulers.io())
@@ -214,38 +215,59 @@ public class EditInformationPresenter implements IEditInformationPresenter {
      * @param photo_path 同时上传到友盟和leancloud上，保持同步
      */
     private void updatePhoto(String photo_path) {
-        preferenceUtils.putString(photo_path,PreferenceType.USER_PHOTO);
+        preferenceUtils.putString(photo_path, PreferenceType.USER_PHOTO);
         editInformationView.setPhotoResult(photo_path);
     }
 
     @Override
     public void init() {
-        Subscription s = preferenceUtils.getUserId()
+        if (NetUtils.isNetworkConnected(appContext)) {
+            Subscription s = preferenceUtils.getUserId()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String s) {
+                            user_id = s;
+                            userInfoSubscription = tokenModel.getUserInfo(s)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(new Action1<UserInfoRes>() {
+                                        @Override
+                                        public void call(UserInfoRes userInfoRes) {
+                                            userInfo = userInfoRes;
+                                            editInformationView.initUserInfo(userInfoRes);
+                                        }
+                                    });
+                            userDetailSubscription = userModel.getUserInfoResObservable(s)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(new Action1<UserInfoDetailRes>() {
+                                        @Override
+                                        public void call(UserInfoDetailRes getUserInfoDetailRes) {
+                                            userDetail = getUserInfoDetailRes;
+                                            editInformationView.initDetail(userDetail);
+                                        }
+                                    });
+                        }
+                    });
+        } else {
+            editInformationView.showNetCantUse();
+            editInformationView.initNone();
+        }
+    }
+
+    @Override
+    public void initDetail() {
+        userDetailSubscription = userModel.getUserInfoResObservable(user_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>() {
+                .subscribe(new Action1<UserInfoDetailRes>() {
                     @Override
-                    public void call(String s) {
-                        userInfoSubscription = tokenModel.getUserInfo(s)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(new Action1<UserInfoRes>() {
-                                    @Override
-                                    public void call(UserInfoRes userInfoRes) {
-                                        userInfo = userInfoRes;
-                                        editInformationView.initUserInfo(userInfoRes);
-                                    }
-                                });
-                        userDetailSubscription = userModel.getUserInfoResObservable(s)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(new Action1<UserInfoDetailRes>() {
-                                    @Override
-                                    public void call(UserInfoDetailRes getUserInfoDetailRes) {
-                                        userDetail = getUserInfoDetailRes;
-                                        editInformationView.initDetail(userDetail);
-                                    }
-                                });
+                    public void call(UserInfoDetailRes getUserInfoDetailRes) {
+                        TLog.i("TAG", "init detail edit !");
+                        userDetail = getUserInfoDetailRes;
+                        editInformationView.initDetail(userDetail);
                     }
                 });
     }
@@ -276,16 +298,16 @@ public class EditInformationPresenter implements IEditInformationPresenter {
         if (tokenSubscription != null) {
             tokenSubscription.unsubscribe();
         }
-        if(updateBirthdaySubscription!=null){
+        if (updateBirthdaySubscription != null) {
             updateBirthdaySubscription.unsubscribe();
         }
-        if(updateGenderSubscription!=null){
+        if (updateGenderSubscription != null) {
             updateGenderSubscription.unsubscribe();
         }
-        if(updateProfessionSubscription!=null){
+        if (updateProfessionSubscription != null) {
             updateProfessionSubscription.unsubscribe();
         }
-        if(updateCitySubscription!=null){
+        if (updateCitySubscription != null) {
             updateCitySubscription.unsubscribe();
         }
     }

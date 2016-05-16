@@ -13,7 +13,7 @@ import com.seu.wufan.alumnicircle.ui.activity.me.edit.CompanyActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.JobActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.NameActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.PersonIntroActivity;
-import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperShowFragmentToActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperShowJobFragmentToActivity;
 import com.seu.wufan.alumnicircle.ui.fragment.ContactsFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.MyFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.circle.CircleFragment;
@@ -53,7 +53,7 @@ public interface ApiComponent {
 
     void inject(ProfExperEditFragment profExperEditFragment);
 
-    void inject(ProfExperShowFragmentToActivity profExperShowFragmentToActivity);
+    void inject(ProfExperShowJobFragmentToActivity profExperShowFragmentToActivity);
 
 
     void inject(CircleFragment circleFragment);

@@ -11,4 +11,6 @@ public interface IJobHistoryShowPresenter extends IPresenter{
 
     void saveJob(Job job);
 
+    void updateJob(String id,Job job);
+
 }

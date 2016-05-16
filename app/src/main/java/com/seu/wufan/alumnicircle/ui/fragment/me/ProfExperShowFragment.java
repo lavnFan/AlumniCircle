@@ -9,12 +9,11 @@ import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.Job;
 import com.seu.wufan.alumnicircle.api.entity.item.Jobs;
 import com.seu.wufan.alumnicircle.common.base.BaseFragment;
-import com.seu.wufan.alumnicircle.common.utils.TLog;
-import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperShowFragmentToActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperShowJobFragmentToActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.me.JobItemAdapter;
 import com.seu.wufan.alumnicircle.ui.widget.LoadMoreListView;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -29,13 +28,14 @@ public class ProfExperShowFragment extends BaseFragment {
     @Bind(R.id.edit_prof_exper_lm_lv)
     LoadMoreListView loadMoreListView;
 
-    ShowFragmentToActivityListener listener;
-    private Jobs jobs;
+    ShowJobFragmentToActivityListener listener;
     JobItemAdapter jobItemAdapter;
+    private Jobs jobs;
+    private int jobPosition = 0;
 
-    public static ProfExperShowFragment newInstance(Jobs jobs){
+    public static ProfExperShowFragment newInstance(Jobs jobs) {
         Bundle args = new Bundle();
-        args.putSerializable(ProfExperShowFragmentToActivity.EXTRA_JOB,jobs);
+        args.putSerializable(ProfExperShowJobFragmentToActivity.EXTRA_JOB, jobs);
         ProfExperShowFragment fragment = new ProfExperShowFragment();
         fragment.setArguments(args);
         return fragment;
@@ -48,12 +48,12 @@ public class ProfExperShowFragment extends BaseFragment {
 
     @Override
     public void initViews(View view) {
-        jobs = (Jobs) getArguments().getSerializable(ProfExperShowFragmentToActivity.EXTRA_JOB);
+        jobs = (Jobs) getArguments().getSerializable(ProfExperShowJobFragmentToActivity.EXTRA_JOB);
     }
 
     @Override
     public void initDatas() {
-        jobItemAdapter  = new JobItemAdapter(getActivity());
+        jobItemAdapter = new JobItemAdapter(getActivity());
         jobItemAdapter.setmEntities(jobs.getJobs());
         loadMoreListView.setAdapter(jobItemAdapter);
         jobItemAdapter.notifyDataSetChanged();
@@ -61,6 +61,8 @@ public class ProfExperShowFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //根据id进入对应的职业，进行修改
+                jobPosition = position;
+                listener.replaceFragment(jobs.getJobs().get(position));
             }
         });
     }
@@ -78,8 +80,32 @@ public class ProfExperShowFragment extends BaseFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if(activity instanceof ShowFragmentToActivityListener){
-            listener = (ShowFragmentToActivityListener) activity;
+        if (activity instanceof ShowJobFragmentToActivityListener) {
+            listener = (ShowJobFragmentToActivityListener) activity;
         }
     }
+
+    public Jobs updateShow(Job job, int REQUEST_CODE) {    //当数据发生改变时，fragment进行更新
+        switch (REQUEST_CODE) {
+            case ProfExperShowJobFragmentToActivity.REQUEST_ADD:
+                List<Job> jobs = new ArrayList<>();
+                jobs.add(job);
+                jobItemAdapter.addEntities(jobs);
+                jobItemAdapter.notifyDataSetChanged();
+                break;
+            case ProfExperShowJobFragmentToActivity.REQUEST_UPDATE:
+                this.jobs.getJobs().get(jobPosition).setJob(job.getJob());
+                this.jobs.getJobs().get(jobPosition).setDuration(job.getDuration());
+                jobItemAdapter.setmEntities(this.jobs.getJobs());
+                jobItemAdapter.notifyDataSetChanged();
+                break;
+            case ProfExperShowJobFragmentToActivity.REQUEST_DELETE:
+                this.jobs.getJobs().remove(jobPosition);
+                jobItemAdapter.setmEntities(this.jobs.getJobs());
+                jobItemAdapter.notifyDataSetChanged();
+                break;
+        }
+        return this.jobs;
+    }
+
 }

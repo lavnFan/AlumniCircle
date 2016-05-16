@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.item.Jobs;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.me.EditInformationPresenter;
@@ -28,7 +30,7 @@ import com.seu.wufan.alumnicircle.ui.activity.me.edit.EducationActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.JobActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.NameActivity;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.PersonIntroActivity;
-import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperShowFragmentToActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperShowJobFragmentToActivity;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.ui.fragment.MyFragment;
@@ -117,14 +119,18 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
     TextView mProfExperTv;
     @Bind(R.id.me_edit_info_educ_exper_tv)
     TextView mEducExperTv;
+    @Bind(R.id.me_edit_info_ll)
+    LinearLayout mInfoLl;
 
     public final static String EXTRA_PHOTO_PATH = "photo_path";
 
-    public final static int REQUESTCODE_Person_Intro = 5;
     public final static int REQUESTCODE_Company = 1;
     public final static int REQUESTCODE_Name = 2;
     public final static int REQUESTCODE_Job = 3;
     public final static int REQUESTCODE_Photo = 4;
+    public final static int REQUESTCODE_Person_Intro = 5;
+    public final static int REQUESTCODE_EDU_HISTORY = 6;
+    public final static int REQUESTCODE_JOB_HISTORY = 7;
 
     TimePickerView pvTime;
     OptionsPickerView pvOptions;
@@ -185,7 +191,7 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
 
     @Override
     protected View getLoadingTargetView() {
-        return null;
+        return mInfoLl;
     }
 
     @OnClick({R.id.me_edit_info_photo_tr, R.id.me_edit_info_name_tr, R.id.me_edit_info_sex_tr,
@@ -247,13 +253,13 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                 break;
             case R.id.me_edit_info_prof_exper_tr:
                 //职业经历
-                bundle.putSerializable(ProfExperShowFragmentToActivity.EXTRA_JOB ,editInformationPresenter.getUserDetail());
-                readyGo(ProfExperShowFragmentToActivity.class,bundle);
+                bundle.putSerializable(ProfExperShowJobFragmentToActivity.EXTRA_JOB ,editInformationPresenter.getUserDetail());
+                readyGoForResult(ProfExperShowJobFragmentToActivity.class,REQUESTCODE_JOB_HISTORY,bundle);
                 break;
             case R.id.me_edit_info_educ_exper_tr:
                 //教育经历
                 bundle.putSerializable(EducationActivity.EXTRA_EDU ,editInformationPresenter.getUserDetail());
-                readyGo(EducationActivity.class,bundle);
+                readyGoForResult(EducationActivity.class,REQUESTCODE_EDU_HISTORY,bundle);
                 break;
         }
     }
@@ -338,6 +344,15 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                 }
                 mPersonIntroTv.setText(personInfo);
                 break;
+            case REQUESTCODE_EDU_HISTORY:
+                break;
+            case REQUESTCODE_JOB_HISTORY:
+                Jobs jobs = (data==null)?null: (Jobs) data.getSerializableExtra(ProfExperShowJobFragmentToActivity.EXTRA_JOB_LIST);
+                if(jobs!=null){
+                    TLog.i("TAG","update job history");
+                    editInformationPresenter.initDetail();
+                }
+                break;
             case RESULT_OK:
                 switch (requestCode) {
                     case REQUESTCODE_Photo:
@@ -403,13 +418,26 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
     }
 
     @Override
+    public void initNone() {
+        toggleShowEmpty(true, null, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editInformationPresenter.init();
+            }
+        });
+    }
+
+    @Override
     public void initUserInfo(UserInfoRes res) {
+        toggleRestore();
         mNameTv.setText(res.getName());
         CommonUtils.showCircleImageWithGlide(this, mPhotoCv, res.getImage());
     }
 
     @Override
     public void initDetail(UserInfoDetailRes res) {
+
+        TLog.i("TAG","init detail!");
         mSexTv.setText(res.getGender());
         mBirthDateTv.setText(res.getBirthday());
         mWorkCityTv.setText(res.getCity());
@@ -417,8 +445,20 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
         mCompanyTv.setText(res.getCompany());
         mJobTv.setText(res.getJob());
         mPersonIntroTv.setText(res.getIntroduction());
-//        mProfExperTv.setText(res.getJobHistory().get(0).toString());
-//        mEducExperTv.setText(res.getEduHistory().get(0).toString());
+
+        //根据条目来分别显示职业或教育的信息
+        if(res.getJobHistory().size()>1){
+            String jobs = res.getJobHistory().get(0).getCompany()+"等"+res.getJobHistory().size()+"个工作";
+            mProfExperTv.setText(jobs);
+        }else if(res.getJobHistory().size()==1){
+            mProfExperTv.setText(res.getJobHistory().get(0).getCompany());
+        }
+        if(res.getEduHistory().size()>1){
+            String schools = res.getEduHistory().get(0).getSchool()+"等"+res.getEduHistory().size()+"个工作";
+            mEducExperTv.setText(schools);
+        }else if(res.getEduHistory().size()==1){
+            mEducExperTv.setText(res.getEduHistory().get(0).getSchool());
+        }
     }
 
     @Override

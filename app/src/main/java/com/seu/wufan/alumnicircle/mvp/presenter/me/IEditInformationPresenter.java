@@ -12,6 +12,8 @@ public interface IEditInformationPresenter extends IPresenter{
 
     void init();
 
+    void initDetail();
+
     UserInfoRes getUserInfo();
 
     UserInfoDetailRes getUserDetail();

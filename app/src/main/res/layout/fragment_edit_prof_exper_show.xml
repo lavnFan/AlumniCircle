@@ -8,30 +8,23 @@
         android:id="@+id/edit_prof_exper_lm_lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_12_margin" />
+        android:layout_marginTop="@dimen/activity_24_margin" />
 
     <LinearLayout
         android:id="@+id/me_edit_info_prof_exper_show_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_8_margin"
-        android:layout_marginRight="@dimen/activity_8_margin"
-        android:layout_marginTop="@dimen/activity_16_margin"
+        android:layout_marginTop="@dimen/activity_24_margin"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="@dimen/activity_8_margin">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/add_selected" />
+        android:padding="@dimen/activity_12_margin">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_prof_exper"
-            android:textColor="@color/text_help" />
+            android:textColor="@color/black" />
     </LinearLayout>
 
 </LinearLayout>

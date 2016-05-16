@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_8_margin"
         android:layout_marginRight="@dimen/activity_8_margin"
-        android:layout_marginTop="@dimen/activity_12_margin"
+        android:layout_marginTop="@dimen/activity_24_margin"
         android:background="@drawable/text_bg"
         android:orientation="vertical">
 
@@ -165,9 +165,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_24_margin"
         android:background="@color/white"
-        android:paddingBottom="@dimen/activity_10_margin"
+        android:paddingBottom="@dimen/activity_12_margin"
         android:paddingLeft="@dimen/activity_16_margin"
-        android:paddingTop="@dimen/activity_10_margin"
+        android:paddingTop="@dimen/activity_12_margin"
         android:text="@string/delete_edu"
         android:textColor="@color/black" />
 

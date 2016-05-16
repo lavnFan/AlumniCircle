@@ -10,8 +10,10 @@ import com.seu.wufan.alumnicircle.mvp.views.IView;
  */
 public interface IEditInformationView extends IView{
 
+    void initNone();
 
     void initUserInfo(UserInfoRes res);
+
     void initDetail(UserInfoDetailRes res);
 
     void setPhotoResult(String photo_path);

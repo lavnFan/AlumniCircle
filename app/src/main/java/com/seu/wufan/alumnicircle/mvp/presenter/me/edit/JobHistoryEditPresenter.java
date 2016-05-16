@@ -7,8 +7,8 @@ import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
-import com.seu.wufan.alumnicircle.mvp.views.activity.me.IEduEditView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.me.IJobEditView;
+import com.seu.wufan.alumnicircle.ui.activity.me.edit.ProfExperShowJobFragmentToActivity;
 
 import javax.inject.Inject;
 
@@ -46,7 +46,7 @@ public class JobHistoryEditPresenter implements IJobHistoryEditPresenter{
                     .subscribe(new Action1<Void>() {
                         @Override
                         public void call(Void aVoid) {
-
+                            iJobEditView.backEdit(ProfExperShowJobFragmentToActivity.REQUEST_DELETE);
                         }
                     }, new Action1<Throwable>() {
                         @Override

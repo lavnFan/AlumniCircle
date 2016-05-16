@@ -97,7 +97,7 @@
             android:name=".ui.activity.me.SettingSwipeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.me.edit.ProfExperShowFragmentToActivity"
+            android:name=".ui.activity.me.edit.ProfExperShowJobFragmentToActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.me.edit.CompanyActivity"

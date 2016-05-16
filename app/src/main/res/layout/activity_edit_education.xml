@@ -5,7 +5,9 @@
 
     <include layout="@layout/tool_bar"/>
 
-
-
+    <FrameLayout
+        android:id="@+id/edit_edu_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
