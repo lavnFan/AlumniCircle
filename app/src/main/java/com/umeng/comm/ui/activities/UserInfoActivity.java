@@ -245,7 +245,6 @@ public final class UserInfoActivity extends UserInfoBaseActivity {
         });
     }
 
-
     @Override
     public void onClick(View v) {
         int id = v.getId();

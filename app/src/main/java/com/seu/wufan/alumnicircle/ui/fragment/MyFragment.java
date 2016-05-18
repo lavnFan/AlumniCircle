@@ -1,12 +1,15 @@
 package com.seu.wufan.alumnicircle.ui.fragment;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
+import com.seu.wufan.alumnicircle.api.entity.item.User;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
+import com.seu.wufan.alumnicircle.common.utils.PreferenceUtil;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.me.MyPresenter;
@@ -22,6 +25,7 @@ import com.seu.wufan.alumnicircle.common.base.BaseLazyFragment;
 import com.seu.wufan.alumnicircle.ui.activity.me.edit.NameActivity;
 import com.umeng.comm.core.beans.CommUser;
 import com.umeng.comm.core.constants.Constants;
+import com.umeng.comm.ui.activities.UserInfoActivity;
 
 import javax.inject.Inject;
 
@@ -48,6 +52,7 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
     public final static int REQUESTCODE_PHOTO = 1;
     public final static int REQUESTCODE_Name = 2;
     public final static int REQUESTCODE = 3;
+    public static final String EXTRA_USER_ID="user_id";
 
     @Override
     protected void onFirstUserVisible() {
@@ -76,7 +81,8 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
     @Override
     protected void initViewsAndEvents() {
         myPresenter.init();
-
+        User use = (User) PreferenceUtil.getBean(getActivity(),PreferenceUtil.Key.EXTRA_COMMUSER);
+        user.sourceUid = use.getUser_id();
     }
 
     @Override
@@ -88,7 +94,6 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
     void myInformation() {
         Intent intent = new Intent(getActivity(),
                 MyInformationActivity.class);
-        myPresenter.getUid();
         intent.putExtra(Constants.TAG_USER, user);
         startActivity(intent);
     }
@@ -105,7 +110,18 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
 
     @OnClick(R.id.me_my_dynamic_relative_layout)
     void myDynamic() {
-        readyGo(MyDynamicActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putString(EXTRA_USER_ID,user.sourceUid);
+//        readyGo(MyDynamicActivity.class,bundle);
+        myPresenter.goDynamic();
+    }
+
+    @Override
+    public void goDynamic(CommUser result) {
+        Intent intent = new Intent(getActivity(),
+                UserInfoActivity.class);
+        intent.putExtra(Constants.TAG_USER, result);
+        startActivity(intent);
     }
 
     @OnClick(R.id.me_my_message_relative_layout)
@@ -115,7 +131,9 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
 
     @OnClick(R.id.me_my_collection_relative_layout)
     void myCollection() {
-        readyGo(MyCollectionActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_USER_ID,user.sourceUid);
+        readyGo(MyCollectionActivity.class,bundle);
     }
 
     @OnClick(R.id.me_setting_relative_layout)

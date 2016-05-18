@@ -14,6 +14,15 @@ public class User implements Serializable{
     private String name;
     private String image;
     private String gender;
+    private String umeng_id;
+
+    public String getUmeng_id() {
+        return umeng_id;
+    }
+
+    public void setUmeng_id(String umeng_id) {
+        this.umeng_id = umeng_id;
+    }
 
     public String getUser_id() {
         return user_id;

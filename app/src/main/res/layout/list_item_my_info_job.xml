@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/activity_8_margin"
+        android:layout_marginRight="@dimen/activity_8_margin"
+        android:background="@color/divider_low" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_12_margin"
+        android:layout_marginLeft="@dimen/activity_8_margin"
+        android:layout_marginRight="@dimen/activity_8_margin"
+        android:layout_marginTop="@dimen/activity_12_margin">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/my_info_dynamic_iv"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/logo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_8_margin"
+            android:layout_marginTop="@dimen/activity_4_margin"
+            android:layout_toRightOf="@+id/my_info_dynamic_iv"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_info_job_company_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="阿里巴巴无线事业部"
+                android:textColor="@color/text_main" />
+
+            <TextView
+                android:id="@+id/item_info_job_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_8_margin"
+                android:text="ios开发" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_info_job_duration_tv"
+            android:layout_marginRight="@dimen/activity_16_margin"
+            android:layout_marginTop="@dimen/activity_4_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="2016.6-至今" />
+    </RelativeLayout>
+</LinearLayout>

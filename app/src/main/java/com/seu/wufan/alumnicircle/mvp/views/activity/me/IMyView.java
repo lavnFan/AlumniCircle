@@ -15,4 +15,5 @@ public interface IMyView extends IView{
 
     void setPhoto(String photo_path);
 
+    void goDynamic(CommUser result);
 }

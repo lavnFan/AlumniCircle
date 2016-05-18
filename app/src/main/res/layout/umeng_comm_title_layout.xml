@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/umeng_comm_title_ll"
     android:layout_width="match_parent"
     android:layout_height="@dimen/umeng_comm_dimen_96px"
     android:background="@android:color/white"
@@ -12,9 +13,9 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/umeng_comm_new_post"
-        android:scaleType="centerInside"
         android:paddingLeft="@dimen/umeng_comm_dimen_28px"
         android:paddingRight="@dimen/umeng_comm_dimen_20px"
+        android:scaleType="centerInside"
         android:src="@drawable/umeng_comm_title_back" />
 
     <TextView

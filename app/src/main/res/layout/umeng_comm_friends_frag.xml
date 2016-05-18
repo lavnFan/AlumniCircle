@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <include
+        android:visibility="gone"
         android:id="@+id/umeng_comm_friend_id"
         layout="@layout/umeng_comm_title_layout" />
 

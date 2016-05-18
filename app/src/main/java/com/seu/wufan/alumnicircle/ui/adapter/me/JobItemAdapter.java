@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
-import com.seu.wufan.alumnicircle.api.entity.item.DynamicItem;
 import com.seu.wufan.alumnicircle.api.entity.item.Job;
 import com.seu.wufan.alumnicircle.common.base.BasisAdapter;
 
@@ -40,7 +39,7 @@ public class JobItemAdapter extends BasisAdapter<Job,JobItemAdapter.ViewHolder>{
 
     @Override
     public int getItemLayout() {
-        return R.layout.item_me_show;
+        return R.layout.list_item_me_show;
     }
 
     public static class ViewHolder {

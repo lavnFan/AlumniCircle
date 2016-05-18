@@ -6,9 +6,9 @@
 
     <include layout="@layout/custom_toolbar" />
 
-    <com.seu.wufan.alumnicircle.ui.widget.LoadMoreListView
-        android:id="@+id/me_my_collection_load_lv"
+    <FrameLayout
+        android:id="@+id/collection_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="match_parent"
+       />
 </LinearLayout>

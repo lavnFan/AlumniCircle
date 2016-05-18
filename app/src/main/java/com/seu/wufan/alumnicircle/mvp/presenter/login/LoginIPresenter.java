@@ -17,6 +17,7 @@ import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtil;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.CircleModel;
 import com.seu.wufan.alumnicircle.mvp.model.ContactsModel;
@@ -61,6 +62,7 @@ public class LoginIPresenter implements ILoginIPresenter {
     private UserModel userModel;
     private Context appContext;
     private PreferenceUtils preferenceUtils;
+    User user = new User();  //缓存本地的user
 
     @Inject
     public LoginIPresenter(@ForApplication Context context, TokenModel tokenModel, CircleModel circleModel, ContactsModel contactsModel, UserModel userModel, PreferenceUtils preferenceUtils) {
@@ -137,7 +139,7 @@ public class LoginIPresenter implements ILoginIPresenter {
         return true;
     }
 
-    private void mockLoginData(String userId,String name) {
+    private void mockLoginData(final String userId, String name) {
         //创建CommUser前必须先初始化CommunitySDK
         CommunitySDK sdk = CommunityFactory.getCommSDK(appContext);
 
@@ -145,11 +147,10 @@ public class LoginIPresenter implements ILoginIPresenter {
         loginUser.id = userId; // 用户id
         loginUser.name = name; // 用户名
 
-        User user = new User();
         user.setName(name);
         user.setUser_id(userId);
 
-        PreferenceUtil.putBean(appContext,PreferenceUtil.Key.EXTRA_COMMUSER,user);
+
         sdk.loginToUmengServerBySelfAccount(appContext, loginUser.name,loginUser.id, new LoginListener() {
             @Override
             public void onStart() {
@@ -158,10 +159,13 @@ public class LoginIPresenter implements ILoginIPresenter {
 
             @Override
             public void onComplete(int stCode, CommUser commUser) {
-                Log.d("tag", "login result is");          //获取登录结果状态码
                 if (ErrorCode.NO_ERROR==stCode) {
                     // 设置地理位置SDK
                     LocationSDKManager.getInstance().addAndUse(new DefaultLocationImpl());
+
+                    user.setUmeng_id(commUser.id);
+                    PreferenceUtil.putBean(appContext,PreferenceUtil.Key.EXTRA_COMMUSER,user);
+
                     //在此处可以跳转到任何一个你想要的activity
                     mLoginView.loginSuccess();
                 }

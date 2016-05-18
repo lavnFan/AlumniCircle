@@ -6,45 +6,50 @@
 
     <include layout="@layout/custom_toolbar" />
 
-    <ScrollView
-        android:id="@+id/contacts_alumni_good_scroll_view"
+    <FrameLayout
+        android:id="@+id/contacts_alumni_good_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <!--<ScrollView-->
+        <!--android:id="@+id/contacts_alumni_good_scroll_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_8_margin"
-                android:layout_marginRight="@dimen/activity_8_margin"
-                android:layout_marginTop="@dimen/activity_12_margin"
-                android:background="@drawable/text_radius_bg"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="@dimen/activity_4_margin">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/search" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/activity_8_margin"-->
+                <!--android:layout_marginRight="@dimen/activity_8_margin"-->
+                <!--android:layout_marginTop="@dimen/activity_12_margin"-->
+                <!--android:background="@drawable/text_radius_bg"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="@dimen/activity_4_margin">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_4_margin"
-                    android:text="@string/search_hint"
-                    android:textColor="@color/text_hint" />
-            </LinearLayout>
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/search" />-->
 
-            <com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView
-                android:id="@+id/contacts_alumni_good_lm_list_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_16_margin" />
-        </LinearLayout>
-    </ScrollView>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/activity_4_margin"-->
+                    <!--android:text="@string/search_hint"-->
+                    <!--android:textColor="@color/text_hint" />-->
+            <!--</LinearLayout>-->
+
+            <!--<com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView-->
+                <!--android:id="@+id/contacts_alumni_good_lm_list_view"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/activity_16_margin" />-->
+        <!--</LinearLayout>-->
+    <!--</ScrollView>-->
 </LinearLayout>

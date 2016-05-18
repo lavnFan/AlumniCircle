@@ -3,11 +3,16 @@ package com.seu.wufan.alumnicircle.mvp.presenter.me;
 import android.content.Context;
 
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.me.IMyView;
+import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.beans.CommUser;
+import com.umeng.comm.core.impl.CommunityFactory;
+import com.umeng.comm.core.listeners.Listeners;
+import com.umeng.comm.core.nets.responses.ProfileResponse;
 
 import javax.inject.Inject;
 
@@ -45,31 +50,15 @@ public class MyPresenter implements IMyPresenter {
 
     @Override
     public void destroy() {
-        if(preferenceSubscription!=null){
+        if (preferenceSubscription != null) {
             preferenceSubscription.unsubscribe();
         }
-        if(photoSubscription!=null){
+        if (photoSubscription != null) {
             photoSubscription.unsubscribe();
         }
-        if(nameSubscription!=null){
+        if (nameSubscription != null) {
             nameSubscription.unsubscribe();
         }
-    }
-
-    @Override
-    public String getUid() {
-        preferenceSubscription = preferenceUtils.getUserId()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                        CommUser user = new CommUser();
-                        user.id = s;
-                        iMyView.setUser(user);
-                    }
-                });
-        return null;
     }
 
     @Override
@@ -94,5 +83,30 @@ public class MyPresenter implements IMyPresenter {
                     }
                 });
 
+    }
+
+    @Override
+    public void goDynamic() {
+        preferenceSubscription = preferenceUtils.getUserId()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        CommunitySDK sdk = CommunityFactory.getCommSDK(appContext);
+                        //获取友盟id
+                        sdk.fetchUserProfile(s, "self_account", new Listeners.FetchListener<ProfileResponse>() {
+                            @Override
+                            public void onStart() {
+
+                            }
+
+                            @Override
+                            public void onComplete(ProfileResponse profileResponse) {
+                                iMyView.goDynamic(profileResponse.result);
+                            }
+                        });
+                    }
+                });
     }
 }

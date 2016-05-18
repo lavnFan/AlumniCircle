@@ -39,7 +39,7 @@ public class EduItemAdapter extends BasisAdapter<Edu,EduItemAdapter.ViewHolder> 
 
     @Override
     public int getItemLayout() {
-        return R.layout.item_me_show;
+        return R.layout.list_item_me_show;
     }
 
     public static class ViewHolder {

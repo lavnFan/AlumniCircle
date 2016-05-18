@@ -1,6 +1,8 @@
 package com.seu.wufan.alumnicircle.mvp.presenter.me;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
@@ -19,9 +21,14 @@ import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.me.IEditInformationView;
+import com.umeng.comm.core.CommunitySDK;
+import com.umeng.comm.core.impl.CommunityFactory;
+import com.umeng.comm.core.listeners.Listeners;
+import com.umeng.comm.core.nets.responses.PortraitUploadResponse;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -95,6 +102,46 @@ public class EditInformationPresenter implements IEditInformationPresenter {
                         }, new UploadOptions(null, null, false, null, null));
                     }
                 });
+    }
+
+    /**
+     * 修改图片
+     *
+     * @param photo_path 同时上传到友盟和leancloud上，保持同步
+     */
+    private void updatePhoto(String photo_path) {
+        preferenceUtils.putString(photo_path, PreferenceType.USER_PHOTO);
+        editInformationView.setPhotoResult(photo_path);
+        compressImage(photo_path);
+    }
+
+    private void compressImage(String imagePath){
+        BitmapFactory.Options opts = new BitmapFactory.Options();
+        //设置为true获取图片的初始大小
+        opts.inJustDecodeBounds = true;
+        Bitmap image = BitmapFactory.decodeFile(imagePath,opts);
+        int imageHeight = opts.outHeight;
+        int imageWidth = opts.outWidth;
+
+        opts.inJustDecodeBounds = false;
+
+        //控制图片高宽中较低的一个在500像素左右
+        if(Math.min(imageHeight,imageWidth) > 500){
+            float ratio = Math.max(imageHeight,imageWidth)/500;
+            opts.inSampleSize = Math.round(ratio);
+        }
+        Bitmap finalImage = BitmapFactory.decodeFile(imagePath,opts);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        //降低画质
+        finalImage.compress(Bitmap.CompressFormat.JPEG,70,baos);
+
+        CommunitySDK sdk = CommunityFactory.getCommSDK(appContext);
+        sdk.updateUserProtrait(finalImage, new Listeners.SimpleFetchListener<PortraitUploadResponse>() {
+            @Override
+            public void onComplete(PortraitUploadResponse portraitUploadResponse) {
+            }
+        });
     }
 
     @Override
@@ -207,16 +254,6 @@ public class EditInformationPresenter implements IEditInformationPresenter {
         } else {
             editInformationView.showNetCantUse();
         }
-    }
-
-    /**
-     * 修改图片
-     *
-     * @param photo_path 同时上传到友盟和leancloud上，保持同步
-     */
-    private void updatePhoto(String photo_path) {
-        preferenceUtils.putString(photo_path, PreferenceType.USER_PHOTO);
-        editInformationView.setPhotoResult(photo_path);
     }
 
     @Override

@@ -2,83 +2,83 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/umeng_comm_feed_list_bg"
     android:orientation="vertical">
 
     <include layout="@layout/custom_toolbar" />
 
-    <ScrollView
-        android:id="@+id/my_dynamic_scroll_view"
-        android:layout_width="match_parent"
-        android:scrollbars="none"
-        android:layout_height="match_parent">
+    <!--<ScrollView-->
+        <!--android:id="@+id/my_dynamic_scroll_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:scrollbars="none">-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_8_margin"
-            android:layout_marginRight="@dimen/activity_8_margin"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/my_dynamic_top_relative_layout"
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/my_dynamic_top_relative_layout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/activity_8_margin"-->
+                <!--android:layout_marginRight="@dimen/activity_8_margin"-->
+                <!--android:layout_marginTop="@dimen/activity_12_margin">-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="148dp"-->
+                    <!--android:background="@color/blue" />-->
+
+                <!--<RelativeLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:gravity="center">-->
+
+                    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                        <!--android:id="@+id/my_dynamic_photo_cv"-->
+                        <!--android:layout_width="60dp"-->
+                        <!--android:layout_height="60dp"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:src="@drawable/logo" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/my_dynamic_name_tv"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/my_dynamic_photo_cv"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_marginBottom="@dimen/activity_4_margin"-->
+                        <!--android:layout_marginTop="@dimen/activity_8_margin"-->
+                        <!--android:text="童小星"-->
+                        <!--android:textColor="@color/white" />-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/my_dynamic_name_tv"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="2012届艺术学院" />-->
+
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="播音主持专业" />-->
+                    <!--</LinearLayout>-->
+                <!--</RelativeLayout>-->
+            <!--</RelativeLayout>-->
+
+            <FrameLayout
+                android:id="@+id/my_dynamic_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_12_margin">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="148dp"
-                    android:background="@color/blue" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/my_dynamic_photo_cv"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/logo" />
-
-                    <TextView
-                        android:id="@+id/my_dynamic_name_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/my_dynamic_photo_cv"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="@dimen/activity_4_margin"
-                        android:layout_marginTop="@dimen/activity_8_margin"
-                        android:text="童小星"
-                        android:textColor="@color/white" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/my_dynamic_name_tv"
-                        android:layout_centerHorizontal="true"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2012届艺术学院" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="播音主持专业" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </RelativeLayout>
-
-            <com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView
-                android:id="@+id/me_my_dynamic_load_lv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="match_parent" />
         </LinearLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 </LinearLayout>

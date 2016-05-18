@@ -65,6 +65,7 @@
     <string name="alumni_number">校友号:</string>
     <string name="person_introduction">个人简介:</string>
     <string name="dynamic">动态:</string>
+    <string name="dynamic_">个人动态</string>
     <string name="label">标签:</string>
     <string name="professional_experience">职业经历:</string>
     <string name="educational_experience">教育经历:</string>

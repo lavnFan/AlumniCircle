@@ -492,6 +492,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/activity_8_margin"
                                 android:hint="@string/please_write"
+                                android:singleLine="true"
                                 android:textColor="@color/text_main"
                                 android:textColorHint="@color/text_hint" />
 

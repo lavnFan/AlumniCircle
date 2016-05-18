@@ -9,303 +9,289 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_8_margin"
-        android:layout_marginLeft="@dimen/activity_8_margin"
-        android:layout_marginRight="@dimen/activity_8_margin"
-        android:layout_marginTop="@dimen/activity_8_margin">
+        android:layout_marginBottom="@dimen/activity_8_margin">
 
-        <RelativeLayout
-            android:id="@+id/my_information_top_relative_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="148dp"
-                android:background="@color/blue" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/my_information_photo_cv"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerHorizontal="true" />
-
-                <TextView
-                    android:id="@+id/my_information_name_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/my_information_photo_cv"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="@dimen/activity_4_margin"
-                    android:layout_marginTop="@dimen/activity_8_margin"
-                    android:textColor="@color/white" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/my_information_name_tv"
-                    android:layout_centerHorizontal="true"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/my_information_college_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/my_information_major_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_8_margin" />
-                </LinearLayout>
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <LinearLayout
-            android:id="@+id/my_information_center_linear_layout"
+        <ScrollView
+            android:id="@+id/my_information_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/my_information_top_relative_layout"
-            android:layout_marginTop="@dimen/activity_12_margin"
-            android:background="@drawable/text_bg"
-            android:orientation="vertical">
+            android:layout_above="@+id/my_information_add_message_btn"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/activity_10_margin"
+            android:scrollbars="none">
 
-            <TableLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_4_margin"
-                android:layout_marginTop="@dimen/activity_4_margin"
+                android:layout_marginTop="@dimen/activity_12_margin"
                 android:orientation="vertical">
 
-                <TableRow
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/activity_8_margin"
-                    android:weightSum="5">
+                    android:layout_height="wrap_content">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="@string/alumni_number"
-                        android:textColor="@color/text_help" />
-
-                    <LinearLayout
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/my_information_alummni_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_4_margin"
-                            android:text="tongxiaoxin" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.6dp"
-                            android:layout_marginTop="@dimen/activity_8_margin"
-                            android:background="@color/divider_high" />
-                    </LinearLayout>
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/activity_8_margin"
-                    android:weightSum="5">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="@string/person_introduction"
-                        android:textColor="@color/text_help" />
-
-                    <LinearLayout
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/my_information_intro_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_4_margin"
-                            android:text="暂未填写" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.6dp"
-                            android:layout_marginTop="@dimen/activity_8_margin"
-                            android:background="@color/divider_high" />
-                    </LinearLayout>
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/activity_8_margin"
-                    android:weightSum="5">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="@string/dynamic"
-                        android:textColor="@color/text_help" />
-
-                    <LinearLayout
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/my_information_dynamic_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_4_margin"
-                            android:text="12月你好！" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.6dp"
-                            android:layout_marginTop="@dimen/activity_8_margin"
-                            android:background="@color/divider_high" />
-                    </LinearLayout>
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_4_margin"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/activity_8_margin"
-                    android:weightSum="5">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="@string/label"
-                        android:textColor="@color/text_help" />
-
-                    <LinearLayout
-
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/my_information_label_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/activity_4_margin"
-                            android:text="暂未添加" />
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/my_information_center_linear_layout"
-            android:layout_marginTop="@dimen/activity_16_margin"
-            android:background="@drawable/text_bg"
-            android:orientation="vertical">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_4_margin"
-                android:orientation="horizontal"
-                android:padding="@dimen/activity_8_margin"
-                android:weightSum="5">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/professional_experience"
-                    android:textColor="@color/text_help" />
-
-                <LinearLayout
-
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/my_information_job_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_4_margin"
-                        android:text="暂无工作学习" />
-
-                    <View
+                    <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="0.6dp"
-                        android:layout_marginTop="@dimen/activity_6_margin"
-                        android:background="@color/divider_high" />
-                </LinearLayout>
-            </TableRow>
+                        android:layout_height="148dp"
+                        android:background="@color/blue" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_4_margin"
-                android:orientation="horizontal"
-                android:padding="@dimen/activity_8_margin"
-                android:weightSum="5">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:text="@string/educational_experience"
-                    android:textColor="@color/text_help" />
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/my_information_photo_cv"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerHorizontal="true" />
+
+                        <TextView
+                            android:id="@+id/my_information_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/my_information_photo_cv"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="@dimen/activity_4_margin"
+                            android:layout_marginTop="@dimen/activity_8_margin"
+                            android:textColor="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/my_information_name_tv"
+                            android:layout_centerHorizontal="true"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/my_information_college_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/my_information_major_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_8_margin" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
 
                 <LinearLayout
-
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_marginTop="@dimen/activity_12_margin"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/my_information_edu_tv"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/activity_4_margin"
-                        android:text="东南大学 艺术学院 2012.9-至今" />
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/activity_10_margin"
+                        android:paddingTop="@dimen/activity_10_margin">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:text="@string/person_intro_"
+                            android:textColor="@color/text_help"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/my_information_per_intro_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_8_margin"
+                            android:layout_marginRight="@dimen/activity_16_margin" />
+                    </LinearLayout>
                 </LinearLayout>
-            </TableRow>
-        </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/my_info_dynamic_go_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_12_margin"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:paddingBottom="@dimen/activity_10_margin"
+                            android:paddingTop="@dimen/activity_10_margin"
+                            android:text="@string/dynamic_"
+                            android:textColor="@color/text_help"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/activity_16_margin"
+                            android:src="@drawable/arrow" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_item_bg"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="@dimen/activity_8_margin"
+                            android:layout_marginRight="@dimen/activity_8_margin"
+                            android:background="@color/divider_low" />
+
+                        <LinearLayout
+                            android:id="@+id/my_info_dynamic_ll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_12_margin"
+                            android:layout_marginLeft="@dimen/activity_8_margin"
+                            android:layout_marginRight="@dimen/activity_8_margin"
+                            android:layout_marginTop="@dimen/activity_12_margin"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:id="@+id/my_info_dynamic_iv"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_alignParentLeft="true" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/activity_8_margin"
+                                android:layout_marginTop="@dimen/activity_4_margin"
+                                android:layout_toRightOf="@+id/my_info_dynamic_iv"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/my_info_dynamic_text_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:singleLine="true"
+                                    android:textColor="@color/text_main" />
+
+                                <TextView
+                                    android:id="@+id/my_info_dynamic_time_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/activity_8_margin"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/my_info_dynamic_ll_none"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/activity_12_margin"
+                            android:layout_marginLeft="@dimen/activity_8_margin"
+                            android:layout_marginRight="@dimen/activity_8_margin"
+                            android:layout_marginTop="@dimen/activity_12_margin"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="暂无动态" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_12_margin"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:paddingBottom="@dimen/activity_10_margin"
+                            android:paddingTop="@dimen/activity_10_margin"
+                            android:text="@string/prof_exp"
+                            android:textColor="@color/text_help"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/activity_16_margin"
+                            android:src="@drawable/arrow" />
+                    </RelativeLayout>
+
+                    <com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView
+                        android:id="@+id/my_information_job_history_lv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@null" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_12_margin"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:paddingBottom="@dimen/activity_10_margin"
+                            android:paddingTop="@dimen/activity_10_margin"
+                            android:text="@string/edu_exp"
+                            android:textColor="@color/text_help"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/activity_16_margin"
+                            android:src="@drawable/arrow" />
+                    </RelativeLayout>
+
+                    <com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView
+                        android:id="@+id/my_information_edu_history_lv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:divider="@null" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
         <Button
             android:id="@+id/my_information_add_message_btn"

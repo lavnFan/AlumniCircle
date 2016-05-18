@@ -31,6 +31,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewStub;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.umeng.comm.core.listeners.Listeners.OnResultListener;
@@ -80,6 +81,8 @@ public class RecommendUserFragment extends ActiveUserFragment implements OnClick
                 .setBackgroundColor(Color.WHITE);
 
         mRefreshLvLayout.setEnabled(true);
+
+        mTitleLinearLayout = (LinearLayout) mRootView.findViewById(ResFinder.getId("umeng_commn_setting_title_ll"));
 
         mRefreshLvLayout.setOnLoadListener(new RefreshLayout.OnLoadListener() {
 

@@ -107,7 +107,7 @@
                 android:hint="请选择"
                 android:textColor="@color/black"
                 android:textColorHint="@color/text_hint"
-                android:textSize="12sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/edit_prof_exper_time_end_tv"
@@ -119,7 +119,7 @@
                 android:hint="请选择"
                 android:textColor="@color/black"
                 android:textColorHint="@color/text_hint"
-                android:textSize="12sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/help_edit_to_tv"

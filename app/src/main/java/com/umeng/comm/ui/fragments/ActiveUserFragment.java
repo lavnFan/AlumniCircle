@@ -28,9 +28,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ToggleButton;
 
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.ui.activity.me.MyInformationActivity;
 import com.umeng.comm.core.beans.CommUser;
 import com.umeng.comm.core.beans.Topic;
@@ -65,6 +67,7 @@ public class ActiveUserFragment extends BaseFragment<List<CommUser>, ActiveUserF
     protected ActiveUserAdapter mAdapter;
     private OnResultListener mAnimationListener = null;
     protected Button nextButton;
+    LinearLayout mTitleLinearLayout;
 
     private BaseView mBaseView = null;
 
@@ -88,8 +91,7 @@ public class ActiveUserFragment extends BaseFragment<List<CommUser>, ActiveUserF
         mAdapter.setLikeonClickListener(new LikeonClickListener() {
             @Override
             public void onClickListener(CommUser user) {
-                Intent intent = new Intent(getActivity(), MyInformationActivity.class);
-
+                Intent intent = new Intent(getActivity(), UserInfoActivity.class);
                 intent.putExtra(Constants.TAG_USER, user);
                 getActivity().startActivity(intent);
             }

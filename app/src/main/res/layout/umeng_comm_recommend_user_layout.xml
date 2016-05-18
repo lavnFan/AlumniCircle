@@ -5,6 +5,7 @@
     android:gravity="center" >
 
     <include
+        android:visibility="gone"
         android:id="@+id/umeng_comm_recommend_user_title"
         layout="@layout/umeng_comm_setting_title_bar" />
 

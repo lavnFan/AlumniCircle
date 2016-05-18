@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
-import com.seu.wufan.alumnicircle.common.utils.DataProvider;
+import com.seu.wufan.alumnicircle.ui.widget.dateprovider.DataProvider;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.login.RegisterIPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IRegisterView;

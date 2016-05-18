@@ -72,7 +72,6 @@ public class ProfExperShowJobFragmentToActivity extends BaseSwipeActivity implem
     @Override
     protected void initViewsAndEvents() {
         showFragment = ProfExperShowFragment.newInstance(jobs);
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.edit_prof_exper_container, showFragment).commit();
 

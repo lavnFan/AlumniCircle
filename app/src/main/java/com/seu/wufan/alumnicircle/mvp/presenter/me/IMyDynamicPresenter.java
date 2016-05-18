@@ -4,11 +4,10 @@ import com.seu.wufan.alumnicircle.mvp.presenter.IPresenter;
 
 /**
  * @author wufan
- * @date 2016/5/11
+ * @date 2016/5/17
  */
-public interface IMyPresenter extends IPresenter{
+public interface IMyDynamicPresenter extends IPresenter{
 
-    void init();
+    void init(String user_id);
 
-    void goDynamic();
 }

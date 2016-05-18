@@ -27,6 +27,7 @@ package com.umeng.comm.ui.fragments;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.umeng.comm.core.beans.CommUser;
@@ -71,6 +72,7 @@ public class FavoritesFragment extends FriendsFragment {
         titleTextView.setText(ResFinder.getString("umeng_comm_favoriets_list"));
         titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         mBaseView.setEmptyViewText(ResFinder.getString("umeng_comm_no_feed"));
+
     }
 
     public static FavoritesFragment newFavoritesFragment() {
@@ -101,7 +103,7 @@ public class FavoritesFragment extends FriendsFragment {
     protected void dealFavourite(FeedItem feedItem) {
         ((FavoritesFeedPresenter) mPresenter).addFavoutite(feedItem);
     }
-    
+
     /**
      * 取消关注某个人时，收藏中的feed不需要做相关操作
      */

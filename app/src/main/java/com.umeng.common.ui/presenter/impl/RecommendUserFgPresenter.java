@@ -26,6 +26,7 @@ package com.umeng.common.ui.presenter.impl;
 
 import android.text.TextUtils;
 
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.umeng.comm.core.beans.CommUser;
 import com.umeng.comm.core.constants.ErrorCode;
 import com.umeng.comm.core.listeners.Listeners.FetchListener;

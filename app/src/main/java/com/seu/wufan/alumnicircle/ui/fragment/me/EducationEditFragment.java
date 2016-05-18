@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bigkoo.alertview.AlertView;
+import com.bigkoo.alertview.OnItemClickListener;
 import com.bigkoo.pickerview.TimePickerView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.Edu;
@@ -136,6 +138,19 @@ public class EducationEditFragment extends BaseFragment implements IEduEditView 
     public static String getTime(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM");
         return format.format(date);
+    }
+
+    @OnClick(R.id.edit_edu_degree_et)
+    void selectDegree(){
+        final String[] degrees = new String[]{"大专", "本科", "硕士","博士","其他"};
+        new AlertView(null, null, "取消", null, degrees, getActivity(), AlertView.Style.ActionSheet, new OnItemClickListener() {
+            @Override
+            public void onItemClick(Object o, int position) {
+                if (position != AlertView.CANCELPOSITION) {
+                    mDegreeEt.setText(degrees[position]);
+                }
+            }
+        }).setCancelable(true).show();
     }
 
     @Override

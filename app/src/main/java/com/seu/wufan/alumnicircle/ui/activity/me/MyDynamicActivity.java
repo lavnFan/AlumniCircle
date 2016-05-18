@@ -1,5 +1,6 @@
 package com.seu.wufan.alumnicircle.ui.activity.me;
 
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ScrollView;
 
@@ -9,6 +10,8 @@ import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.common.base.BasisAdapter;
 import com.seu.wufan.alumnicircle.ui.adapter.circle.DynamicItemAdapter;
 import com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView;
+import com.umeng.comm.core.beans.CommUser;
+import com.umeng.comm.ui.fragments.PostedFeedsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +24,13 @@ import butterknife.Bind;
  */
 public class MyDynamicActivity  extends BaseSwipeActivity {
 
-    @Bind(R.id.me_my_dynamic_load_lv)
-    ScrollLoadMoreListView mLisView;
-    @Bind(R.id.my_dynamic_scroll_view)
-    ScrollView mScrollView;
-    private BasisAdapter mAdapter;
+//    @Bind(R.id.my_dynamic_scroll_view)
+//    ScrollView mScrollView;
+
+    PostedFeedsFragment postedFeedsFragment;
+
+    public static final String EXTRA_COMM_USER="comm_user";
+    CommUser user = new CommUser();
 
     @Override
     protected int getContentView() {
@@ -35,12 +40,20 @@ public class MyDynamicActivity  extends BaseSwipeActivity {
     @Override
     protected void prepareDatas() {
         setToolbarTitle(getResources().getString(R.string.my_dynamic));
+        user = getIntent().getExtras().getParcelable(EXTRA_COMM_USER);
     }
 
     @Override
     protected void initViewsAndEvents() {
-        mScrollView.smoothScrollTo(0,0);
-        initDatas();
+//        mScrollView.smoothScrollTo(0,0);
+        if(postedFeedsFragment==null){
+            postedFeedsFragment = PostedFeedsFragment.newInstance();
+            if(user!=null){
+                postedFeedsFragment.setCurrentUser(user);
+            }
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.my_dynamic_container, postedFeedsFragment).commit();
+        }
     }
 
     @Override
@@ -48,14 +61,4 @@ public class MyDynamicActivity  extends BaseSwipeActivity {
         return null;
     }
 
-    private void initDatas() {
-        List<DynamicItem> entities = new ArrayList<DynamicItem>();
-        for (int i = 0; i < 10; i++) {
-            entities.add(new DynamicItem());
-        }
-        mAdapter = new DynamicItemAdapter(this);
-        mAdapter.setmEntities(entities);
-        mLisView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
-    }
 }
