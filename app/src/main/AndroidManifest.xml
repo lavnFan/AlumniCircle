@@ -48,14 +48,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.login.LoginActivity"
+        <activity
+            android:name=".ui.activity.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".ui.activity.login.RegisterActivity"
             android:label="@string/back"
@@ -127,21 +128,28 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".ui.activity.me.edit.EducationActivity"
+        <activity
+            android:name=".ui.activity.me.edit.EducationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".ui.activity.contacts.SendAddFriendActivity"
+            android:label="@string/friend_msg"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
 
 
         <!--leanchat-->
 
-        <activity android:name="com.avoscloud.leanchatlib.activity.AVChatActivity"/>
+        <activity android:name="com.avoscloud.leanchatlib.activity.AVChatActivity" />
         <activity android:name="com.avoscloud.leanchatlib.activity.ImageBrowserActivity" />
         <!-- 实时通信模块、推送（若使用该功能，需添加以下声明）START -->
-        <service android:name="com.avos.avoscloud.PushService"/>
+        <service android:name="com.avos.avoscloud.PushService" />
         <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
         <!-- 实时通信模块、推送 END -->
@@ -190,7 +198,7 @@
             android:name="com.umeng.comm.ui.activities.PostFeedActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="true"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <!--  -->
         <activity
@@ -244,12 +252,12 @@
         <!-- ##################分享相关#################### -->
         <!-- 分享内容编辑页 -->
         <!--<activity-->
-            <!--android:name="com.umeng.socialize.view.ShareActivity"-->
-            <!--android:configChanges="orientation|keyboard"-->
-            <!--android:launchMode="singleTask"-->
-            <!--android:noHistory="true"-->
-            <!--android:theme="@style/Theme.UMDialog"-->
-            <!--android:windowSoftInputMode="stateVisible|adjustResize"></activity>-->
+        <!--android:name="com.umeng.socialize.view.ShareActivity"-->
+        <!--android:configChanges="orientation|keyboard"-->
+        <!--android:launchMode="singleTask"-->
+        <!--android:noHistory="true"-->
+        <!--android:theme="@style/Theme.UMDialog"-->
+        <!--android:windowSoftInputMode="stateVisible|adjustResize"></activity>-->
 
         <!-- 腾讯SSO授权的Activity注册 -->
         <activity
@@ -274,28 +282,28 @@
         <!---->
         <!--&lt;!&ndash; 微信回调activity &ndash;&gt;-->
         <!--<activity-->
-            <!--android:name=".wxapi.WXEntryActivity"-->
-            <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
-            <!--android:exported="true"-->
-            <!--android:screenOrientation="portrait"-->
-            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <!--android:name=".wxapi.WXEntryActivity"-->
+        <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+        <!--android:exported="true"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
         <!--<activity-->
-            <!--android:name=".WBShareActivity"-->
-            <!--android:configChanges="keyboardHidden|orientation"-->
-            <!--android:screenOrientation="portrait" >-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-            <!--</intent-filter>-->
+        <!--android:name=".WBShareActivity"-->
+        <!--android:configChanges="keyboardHidden|orientation"-->
+        <!--android:screenOrientation="portrait" >-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />-->
+        <!--<category android:name="android.intent.category.DEFAULT" />-->
+        <!--</intent-filter>-->
         <!--</activity>-->
         <!--<activity-->
-            <!--android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"-->
-            <!--android:configChanges="keyboardHidden|orientation"-->
-            <!--android:windowSoftInputMode="adjustResize"-->
-            <!--android:exported="false" >-->
+        <!--android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"-->
+        <!--android:configChanges="keyboardHidden|orientation"-->
+        <!--android:windowSoftInputMode="adjustResize"-->
+        <!--android:exported="false" >-->
         <!--</activity>-->
         <!--<service android:name="com.sina.weibo.sdk.net.DownloadService"-->
-            <!--android:exported="false">-->
+        <!--android:exported="false">-->
 
         <!--</service>-->
         <!---->
@@ -305,13 +313,12 @@
         <!-- ##################### 推送相关 ##################### -->
 
         <!--线上discuss demo Appkey-->
-        <meta-data android:name="UMENG_APPKEY"
-            android:value="572f240d67e58ea2dd003069" >
-        </meta-data>
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="572f240d67e58ea2dd003069"></meta-data>
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
-            android:value="5a760247d762c200cd71ca6d51e53757" >
-        </meta-data>
+            android:value="5a760247d762c200cd71ca6d51e53757"></meta-data>
         <!--&lt;!&ndash;线上weibo demo Appkey&ndash;&gt;-->
         <!--<meta-data android:name="UMENG_APPKEY"-->
         <!--android:value="54d19086fd98c540a2001155" >-->

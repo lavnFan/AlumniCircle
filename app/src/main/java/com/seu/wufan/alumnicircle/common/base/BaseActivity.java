@@ -32,11 +32,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Nullable
     @Bind(R.id.text_toolbar_tv)
-    TextView mToolbarTitleTv;
+    protected TextView mToolbarTitleTv;
 
     @Nullable
     @Bind(R.id.text_toolbar_right_tv)
-    TextView mToolbarRightTv;
+    protected TextView mToolbarRightTv;
 
     @Inject
     public Navigator navigator;   //负责管理导航

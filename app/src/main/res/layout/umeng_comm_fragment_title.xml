@@ -25,6 +25,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/umeng_comm_dimen_20px"
         android:layout_marginTop="@dimen/umeng_comm_dimen_16px"
+        android:visibility="gone"
         android:background="@drawable/umeng_comm_circle_shape"/>
 
     <!-- 发现按钮 -->
@@ -38,6 +39,7 @@
         android:contentDescription="@string/umeng_comm_new_post"
         android:paddingLeft="@dimen/umeng_comm_dimen_10px"
         android:paddingRight="@dimen/umeng_comm_dimen_10px"
+        android:visibility="gone"
         android:src="@drawable/umeng_comm_find_bt" />
 
     <!-- tab组件 -->

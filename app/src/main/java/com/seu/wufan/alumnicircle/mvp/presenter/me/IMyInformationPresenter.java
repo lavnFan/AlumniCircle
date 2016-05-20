@@ -13,4 +13,6 @@ public interface IMyInformationPresenter extends IPresenter{
 
     void getCommUser(String user_id);
 
+    void sendMsg(String other_id);
+
 }

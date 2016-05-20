@@ -2,6 +2,7 @@ package com.seu.wufan.alumnicircle.mvp.views.activity.me;
 
 import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.item.FriendListItem;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.umeng.comm.core.beans.CommUser;
 import com.umeng.comm.core.beans.FeedItem;
@@ -20,4 +21,9 @@ public interface IMyInformationView extends IView{
 
     void goDynamic(CommUser user);
 
+    void sendMsg();
+
+    void sendFriendMsg(String other_id,String name);
+
+    void hideSendBtn();
 }

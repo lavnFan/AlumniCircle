@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_contacts_new_friends_rl"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@drawable/list_item_bg"
+    android:clickable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,9 +16,9 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_contacts_friend_request_cv"
             android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/logo" />
+            android:layout_height="48dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,10 +27,10 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/item_contacts_friend_request_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_2_margin"
-                android:text="陈怡伊"
                 android:textColor="@color/text_main"
                 android:textSize="16sp" />
 
@@ -39,17 +41,17 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/item_contacts_friend_request_company_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="南京易志新媒体有限公司"
                     android:textColor="@color/text_help"
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/item_contacts_friend_request_job_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_4_margin"
-                    android:text="总经理"
                     android:textColor="@color/text_help"
                     android:textSize="13sp" />
             </LinearLayout>
@@ -59,9 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_4_margin"
-                android:text="你好，我是南京易志新媒体有限公司的陈怡伊。"
                 android:textColor="@color/text_help"
-                android:textSize="11sp"/>
+                android:textSize="11sp" />
         </LinearLayout>
     </LinearLayout>
 

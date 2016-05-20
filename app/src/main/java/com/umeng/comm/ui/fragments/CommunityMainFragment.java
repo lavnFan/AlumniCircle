@@ -215,6 +215,7 @@ public class CommunityMainFragment extends BaseFragment<Void, NullPresenter> imp
         super.onResume();
         if (mUnreadMsg.unReadTotal > 0) {
             mBadgeView.setVisibility(View.VISIBLE);
+            mBadgeView.setVisibility(View.INVISIBLE);
         } else {
             mBadgeView.setVisibility(View.INVISIBLE);
         }
@@ -390,7 +391,7 @@ public class CommunityMainFragment extends BaseFragment<Void, NullPresenter> imp
     public void onFetchUnReadMsg(MessageCount unreadMsg) {
         this.mUnreadMsg = unreadMsg;
         if (mUnreadMsg.unReadTotal > 0) {
-            mBadgeView.setVisibility(View.VISIBLE);
+            mBadgeView.setVisibility(View.INVISIBLE);
         }
     }
 

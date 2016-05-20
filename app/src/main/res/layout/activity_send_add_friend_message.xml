@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/custom_toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_16_margin"
+        android:text="你需要发送验证申请，等待对方通过"
+        android:textColor="@color/text_hint"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/send_add_friend_msg_et"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/white"
+        android:gravity="start"
+        android:padding="@dimen/activity_16_margin"
+        android:text="你好，我是腾讯的吴凡，请求添加你为好友！"
+        android:textSize="14sp" />
+
+</LinearLayout>

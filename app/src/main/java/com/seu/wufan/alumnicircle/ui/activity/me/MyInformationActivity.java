@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,16 +13,15 @@ import android.widget.TextView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.item.FriendListItem;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
-import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.me.MyInformationPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.me.IMyInformationView;
+import com.seu.wufan.alumnicircle.ui.activity.contacts.SendAddFriendActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.me.EduMyItemAdapter;
-import com.seu.wufan.alumnicircle.ui.adapter.me.JobItemAdapter;
 import com.seu.wufan.alumnicircle.ui.adapter.me.JobMyItemAdapter;
-import com.seu.wufan.alumnicircle.ui.widget.LoadMoreListView;
 import com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView;
 import com.umeng.comm.core.beans.CommUser;
 import com.umeng.comm.core.beans.FeedItem;
@@ -36,7 +34,6 @@ import java.util.Date;
 import javax.inject.Inject;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -84,6 +81,8 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
 
     @Bind(R.id.my_information_scroll_view)
     ScrollView mScrollView;
+    @Bind(R.id.my_information_add_message_ll)
+    LinearLayout mAddMsgLl;
 
     JobMyItemAdapter jobMyItemAdapter;
     EduMyItemAdapter eduMyItemAdapter;
@@ -174,6 +173,24 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
     }
 
     @Override
+    public void sendMsg() {
+        mAddMessageBtn.setText(getResources().getString(R.string.send_messgae));
+    }
+
+    @Override
+    public void sendFriendMsg(String other_id, String name) {
+        Bundle bundle = new Bundle();
+        bundle.putString(SendAddFriendActivity.EXTRA_OTHER_ID, other_id);
+        bundle.putString(SendAddFriendActivity.EXTRA_MY_ITEM, name);
+        readyGo(SendAddFriendActivity.class, bundle);
+    }
+
+    @Override
+    public void hideSendBtn() {
+        mAddMsgLl.setVisibility(View.GONE);
+    }
+
+    @Override
     public void showNetCantUse() {
         ToastUtils.showNetCantUse(this);
     }
@@ -196,13 +213,12 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
 
     @OnClick(R.id.my_information_add_message_btn)
     public void onClick() {
-
+        myInformationPresenter.sendMsg(user.sourceUid);
     }
 
     @OnClick(R.id.my_info_dynamic_go_ll)
     void goDynamicDetail() {
         myInformationPresenter.getCommUser(user.sourceUid);
-        TLog.i("TAG", user.sourceUid);
     }
 
 }

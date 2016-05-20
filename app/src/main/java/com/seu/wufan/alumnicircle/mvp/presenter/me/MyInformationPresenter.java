@@ -4,12 +4,15 @@ import android.content.Context;
 
 import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.item.Friend;
+import com.seu.wufan.alumnicircle.api.entity.item.FriendListItem;
 import com.seu.wufan.alumnicircle.api.entity.item.User;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtil;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
+import com.seu.wufan.alumnicircle.mvp.model.ContactsModel;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
@@ -24,11 +27,13 @@ import com.umeng.comm.core.listeners.Listeners;
 import com.umeng.comm.core.nets.responses.FeedsResponse;
 import com.umeng.comm.core.nets.responses.ProfileResponse;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import retrofit2.HttpException;
+import retrofit2.http.Path;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -42,25 +47,40 @@ public class MyInformationPresenter implements IMyInformationPresenter {
 
     private Subscription infoSubscription;
     private Subscription detailSubscription;
+    private Subscription friendListSubscription;
 
     private IMyInformationView iMyInformationView;
     private PreferenceUtils preferenceUtils;
     private UserModel userModel;
     private TokenModel tokenModel;
+    private ContactsModel contactsModel;
     private Context appContext;
 
     CommUser commUser = new CommUser();
 
     @Inject
-    public MyInformationPresenter(@ForApplication Context context, UserModel userModel, TokenModel tokenModel, PreferenceUtils preferenceUtils) {
+    public MyInformationPresenter(@ForApplication Context context, UserModel userModel, TokenModel tokenModel, ContactsModel contactsModel, PreferenceUtils preferenceUtils) {
         this.userModel = userModel;
         this.appContext = context;
         this.preferenceUtils = preferenceUtils;
         this.tokenModel = tokenModel;
+        this.contactsModel = contactsModel;
     }
 
     @Override
     public void initUser(final String user_id) {
+            Subscription s = preferenceUtils.getUserId()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String s) {
+                            if (s.equals(user_id)) {    //如果是自身，则隐藏
+                                iMyInformationView.hideSendBtn();
+                            }
+                        }
+                    });
+
         if (NetUtils.isNetworkConnected(appContext)) {
             detailSubscription = userModel.getUserInfoResObservable(user_id)
                     .subscribeOn(Schedulers.io())
@@ -103,7 +123,7 @@ public class MyInformationPresenter implements IMyInformationPresenter {
 
             CommunitySDK sdk = CommunityFactory.getCommSDK(appContext);
             //获取友盟id
-            sdk.fetchUserProfile(user_id,"self_account",new Listeners.FetchListener<ProfileResponse>() {
+            sdk.fetchUserProfile(user_id, "self_account", new Listeners.FetchListener<ProfileResponse>() {
                 @Override
                 public void onStart() {
 
@@ -139,6 +159,66 @@ public class MyInformationPresenter implements IMyInformationPresenter {
     @Override
     public void getCommUser(String user_id) {
         iMyInformationView.goDynamic(commUser);
+    }
+
+    @Override
+    public void sendMsg(final String other_id) {
+        //1、若不是好友，则显示加好友
+        //2、若是好友，则显示发信息
+        if (NetUtils.isNetworkConnected(appContext)) {
+            Subscription s = preferenceUtils.getUserId()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String s) {
+                                friendListSubscription = contactsModel.getFriendList()
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(new Action1<List<Friend>>() {
+                                            @Override
+                                            public void call(List<Friend> friendListItems) {
+                                                //获取好友列表，再进行比较
+                                                boolean isFriend = false;
+                                                Friend item = new Friend();
+                                                for (Friend friendListItem : friendListItems) {
+                                                    if (other_id.equals(friendListItem.getUser_id())) {
+                                                        isFriend = true;
+                                                        item = friendListItem;
+                                                        break;
+                                                    }
+                                                }
+                                                if (isFriend) {
+                                                    iMyInformationView.sendMsg();      //跳到会话界面
+                                                } else {
+                                                    Subscription nameSubscription = preferenceUtils.getUserName()
+                                                            .subscribeOn(Schedulers.io())
+                                                            .observeOn(AndroidSchedulers.mainThread())
+                                                            .subscribe(new Action1<String>() {
+                                                                @Override
+                                                                public void call(String s) {
+
+                                                                    iMyInformationView.sendFriendMsg(other_id,s);   //跳到发送信息界面
+                                                                }
+                                                            });
+                                                }
+                                            }
+                                        }, new Action1<Throwable>() {
+                                            @Override
+                                            public void call(Throwable throwable) {
+                                                if (throwable instanceof retrofit2.HttpException) {
+                                                    retrofit2.HttpException exception = (HttpException) throwable;
+                                                    iMyInformationView.showToast(exception.getMessage());
+                                                } else {
+                                                    iMyInformationView.showNetError();
+                                                }
+                                            }
+                                        });
+                        }
+                    });
+        } else {
+            iMyInformationView.showNetCantUse();
+        }
     }
 
     private void initDynamic(List<FeedItem> result) {

@@ -8,16 +8,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_8_margin">
+        android:layout_height="wrap_content">
 
         <ScrollView
             android:id="@+id/my_information_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/my_information_add_message_btn"
+            android:layout_above="@+id/my_information_add_message_ll"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="@dimen/activity_10_margin"
             android:scrollbars="none">
 
             <LinearLayout
@@ -293,16 +291,26 @@
             </LinearLayout>
         </ScrollView>
 
+
+        <LinearLayout
+            android:id="@+id/my_information_add_message_ll"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/my_information_add_message_btn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/activity_8_margin"
+            android:layout_marginBottom="@dimen/activity_10_margin"
             android:layout_marginLeft="@dimen/activity_16_margin"
             android:layout_marginRight="@dimen/activity_16_margin"
             android:background="@drawable/button_bg"
             android:text="@string/add_friend"
             android:textColor="@color/white"
             android:textSize="16sp" />
+
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

@@ -11,5 +11,6 @@ public interface IContactsPresenter extends IPresenter{
     void initLeanCloud();
 
 
+    void initFriendsList();
 
 }
