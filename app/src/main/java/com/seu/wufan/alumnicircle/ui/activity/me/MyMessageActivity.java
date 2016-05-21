@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 
 import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.AVIMMessage;
@@ -25,7 +22,7 @@ import com.avoscloud.leanchatlib.view.DividerItemDecoration;
 import com.avoscloud.leanchatlib.viewholder.ConversationItemHolder;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
-import com.seu.wufan.alumnicircle.ui.widget.leancloud.ConversationFragmentUpdateEvent;
+import com.seu.wufan.alumnicircle.ui.widget.leancloud.event.ConversationFragmentUpdateEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;

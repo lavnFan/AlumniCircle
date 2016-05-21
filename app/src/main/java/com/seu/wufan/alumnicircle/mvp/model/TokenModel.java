@@ -37,7 +37,7 @@ public class TokenModel extends BaseModel<TokenApi> {
         return getService().login(loginReq);
     }
 
-    public  Observable<LoginRes> register(String phone_num,String enroll_year,String school,String major,String password,String name){
+    public  Observable<LoginRes> register(String phone_num,String enroll_year,String school,String major,String password,String name,String number){
         RegisterReq req = new RegisterReq();
         req.setPhone_num(phone_num);
         req.setEnroll_year(enroll_year);
@@ -45,6 +45,7 @@ public class TokenModel extends BaseModel<TokenApi> {
         req.setMajor(major);
         req.setPassword(password);
         req.setName(name);
+        req.setStudent_num(number);
         return getService().register(req);
     }
 

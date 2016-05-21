@@ -44,9 +44,9 @@
                     android:background="@null"
                     android:hint="@string/user_hint"
                     android:maxLength="15"
-                    android:textColorHint="@color/text_hint"
+                    android:singleLine="true"
                     android:textColor="@color/text_help"
-                    android:singleLine="true" />
+                    android:textColorHint="@color/text_hint" />
             </LinearLayout>
 
             <View
@@ -73,10 +73,10 @@
                     android:background="@null"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:textColorHint="@color/text_hint"
-                    android:textColor="@color/text_help"
                     android:maxLength="15"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textColor="@color/text_help"
+                    android:textColorHint="@color/text_hint" />
             </LinearLayout>
 
         </LinearLayout>
@@ -89,9 +89,9 @@
             android:layout_marginRight="@dimen/activity_16_margin"
             android:background="@drawable/login_btn_bg"
             android:gravity="center"
-            android:textSize="20sp"
             android:text="@string/login"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -123,15 +123,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_16_margin"
-            android:background="@color/bottom_default"
-            android:orientation="horizontal"
-            android:padding="@dimen/activity_8_margin">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:background="@drawable/login_bottom_btn"
+                android:gravity="center"
+                android:padding="@dimen/activity_4_margin">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -156,7 +156,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:background="@drawable/login_bottom_btn"
+                android:gravity="center"
+                android:padding="@dimen/activity_4_margin">
 
                 <TextView
                     android:layout_width="wrap_content"

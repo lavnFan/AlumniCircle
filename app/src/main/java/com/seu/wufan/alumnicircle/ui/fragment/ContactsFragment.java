@@ -2,8 +2,6 @@ package com.seu.wufan.alumnicircle.ui.fragment;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,21 +15,20 @@ import com.avoscloud.leanchatlib.activity.AVChatActivity;
 import com.avoscloud.leanchatlib.utils.Constants;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.Friend;
-import com.seu.wufan.alumnicircle.api.entity.item.FriendListItem;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.contacts.ContactsPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.fragment.IContactsView;
-import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.AlumniGoodActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.NewFriendsActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.MyInformationActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.contacts.ContactsAdapter;
-import com.seu.wufan.alumnicircle.ui.adapter.contacts.ContactsItemAdapter;
 import com.seu.wufan.alumnicircle.common.base.BaseLazyFragment;
-import com.seu.wufan.alumnicircle.ui.widget.leancloud.FriendsManager;
-import com.seu.wufan.alumnicircle.ui.widget.leancloud.LeanchatUser;
+import com.seu.wufan.alumnicircle.ui.widget.leancloud.event.FriendsManager;
+import com.seu.wufan.alumnicircle.ui.widget.leancloud.event.LeanchatUser;
 import com.seu.wufan.alumnicircle.ui.widget.pinyin.CharacterParser;
 import com.seu.wufan.alumnicircle.ui.widget.pinyin.PinyinComparator;
 import com.seu.wufan.alumnicircle.ui.widget.pinyin.SideBar;
+import com.umeng.comm.core.beans.CommUser;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +43,7 @@ import de.greenrobot.event.EventBus;
  * @author wufan
  * @date 2016/1/31
  */
-public class ContactsFragment extends BaseLazyFragment implements View.OnClickListener,IContactsView {
+public class ContactsFragment extends BaseLazyFragment implements View.OnClickListener, IContactsView {
 
     @Bind(R.id.contacts_list_view)
     ListView mListView;
@@ -127,14 +124,14 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), AVChatActivity.class);
-                intent.putExtra(Constants.MEMBER_ID, sourceDataList.get(position-1).getName());
-                getActivity().startActivity(intent);
+                CommUser user = new CommUser();
+                user.sourceUid = sourceDataList.get(position - 1).getUser_id();
+                Intent intent = new Intent(getActivity(),
+                        MyInformationActivity.class);
+                intent.putExtra(com.umeng.comm.core.constants.Constants.TAG_USER, user);
+                startActivity(intent);
             }
         });
-
-        EventBus.getDefault().register(this);
-        getMembers(false);
     }
 
     private void getMembers(final boolean isforce) {
@@ -234,7 +231,7 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
 
     @Override
     public void showToast(@NonNull String s) {
-        ToastUtils.showToast(s,getActivity());
+        ToastUtils.showToast(s, getActivity());
     }
 
     @Override

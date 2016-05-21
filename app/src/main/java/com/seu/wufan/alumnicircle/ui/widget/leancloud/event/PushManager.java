@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.ui.widget.leancloud;
+package com.seu.wufan.alumnicircle.ui.widget.leancloud.event;
 
 import android.content.Context;
 import android.text.TextUtils;

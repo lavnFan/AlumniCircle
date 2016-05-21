@@ -10,10 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.avoscloud.leanchatlib.activity.AVChatActivity;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
-import com.seu.wufan.alumnicircle.api.entity.item.FriendListItem;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
@@ -67,7 +67,8 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
     Button mAddMessageBtn;
     @Bind(R.id.my_information_per_intro_tv)
     TextView mIntroTv;
-
+    @Bind(R.id.my_information_number_tv)
+    TextView mNumberTv;
     @Bind(R.id.my_info_dynamic_ll)
     LinearLayout mDynamicLl;
     @Bind(R.id.my_info_dynamic_iv)
@@ -141,6 +142,7 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
         String str = res.getEnroll_year() + "届" + res.getSchool();
         mCollegeTv.setText(str);
         mMajorTv.setText(res.getMajor());
+        mNumberTv.setText(res.getStudent_num());
     }
 
     @Override
@@ -173,8 +175,10 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
     }
 
     @Override
-    public void sendMsg() {
-        mAddMessageBtn.setText(getResources().getString(R.string.send_messgae));
+    public void sendMsg(String other_id) {
+        Intent intent = new Intent(this, AVChatActivity.class);
+        intent.putExtra(com.avoscloud.leanchatlib.utils.Constants.MEMBER_ID,other_id);
+        startActivity(intent);
     }
 
     @Override
@@ -188,6 +192,11 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
     @Override
     public void hideSendBtn() {
         mAddMsgLl.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setBtnMsg() {
+        mAddMessageBtn.setText(getResources().getString(R.string.send_messgae));
     }
 
     @Override

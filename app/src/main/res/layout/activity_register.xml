@@ -6,283 +6,335 @@
 
     <include layout="@layout/custom_toolbar" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_8_margin"
-        android:layout_marginRight="@dimen/activity_8_margin"
-        android:layout_marginTop="@dimen/activity_16_margin"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/text_bg"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/activity_16_margin"
-            android:paddingRight="@dimen/activity_16_margin">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:paddingTop="15dp">
+                android:layout_marginLeft="@dimen/activity_8_margin"
+                android:layout_marginRight="@dimen/activity_8_margin"
+                android:layout_marginTop="@dimen/activity_16_margin"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/phone"
-                    android:textColor="@color/text_help" />
-
-                <EditText
-                    android:id="@+id/telephone_number_edittext"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/text_bg"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/activity_16_margin"
+                    android:paddingRight="@dimen/activity_16_margin">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/phone"
+                            android:textColor="@color/text_help" />
+
+                        <EditText
+                            android:id="@+id/telephone_number_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:background="@null"
+                            android:hint="@string/phone_hint"
+                            android:singleLine="true"
+                            android:textColor="@color/text_help"
+                            android:textColorHint="@color/text_hint"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.6dp"
+                        android:background="#cecece" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingBottom="15dp"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/password"
+                            android:textColor="@color/text_help" />
+
+                        <EditText
+                            android:id="@+id/password_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:background="@null"
+                            android:hint="@string/password_hint"
+                            android:password="true"
+                            android:singleLine="true"
+                            android:textColor="@color/text_help"
+                            android:textColorHint="@color/text_hint"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/text_bg"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="@dimen/activity_16_margin"
+                    android:paddingTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/name"
+                            android:textColor="@color/text_help" />
+
+                        <EditText
+                            android:id="@+id/register_name_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:background="@null"
+                            android:hint="@string/name_hint"
+                            android:singleLine="true"
+                            android:textColor="@color/text_help"
+                            android:textColorHint="@color/text_hint"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="@dimen/activity_16_margin"
-                    android:background="@null"
-                    android:hint="@string/phone_hint"
-                    android:singleLine="true"
-                    android:textColor="@color/text_help"
-                    android:textColorHint="@color/text_hint"
-                    android:textSize="14sp" />
+                    android:layout_marginRight="@dimen/activity_16_margin"
+                    android:background="@color/divider_low" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/text_bg"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="@dimen/activity_16_margin"
+                    android:paddingTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/number"
+                            android:textColor="@color/text_help" />
+
+                        <EditText
+                            android:id="@+id/register_number_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:background="@null"
+                            android:hint="@string/number_hint"
+                            android:singleLine="true"
+                            android:textColor="@color/text_help"
+                            android:textColorHint="@color/text_hint"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/text_bg"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="@dimen/activity_16_margin"
+                    android:paddingTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/enroll_year_linearlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/school_year"
+                            android:textColor="@color/text_help" />
+
+                        <TextView
+                            android:id="@+id/enroll_year_textview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:layout_marginRight="@dimen/activity_32_margin"
+                            android:hint="@string/school_year_hint"
+                            android:paddingBottom="@dimen/activity_4_margin"
+                            android:paddingTop="@dimen/activity_4_margin"
+                            android:textColor="@color/text_help"
+                            android:textColorHint="@color/text_hint" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/activity_16_margin"
+                        android:src="@drawable/arrow" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/text_bg"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="@dimen/activity_16_margin"
+                    android:paddingTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/department_linearlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/college"
+                            android:textColor="@color/text_help" />
+
+                        <TextView
+                            android:id="@+id/department_textview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:layout_marginRight="@dimen/activity_32_margin"
+                            android:hint="@string/college_hint"
+                            android:paddingBottom="@dimen/activity_4_margin"
+                            android:paddingTop="@dimen/activity_4_margin"
+                            android:textColor="@color/text_help"
+                            android:textColorHint="@color/text_hint" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/activity_16_margin"
+                        android:src="@drawable/arrow" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/text_bg"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="@dimen/activity_16_margin"
+                    android:paddingTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/major_linearlayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/major"
+                            android:textColor="@color/text_help" />
+
+                        <TextView
+                            android:id="@+id/major_textview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:layout_marginRight="@dimen/activity_32_margin"
+                            android:hint="@string/major_hint"
+                            android:paddingBottom="@dimen/activity_4_margin"
+                            android:paddingTop="@dimen/activity_4_margin"
+                            android:textColor="@color/text_help"
+                            android:textColorHint="@color/text_hint" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/activity_16_margin"
+                        android:src="@drawable/arrow" />
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/register_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_24_margin"
+                    android:background="@drawable/button_bg"
+                    android:text="@string/register_1"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#cecece" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingBottom="15dp"
-                android:paddingTop="15dp">
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/agree_with_protocol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@null"
+                    android:checked="false"
+                    android:text="我已阅读并同意"
+                    android:textColor="#ababab" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/password"
-                    android:textColor="@color/text_help" />
-
-                <EditText
-                    android:id="@+id/password_edittext"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_16_margin"
-                    android:background="@null"
-                    android:hint="@string/password_hint"
-                    android:password="true"
-                    android:singleLine="true"
-                    android:textColor="@color/text_help"
-                    android:textColorHint="@color/text_hint"
-                    android:textSize="14sp" />
+                    android:text="《校友圈注册协议》"
+                    android:textColor="#4ba3d2" />
             </LinearLayout>
         </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/text_bg"
-            android:paddingBottom="10dp"
-            android:paddingLeft="@dimen/activity_16_margin"
-            android:paddingTop="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name"
-                    android:textColor="@color/text_help" />
-
-                <EditText
-                    android:id="@+id/register_name_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_16_margin"
-                    android:background="@null"
-                    android:hint="@string/name_hint"
-                    android:singleLine="true"
-                    android:textColor="@color/text_help"
-                    android:textColorHint="@color/text_hint"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/text_bg"
-            android:paddingBottom="10dp"
-            android:paddingLeft="@dimen/activity_16_margin"
-            android:paddingTop="10dp">
-
-            <LinearLayout
-                android:id="@+id/enroll_year_linearlayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/school_year"
-                    android:textColor="@color/text_help" />
-
-                <TextView
-                    android:id="@+id/enroll_year_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_16_margin"
-                    android:layout_marginRight="@dimen/activity_32_margin"
-                    android:hint="@string/school_year_hint"
-                    android:paddingBottom="@dimen/activity_4_margin"
-                    android:paddingTop="@dimen/activity_4_margin"
-                    android:textColor="@color/text_help"
-                    android:textColorHint="@color/text_hint" />
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/activity_16_margin"
-                android:src="@drawable/arrow" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/text_bg"
-            android:paddingBottom="10dp"
-            android:paddingLeft="@dimen/activity_16_margin"
-            android:paddingTop="10dp">
-
-            <LinearLayout
-                android:id="@+id/department_linearlayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/college"
-                    android:textColor="@color/text_help" />
-
-                <TextView
-                    android:id="@+id/department_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_16_margin"
-                    android:layout_marginRight="@dimen/activity_32_margin"
-                    android:hint="@string/college_hint"
-                    android:paddingBottom="@dimen/activity_4_margin"
-                    android:paddingTop="@dimen/activity_4_margin"
-                    android:textColor="@color/text_help"
-                    android:textColorHint="@color/text_hint" />
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/activity_16_margin"
-                android:src="@drawable/arrow" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/text_bg"
-            android:paddingBottom="10dp"
-            android:paddingLeft="@dimen/activity_16_margin"
-            android:paddingTop="10dp">
-
-            <LinearLayout
-                android:id="@+id/major_linearlayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/major"
-                    android:textColor="@color/text_help" />
-
-                <TextView
-                    android:id="@+id/major_textview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_16_margin"
-                    android:layout_marginRight="@dimen/activity_32_margin"
-                    android:hint="@string/major_hint"
-                    android:paddingBottom="@dimen/activity_4_margin"
-                    android:paddingTop="@dimen/activity_4_margin"
-                    android:textColor="@color/text_help"
-                    android:textColorHint="@color/text_hint" />
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/activity_16_margin"
-                android:src="@drawable/arrow" />
-        </RelativeLayout>
-
-        <Button
-            android:id="@+id/register_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_24_margin"
-            android:background="@drawable/button_bg"
-            android:text="@string/register_1"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/agree_with_protocol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@null"
-            android:checked="false"
-            android:text="我已阅读并同意"
-            android:textColor="#ababab" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="《校友圈注册协议》"
-            android:textColor="#4ba3d2" />
-    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

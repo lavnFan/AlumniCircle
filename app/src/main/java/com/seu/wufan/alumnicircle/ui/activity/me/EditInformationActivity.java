@@ -238,7 +238,7 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                 break;
             case R.id.me_edit_info_company_tr:
                 //公司
-                bundle.putSerializable(CompanyActivity.EXTRA_COMPANY,editInformationPresenter.getUserDetail());
+                bundle.putSerializable(CompanyActivity.EXTRA_COMPANY, editInformationPresenter.getUserDetail());
                 readyGoForResult(CompanyActivity.class, REQUESTCODE_Company, bundle);
                 break;
             case R.id.me_edit_info_prof_tr:
@@ -248,18 +248,18 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                 break;
             case R.id.me_edit_info_person_intro_tr:
                 //个人简介
-                bundle.putSerializable(PersonIntroActivity.EXTRA_PERSON_INTRO ,editInformationPresenter.getUserDetail());
+                bundle.putSerializable(PersonIntroActivity.EXTRA_PERSON_INTRO, editInformationPresenter.getUserDetail());
                 readyGoForResult(PersonIntroActivity.class, REQUESTCODE_Person_Intro, bundle);
                 break;
             case R.id.me_edit_info_prof_exper_tr:
                 //职业经历
-                bundle.putSerializable(ProfExperShowJobFragmentToActivity.EXTRA_JOB ,editInformationPresenter.getUserDetail());
-                readyGoForResult(ProfExperShowJobFragmentToActivity.class,REQUESTCODE_JOB_HISTORY,bundle);
+                bundle.putSerializable(ProfExperShowJobFragmentToActivity.EXTRA_JOB, editInformationPresenter.getUserDetail());
+                readyGoForResult(ProfExperShowJobFragmentToActivity.class, REQUESTCODE_JOB_HISTORY, bundle);
                 break;
             case R.id.me_edit_info_educ_exper_tr:
                 //教育经历
-                bundle.putSerializable(EducationActivity.EXTRA_EDU ,editInformationPresenter.getUserDetail());
-                readyGoForResult(EducationActivity.class,REQUESTCODE_EDU_HISTORY,bundle);
+                bundle.putSerializable(EducationActivity.EXTRA_EDU, editInformationPresenter.getUserDetail());
+                readyGoForResult(EducationActivity.class, REQUESTCODE_EDU_HISTORY, bundle);
                 break;
         }
     }
@@ -345,18 +345,18 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
                 mPersonIntroTv.setText(personInfo);
                 break;
             case REQUESTCODE_EDU_HISTORY:
-                Edus edus = (data==null)?null: (Edus) data.getSerializableExtra(EducationActivity.EXTRA_EDU_LIST);
-                if(edus!=null){
+                Edus edus = (data == null) ? null : (Edus) data.getSerializableExtra(EducationActivity.EXTRA_EDU_LIST);
+                if (edus != null) {
                     editInformationPresenter.initDetail();
-                }else{
+                } else {
                     mEducExperTv.setText(R.string.please_write);
                 }
                 break;
             case REQUESTCODE_JOB_HISTORY:
-                Jobs jobs = (data==null)?null: (Jobs) data.getSerializableExtra(ProfExperShowJobFragmentToActivity.EXTRA_JOB_LIST);
-                if(jobs!=null){
+                Jobs jobs = (data == null) ? null : (Jobs) data.getSerializableExtra(ProfExperShowJobFragmentToActivity.EXTRA_JOB_LIST);
+                if (jobs != null) {
                     editInformationPresenter.initDetail();
-                }else{
+                } else {
                     mJobProfTv.setText(R.string.please_write);
                 }
                 break;
@@ -421,7 +421,7 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
 
     @Override
     public void showToast(@NonNull String s) {
-        ToastUtils.showToast(s,this);
+        ToastUtils.showToast(s, this);
     }
 
     @Override
@@ -452,21 +452,29 @@ public class EditInformationActivity extends BaseSwipeActivity implements IEditI
         mPersonIntroTv.setText(res.getIntroduction());
 
         //根据条目来分别显示职业或教育的信息
-        if(res.getJobHistory().size()>1){
-            String jobs = res.getJobHistory().get(0).getCompany()+"等"+res.getJobHistory().size()+"个工作";
-            mProfExperTv.setText(jobs);
-        }else if(res.getJobHistory().size()==1){
-            mProfExperTv.setText(res.getJobHistory().get(0).getCompany());
-        }else if(res.getJobHistory().size()==0){
+        if (res.getJobHistory() != null) {
+            if (res.getJobHistory().size() > 1) {
+                String jobs = res.getJobHistory().get(0).getCompany() + "等" + res.getJobHistory().size() + "个工作";
+                mProfExperTv.setText(jobs);
+            } else if (res.getJobHistory().size() == 1) {
+                mProfExperTv.setText(res.getJobHistory().get(0).getCompany());
+            } else if (res.getJobHistory().size() == 0) {
+                mProfExperTv.setText(R.string.please_write);
+            }
+        } else {
             mProfExperTv.setText(R.string.please_write);
         }
 
-        if(res.getEduHistory().size()>1){
-            String schools = res.getEduHistory().get(0).getSchool()+"等"+res.getEduHistory().size()+"个学校";
-            mEducExperTv.setText(schools);
-        }else if(res.getEduHistory().size()==1){
-            mEducExperTv.setText(res.getEduHistory().get(0).getSchool());
-        }else if(res.getEduHistory().size()==0){
+        if (res.getEduHistory() != null) {
+            if (res.getEduHistory().size() > 1) {
+                String schools = res.getEduHistory().get(0).getSchool() + "等" + res.getEduHistory().size() + "个学校";
+                mEducExperTv.setText(schools);
+            } else if (res.getEduHistory().size() == 1) {
+                mEducExperTv.setText(res.getEduHistory().get(0).getSchool());
+            } else if (res.getEduHistory().size() == 0) {
+                mEducExperTv.setText(R.string.please_write);
+            }
+        } else {
             mEducExperTv.setText(R.string.please_write);
         }
     }

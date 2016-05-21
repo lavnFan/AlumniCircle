@@ -139,6 +139,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".ui.activity.contacts.SearchFriendActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
 
         <!--leanchat-->
 
@@ -251,13 +256,13 @@
 
         <!-- ##################分享相关#################### -->
         <!-- 分享内容编辑页 -->
-        <!--<activity-->
-        <!--android:name="com.umeng.socialize.view.ShareActivity"-->
-        <!--android:configChanges="orientation|keyboard"-->
-        <!--android:launchMode="singleTask"-->
-        <!--android:noHistory="true"-->
-        <!--android:theme="@style/Theme.UMDialog"-->
-        <!--android:windowSoftInputMode="stateVisible|adjustResize"></activity>-->
+        <activity
+        android:name="com.umeng.socialize.view.ShareActivity"
+        android:configChanges="orientation|keyboard"
+        android:launchMode="singleTask"
+        android:noHistory="true"
+        android:theme="@style/Theme.UMDialog"
+        android:windowSoftInputMode="stateVisible|adjustResize"></activity>
 
         <!-- 腾讯SSO授权的Activity注册 -->
         <activity
@@ -306,8 +311,8 @@
         <!--android:exported="false">-->
 
         <!--</service>-->
-        <!---->
-        <!---->
+
+
 
 
         <!-- ##################### 推送相关 ##################### -->
@@ -319,6 +324,7 @@
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"
             android:value="5a760247d762c200cd71ca6d51e53757"></meta-data>
+        <!---->
         <!--&lt;!&ndash;线上weibo demo Appkey&ndash;&gt;-->
         <!--<meta-data android:name="UMENG_APPKEY"-->
         <!--android:value="54d19086fd98c540a2001155" >-->

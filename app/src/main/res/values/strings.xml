@@ -12,7 +12,7 @@
     <string name="alumni_circle">校友圈</string>
 
     <!--login-->
-    <string name="user_hint">校友圈号/手机号</string>
+    <string name="user_hint">手机号</string>
     <string name="password">密码</string>
     <string name="login">登 录</string>
     <string name="login_success"></string>
@@ -80,6 +80,9 @@
     <string name="photo">头像:</string>
     <string name="name_">姓名:</string>
     <string name="name">姓名</string>
+    <string name="number">学号</string>
+    <string name="number_">校友圈号:</string>
+    <string name="number_hint">请填写学号</string>
     <string name="name_hint">请填写用户名</string>
     <string name="sex_">性别:</string>
     <string name="borth_year_">出生年月:</string>

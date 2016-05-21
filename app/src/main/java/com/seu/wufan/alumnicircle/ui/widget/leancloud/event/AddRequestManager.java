@@ -1,4 +1,4 @@
-package com.seu.wufan.alumnicircle.ui.widget.leancloud;
+package com.seu.wufan.alumnicircle.ui.widget.leancloud.event;
 
 import android.content.Context;
 import com.avos.avoscloud.AVException;
@@ -8,7 +8,6 @@ import com.avos.avoscloud.CountCallback;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.FollowCallback;
 import com.avos.avoscloud.SaveCallback;
-import com.avoscloud.leanchatlib.utils.LogUtils;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.App;
 
@@ -93,7 +92,7 @@ public class AddRequestManager {
     q.skip(skip);
     q.limit(limit);
     q.whereEqualTo(AddRequest.TO_USER, user);
-    q.orderByDescending(AVObject.CREATED_AT);
+//    q.orderByDescending(AVObject.CREATED_AT);
     q.setCachePolicy(AVQuery.CachePolicy.NETWORK_ELSE_CACHE);
     q.findInBackground(findCallback);
   }

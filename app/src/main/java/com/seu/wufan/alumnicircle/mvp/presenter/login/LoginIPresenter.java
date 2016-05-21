@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.SignUpCallback;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
@@ -25,6 +27,7 @@ import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.ILoginView;
+import com.seu.wufan.alumnicircle.ui.widget.leancloud.event.LeanchatUser;
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.beans.CommUser;
 import com.umeng.comm.core.beans.Source;
@@ -180,7 +183,7 @@ public class LoginIPresenter implements ILoginIPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<UserInfoRes>() {
                     @Override
-                    public void call(UserInfoRes userInfoRes) {
+                    public void call(final UserInfoRes userInfoRes) {
                         preferenceUtils.putString(userInfoRes.getImage(),PreferenceType.USER_PHOTO);
                         preferenceUtils.putString(userInfoRes.getName(),PreferenceType.USER_NAME);
                         mockLoginData(user_id,userInfoRes.getName());

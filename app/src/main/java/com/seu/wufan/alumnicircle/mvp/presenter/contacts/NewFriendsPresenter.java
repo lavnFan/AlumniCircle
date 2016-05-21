@@ -1,6 +1,5 @@
 package com.seu.wufan.alumnicircle.mvp.presenter.contacts;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.widget.Button;
 
@@ -11,19 +10,15 @@ import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCreatedCallback;
 import com.avos.avoscloud.im.v2.messages.AVIMTextMessage;
 import com.avoscloud.leanchatlib.controller.ChatManager;
-import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.FriendRequestItem;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
-import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.ContactsModel;
-import com.seu.wufan.alumnicircle.mvp.presenter.IPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.INewFriendsView;
-import com.seu.wufan.alumnicircle.mvp.views.activity.ISendFriendRequestView;
-import com.seu.wufan.alumnicircle.ui.widget.leancloud.AddRequest;
-import com.seu.wufan.alumnicircle.ui.widget.leancloud.AddRequestManager;
+import com.seu.wufan.alumnicircle.ui.widget.leancloud.event.AddRequest;
+import com.seu.wufan.alumnicircle.ui.widget.leancloud.event.AddRequestManager;
 
 import java.util.List;
 
@@ -106,9 +101,9 @@ public class NewFriendsPresenter implements INewFriendsPresenter {
                         public void call(Void aVoid) {
                             iNewFriendsView.acceptSuccess(sendBtn);
                             //同时更新到leancloud中
-                            AddRequest addRequest = new AddRequest();
-                            addRequest.setObjectId(user_id);
-                            agreeAddRequest(addRequest);
+//                            AddRequest addRequest = new AddRequest();
+//                            addRequest.setObjectId(user_id);
+//                            agreeAddRequest(addRequest);
                         }
                     }, new Action1<Throwable>() {
                         @Override

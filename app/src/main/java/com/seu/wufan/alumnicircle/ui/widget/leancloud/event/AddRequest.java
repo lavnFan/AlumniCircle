@@ -1,7 +1,8 @@
-package com.seu.wufan.alumnicircle.ui.widget.leancloud;
+package com.seu.wufan.alumnicircle.ui.widget.leancloud.event;
 
 import com.avos.avoscloud.AVClassName;
 import com.avos.avoscloud.AVObject;
+import com.seu.wufan.alumnicircle.ui.widget.leancloud.event.LeanchatUser;
 
 /**
  * Created by lzw on 14-9-27.

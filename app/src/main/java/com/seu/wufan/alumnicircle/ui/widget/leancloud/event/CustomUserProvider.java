@@ -1,18 +1,12 @@
-package com.seu.wufan.alumnicircle.ui.widget.leancloud;
-
-import android.content.res.Resources;
+package com.seu.wufan.alumnicircle.ui.widget.leancloud.event;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.FindCallback;
 import com.avoscloud.leanchatlib.utils.ThirdPartUserUtils;
-import com.seu.wufan.alumnicircle.api.entity.item.ContactsFriendsItem;
-import com.seu.wufan.alumnicircle.api.entity.item.Friend;
-import com.seu.wufan.alumnicircle.ui.widget.pinyin.CharacterParser;
-import com.seu.wufan.alumnicircle.ui.widget.pinyin.PinyinComparator;
+import com.seu.wufan.alumnicircle.api.entity.item.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**

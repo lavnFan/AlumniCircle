@@ -10,10 +10,12 @@ import com.bumptech.glide.Glide;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.item.User;
 import com.seu.wufan.alumnicircle.common.provider.UserTokenProvider;
 import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
+import com.seu.wufan.alumnicircle.common.utils.PreferenceUtil;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.CircleModel;
@@ -22,6 +24,13 @@ import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.IRegisterView;
+import com.umeng.comm.core.CommunitySDK;
+import com.umeng.comm.core.beans.CommUser;
+import com.umeng.comm.core.constants.ErrorCode;
+import com.umeng.comm.core.impl.CommunityFactory;
+import com.umeng.comm.core.login.LoginListener;
+import com.umeng.comm.core.sdkmanager.LocationSDKManager;
+import com.umeng.community.location.DefaultLocationImpl;
 
 import javax.inject.Inject;
 
@@ -47,6 +56,8 @@ public class RegisterIPresenter implements IRegisterIPresenter {
     private UserModel userModel;
     private Context appContext;
 
+    User user = new User();  //缓存本地的user
+
     @Inject
     public RegisterIPresenter(@ForApplication Context context, TokenModel tokenModel, CircleModel circleModel, ContactsModel contactsModel, UserModel userModel, PreferenceUtils preferenceUtils) {
         this.tokenModel = tokenModel;
@@ -70,11 +81,11 @@ public class RegisterIPresenter implements IRegisterIPresenter {
     }
 
     @Override
-    public void doRegister(final String phone_num, String password, String enroll_year, String school, String major,final String name) {
-        if(isValid(phone_num,password,enroll_year,school,major,name)){
+    public void doRegister(final String phone_num, String password, String enroll_year, String school, String major,final String name,String number) {
+        if(isValid(phone_num,password,enroll_year,school,major,name,number)){
             if(NetUtils.isNetworkConnected(appContext)){
                 registerView.registerLoading();
-                registerSubmission = (Subscription) tokenModel.register(phone_num,enroll_year,school,major,password,name)
+                registerSubmission = (Subscription) tokenModel.register(phone_num,enroll_year,school,major,password,name,number)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Action1<LoginRes>() {
@@ -90,7 +101,7 @@ public class RegisterIPresenter implements IRegisterIPresenter {
                                 contactsModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 userModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
 
-                                registerView.registerSuccess();
+                                saveUserInfo(loginRes.getUser_id(),name);
                             }
                         }, new Action1<Throwable>() {
                             @Override
@@ -111,7 +122,7 @@ public class RegisterIPresenter implements IRegisterIPresenter {
     }
 
     @Override
-    public boolean isValid(String phone_num,String password,String enroll_year,String school,String major,String name) {
+    public boolean isValid(String phone_num,String password,String enroll_year,String school,String major,String name,String number) {
         if(CommonUtils.isEmpty(phone_num)){
             registerView.showToast("请输入您的手机号码");
             return false;
@@ -132,6 +143,14 @@ public class RegisterIPresenter implements IRegisterIPresenter {
             registerView.showToast("请填写用户名");
             return false;
         }
+        if(name.length()<2){
+            registerView.showToast("用户名长度太短");
+            return false;
+        }
+        if(CommonUtils.isEmpty(number)){
+            registerView.showToast("请填写学号");
+            return false;
+        }
         if(CommonUtils.isEmpty(enroll_year)){
             registerView.showToast("请选择入学年份");
             return false;
@@ -143,6 +162,37 @@ public class RegisterIPresenter implements IRegisterIPresenter {
         return true;
     }
 
+    private void saveUserInfo(String userId, String name) {
+        //创建CommUser前必须先初始化CommunitySDK
+        CommunitySDK sdk = CommunityFactory.getCommSDK(appContext);
 
+        CommUser loginUser = new CommUser();
+        loginUser.id = userId; // 用户id
+        loginUser.name = name; // 用户名
+
+        user.setName(name);
+        user.setUser_id(userId);
+
+        sdk.loginToUmengServerBySelfAccount(appContext, loginUser.name,loginUser.id, new LoginListener() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onComplete(int stCode, CommUser commUser) {
+                if (ErrorCode.NO_ERROR==stCode) {
+                    // 设置地理位置SDK
+                    LocationSDKManager.getInstance().addAndUse(new DefaultLocationImpl());
+
+                    user.setUmeng_id(commUser.id);
+                    PreferenceUtil.putBean(appContext,PreferenceUtil.Key.EXTRA_COMMUSER,user);
+
+                    registerView.registerSuccess();
+                }
+
+            }
+        });
+    }
 
 }

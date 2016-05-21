@@ -21,9 +21,11 @@ public interface IMyInformationView extends IView{
 
     void goDynamic(CommUser user);
 
-    void sendMsg();
+    void sendMsg(String other_id);
 
     void sendFriendMsg(String other_id,String name);
 
     void hideSendBtn();
+
+    void setBtnMsg();
 }

@@ -13,6 +13,7 @@ import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.me.INameView;
+import com.seu.wufan.alumnicircle.ui.widget.leancloud.event.LeanchatUser;
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.beans.CommUser;
 import com.umeng.comm.core.constants.ErrorCode;
@@ -84,6 +85,10 @@ public class NamePresenter implements INamePresenter {
      *             再同步更新leanchat与友盟
      */
     private void saveName(String name) {
+
+        LeanchatUser leanchatUser = LeanchatUser.getCurrentUser();
+        leanchatUser.setUsername(name);
+
         preferenceUtils.putString(name, PreferenceType.USER_NAME);
         User user = (User) PreferenceUtil.getBean(appContext, PreferenceUtil.Key.EXTRA_COMMUSER);
         user.setName(name);
@@ -106,6 +111,7 @@ public class NamePresenter implements INamePresenter {
                 }
             }
         });
+
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.seu.wufan.alumnicircle.ui.activity.circle.PublishDynamicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.AddFriendsActivity;
 import com.seu.wufan.alumnicircle.ui.fragment.ContactsFragment;
 import com.seu.wufan.alumnicircle.ui.fragment.MyFragment;
+import com.umeng.comm.core.sdkmanager.ShareSDKManager;
 import com.umeng.comm.ui.fragments.CommunityMainFragment;
 import com.umeng.common.ui.widgets.CommunityViewPager;
 
@@ -270,5 +271,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        ShareSDKManager.getInstance().getCurrentSDK().onActivityResult(this,requestCode,resultCode,data);
     }
 }

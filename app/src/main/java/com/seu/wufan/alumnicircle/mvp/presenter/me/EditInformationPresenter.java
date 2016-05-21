@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.SaveCallback;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadOptions;
@@ -21,6 +23,7 @@ import com.seu.wufan.alumnicircle.mvp.model.TokenModel;
 import com.seu.wufan.alumnicircle.mvp.model.UserModel;
 import com.seu.wufan.alumnicircle.mvp.views.IView;
 import com.seu.wufan.alumnicircle.mvp.views.activity.me.IEditInformationView;
+import com.seu.wufan.alumnicircle.ui.widget.leancloud.event.LeanchatUser;
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.impl.CommunityFactory;
 import com.umeng.comm.core.listeners.Listeners;
@@ -36,6 +39,7 @@ import javax.inject.Inject;
 import retrofit2.HttpException;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.exceptions.OnErrorNotImplementedException;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
@@ -110,31 +114,42 @@ public class EditInformationPresenter implements IEditInformationPresenter {
      * @param photo_path 同时上传到友盟和leancloud上，保持同步
      */
     private void updatePhoto(String photo_path) {
+        TLog.i("TAG", photo_path);
+
+//        LeanchatUser leanchatUser = LeanchatUser.getCurrentUser();
+//        leanchatUser.saveAvatar(photo_path, new SaveCallback() {
+//            @Override
+//            public void done(AVException e) {
+//
+//            }
+//        });
+
+
         preferenceUtils.putString(photo_path, PreferenceType.USER_PHOTO);
         editInformationView.setPhotoResult(photo_path);
         compressImage(photo_path);
     }
 
-    private void compressImage(String imagePath){
+    private void compressImage(String imagePath) {
         BitmapFactory.Options opts = new BitmapFactory.Options();
         //设置为true获取图片的初始大小
         opts.inJustDecodeBounds = true;
-        Bitmap image = BitmapFactory.decodeFile(imagePath,opts);
+        Bitmap image = BitmapFactory.decodeFile(imagePath, opts);
         int imageHeight = opts.outHeight;
         int imageWidth = opts.outWidth;
 
         opts.inJustDecodeBounds = false;
 
         //控制图片高宽中较低的一个在500像素左右
-        if(Math.min(imageHeight,imageWidth) > 500){
-            float ratio = Math.max(imageHeight,imageWidth)/500;
+        if (Math.min(imageHeight, imageWidth) > 500) {
+            float ratio = Math.max(imageHeight, imageWidth) / 500;
             opts.inSampleSize = Math.round(ratio);
         }
-        Bitmap finalImage = BitmapFactory.decodeFile(imagePath,opts);
+        Bitmap finalImage = BitmapFactory.decodeFile(imagePath, opts);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         //降低画质
-        finalImage.compress(Bitmap.CompressFormat.JPEG,70,baos);
+        finalImage.compress(Bitmap.CompressFormat.JPEG, 70, baos);
 
         CommunitySDK sdk = CommunityFactory.getCommSDK(appContext);
         sdk.updateUserProtrait(finalImage, new Listeners.SimpleFetchListener<PortraitUploadResponse>() {
@@ -282,6 +297,7 @@ public class EditInformationPresenter implements IEditInformationPresenter {
                                     .subscribe(new Action1<UserInfoDetailRes>() {
                                         @Override
                                         public void call(UserInfoDetailRes getUserInfoDetailRes) {
+                                            TLog.i("TAG", "user info detail");
                                             userDetail = getUserInfoDetailRes;
                                             editInformationView.initDetail(userDetail);
                                         }

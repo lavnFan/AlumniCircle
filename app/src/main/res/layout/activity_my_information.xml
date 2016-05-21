@@ -95,6 +95,38 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="@dimen/activity_16_margin"
+                            android:text="@string/number_"
+                            android:textColor="@color/text_help"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/my_information_number_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_8_margin"
+                            android:layout_marginRight="@dimen/activity_16_margin" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="@dimen/activity_8_margin"
+                        android:background="@color/divider_low" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/activity_10_margin"
+                        android:paddingTop="@dimen/activity_10_margin">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/activity_16_margin"
                             android:text="@string/person_intro_"
                             android:textColor="@color/text_help"
                             android:textSize="16sp" />
@@ -295,21 +327,21 @@
         <LinearLayout
             android:id="@+id/my_information_add_message_ll"
             android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
 
-        <Button
-            android:id="@+id/my_information_add_message_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="@dimen/activity_8_margin"
-            android:layout_marginBottom="@dimen/activity_10_margin"
-            android:layout_marginLeft="@dimen/activity_16_margin"
-            android:layout_marginRight="@dimen/activity_16_margin"
-            android:background="@drawable/button_bg"
-            android:text="@string/add_friend"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            <Button
+                android:id="@+id/my_information_add_message_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="@dimen/activity_10_margin"
+                android:layout_marginLeft="@dimen/activity_16_margin"
+                android:layout_marginRight="@dimen/activity_16_margin"
+                android:layout_marginTop="@dimen/activity_8_margin"
+                android:background="@drawable/button_bg"
+                android:text="@string/add_friend"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
     </RelativeLayout>

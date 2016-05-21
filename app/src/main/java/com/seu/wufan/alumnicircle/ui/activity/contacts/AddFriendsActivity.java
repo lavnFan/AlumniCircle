@@ -25,7 +25,7 @@ public class AddFriendsActivity extends BaseSwipeActivity {
 
     @Override
     protected void prepareDatas() {
-
+        setToolbarTitle(getResources().getString(R.string.new_friend));
     }
 
     @Override

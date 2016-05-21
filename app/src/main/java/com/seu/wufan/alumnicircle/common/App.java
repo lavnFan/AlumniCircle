@@ -3,16 +3,9 @@ package com.seu.wufan.alumnicircle.common;
 import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
-import android.text.TextUtils;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.avos.avoscloud.AVOSCloud;
-import com.avos.avoscloud.im.v2.AVIMClient;
-import com.avos.avoscloud.im.v2.AVIMException;
-import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
 import com.avoscloud.leanchatlib.controller.ChatManager;
-import com.avoscloud.leanchatlib.controller.ConversationEventHandler;
 import com.avoscloud.leanchatlib.utils.ThirdPartUserUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -21,16 +14,13 @@ import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 import com.seu.wufan.alumnicircle.injector.component.DaggerApiComponent;
 import com.seu.wufan.alumnicircle.injector.component.DaggerAppComponent;
-import com.seu.wufan.alumnicircle.ui.widget.leancloud.CustomUserProvider;
 import com.squareup.leakcanary.LeakCanary;
 
 import com.seu.wufan.alumnicircle.injector.component.ApiComponent;
 import com.seu.wufan.alumnicircle.injector.component.AppComponent;
 import com.seu.wufan.alumnicircle.injector.module.AppModule;
 import com.umeng.comm.core.CommunitySDK;
-import com.umeng.comm.core.beans.CommConfig;
 import com.umeng.comm.core.impl.CommunityFactory;
-import com.umeng.comm.core.sdkmanager.LoginSDKManager;
 
 public class App extends Application {
     private AppComponent appComponent;
@@ -99,7 +89,7 @@ public class App extends Application {
         AVOSCloud.setDebugLogEnabled(true);  // set false when release
         initImageLoader(this);
         ChatManager.getInstance().init(this);
-        ThirdPartUserUtils.setThirdPartUserProvider(new CustomUserProvider());
+//        ThirdPartUserUtils.setThirdPartUserProvider(new CustomUserProvider());
     }
 
     public static void initImageLoader(Context context) {

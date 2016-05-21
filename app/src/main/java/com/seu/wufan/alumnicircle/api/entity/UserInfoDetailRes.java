@@ -23,10 +23,10 @@ public class UserInfoDetailRes implements Serializable {
     private String city;
     private String profession;
     private String company;
-    private String job;
     private String introduction;
     private List<Edu> eduHistory;
     private List<Job> jobHistory;
+    private String job;
 
     public List<Edu> getEduHistory() {
         return eduHistory;
@@ -100,51 +100,4 @@ public class UserInfoDetailRes implements Serializable {
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
     }
-//
-//    @Override
-//    public int describeContents() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeString(this.gender);
-//        dest.writeString(this.birthday);
-//        dest.writeString(this.city);
-//        dest.writeString(this.profession);
-//        dest.writeString(this.company);
-//        dest.writeString(this.job);
-//        dest.writeString(this.introduction);
-//        dest.writeList(this.eduHistory);
-//        dest.writeList(this.jobHistory);
-//    }
-//
-//    public UserInfoDetailRes() {
-//    }
-//
-//    protected UserInfoDetailRes(Parcel in) {
-//        this.gender = in.readString();
-//        this.birthday = in.readString();
-//        this.city = in.readString();
-//        this.profession = in.readString();
-//        this.company = in.readString();
-//        this.job = in.readString();
-//        this.introduction = in.readString();
-//        this.eduHistory = new ArrayList<Edu>();
-//        in.readList(this.eduHistory, Edu.class.getClassLoader());
-//        this.jobHistory = new ArrayList<Job>();
-//        in.readList(this.jobHistory, Job.class.getClassLoader());
-//    }
-//
-//    public static final Parcelable.Creator<UserInfoDetailRes> CREATOR = new Parcelable.Creator<UserInfoDetailRes>() {
-//        @Override
-//        public UserInfoDetailRes createFromParcel(Parcel source) {
-//            return new UserInfoDetailRes(source);
-//        }
-//
-//        @Override
-//        public UserInfoDetailRes[] newArray(int size) {
-//            return new UserInfoDetailRes[size];
-//        }
-//    };
 }
