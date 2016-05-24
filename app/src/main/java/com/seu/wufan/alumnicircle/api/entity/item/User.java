@@ -15,6 +15,9 @@ public class User implements Serializable{
     private String image;
     private String gender;
     private String umeng_id;
+    //
+    private String school;
+    private String major;
 
     public String getUmeng_id() {
         return umeng_id;
@@ -54,5 +57,21 @@ public class User implements Serializable{
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
     }
 }

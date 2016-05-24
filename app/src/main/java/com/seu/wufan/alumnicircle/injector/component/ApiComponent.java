@@ -4,6 +4,8 @@ import com.seu.wufan.alumnicircle.injector.module.ApiModule;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.ui.activity.circle.PublishDynamicActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.NewFriendsActivity;
+import com.seu.wufan.alumnicircle.ui.activity.contacts.ScanFriendsActivity;
+import com.seu.wufan.alumnicircle.ui.activity.contacts.SearchFriendActivity;
 import com.seu.wufan.alumnicircle.ui.activity.contacts.SendAddFriendActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.LoginActivity;
 import com.seu.wufan.alumnicircle.ui.activity.login.RegisterActivity;
@@ -64,6 +66,10 @@ public interface ApiComponent {
     void inject(SendAddFriendActivity sendAddFriendActivity);
 
     void inject(NewFriendsActivity newFriendsActivity);
+
+    void inject(SearchFriendActivity searchFriendActivity);
+
+    void inject(ScanFriendsActivity scanFriendsActivity);
 
     void inject(EducationEditFragment educationEditFragment);
 

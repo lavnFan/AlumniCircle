@@ -71,40 +71,37 @@ public class MyInformationPresenter implements IMyInformationPresenter {
 
     @Override
     public void initUser(final String user_id) {
-        judgeFriendSubscription = preferenceUtils.getUserId()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                        if (s.equals(user_id)) {              //如果是自身，则隐藏
-                            iMyInformationView.hideSendBtn();
-                        } else {                               //获取好友列表，再进行比较
-                            friendListSubscription = contactsModel.getFriendList()
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(new Action1<List<Friend>>() {
-                                        @Override
-                                        public void call(List<Friend> friendListItems) {
-                                            Friend item = new Friend();
-                                            for (Friend friendListItem : friendListItems) {
-                                                if (user_id.equals(friendListItem.getUser_id())) {
-                                                    isFriend = true;
-                                                    break;
+        if (NetUtils.isNetworkConnected(appContext)) {
+            judgeFriendSubscription = preferenceUtils.getUserId()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String s) {
+                            if (s.equals(user_id)) {              //如果是自身，则隐藏
+                                iMyInformationView.hideSendBtn();
+                            } else {                               //获取好友列表，再进行比较
+                                friendListSubscription = contactsModel.getFriendList()
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(new Action1<List<Friend>>() {
+                                            @Override
+                                            public void call(List<Friend> friendListItems) {
+                                                Friend item = new Friend();
+                                                for (Friend friendListItem : friendListItems) {
+                                                    if (user_id.equals(friendListItem.getUser_id())) {
+                                                        isFriend = true;
+                                                        break;
+                                                    }
+                                                }
+                                                if (isFriend) {
+                                                    iMyInformationView.setBtnMsg();      //显示发消息
                                                 }
                                             }
-                                            if (isFriend) {
-                                                iMyInformationView.setBtnMsg();      //显示发消息
-                                            }
-                                        }
-                                    });
+                                        });
+                            }
                         }
-                    }
-                });
-
-        if (NetUtils.isNetworkConnected(appContext)) {
-
-
+                    });
             detailSubscription = userModel.getUserInfoResObservable(user_id)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -158,8 +155,6 @@ public class MyInformationPresenter implements IMyInformationPresenter {
                     getUmengDynamic(commUser.id);
                 }
             });
-
-
         } else {
             iMyInformationView.showNetCantUse();
         }

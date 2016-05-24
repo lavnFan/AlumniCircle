@@ -7,6 +7,7 @@
     <include layout="@layout/custom_toolbar" />
 
     <LinearLayout
+        android:id="@+id/contacts_add_friends_search_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_12_margin"
@@ -40,95 +41,105 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_12_margin"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/contacts_add_friends_phone_ll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_8_margin"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:id="@+id/contacts_add_friends_phone_ll"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:paddingLeft="@dimen/activity_12_margin"-->
+                <!--android:background="@drawable/list_item_bg"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:paddingBottom="@dimen/activity_6_margin"-->
+                <!--android:paddingTop="@dimen/activity_8_margin">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_2_margin"
-                    android:src="@drawable/phone_contacts" />
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/activity_2_margin"-->
+                    <!--android:src="@drawable/phone_contacts" />-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_12_margin"
-                    android:orientation="vertical"
-                    android:padding="@dimen/activity_4_margin">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/activity_12_margin"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:padding="@dimen/activity_4_margin">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/phone_contacts"
-                        android:textColor="@color/text_main" />
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/phone_contacts"-->
+                        <!--android:textColor="@color/text_main" />-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/phone_contacts_hint"
-                        android:textColor="@color/text_hint" />
-                </LinearLayout>
-            </LinearLayout>
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/phone_contacts_hint"-->
+                        <!--android:textColor="@color/text_hint" />-->
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0.8dp"-->
+                <!--android:layout_marginLeft="@dimen/activity_12_margin"-->
+                <!--android:layout_marginRight="@dimen/activity_12_margin"-->
+                <!--android:background="@color/divider_high" />-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/contacts_add_friends_alumni_ll"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:paddingLeft="@dimen/activity_12_margin"-->
+                <!--android:background="@drawable/list_item_bg"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:paddingBottom="@dimen/activity_6_margin"-->
+                <!--android:paddingTop="@dimen/activity_8_margin">-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/activity_2_margin"-->
+                    <!--android:src="@drawable/friend" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/activity_12_margin"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:padding="@dimen/activity_4_margin">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/alumni_num"-->
+                        <!--android:textColor="@color/text_main" />-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/alumni_num_hint"-->
+                        <!--android:textColor="@color/text_hint" />-->
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
-                android:layout_marginTop="@dimen/activity_6_margin"
-                android:background="@color/divider_high" />
-
-            <LinearLayout
-                android:id="@+id/contacts_add_friends_alumni_ll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_8_margin"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_2_margin"
-                    android:src="@drawable/friend" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_12_margin"
-                    android:orientation="vertical"
-                    android:padding="@dimen/activity_4_margin">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/alumni_num"
-                        android:textColor="@color/text_main" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/alumni_num_hint"
-                        android:textColor="@color/text_hint" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:layout_marginTop="@dimen/activity_6_margin"
+                android:layout_marginLeft="@dimen/activity_12_margin"
+                android:layout_marginRight="@dimen/activity_12_margin"
                 android:background="@color/divider_high" />
 
             <LinearLayout
                 android:id="@+id/contacts_add_friends_scan_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_8_margin"
-                android:orientation="horizontal">
+                android:paddingLeft="@dimen/activity_12_margin"
+                android:background="@drawable/list_item_bg"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/activity_6_margin"
+                android:paddingTop="@dimen/activity_8_margin">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -160,7 +171,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.8dp"
-                android:layout_marginTop="@dimen/activity_6_margin"
+                android:layout_marginLeft="@dimen/activity_12_margin"
+                android:layout_marginRight="@dimen/activity_12_margin"
                 android:background="@color/divider_high" />
         </LinearLayout>
     </LinearLayout>

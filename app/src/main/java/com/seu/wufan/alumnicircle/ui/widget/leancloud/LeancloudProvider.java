@@ -43,10 +43,11 @@ public class LeancloudProvider implements ThirdPartUserUtils.ThirdPartDataProvid
     public void getFriends(List<String> list, final ThirdPartUserUtils.FetchUserCallBack callBack) {
         List<ThirdPartUserUtils.ThirdPartUser> userList = new ArrayList<ThirdPartUserUtils.ThirdPartUser>();
         for (String userId : list) {
+            TLog.i("TAG", userId);
             for (ThirdPartUserUtils.ThirdPartUser user : getPartUsers()) {
-//                TLog.i("TAG", user.userId + user.name + user.avatarUrl);
+                TLog.i("TAG", user.userId + user.name + user.avatarUrl);
                 if (user.userId.equals(userId)) {
-//                    TLog.i("TAG", user.name + user.avatarUrl);
+                    TLog.i("TAG", user.name + user.avatarUrl);
                     userList.add(user);
                     break;
                 }

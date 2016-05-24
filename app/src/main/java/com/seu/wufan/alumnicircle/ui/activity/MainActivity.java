@@ -92,7 +92,6 @@ public class MainActivity extends BaseActivity {
         mViewPager  = (CommunityViewPager) findViewById(R.id.main_view_pager);
         CommunityMainFragment communityMainFragment = new CommunityMainFragment();
         communityMainFragment.setBackButtonVisibility(View.GONE);
-//        communityMainFragment.
         mFragments.add(communityMainFragment);
         mFragments.add(new ContactsFragment());
         mFragments.add(new MyFragment());

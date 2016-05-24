@@ -29,9 +29,10 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
+                        android:id="@+id/my_information_top_image"
                         android:layout_width="match_parent"
-                        android:layout_height="148dp"
-                        android:background="@color/blue" />
+                        android:layout_height="140dp"
+                        android:src="@drawable/liuxing"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"

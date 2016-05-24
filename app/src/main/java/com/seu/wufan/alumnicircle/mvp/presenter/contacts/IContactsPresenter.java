@@ -10,7 +10,7 @@ public interface IContactsPresenter extends IPresenter{
 
     void initLeanCloud();
 
-
     void initFriendsList();
 
+    void deleteFriend(String user_id);
 }

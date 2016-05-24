@@ -93,7 +93,7 @@ public class LoginIPresenter implements ILoginIPresenter {
                             public void call(LoginRes loginRes) {
                                 preferenceUtils.putString(loginRes.getAccess_token(), PreferenceType.ACCESS_TOKEN);
                                 preferenceUtils.putString(loginRes.getUser_id(),PreferenceType.USER_ID);
-                                preferenceUtils.putString(phoneNum,PreferenceType.PHONE);
+//                                preferenceUtils.putString(phoneNum,PreferenceType.PHONE);
 
                                 tokenModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
                                 circleModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
@@ -164,7 +164,7 @@ public class LoginIPresenter implements ILoginIPresenter {
             public void onComplete(int stCode, CommUser commUser) {
                 if (ErrorCode.NO_ERROR==stCode) {
                     // 设置地理位置SDK
-                    LocationSDKManager.getInstance().addAndUse(new DefaultLocationImpl());
+//                    LocationSDKManager.getInstance().addAndUse(new DefaultLocationImpl());
 
                     user.setUmeng_id(commUser.id);
                     PreferenceUtil.putBean(appContext,PreferenceUtil.Key.EXTRA_COMMUSER,user);
@@ -186,6 +186,9 @@ public class LoginIPresenter implements ILoginIPresenter {
                     public void call(final UserInfoRes userInfoRes) {
                         preferenceUtils.putString(userInfoRes.getImage(),PreferenceType.USER_PHOTO);
                         preferenceUtils.putString(userInfoRes.getName(),PreferenceType.USER_NAME);
+                        user.setImage(userInfoRes.getImage());
+                        user.setSchool(userInfoRes.getSchool());
+                        user.setMajor(userInfoRes.getMajor());
                         mockLoginData(user_id,userInfoRes.getName());
                     }
                 });

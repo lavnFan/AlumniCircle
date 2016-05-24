@@ -11,6 +11,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.avoscloud.leanchatlib.activity.AVChatActivity;
+import com.bumptech.glide.Glide;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
@@ -79,7 +80,8 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
     TextView mDynamicTimeTv;
     @Bind(R.id.my_info_dynamic_ll_none)
     LinearLayout mDynamicLlNone;
-
+    @Bind(R.id.my_information_top_image)
+    ImageView mTopIv;
     @Bind(R.id.my_information_scroll_view)
     ScrollView mScrollView;
     @Bind(R.id.my_information_add_message_ll)
@@ -108,8 +110,21 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
     @Override
     protected void initViewsAndEvents() {
         user = getIntent().getExtras().getParcelable(Constants.TAG_USER);
-        myInformationPresenter.initUser(user.sourceUid);
-        mScrollView.smoothScrollTo(0, 0);
+        if (user.sourceUid.isEmpty()) {
+            toggleShowEmpty(true, null, new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        } else {
+            Glide.with(this)
+                    .load(R.drawable.liuxing)
+                    .centerCrop()
+                    .into(mTopIv);
+            myInformationPresenter.initUser(user.sourceUid);
+            mScrollView.smoothScrollTo(0, 0);
+        }
     }
 
     @Override
@@ -177,7 +192,7 @@ public class MyInformationActivity extends BaseSwipeActivity implements IMyInfor
     @Override
     public void sendMsg(String other_id) {
         Intent intent = new Intent(this, AVChatActivity.class);
-        intent.putExtra(com.avoscloud.leanchatlib.utils.Constants.MEMBER_ID,other_id);
+        intent.putExtra(com.avoscloud.leanchatlib.utils.Constants.MEMBER_ID, other_id);
         startActivity(intent);
     }
 

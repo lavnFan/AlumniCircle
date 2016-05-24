@@ -3,13 +3,11 @@
     package="com.seu.wufan.alumnicircle">
 
     <!-- 使用相机 -->
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <!-- 检测网络状态 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -28,7 +26,6 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- QQ登录所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
@@ -144,6 +141,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".ui.widget.qrcode.dwj.ScanActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".ui.activity.contacts.ScanFriendsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ActivityThemeSwipeBack" />
+
 
         <!--leanchat-->
 
@@ -257,12 +264,12 @@
         <!-- ##################分享相关#################### -->
         <!-- 分享内容编辑页 -->
         <activity
-        android:name="com.umeng.socialize.view.ShareActivity"
-        android:configChanges="orientation|keyboard"
-        android:launchMode="singleTask"
-        android:noHistory="true"
-        android:theme="@style/Theme.UMDialog"
-        android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
 
         <!-- 腾讯SSO授权的Activity注册 -->
         <activity
@@ -313,8 +320,6 @@
         <!--</service>-->
 
 
-
-
         <!-- ##################### 推送相关 ##################### -->
 
         <!--线上discuss demo Appkey-->
@@ -335,9 +340,9 @@
         <!--</meta-data>-->
 
         <!--高德地图app key-->
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="557e18d1afb32a69351be5abc7f1cd25" />
+        <!--<meta-data-->
+        <!--android:name="com.amap.api.v2.apikey"-->
+        <!--android:value="557e18d1afb32a69351be5abc7f1cd25" />-->
 
 
     </application>

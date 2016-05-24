@@ -36,7 +36,7 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
     private Jump runnable;
     Thread thread;
 
-    Button mSkipBtn;
+//    Button mSkipBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,13 +50,13 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
         presenter.attachView(this);
         initData();
 
-        mSkipBtn = (Button) findViewById(R.id.skip_button);
-        mSkipBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                runnable.skip();
-            }
-        });
+//        mSkipBtn = (Button) findViewById(R.id.skip_button);
+//        mSkipBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                runnable.skip();
+//            }
+//        });
     }
 
     private void initData() {
@@ -118,17 +118,17 @@ public class WelcomeActivity extends AppCompatActivity implements IWelcomeView{
             }
         }
 
-        public void skip(){
-            Logger.i("skip!");
-            Log.i("TAG","skip!");
-            handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    presenter.jumpActivity();
-                }
-            });
-            running = false;
-        }
+//        public void skip(){
+//            Logger.i("skip!");
+//            Log.i("TAG","skip!");
+//            handler.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    presenter.jumpActivity();
+//                }
+//            });
+//            running = false;
+//        }
     }
 
     protected void readyGoThenKill(Class<?> clazz) {

@@ -15,4 +15,7 @@ public interface IContactsView extends IView{
 
     void initFriendsList(List<Friend> friendListItems);
 
+    void refreshfalse(boolean b);
+
+    void refreshDelete();
 }

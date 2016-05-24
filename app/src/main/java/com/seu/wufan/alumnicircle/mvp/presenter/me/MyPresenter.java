@@ -64,6 +64,15 @@ public class MyPresenter implements IMyPresenter {
 
     @Override
     public void init() {
+        userIdSubscription = preferenceUtils.getUserPhoto()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<String>() {
+                    @Override
+                    public void call(String s) {
+                        iMyView.setPhoto(s);
+                    }
+                });
         userIdSubscription = preferenceUtils.getUserId()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -84,16 +93,6 @@ public class MyPresenter implements IMyPresenter {
                     }
                 });
 
-//        userIdSubscription = preferenceUtils.getUserPhoto()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Action1<String>() {
-//                    @Override
-//                    public void call(String s) {
-//                        iMyView.setPhoto(s);
-//                    }
-//                });
-
         nameSubscription = preferenceUtils.getUserName()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -109,26 +108,30 @@ public class MyPresenter implements IMyPresenter {
 
     @Override
     public void goDynamic() {
-        preferenceSubscription = preferenceUtils.getUserId()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                        CommunitySDK sdk = CommunityFactory.getCommSDK(appContext);
-                        //获取友盟id
-                        sdk.fetchUserProfile(s, "self_account", new Listeners.FetchListener<ProfileResponse>() {
-                            @Override
-                            public void onStart() {
+        if (NetUtils.isNetworkConnected(appContext)) {
+            preferenceSubscription = preferenceUtils.getUserId()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String s) {
+                            CommunitySDK sdk = CommunityFactory.getCommSDK(appContext);
+                            //获取友盟id
+                            sdk.fetchUserProfile(s, "self_account", new Listeners.FetchListener<ProfileResponse>() {
+                                @Override
+                                public void onStart() {
 
-                            }
+                                }
 
-                            @Override
-                            public void onComplete(ProfileResponse profileResponse) {
-                                iMyView.goDynamic(profileResponse.result);
-                            }
-                        });
-                    }
-                });
+                                @Override
+                                public void onComplete(ProfileResponse profileResponse) {
+                                    iMyView.goDynamic(profileResponse.result);
+                                }
+                            });
+                        }
+                    });
+        } else {
+            iMyView.showNetCantUse();
+        }
     }
 }

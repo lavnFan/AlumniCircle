@@ -53,7 +53,7 @@ public class NamePresenter implements INamePresenter {
     public void updateName(final UserInfoRes userInfoRes) {
         if (NetUtils.isNetworkConnected(appContext)) {
             //往后台修改个人信息时，照片总要传key
-            userInfoRes.setImage(PreferenceUtil.getString(appContext,PreferenceUtil.Key.EXTRA_PHOTO_TOKEN));
+            userInfoRes.setImage(PreferenceUtil.getString(appContext, PreferenceUtil.Key.EXTRA_PHOTO_TOKEN));
             nameSubscription = tokenModel.updateUserInfo(userInfoRes)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -86,12 +86,13 @@ public class NamePresenter implements INamePresenter {
      */
     private void saveName(String name) {
 
-        LeanchatUser leanchatUser = LeanchatUser.getCurrentUser();
-        leanchatUser.setUsername(name);
+//        LeanchatUser leanchatUser = LeanchatUser.getCurrentUser();
+//        leanchatUser.setUsername(name);
 
         preferenceUtils.putString(name, PreferenceType.USER_NAME);
         User user = (User) PreferenceUtil.getBean(appContext, PreferenceUtil.Key.EXTRA_COMMUSER);
         user.setName(name);
+        PreferenceUtil.putBean(appContext, PreferenceUtil.Key.EXTRA_COMMUSER, user);
 
         CommUser commUser = new CommUser();
         commUser.name = name;

@@ -12,6 +12,7 @@ import com.qiniu.android.storage.UploadOptions;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoDetailRes;
 import com.seu.wufan.alumnicircle.api.entity.QnRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.item.User;
 import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtil;
@@ -92,6 +93,7 @@ public class EditInformationPresenter implements IEditInformationPresenter {
                             public void complete(final String key, ResponseInfo info, JSONObject response) {
                                 userInfo.setImage(key);
                                 PreferenceUtil.putString(appContext, PreferenceUtil.Key.EXTRA_PHOTO_TOKEN, key);
+
                                 //更新到后台、leancloud与友盟
                                 updateSubscription = tokenModel.updateUserInfo(userInfo)
                                         .subscribeOn(Schedulers.io())
@@ -114,7 +116,9 @@ public class EditInformationPresenter implements IEditInformationPresenter {
      * @param photo_path 同时上传到友盟和leancloud上，保持同步
      */
     private void updatePhoto(String photo_path) {
-        TLog.i("TAG", photo_path);
+        User commUser = (User) PreferenceUtil.getBean(appContext,PreferenceUtil.Key.EXTRA_COMMUSER);
+        commUser.setImage(photo_path);
+        PreferenceUtil.putBean(appContext,PreferenceUtil.Key.EXTRA_COMMUSER,commUser);
 
 //        LeanchatUser leanchatUser = LeanchatUser.getCurrentUser();
 //        leanchatUser.saveAvatar(photo_path, new SaveCallback() {
@@ -123,7 +127,6 @@ public class EditInformationPresenter implements IEditInformationPresenter {
 //
 //            }
 //        });
-
 
         preferenceUtils.putString(photo_path, PreferenceType.USER_PHOTO);
         editInformationView.setPhotoResult(photo_path);

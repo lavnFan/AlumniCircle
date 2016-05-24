@@ -5,6 +5,7 @@ import com.seu.wufan.alumnicircle.api.entity.FriendReq;
 import com.seu.wufan.alumnicircle.api.entity.item.Friend;
 import com.seu.wufan.alumnicircle.api.entity.item.FriendListItem;
 import com.seu.wufan.alumnicircle.api.entity.item.FriendRequestItem;
+import com.seu.wufan.alumnicircle.api.entity.item.SearchFriendItem;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -38,5 +40,8 @@ public interface ContactsApi {
 
     @DELETE("friends/accept/{user_id}")
     Observable<Void> deleteFriendReq(@Path("user_id")String user_id);
+
+    @GET("user/search")
+    Observable<List<SearchFriendItem>> searchUser(@Query("name")String name,@Query("student_id")String student_id);
 
 }

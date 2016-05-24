@@ -31,15 +31,21 @@ public class PreferenceUtil {
     public static final float DEFAULT_FLOAT = 0.0f;
 
 
-    public static String getString(Context context, String key) {
-        final SharedPreferences settings = PreferenceManager
-                .getDefaultSharedPreferences(context);
-        return settings.getString(key, DEFAULT_STRING);
-    }
+//    public static String getString(String key) {
+//        final SharedPreferences settings = PreferenceManager
+//                .getDefaultSharedPreferences(context);
+//        return settings.getString(key, DEFAULT_STRING);
+//    }
     public static String getString(Context context, String key,String defaultvalue) {
         final SharedPreferences settings = PreferenceManager
                 .getDefaultSharedPreferences(context);
         return settings.getString(key, defaultvalue);
+    }
+
+    public static String getString(Context context, String key) {
+        final SharedPreferences settings = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        return settings.getString(key, "");
     }
 
     public static void putString(Context context, final String key,

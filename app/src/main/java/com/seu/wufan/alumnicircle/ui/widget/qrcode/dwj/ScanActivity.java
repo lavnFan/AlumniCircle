@@ -20,6 +20,7 @@ import com.nineoldandroids.animation.PropertyValuesHolder;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.seu.wufan.alumnicircle.R;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.ui.widget.qrcode.camera.CameraManager;
 import com.seu.wufan.alumnicircle.ui.widget.qrcode.decode.CaptureHandler;
 import com.seu.wufan.alumnicircle.ui.widget.qrcode.decode.DecodeUtils;
@@ -73,7 +74,7 @@ public class ScanActivity extends AppCompatActivity implements SurfaceHolder.Cal
         setContentView(R.layout.activity_qrcode_scan);
         ButterKnife.bind(this);
         new Handler();
-        mInactivityTimer = new InactivityTimer(this);
+        mInactivityTimer = new InactivityTimer(ScanActivity.this);
 
         mQrcodeCropWidth = DensityUtil.dip2px(this, 210);
         mQrcodeCropHeight = DensityUtil.dip2px(this, 210);

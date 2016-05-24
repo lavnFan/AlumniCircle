@@ -1,7 +1,10 @@
 package com.seu.wufan.alumnicircle.ui.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -51,12 +54,14 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
     TextView mDialogTv;
     @Bind(R.id.contacts_sidrbar)
     SideBar mSidBar;
-
+    @Bind(R.id.contacts_swipe_fresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
     @Inject
     ContactsPresenter contactsPresenter;
 
     private List<Friend> dataList = new ArrayList<>();
     private List<Friend> sourceDataList = new ArrayList<Friend>();
+    private int deletePos = 0;
 
     private ContactsAdapter adapter;
 
@@ -89,9 +94,7 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
     protected void prepareData() {
         getApiComponent().inject(this);
         contactsPresenter.attachView(this);
-
         contactsPresenter.initLeanCloud();
-
     }
 
     @Override
@@ -103,6 +106,10 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
         re_newfriends.setOnClickListener(this);
         RelativeLayout re_alumniGood = (RelativeLayout) headView.findViewById(R.id.contacts_alumni_good_relative_layout);
         re_alumniGood.setOnClickListener(this);
+        mListView.addHeaderView(headView);
+
+        adapter = new ContactsAdapter(getActivity());
+        mListView.setAdapter(adapter);
 
         contactsPresenter.initFriendsList();
 
@@ -132,17 +139,39 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
                 startActivity(intent);
             }
         });
-    }
 
-    private void getMembers(final boolean isforce) {
-        FriendsManager.fetchFriends(isforce, new FindCallback<LeanchatUser>() {
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void done(List<LeanchatUser> list, AVException e) {
-//                refreshLayout.setRefreshing(false);
-//                itemAdapter.setUserList(list);
-//                itemAdapter.notifyDataSetChanged();
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                String[] items = {"删除"};
+                new AlertDialog.Builder(getActivity())
+                        .setItems(items, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                contactsPresenter.deleteFriend(sourceDataList.get(position-1).getUser_id());
+                                deletePos = position-1;
+                            }
+                        }).create()
+                        .show();
+                return false;
             }
         });
+
+        mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.app_theme_color));
+//        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+//                android.R.color.holo_green_light, android.R.color.holo_orange_light,
+//                android.R.color.holo_red_light);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                onPullDown();
+            }
+        });
+    }
+
+    private void onPullDown() {
+        contactsPresenter.initLeanCloud();
+        contactsPresenter.initFriendsList();
     }
 
     @Override
@@ -255,11 +284,19 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
 
         // 根据a-z进行排序源数据
         Collections.sort(sourceDataList, pinyinComparator);
+        adapter.setmEntities(sourceDataList);
+        adapter.notifyDataSetChanged();
 
-        adapter = new ContactsAdapter(getActivity());
+    }
 
-        mListView.addHeaderView(headView);
-        mListView.setAdapter(adapter);
+    @Override
+    public void refreshfalse(boolean b) {
+        mSwipeRefreshLayout.setRefreshing(b);
+    }
+
+    @Override
+    public void refreshDelete() {
+        sourceDataList.remove(deletePos);
         adapter.setmEntities(sourceDataList);
         adapter.notifyDataSetChanged();
     }

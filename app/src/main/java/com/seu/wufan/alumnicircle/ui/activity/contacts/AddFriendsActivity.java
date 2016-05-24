@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.common.base.BaseSwipeActivity;
+import com.seu.wufan.alumnicircle.ui.adapter.contacts.SearchFriendAdapter;
+import com.seu.wufan.alumnicircle.ui.widget.qrcode.dwj.ScanActivity;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -44,14 +46,19 @@ public class AddFriendsActivity extends BaseSwipeActivity {
         mToolbarTv.setText(R.string.add_friend_);
     }
 
-    @OnClick({R.id.contacts_add_friends_phone_ll, R.id.contacts_add_friends_alumni_ll, R.id.contacts_add_friends_scan_ll})
+    @OnClick({R.id.contacts_add_friends_scan_ll, R.id.contacts_add_friends_search_ll})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.contacts_add_friends_phone_ll:
-                break;
-            case R.id.contacts_add_friends_alumni_ll:
-                break;
+//            R.id.contacts_add_friends_phone_ll, R.id.contacts_add_friends_alumni_ll,
+//            case R.id.contacts_add_friends_phone_ll:
+//                break;
+//            case R.id.contacts_add_friends_alumni_ll:
+//                break;
             case R.id.contacts_add_friends_scan_ll:
+                readyGo(ScanFriendsActivity.class);
+                break;
+            case R.id.contacts_add_friends_search_ll:
+                readyGo(SearchFriendActivity.class);
                 break;
         }
     }

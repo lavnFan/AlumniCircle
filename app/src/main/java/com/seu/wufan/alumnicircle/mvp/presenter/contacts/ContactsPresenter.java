@@ -16,6 +16,7 @@ import com.seu.wufan.alumnicircle.api.entity.item.Friend;
 import com.seu.wufan.alumnicircle.api.entity.item.FriendListItem;
 import com.seu.wufan.alumnicircle.api.entity.item.User;
 import com.seu.wufan.alumnicircle.common.utils.NetUtils;
+import com.seu.wufan.alumnicircle.common.utils.PreferenceUtil;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
@@ -48,6 +49,7 @@ public class ContactsPresenter implements IContactsPresenter {
 
     Subscription preferenceSubscription;
     Subscription friendsListSubscription;
+    Subscription deleteSubscription;
     IContactsView iContactsView;
     private PreferenceUtils preferenceUtils;
     private UserModel userModel;
@@ -68,32 +70,36 @@ public class ContactsPresenter implements IContactsPresenter {
 
     @Override
     public void initLeanCloud() {
-        preferenceSubscription = preferenceUtils.getUserId()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                        if (s.isEmpty()) {
+        if (NetUtils.isNetworkConnected(appContext)) {
+            preferenceSubscription = preferenceUtils.getUserId()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<String>() {
+                        @Override
+                        public void call(String s) {
+                            if (s.isEmpty()) {
 
-                        } else {
-                            //加载自己的信息
-                            getMyInfo(s);
-                            //设置聊天的信息
-                            ChatManager.getInstance().openClient(appContext, s, new AVIMClientCallback() {
-                                @Override
-                                public void done(AVIMClient avimClient, AVIMException e) {
-                                    if (null == e) {
+                            } else {
+                                iContactsView.refreshfalse(false);
+                                //设置聊天的信息
+                                ChatManager.getInstance().openClient(appContext, s, new AVIMClientCallback() {
+                                    @Override
+                                    public void done(AVIMClient avimClient, AVIMException e) {
+                                        if (null == e) {
 
-                                    } else {
-                                        iContactsView.showToast(e.toString());
-                                        Log.i("leancloud", e.toString());
+                                        } else {
+                                            iContactsView.showToast(e.toString());
+                                            Log.i("leancloud", e.toString());
+                                        }
                                     }
-                                }
-                            });
+                                });
+                            }
                         }
-                    }
-                });
+                    });
+        } else {
+            iContactsView.refreshfalse(false);
+            iContactsView.showNetCantUse();
+        }
     }
 
     private void getMyInfo(String s) {
@@ -108,6 +114,13 @@ public class ContactsPresenter implements IContactsPresenter {
                         user.setName(userInfoRes.getName());
                         user.setImage(userInfoRes.getImage());
                         users.add(user);
+
+                        User savedUser = (User) PreferenceUtil.getBean(appContext, PreferenceUtil.Key.EXTRA_COMMUSER);
+                        savedUser.setName(userInfoRes.getName());
+                        savedUser.setImage(userInfoRes.getImage());
+                        savedUser.setSchool(userInfoRes.getSchool());
+                        savedUser.setMajor(userInfoRes.getMajor());
+                        PreferenceUtil.putBean(appContext, PreferenceUtil.Key.EXTRA_COMMUSER, savedUser);
                     }
                 });
     }
@@ -115,36 +128,92 @@ public class ContactsPresenter implements IContactsPresenter {
     @Override
     public void initFriendsList() {
         if (NetUtils.isNetworkConnected(appContext)) {
-            friendsListSubscription = contactsModel.getFriendList()
+            preferenceSubscription = preferenceUtils.getUserId()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Action1<List<Friend>>() {
+                    .subscribe(new Action1<String>() {
                         @Override
-                        public void call(List<Friend> friendListItems) {
-                            for (Friend friend : friendListItems) {
-                                User user = new User();
-                                user.setName(friend.getName());
-                                user.setImage(friend.getImage());
-                                user.setUser_id(friend.getUser_id());
-                                users.add(user);
-                            }
-                            LeancloudProvider provider = new LeancloudProvider();
-                            provider.setUsers(users);
-                            ThirdPartUserUtils.setThirdPartUserProvider(provider);
-                            iContactsView.initFriendsList(friendListItems);
-                        }
-                    }, new Action1<Throwable>() {
-                        @Override
-                        public void call(Throwable throwable) {
-                            if (throwable instanceof retrofit2.HttpException) {
-                                retrofit2.HttpException exception = (HttpException) throwable;
-                                iContactsView.showToast(exception.getMessage());
-                            } else {
-                                iContactsView.showNetError();
-                            }
+                        public void call(String s) {
+                            Subscription mySubscription = tokenModel.getUserInfo(s)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(new Action1<UserInfoRes>() {
+                                        @Override
+                                        public void call(UserInfoRes userInfoRes) {
+                                            User user = new User();
+                                            user.setUser_id(userInfoRes.getUser_id());
+                                            user.setName(userInfoRes.getName());
+                                            user.setImage(userInfoRes.getImage());
+                                            users.add(user);
+
+                                            User savedUser = (User) PreferenceUtil.getBean(appContext, PreferenceUtil.Key.EXTRA_COMMUSER);
+                                            savedUser.setName(userInfoRes.getName());
+                                            savedUser.setImage(userInfoRes.getImage());
+                                            savedUser.setSchool(userInfoRes.getSchool());
+                                            savedUser.setMajor(userInfoRes.getMajor());
+                                            PreferenceUtil.putBean(appContext, PreferenceUtil.Key.EXTRA_COMMUSER, savedUser);
+
+                                            friendsListSubscription = contactsModel.getFriendList()
+                                                    .subscribeOn(Schedulers.io())
+                                                    .observeOn(AndroidSchedulers.mainThread())
+                                                    .subscribe(new Action1<List<Friend>>() {
+                                                        @Override
+                                                        public void call(List<Friend> friendListItems) {
+                                                            for (Friend friend : friendListItems) {
+                                                                User user = new User();
+                                                                user.setName(friend.getName());
+                                                                user.setImage(friend.getImage());
+                                                                user.setUser_id(friend.getUser_id());
+                                                                users.add(user);
+                                                            }
+                                                            LeancloudProvider provider = new LeancloudProvider();
+                                                            provider.setUsers(users);
+                                                            ThirdPartUserUtils.setThirdPartUserProvider(provider);
+                                                            iContactsView.initFriendsList(friendListItems);
+                                                        }
+                                                    }, new Action1<Throwable>() {
+                                                        @Override
+                                                        public void call(Throwable throwable) {
+                                                            if (throwable instanceof retrofit2.HttpException) {
+                                                                retrofit2.HttpException exception = (HttpException) throwable;
+                                                                iContactsView.showToast(exception.getMessage());
+                                                            } else {
+                                                                iContactsView.showNetError();
+                                                            }
+                                                        }
+                                                    });
+                                        }
+                                    });
                         }
                     });
-        } else {
+        }
+    }
+
+    @Override
+    public void deleteFriend(String user_id) {
+        if(NetUtils.isNetworkConnected(appContext)){
+        deleteSubscription = contactsModel.deleteFriendReq(user_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        iContactsView.showToast("删除好友成功");
+                        iContactsView.refreshDelete();
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        TLog.i("TAG",throwable.getMessage()+throwable.getCause());
+                        if (throwable instanceof retrofit2.HttpException) {
+                            retrofit2.HttpException exception = (HttpException) throwable;
+                            iContactsView.showToast(exception.getMessage());
+                        } else {
+                            iContactsView.showNetError();
+                        }
+                    }
+                });
+        }else{
             iContactsView.showNetCantUse();
         }
     }

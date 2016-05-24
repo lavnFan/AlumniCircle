@@ -94,8 +94,6 @@ public class CirclePresenter implements ICircleIPresenter {
                             }
                         }
                     });
-        }else{
-            circleView.showNetCantUse();
         }
     }
 

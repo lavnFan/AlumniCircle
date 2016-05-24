@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.User;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
+import com.seu.wufan.alumnicircle.common.utils.NetUtils;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtil;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
@@ -52,7 +53,7 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
     public final static int REQUESTCODE_PHOTO = 1;
     public final static int REQUESTCODE_Name = 2;
     public final static int REQUESTCODE = 3;
-    public static final String EXTRA_USER_ID="user_id";
+    public static final String EXTRA_USER_ID = "user_id";
 
     @Override
     protected void onFirstUserVisible() {
@@ -81,7 +82,7 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
     @Override
     protected void initViewsAndEvents() {
         myPresenter.init();
-        User use = (User) PreferenceUtil.getBean(getActivity(),PreferenceUtil.Key.EXTRA_COMMUSER);
+        User use = (User) PreferenceUtil.getBean(getActivity(), PreferenceUtil.Key.EXTRA_COMMUSER);
         user.sourceUid = use.getUser_id();
     }
 
@@ -126,14 +127,18 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
 
     @OnClick(R.id.me_my_message_relative_layout)
     void myMessage() {
-        readyGo(MyMessageActivity.class);
+        if (NetUtils.isNetworkConnected(getActivity().getApplicationContext())) {
+            readyGo(MyMessageActivity.class);
+        } else {
+            showNetCantUse();
+        }
     }
 
     @OnClick(R.id.me_my_collection_relative_layout)
     void myCollection() {
         Bundle bundle = new Bundle();
-        bundle.putString(EXTRA_USER_ID,user.sourceUid);
-        readyGo(MyCollectionActivity.class,bundle);
+        bundle.putString(EXTRA_USER_ID, user.sourceUid);
+        readyGo(MyCollectionActivity.class, bundle);
     }
 
     @OnClick(R.id.me_setting_relative_layout)
@@ -182,6 +187,7 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        myPresenter.init();
         if (requestCode == REQUESTCODE) {
             switch (resultCode) {
                 case REQUESTCODE_Name:
@@ -192,8 +198,8 @@ public class MyFragment extends BaseLazyFragment implements IMyView {
                     break;
                 case REQUESTCODE_PHOTO:
                     String photo_path = (data == null) ? null : data.getStringExtra(EditInformationActivity.EXTRA_PHOTO_PATH);
-                    if(photo_path!=null){
-                        CommonUtils.showCircleImageWithGlide(getActivity(),mPhotoCv,photo_path);
+                    if (photo_path != null) {
+                        CommonUtils.showCircleImageWithGlide(getActivity(), mPhotoCv, photo_path);
                     }
                     break;
             }

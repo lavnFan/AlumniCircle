@@ -23,8 +23,8 @@
             android:id="@+id/item_my_info_edu_cv"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/logo" />
+            android:layout_alignParentLeft="true"/>
+            <!--android:src="@drawable/logo" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,15 +38,13 @@
                 android:id="@+id/item_edu_school_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="东南大学"
                 android:textColor="@color/text_main" />
 
             <TextView
                 android:id="@+id/item_edu_major_degree_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_8_margin"
-                android:text="计算机科学与工程 学士" />
+                android:layout_marginTop="@dimen/activity_8_margin" />
         </LinearLayout>
 
         <TextView
@@ -55,7 +53,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/activity_16_margin"
-            android:layout_marginTop="@dimen/activity_4_margin"
-            android:text="2016.6-至今" />
+            android:layout_marginTop="@dimen/activity_4_margin"/>
     </RelativeLayout>
 </LinearLayout>

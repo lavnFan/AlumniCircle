@@ -8,6 +8,7 @@ import com.seu.wufan.alumnicircle.api.entity.PublishDynamicReq;
 import com.seu.wufan.alumnicircle.api.entity.item.Friend;
 import com.seu.wufan.alumnicircle.api.entity.item.FriendListItem;
 import com.seu.wufan.alumnicircle.api.entity.item.FriendRequestItem;
+import com.seu.wufan.alumnicircle.api.entity.item.SearchFriendItem;
 import com.seu.wufan.alumnicircle.common.provider.TokenProvider;
 
 import java.util.List;
@@ -51,5 +52,9 @@ public class ContactsModel extends BaseModel<ContactsApi>{
 
     public Observable<Void> deleteFriendReq(String user_id){
         return getService().deleteFriendReq(user_id);
+    }
+
+    public Observable<List<SearchFriendItem>> searchUser(String name,String student_id){
+        return getService().searchUser(name,student_id);
     }
 }

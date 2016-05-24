@@ -36,11 +36,11 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        LeakCanary.install(this);
-        Logger.init()
-            .logLevel(LogLevel.FULL)
-            .hideThreadInfo()
-            .methodCount(0);
+//        LeakCanary.install(this);
+//        Logger.init()
+//            .logLevel(LogLevel.FULL)
+//            .hideThreadInfo()
+//            .methodCount(0);
 
         appModule = new AppModule(this);
         initInjectorApp();
@@ -106,6 +106,6 @@ public class App extends Application {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MultiDex.install(this);
+//        MultiDex.install(this);
     }
 }

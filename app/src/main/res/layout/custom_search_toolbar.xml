@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tl_custom"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/search_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_toLeftOf="@+id/search_img"
+            android:background="@drawable/seach_edit_text_bg"
+            android:hint="校友圈号/手机号/微信号"
+            android:paddingLeft="15dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="#51b2a6"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/search_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+            android:src="@drawable/xianzhi_status_bar_search" />
+    </RelativeLayout>
+
+</android.support.v7.widget.Toolbar>
