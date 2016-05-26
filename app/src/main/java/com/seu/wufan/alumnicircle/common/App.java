@@ -21,6 +21,7 @@ import com.seu.wufan.alumnicircle.injector.component.AppComponent;
 import com.seu.wufan.alumnicircle.injector.module.AppModule;
 import com.umeng.comm.core.CommunitySDK;
 import com.umeng.comm.core.impl.CommunityFactory;
+import com.umeng.socialize.PlatformConfig;
 
 public class App extends Application {
     private AppComponent appComponent;
@@ -55,8 +56,14 @@ public class App extends Application {
         // 1、初始化友盟微社区
         mCommSDK = CommunityFactory.getCommSDK(this);
         mCommSDK.initSDK(this);
-        //设置友盟登录
-//        LoginSDKManager.getInstance().addAndUse(new SimpleLoginImpl());
+
+        //设置分享与授权
+        PlatformConfig.setWeixin("wxbe28d07d528214c7", "3195ff722f13374da86c7a5b490909f8");
+        //微信 appid appsecret
+        PlatformConfig.setSinaWeibo("3921700954","04b48b094faeb16683c32669824ebdad");
+        //新浪微博 appkey appsecret
+        PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
+        // QQ和Qzone appid appkey
     }
 
     private void initInjectorApp(){

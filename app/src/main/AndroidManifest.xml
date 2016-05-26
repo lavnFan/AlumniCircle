@@ -30,6 +30,13 @@
     <!-- QQ登录所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
     <application
         android:name=".common.App"
         android:allowBackup="true"
@@ -269,9 +276,14 @@
             android:launchMode="singleTask"
             android:noHistory="true"
             android:theme="@style/Theme.UMDialog"
-            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+            android:windowSoftInputMode="stateVisible|adjustResize"/>
 
-        <!-- 腾讯SSO授权的Activity注册 -->
+        <activity
+            android:name="com.umeng.socialize.editorpage.ShareActivity"
+            android:theme="@style/Theme.UMDefault"
+            android:excludeFromRecents="true"/>
+
+        <!-- 腾讯QQ SSO授权的Activity注册 -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
@@ -291,31 +303,35 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name="com.umeng.common.ui.activities.AlbumActivity" />
 
-        <!---->
-        <!--&lt;!&ndash; 微信回调activity &ndash;&gt;-->
-        <!--<activity-->
-        <!--android:name=".wxapi.WXEntryActivity"-->
-        <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
-        <!--android:exported="true"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
-        <!--<activity-->
-        <!--android:name=".WBShareActivity"-->
-        <!--android:configChanges="keyboardHidden|orientation"-->
-        <!--android:screenOrientation="portrait" >-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />-->
-        <!--<category android:name="android.intent.category.DEFAULT" />-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"-->
-        <!--android:configChanges="keyboardHidden|orientation"-->
-        <!--android:windowSoftInputMode="adjustResize"-->
-        <!--android:exported="false" >-->
-        <!--</activity>-->
-        <!--<service android:name="com.sina.weibo.sdk.net.DownloadService"-->
-        <!--android:exported="false">-->
+        <!--微信回调-->
+        <activity
+            android:name="com.seu.wufan.alumnicircle.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--微博-->
+        <activity
+            android:name=".WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
+        </activity>
+        <service
+            android:name="com.sina.weibo.sdk.net.DownloadService"
+            android:exported="false">
+        </service>
+
 
         <!--</service>-->
 

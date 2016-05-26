@@ -1,8 +1,11 @@
 package com.seu.wufan.alumnicircle.ui.fragment;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -18,6 +21,7 @@ import com.avoscloud.leanchatlib.activity.AVChatActivity;
 import com.avoscloud.leanchatlib.utils.Constants;
 import com.seu.wufan.alumnicircle.R;
 import com.seu.wufan.alumnicircle.api.entity.item.Friend;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.contacts.ContactsPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.fragment.IContactsView;
@@ -268,6 +272,7 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
         super.onDestroy();
         contactsPresenter.destroy();
         EventBus.getDefault().unregister(this);
+        getActivity().unregisterReceiver(this.broadcastReceiver);
     }
 
     @Override
@@ -299,5 +304,23 @@ public class ContactsFragment extends BaseLazyFragment implements View.OnClickLi
         sourceDataList.remove(deletePos);
         adapter.setmEntities(sourceDataList);
         adapter.notifyDataSetChanged();
+    }
+
+    BroadcastReceiver broadcastReceiver =new BroadcastReceiver(){
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            TLog.i("TAG","receive broadcast!");
+            onPullDown();
+        }
+    };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //在当前activity中注册广播
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("refresh_friends_list");
+        getActivity().registerReceiver(this.broadcastReceiver,filter);
     }
 }

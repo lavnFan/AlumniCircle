@@ -3,6 +3,7 @@ package com.seu.wufan.alumnicircle.ui.adapter.contacts;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -15,6 +16,9 @@ import com.seu.wufan.alumnicircle.api.entity.item.FriendRequestItem;
 import com.seu.wufan.alumnicircle.common.base.BasisAdapter;
 import com.seu.wufan.alumnicircle.common.utils.CommonUtils;
 import com.seu.wufan.alumnicircle.common.utils.TLog;
+import com.seu.wufan.alumnicircle.ui.activity.contacts.NewFriendsActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.MyInformationActivity;
+import com.umeng.comm.core.beans.CommUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +69,17 @@ public class ContactsFriendsItemAdapter extends BasisAdapter<FriendRequestItem, 
                         .create();
                 dialog.show();
                 return false;
+            }
+        });
+        holder.mItemRl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommUser user = new CommUser();
+                user.sourceUid = entity.getUser_id();
+                Intent intent = new Intent(getmContext(),
+                        MyInformationActivity.class);
+                intent.putExtra(com.umeng.comm.core.constants.Constants.TAG_USER, user);
+                getmContext().startActivity(intent);
             }
         });
     }

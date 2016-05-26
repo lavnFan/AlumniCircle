@@ -6,6 +6,8 @@ import com.seu.wufan.alumnicircle.api.entity.QnReq;
 import com.seu.wufan.alumnicircle.api.entity.QnRes;
 import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.WeixinReq;
+import com.seu.wufan.alumnicircle.api.entity.item.TokenRes;
 
 import java.util.List;
 
@@ -41,5 +43,8 @@ public interface TokenApi {
 
     @PUT("user/")
     Observable<Void> updateUserInfo(@Body UserInfoRes req);
+
+    @POST("auth/weixin/login/")
+    Observable<TokenRes> loginByWeiXin(@Body WeixinReq req);
 
 }

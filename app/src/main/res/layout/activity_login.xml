@@ -126,12 +126,13 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/login_weixin_ll"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/login_bottom_btn"
                 android:gravity="center"
-                android:padding="@dimen/activity_4_margin">
+                android:padding="@dimen/activity_8_margin">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -158,7 +159,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/login_bottom_btn"
                 android:gravity="center"
-                android:padding="@dimen/activity_4_margin">
+                android:padding="@dimen/activity_8_margin">
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import com.seu.wufan.alumnicircle.api.ContactsApi;
 import com.seu.wufan.alumnicircle.api.entity.FriendReq;
 import com.seu.wufan.alumnicircle.api.entity.PublishDynamicReq;
+import com.seu.wufan.alumnicircle.api.entity.item.DeleteBody;
 import com.seu.wufan.alumnicircle.api.entity.item.Friend;
 import com.seu.wufan.alumnicircle.api.entity.item.FriendListItem;
 import com.seu.wufan.alumnicircle.api.entity.item.FriendRequestItem;

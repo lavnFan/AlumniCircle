@@ -12,4 +12,6 @@ public interface ILoginIPresenter extends IPresenter {
 
     boolean isValid(String username, String password);
 
+    void doWeiXinLogin(String access_token,String open_id);
+
 }

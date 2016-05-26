@@ -1,7 +1,9 @@
 package com.seu.wufan.alumnicircle.ui.activity.contacts;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -13,8 +15,10 @@ import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.contacts.NewFriendsPresenter;
 import com.seu.wufan.alumnicircle.mvp.views.activity.INewFriendsView;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
+import com.seu.wufan.alumnicircle.ui.activity.me.MyInformationActivity;
 import com.seu.wufan.alumnicircle.ui.adapter.contacts.ContactsFriendsItemAdapter;
 import com.seu.wufan.alumnicircle.ui.widget.ScrollLoadMoreListView;
+import com.umeng.comm.core.beans.CommUser;
 
 import java.util.List;
 
@@ -36,6 +40,7 @@ public class NewFriendsActivity extends BaseSwipeActivity implements INewFriends
     private ContactsFriendsItemAdapter mAdapter;
     @Inject
     NewFriendsPresenter newFriendsPresenter;
+    private boolean isFirst = true;
 
     @Override
     protected int getContentView() {
@@ -61,31 +66,33 @@ public class NewFriendsActivity extends BaseSwipeActivity implements INewFriends
     }
 
     @Override
-    public void init(List<FriendRequestItem> friendRequestItems) {
-        if (friendRequestItems.size() != 0) {
-            List<FriendRequestItem> entities = friendRequestItems;
-            mAdapter = new ContactsFriendsItemAdapter(this);
-            mAdapter.setmEntities(entities);
-            mListView.setAdapter(mAdapter);
-            mAdapter.notifyDataSetChanged();
-            mAdapter.setFriendMessage(new ContactsFriendsItemAdapter.FriendMessage() {
-                @Override
-                public void acceptRequest(String user_id, Button sendBtn) {     //接受好友申请
-                    newFriendsPresenter.acceptFriendRequest(user_id, sendBtn);
-                }
+    public void init(final List<FriendRequestItem> friendRequestItems) {
+//        if (friendRequestItems.size() != 0) {
+        List<FriendRequestItem> entities = friendRequestItems;
+        mAdapter = new ContactsFriendsItemAdapter(this);
+        mAdapter.setmEntities(entities);
+        mListView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+        mAdapter.setFriendMessage(new ContactsFriendsItemAdapter.FriendMessage() {
+            @Override
+            public void acceptRequest(String user_id, Button sendBtn) {     //接受好友申请
+                newFriendsPresenter.acceptFriendRequest(user_id, sendBtn);
+            }
 
-                @Override
-                public void deleteRequest(String user_id) {
-                    newFriendsPresenter.deleteFriendRequest(user_id);
-                }
-            });
-        } else {
+            @Override
+            public void deleteRequest(String user_id) {
+                newFriendsPresenter.deleteFriendRequest(user_id);
+            }
+        });
+
+        if (isFirst && friendRequestItems.size() == 0) {
             toggleShowEmpty(true, null, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                 }
             });
+            isFirst = false;
         }
     }
 
@@ -99,6 +106,10 @@ public class NewFriendsActivity extends BaseSwipeActivity implements INewFriends
     public void acceptSuccess(Button sendBtn) {
         newFriendsPresenter.init();
         showToast("添加成功");
+        //发送广播，更新好友列表
+        Intent intent = new Intent();
+        intent.setAction("refresh_friends_list");
+        sendBroadcast(intent);
     }
 
     @OnClick(R.id.contacts_new_friends_search_ll)

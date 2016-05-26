@@ -9,6 +9,8 @@ import com.seu.wufan.alumnicircle.api.entity.QnReq;
 import com.seu.wufan.alumnicircle.api.entity.QnRes;
 import com.seu.wufan.alumnicircle.api.entity.RegisterReq;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.WeixinReq;
+import com.seu.wufan.alumnicircle.api.entity.item.TokenRes;
 import com.seu.wufan.alumnicircle.common.provider.TokenProvider;
 
 import java.util.List;
@@ -61,6 +63,13 @@ public class TokenModel extends BaseModel<TokenApi> {
 
     public Observable<Void> updateUserInfo(UserInfoRes req){
         return getService().updateUserInfo(req);
+    }
+
+    public Observable<TokenRes> loginByWeiXin(String access_token, String open_id){
+        WeixinReq req = new WeixinReq();
+        req.setAccess_token(access_token);
+        req.setOpen_id(open_id);
+        return getService().loginByWeiXin(req);
     }
 
 }

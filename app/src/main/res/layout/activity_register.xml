@@ -20,12 +20,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_8_margin"
                 android:layout_marginRight="@dimen/activity_8_margin"
-                android:layout_marginTop="@dimen/activity_16_margin"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/register_top_phone_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_16_margin"
                     android:background="@drawable/text_bg"
                     android:orientation="vertical"
                     android:paddingLeft="@dimen/activity_16_margin"
@@ -161,6 +162,7 @@
                             android:layout_marginLeft="@dimen/activity_16_margin"
                             android:background="@null"
                             android:hint="@string/number_hint"
+                            android:inputType="number"
                             android:singleLine="true"
                             android:textColor="@color/text_help"
                             android:textColorHint="@color/text_hint"

@@ -192,7 +192,7 @@ public class ContactsPresenter implements IContactsPresenter {
     @Override
     public void deleteFriend(String user_id) {
         if(NetUtils.isNetworkConnected(appContext)){
-        deleteSubscription = contactsModel.deleteFriendReq(user_id)
+        deleteSubscription = contactsModel.deleteFriend(user_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Void>() {

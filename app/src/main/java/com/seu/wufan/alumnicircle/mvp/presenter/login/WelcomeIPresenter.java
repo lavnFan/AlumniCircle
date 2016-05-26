@@ -7,7 +7,10 @@ import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
 import com.avoscloud.leanchatlib.controller.ChatManager;
 import com.seu.wufan.alumnicircle.common.provider.UserTokenProvider;
+import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
+import com.seu.wufan.alumnicircle.common.utils.PreferenceUtil;
 import com.seu.wufan.alumnicircle.common.utils.PreferenceUtils;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.injector.qualifier.ForApplication;
 import com.seu.wufan.alumnicircle.mvp.model.CircleModel;
 import com.seu.wufan.alumnicircle.mvp.model.ContactsModel;
@@ -60,23 +63,33 @@ public class WelcomeIPresenter implements IWelcomeIPresenter {
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
-                        if(s.isEmpty()){
+                        if (s.isEmpty()) {
                             welcomeView.readyToLogin();
-                        }else{
+                        } else {
                             tokenModel.setTokenProvider(new UserTokenProvider(s));
                             circleModel.setTokenProvider(new UserTokenProvider(s));
                             contactsModel.setTokenProvider(new UserTokenProvider(s));
                             userModel.setTokenProvider(new UserTokenProvider(s));
-                            welcomeView.readyToMain();
+                            PreferenceUtil.putString(appContext,s, PreferenceType.ACCESS_TOKEN);
+                            Subscription userIdSubscription = preferenceUtils.getUserId()
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(new Action1<String>() {
+                                        @Override
+                                        public void call(String s) {
+                                            if (s.isEmpty()) {
+                                                welcomeView.readyToLogin();
+                                            } else {
+                                                PreferenceUtil.putString(appContext,s, PreferenceType.USER_ID);
+                                                welcomeView.readyToMain();
+                                            }
+                                        }
+                                    });
                         }
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-
                     }
                 });
     }
+
 
     @Override
     public void attachView(IView v) {
@@ -85,7 +98,7 @@ public class WelcomeIPresenter implements IWelcomeIPresenter {
 
     @Override
     public void destroy() {
-        if(welcomeSubscription!=null){
+        if (welcomeSubscription != null) {
             welcomeSubscription.unsubscribe();
         }
     }

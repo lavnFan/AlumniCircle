@@ -39,6 +39,7 @@ public class SettingIPresenter implements ISettingIPresenter {
     @Override
     public void exit() {
         preferenceUtils.putString("", PreferenceType.ACCESS_TOKEN);
+        preferenceUtils.putString("", PreferenceType.USER_ID);
         settingView.exitToLogin();
     }
 

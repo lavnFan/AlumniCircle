@@ -12,4 +12,6 @@ public interface ILoginView extends IView{
 
     void loginFailed();
 
+    void goRegister(String user_id);
+
 }

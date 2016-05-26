@@ -1,15 +1,21 @@
 package com.seu.wufan.alumnicircle.ui.activity.login;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.seu.wufan.alumnicircle.R;
+import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
 import com.seu.wufan.alumnicircle.common.base.BaseActivity;
+import com.seu.wufan.alumnicircle.common.utils.TLog;
 import com.seu.wufan.alumnicircle.ui.widget.dateprovider.DataProvider;
 import com.seu.wufan.alumnicircle.common.utils.ToastUtils;
 import com.seu.wufan.alumnicircle.mvp.presenter.login.RegisterIPresenter;
@@ -17,8 +23,13 @@ import com.seu.wufan.alumnicircle.mvp.views.activity.IRegisterView;
 import com.seu.wufan.alumnicircle.ui.activity.MainActivity;
 import com.seu.wufan.alumnicircle.ui.dialog.ProgressDialog;
 import com.seu.wufan.alumnicircle.ui.widget.MajorPickerView;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -29,7 +40,7 @@ import butterknife.OnClick;
  * @author wufan
  * @date 2016/1/31
  */
-public class RegisterActivity extends BaseActivity implements IRegisterView{
+public class RegisterActivity extends BaseActivity implements IRegisterView {
 
     @Bind(R.id.telephone_number_edittext)
     EditText telephoneNumberEditText;
@@ -47,15 +58,27 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     EditText mNameTv;
     @Bind(R.id.register_number_et)
     EditText mNumberEt;
+    @Bind(R.id.register_top_phone_ll)
+    LinearLayout mTopLl;
 
     @Inject
     RegisterIPresenter registerPresenter;
+
+    public static final String EXTRA_WEIXIN = "weixin";
+    private boolean isWeixin = false;
+    private UserInfoRes userInfoRes = new UserInfoRes();
+    public static final String EXTRA_USER_ID = "user_id";
+    private String user_id = null;
+
+    private UMShareAPI mShareAPI;
 
     private OptionsPickerView enrollYearPickerView;
     private MajorPickerView majorPickerView;
 
     private DataProvider.SeuMajors seuMajors;
     private ArrayList<String> enrollYears;
+
+
 
     private boolean enrollYearPickerViewIsShowing = false;
     private boolean majorPickerViewIsShowing = false;
@@ -66,6 +89,20 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     protected void prepareDatas() {
         getApiComponent().inject(this);
         registerPresenter.attachView(this);
+
+        String weixin = getIntent().getStringExtra(EXTRA_WEIXIN);
+        isWeixin = (weixin == null) ? false : true;
+        user_id = getIntent().getStringExtra(EXTRA_USER_ID);
+        TLog.i("TAG",isWeixin+user_id);
+        initUser();
+    }
+
+    private void initUser() {
+        if (isWeixin) {
+            mShareAPI = UMShareAPI.get(this);
+            SHARE_MEDIA platform = SHARE_MEDIA.WEIXIN;
+            mShareAPI.getPlatformInfo(this, platform, umAuthListener);
+        }
     }
 
     @LayoutRes
@@ -89,7 +126,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
      * 设置入学年份
      */
     @OnClick(R.id.enroll_year_linearlayout)
-    public void enrollYearLayoutOnClick(){
+    public void enrollYearLayoutOnClick() {
         enrollYearPickerView = new OptionsPickerView(this);
         enrollYearPickerView.setPicker(enrollYears);
         enrollYearPickerView.setTitle("选择入学年份");
@@ -111,7 +148,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     /**
      * 设置学院、专业
      */
-    @OnClick({R.id.major_linearlayout,R.id.department_linearlayout})
+    @OnClick({R.id.major_linearlayout, R.id.department_linearlayout})
     public void setDepartmentAndMajor() {
         majorPickerView = new MajorPickerView(this);
         majorPickerView.setPicker(seuMajors.getDepartments(), seuMajors.getMajors(), true);
@@ -135,12 +172,29 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     }
 
     @OnClick(R.id.register_button)
-    void register(){
-        if(agreeWithProtocolCheckBox.isChecked()){
-            registerPresenter.doRegister(telephoneNumberEditText.getText().toString(),passwordEditText.getText().toString(),
-                    enrollYearTextView.getText().toString(),departmentTextView.getText().toString(),majorTextView.getText().toString(),mNameTv.getText().toString(),mNumberEt.getText().toString());
-        }else{
-            ToastUtils.showToast("请阅读校友圈注册协议",this);
+    void register() {
+        if (agreeWithProtocolCheckBox.isChecked()) {
+            if (isWeixin) {
+                if(registerPresenter.isValid("11111111111", "288N212",
+                        enrollYearTextView.getText().toString(), departmentTextView.getText().toString(),
+                        majorTextView.getText().toString(), mNameTv.getText().toString(), mNumberEt.getText().toString())){
+
+                    userInfoRes.setUser_id(user_id);
+                    userInfoRes.setName(mNameTv.getText().toString());
+                    userInfoRes.setEnroll_year(enrollYearTextView.getText().toString());
+                    userInfoRes.setSchool(departmentTextView.getText().toString());
+                    userInfoRes.setMajor(majorTextView.getText().toString());
+                    userInfoRes.setStudent_num(mNumberEt.getText().toString());
+                    userInfoRes.setImage("");
+
+                    registerPresenter.doWeixin(userInfoRes);
+                }
+            } else {
+                registerPresenter.doRegister(telephoneNumberEditText.getText().toString(), passwordEditText.getText().toString(),
+                        enrollYearTextView.getText().toString(), departmentTextView.getText().toString(), majorTextView.getText().toString(), mNameTv.getText().toString(), mNumberEt.getText().toString());
+            }
+        } else {
+            ToastUtils.showToast("请阅读校友圈注册协议", this);
         }
     }
 
@@ -156,7 +210,7 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
 
     @Override
     public void registerSuccess() {
-        if(pd!=null){
+        if (pd != null) {
             pd.dismiss();
         }
         readyGoThenKill(MainActivity.class);
@@ -171,14 +225,14 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
 
     @Override
     public void registerFailed() {
-        if(pd!=null){
+        if (pd != null) {
             pd.dismiss();
         }
     }
 
     @Override
     public void showToast(@NonNull String s) {
-        ToastUtils.showToast(s,this);
+        ToastUtils.showToast(s, this);
     }
 
     @Override
@@ -187,5 +241,30 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
         registerPresenter.destroy();
     }
 
+    private UMAuthListener umAuthListener = new UMAuthListener() {
+
+        @Override
+        public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+            if (i == UMAuthListener.ACTION_GET_PROFILE && map != null) {
+                mTopLl.setVisibility(View.GONE);
+                mNameTv.setText(map.get("nickname"));
+                userInfoRes.setImage(map.get("headimgurl"));
+            }
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media, int i) {
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mShareAPI.onActivityResult(requestCode, resultCode, data);
+    }
 
 }

@@ -12,6 +12,7 @@ import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
 import com.avoscloud.leanchatlib.controller.ChatManager;
 import com.seu.wufan.alumnicircle.api.entity.LoginRes;
 import com.seu.wufan.alumnicircle.api.entity.UserInfoRes;
+import com.seu.wufan.alumnicircle.api.entity.item.TokenRes;
 import com.seu.wufan.alumnicircle.api.entity.item.User;
 import com.seu.wufan.alumnicircle.common.provider.UserTokenProvider;
 import com.seu.wufan.alumnicircle.common.qualifier.PreferenceType;
@@ -58,6 +59,7 @@ public class LoginIPresenter implements ILoginIPresenter {
     private ILoginView mLoginView;
     private Subscription loginSubscription;
     private Subscription userSubscription;
+    private Subscription weixinSubscription;
 
     private TokenModel tokenModel;
     private CircleModel circleModel;
@@ -84,62 +86,122 @@ public class LoginIPresenter implements ILoginIPresenter {
 
     @Override
     public void doLogin(final String phoneNum, String password) {
-            if (NetUtils.isNetworkConnected(appContext)) {
-                loginSubscription = tokenModel.login(phoneNum, password)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Action1<LoginRes>() {
-                            @Override
-                            public void call(LoginRes loginRes) {
-                                preferenceUtils.putString(loginRes.getAccess_token(), PreferenceType.ACCESS_TOKEN);
-                                preferenceUtils.putString(loginRes.getUser_id(),PreferenceType.USER_ID);
-//                                preferenceUtils.putString(phoneNum,PreferenceType.PHONE);
+        if (NetUtils.isNetworkConnected(appContext)) {
+            loginSubscription = tokenModel.login(phoneNum, password)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<LoginRes>() {
+                        @Override
+                        public void call(LoginRes loginRes) {
+                            preferenceUtils.putString(loginRes.getAccess_token(), PreferenceType.ACCESS_TOKEN);
+                            preferenceUtils.putString(loginRes.getUser_id(), PreferenceType.USER_ID);
+                            PreferenceUtil.putString(appContext,loginRes.getUser_id(),PreferenceUtil.Key.USER_ID);
 
-                                tokenModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
-                                circleModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
-                                contactsModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
-                                userModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
+                            tokenModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
+                            circleModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
+                            contactsModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
+                            userModel.setTokenProvider(new UserTokenProvider(loginRes.getAccess_token()));
 
-                                saveUserInfo(loginRes.getUser_id());
+                            saveUserInfo(loginRes.getUser_id());
+                        }
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            mLoginView.loginFailed();
+                            if (throwable instanceof retrofit2.HttpException) {
+                                retrofit2.HttpException exception = (HttpException) throwable;
+                                mLoginView.showToast(exception.getMessage());
+                            } else {
+                                mLoginView.showNetError();
                             }
-                        }, new Action1<Throwable>() {
-                            @Override
-                            public void call(Throwable throwable) {
-                                mLoginView.loginFailed();
-                                if (throwable instanceof retrofit2.HttpException) {
-                                    retrofit2.HttpException exception = (HttpException) throwable;
-                                    mLoginView.showToast(exception.getMessage());
-                                } else {
-                                    mLoginView.showNetError();
-                                }
-                            }
-                        });
-            } else {
-                mLoginView.showNetCantUse();
-            }
+                        }
+                    });
+        } else {
+            mLoginView.showNetCantUse();
+        }
     }
 
     @Override
     public void destroy() {
-        if(loginSubscription!=null){
+        if (loginSubscription != null) {
             loginSubscription.unsubscribe();
         }
     }
 
     public boolean isValid(String phoneNum, String password) {
-        if(CommonUtils.isEmpty(phoneNum)){
+        if (CommonUtils.isEmpty(phoneNum)) {
             mLoginView.showToast("请输入您的手机号码");
             return false;
         }
-        if(phoneNum.length() !=11){
+        if (phoneNum.length() != 11) {
             mLoginView.showToast("请输入正确的手机号码");
             return false;
         }
-        if(CommonUtils.isEmpty(password)){
+        if (CommonUtils.isEmpty(password)) {
             mLoginView.showToast("请输入您的密码");
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void doWeiXinLogin(String access_token, String open_id) {
+        if (NetUtils.isNetworkConnected(appContext)) {
+            weixinSubscription = tokenModel.loginByWeiXin(access_token, open_id)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Action1<TokenRes>() {
+                        @Override
+                        public void call(final TokenRes tokenRes) {
+                            TLog.i("TAG", tokenRes.getAccess_token() + " " + tokenRes.getUser_id());
+                            tokenModel.setTokenProvider(new UserTokenProvider(tokenRes.getAccess_token()));
+                            circleModel.setTokenProvider(new UserTokenProvider(tokenRes.getAccess_token()));
+                            contactsModel.setTokenProvider(new UserTokenProvider(tokenRes.getAccess_token()));
+                            userModel.setTokenProvider(new UserTokenProvider(tokenRes.getAccess_token()));
+                            preferenceUtils.putString(tokenRes.getAccess_token(), PreferenceType.ACCESS_TOKEN);
+
+                            //再去后台请求用户信息，是否有完善
+                            Subscription userSubscription = tokenModel.getUserInfo(tokenRes.getUser_id())
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(new Action1<UserInfoRes>() {
+                                        @Override
+                                        public void call(UserInfoRes userInfoRes) {
+                                            TLog.i("TAG", "user info:"+userInfoRes.getName() + userInfoRes.getSchool());
+                                            if (!userInfoRes.getName().isEmpty() && !userInfoRes.getSchool().isEmpty() && !userInfoRes.getEnroll_year().isEmpty()) {
+                                                TLog.i("TAG", userInfoRes.getName() + userInfoRes.getSchool() + "已完善，登录");
+                                                //若已完善，则保存用户信息到本地，进行正常跳转
+                                                preferenceUtils.putString(tokenRes.getUser_id(), PreferenceType.USER_ID);
+                                                preferenceUtils.putString(userInfoRes.getImage(), PreferenceType.USER_PHOTO);
+                                                preferenceUtils.putString(userInfoRes.getName(), PreferenceType.USER_NAME);
+                                                PreferenceUtil.putString(appContext,PreferenceUtil.Key.USER_ID,PreferenceUtil.Key.USER_ID);
+                                                user.setImage(userInfoRes.getImage());
+                                                user.setSchool(userInfoRes.getSchool());
+                                                user.setMajor(userInfoRes.getMajor());
+                                                mockLoginData(tokenRes.getUser_id(), userInfoRes.getName());
+                                            } else {
+                                                //若未完善，则跳到注册界面，进行信息完善
+                                                TLog.i("TAG", "未完善，跳转注册");
+                                                mLoginView.goRegister(tokenRes.getUser_id());
+                                            }
+                                        }
+                                    });
+                        }
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            mLoginView.loginFailed();
+                            if (throwable instanceof retrofit2.HttpException) {
+                                retrofit2.HttpException exception = (HttpException) throwable;
+                                mLoginView.showToast(exception.getMessage());
+                            } else {
+                                mLoginView.showNetError();
+                            }
+                        }
+                    });
+        } else {
+            mLoginView.showNetCantUse();
+        }
     }
 
     private void mockLoginData(final String userId, String name) {
@@ -153,8 +215,7 @@ public class LoginIPresenter implements ILoginIPresenter {
         user.setName(name);
         user.setUser_id(userId);
 
-
-        sdk.loginToUmengServerBySelfAccount(appContext, loginUser.name,loginUser.id, new LoginListener() {
+        sdk.loginToUmengServerBySelfAccount(appContext, loginUser.name, loginUser.id, new LoginListener() {
             @Override
             public void onStart() {
 
@@ -162,12 +223,12 @@ public class LoginIPresenter implements ILoginIPresenter {
 
             @Override
             public void onComplete(int stCode, CommUser commUser) {
-                if (ErrorCode.NO_ERROR==stCode) {
+                if (ErrorCode.NO_ERROR == stCode) {
                     // 设置地理位置SDK
 //                    LocationSDKManager.getInstance().addAndUse(new DefaultLocationImpl());
 
                     user.setUmeng_id(commUser.id);
-                    PreferenceUtil.putBean(appContext,PreferenceUtil.Key.EXTRA_COMMUSER,user);
+                    PreferenceUtil.putBean(appContext, PreferenceUtil.Key.EXTRA_COMMUSER, user);
 
                     //在此处可以跳转到任何一个你想要的activity
                     mLoginView.loginSuccess();
@@ -184,12 +245,12 @@ public class LoginIPresenter implements ILoginIPresenter {
                 .subscribe(new Action1<UserInfoRes>() {
                     @Override
                     public void call(final UserInfoRes userInfoRes) {
-                        preferenceUtils.putString(userInfoRes.getImage(),PreferenceType.USER_PHOTO);
-                        preferenceUtils.putString(userInfoRes.getName(),PreferenceType.USER_NAME);
+                        preferenceUtils.putString(userInfoRes.getImage(), PreferenceType.USER_PHOTO);
+                        preferenceUtils.putString(userInfoRes.getName(), PreferenceType.USER_NAME);
                         user.setImage(userInfoRes.getImage());
                         user.setSchool(userInfoRes.getSchool());
                         user.setMajor(userInfoRes.getMajor());
-                        mockLoginData(user_id,userInfoRes.getName());
+                        mockLoginData(user_id, userInfoRes.getName());
                     }
                 });
     }
